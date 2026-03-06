@@ -71,6 +71,7 @@
 }
 
 @layer utilities {
+  /* ── Gradient text ── */
   .gradient-text {
     background: linear-gradient(
       135deg,
@@ -85,24 +86,22 @@
     background-clip: text;
   }
 
-  .gradient-text-subtle {
-    background: linear-gradient(
-      135deg,
-      hsl(210 100% 70%),
-      hsl(160 60% 55%)
-    );
+  .gradient-text-blue {
+    background: linear-gradient(135deg, hsl(210 100% 65%), hsl(160 60% 55%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* ── Hero gradient arc ── */
   .gradient-arc {
     background: radial-gradient(
-      ellipse 140% 70% at 50% 120%,
-      hsl(210 100% 56% / 0.2),
-      hsl(160 60% 45% / 0.12),
-      hsl(45 100% 55% / 0.06),
-      hsl(25 100% 55% / 0.03),
+      ellipse 160% 80% at 50% 110%,
+      hsl(210 100% 56% / 0.25),
+      hsl(160 60% 45% / 0.15),
+      hsl(45 100% 55% / 0.08),
+      hsl(25 100% 55% / 0.04),
+      hsl(0 80% 55% / 0.02),
       transparent 70%
     );
   }
@@ -110,27 +109,27 @@
   .gradient-arc-top {
     background: radial-gradient(
       ellipse 120% 50% at 50% -10%,
-      hsl(210 100% 56% / 0.08),
-      hsl(160 60% 45% / 0.04),
+      hsl(210 100% 56% / 0.1),
+      hsl(160 60% 45% / 0.05),
       transparent 60%
     );
   }
 
-  .gradient-border {
-    border-image: linear-gradient(
-      135deg,
-      hsl(210 100% 56%),
-      hsl(160 60% 45%),
-      hsl(45 100% 55%),
-      hsl(25 100% 55%),
-      hsl(0 80% 55%)
-    ) 1;
+  /* ── Gradient orbs for visual depth ── */
+  .orb-blue {
+    background: radial-gradient(circle, hsl(210 100% 56% / 0.15), transparent 70%);
+  }
+  .orb-green {
+    background: radial-gradient(circle, hsl(160 60% 45% / 0.12), transparent 70%);
+  }
+  .orb-warm {
+    background: radial-gradient(circle, hsl(25 100% 55% / 0.08), transparent 70%);
   }
 
+  /* ── Gradient border card ── */
   .gradient-border-card {
     position: relative;
   }
-
   .gradient-border-card::before {
     content: '';
     position: absolute;
@@ -139,9 +138,10 @@
     padding: 1px;
     background: linear-gradient(
       135deg,
-      hsl(210 100% 56% / 0.4),
-      hsl(160 60% 45% / 0.2),
-      hsl(45 100% 55% / 0.1),
+      hsl(210 100% 56% / 0.5),
+      hsl(160 60% 45% / 0.3),
+      hsl(45 100% 55% / 0.15),
+      hsl(25 100% 55% / 0.1),
       transparent
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -150,29 +150,7 @@
     pointer-events: none;
   }
 
-  .glow-blue {
-    box-shadow: 0 0 40px hsl(210 100% 56% / 0.15);
-  }
-
-  .glow-gradient {
-    box-shadow: 
-      0 0 60px hsl(210 100% 56% / 0.1),
-      0 0 120px hsl(160 60% 45% / 0.05);
-  }
-
-  .glow-subtle {
-    box-shadow: 0 4px 40px hsl(210 100% 56% / 0.08);
-  }
-
-  .card-hover {
-    @apply transition-all duration-300;
-  }
-
-  .card-hover:hover {
-    @apply -translate-y-1;
-    box-shadow: 0 8px 40px hsl(210 100% 56% / 0.12);
-  }
-
+  /* ── Premium card ── */
   .card-premium {
     @apply rounded-2xl border border-border/50 transition-all duration-300;
     background: linear-gradient(
@@ -181,24 +159,42 @@
       hsl(222 40% 8%) 100%
     );
   }
-
   .card-premium:hover {
     @apply -translate-y-1;
-    border-color: hsl(210 100% 56% / 0.2);
+    border-color: hsl(210 100% 56% / 0.25);
     box-shadow: 0 8px 40px hsl(210 100% 56% / 0.1);
   }
 
+  /* ── Glass card ── */
+  .card-glass {
+    @apply rounded-2xl border border-border/30 backdrop-blur-xl;
+    background: hsl(222 40% 8% / 0.7);
+  }
+
+  /* ── Glows ── */
+  .glow-blue {
+    box-shadow: 0 0 30px hsl(210 100% 56% / 0.2), 0 0 60px hsl(210 100% 56% / 0.1);
+  }
+  .glow-gradient {
+    box-shadow: 
+      0 0 60px hsl(210 100% 56% / 0.12),
+      0 0 120px hsl(160 60% 45% / 0.06);
+  }
+  .glow-subtle {
+    box-shadow: 0 4px 40px hsl(210 100% 56% / 0.08);
+  }
+
+  /* ── Section divider ── */
   .section-glow {
     position: relative;
   }
-
   .section-glow::before {
     content: '';
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: 60%;
     height: 1px;
     background: linear-gradient(
       90deg,
@@ -209,22 +205,34 @@
     );
   }
 
+  /* ── Band gradients ── */
   .band-gradient {
     background: linear-gradient(
+      180deg,
+      hsl(222 40% 7%) 0%,
+      hsl(222 35% 6%) 50%,
+      hsl(222 40% 7%) 100%
+    );
+  }
+
+  .band-gradient-warm {
+    background: linear-gradient(
       135deg,
-      hsl(210 100% 56% / 0.05) 0%,
-      hsl(222 40% 8%) 50%,
+      hsl(210 100% 56% / 0.04) 0%,
+      hsl(222 40% 6%) 40%,
       hsl(160 60% 45% / 0.03) 100%
     );
   }
 
+  /* ── Badge glow ── */
   .badge-glow {
     @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium;
-    background: hsl(222 30% 14%);
-    border: 1px solid hsl(210 100% 56% / 0.2);
-    color: hsl(210 40% 85%);
+    background: hsl(222 30% 12%);
+    border: 1px solid hsl(210 100% 56% / 0.25);
+    color: hsl(210 100% 75%);
   }
 
+  /* ── Stat card ── */
   .stat-card {
     @apply rounded-2xl p-6 text-center;
     background: linear-gradient(
@@ -235,20 +243,91 @@
     border: 1px solid hsl(222 30% 16%);
   }
 
+  /* ── CTA band ── */
   .cta-band {
     position: relative;
     overflow: hidden;
   }
-
   .cta-band::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(
-      ellipse 100% 100% at 50% 100%,
-      hsl(210 100% 56% / 0.08),
+      ellipse 120% 100% at 50% 100%,
+      hsl(210 100% 56% / 0.12),
+      hsl(160 60% 45% / 0.05),
       transparent 70%
     );
     pointer-events: none;
+  }
+  .cta-band::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      hsl(25 100% 55% / 0.04),
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Floating animation ── */
+  .float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+  .float-medium {
+    animation: float-medium 6s ease-in-out infinite;
+  }
+  .float-fast {
+    animation: float-fast 4s ease-in-out infinite;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes float-medium {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes float-fast {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ── Gradient line ── */
+  .gradient-line {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      hsl(210 100% 56%),
+      hsl(160 60% 45%),
+      hsl(45 100% 55%),
+      hsl(25 100% 55%),
+      hsl(0 80% 55%)
+    );
+    border-radius: 1px;
+  }
+
+  /* ── Gradient border bottom ── */
+  .gradient-border-bottom {
+    position: relative;
+  }
+  .gradient-border-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 5%,
+      hsl(210 100% 56% / 0.4),
+      hsl(160 60% 45% / 0.3),
+      hsl(45 100% 55% / 0.2),
+      transparent 95%
+    );
   }
 }
