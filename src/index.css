@@ -42,6 +42,9 @@
     --gradient-orange: 25 100% 55%;
     --gradient-red: 0 80% 55%;
 
+    --card-elevated: 222 35% 10%;
+    --surface: 222 35% 7%;
+
     --sidebar-background: 222 40% 8%;
     --sidebar-foreground: 210 40% 92%;
     --sidebar-primary: 210 100% 56%;
@@ -70,12 +73,23 @@
 @layer utilities {
   .gradient-text {
     background: linear-gradient(
-      90deg,
-      hsl(210 100% 56%),
-      hsl(160 60% 45%),
-      hsl(45 100% 55%),
-      hsl(25 100% 55%),
-      hsl(0 80% 55%)
+      135deg,
+      hsl(210 100% 60%),
+      hsl(160 60% 50%),
+      hsl(45 100% 58%),
+      hsl(25 100% 58%),
+      hsl(0 80% 58%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-subtle {
+    background: linear-gradient(
+      135deg,
+      hsl(210 100% 70%),
+      hsl(160 60% 55%)
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -84,24 +98,56 @@
 
   .gradient-arc {
     background: radial-gradient(
-      ellipse 120% 60% at 50% 100%,
-      hsl(210 100% 56% / 0.15),
-      hsl(160 60% 45% / 0.1),
-      hsl(45 100% 55% / 0.05),
+      ellipse 140% 70% at 50% 120%,
+      hsl(210 100% 56% / 0.2),
+      hsl(160 60% 45% / 0.12),
+      hsl(45 100% 55% / 0.06),
       hsl(25 100% 55% / 0.03),
       transparent 70%
     );
   }
 
+  .gradient-arc-top {
+    background: radial-gradient(
+      ellipse 120% 50% at 50% -10%,
+      hsl(210 100% 56% / 0.08),
+      hsl(160 60% 45% / 0.04),
+      transparent 60%
+    );
+  }
+
   .gradient-border {
     border-image: linear-gradient(
-      90deg,
+      135deg,
       hsl(210 100% 56%),
       hsl(160 60% 45%),
       hsl(45 100% 55%),
       hsl(25 100% 55%),
       hsl(0 80% 55%)
     ) 1;
+  }
+
+  .gradient-border-card {
+    position: relative;
+  }
+
+  .gradient-border-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(210 100% 56% / 0.4),
+      hsl(160 60% 45% / 0.2),
+      hsl(45 100% 55% / 0.1),
+      transparent
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 
   .glow-blue {
@@ -114,12 +160,95 @@
       0 0 120px hsl(160 60% 45% / 0.05);
   }
 
+  .glow-subtle {
+    box-shadow: 0 4px 40px hsl(210 100% 56% / 0.08);
+  }
+
   .card-hover {
     @apply transition-all duration-300;
   }
 
   .card-hover:hover {
     @apply -translate-y-1;
-    box-shadow: 0 8px 30px hsl(210 100% 56% / 0.1);
+    box-shadow: 0 8px 40px hsl(210 100% 56% / 0.12);
+  }
+
+  .card-premium {
+    @apply rounded-2xl border border-border/50 transition-all duration-300;
+    background: linear-gradient(
+      180deg,
+      hsl(222 35% 10%) 0%,
+      hsl(222 40% 8%) 100%
+    );
+  }
+
+  .card-premium:hover {
+    @apply -translate-y-1;
+    border-color: hsl(210 100% 56% / 0.2);
+    box-shadow: 0 8px 40px hsl(210 100% 56% / 0.1);
+  }
+
+  .section-glow {
+    position: relative;
+  }
+
+  .section-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(210 100% 56% / 0.3),
+      hsl(160 60% 45% / 0.2),
+      transparent
+    );
+  }
+
+  .band-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(210 100% 56% / 0.05) 0%,
+      hsl(222 40% 8%) 50%,
+      hsl(160 60% 45% / 0.03) 100%
+    );
+  }
+
+  .badge-glow {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium;
+    background: hsl(222 30% 14%);
+    border: 1px solid hsl(210 100% 56% / 0.2);
+    color: hsl(210 40% 85%);
+  }
+
+  .stat-card {
+    @apply rounded-2xl p-6 text-center;
+    background: linear-gradient(
+      180deg,
+      hsl(222 35% 11%) 0%,
+      hsl(222 40% 8%) 100%
+    );
+    border: 1px solid hsl(222 30% 16%);
+  }
+
+  .cta-band {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 100%,
+      hsl(210 100% 56% / 0.08),
+      transparent 70%
+    );
+    pointer-events: none;
   }
 }

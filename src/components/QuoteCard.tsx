@@ -5,12 +5,17 @@ interface QuoteCardProps {
 }
 
 const QuoteCard = ({ name, role, quote }: QuoteCardProps) => (
-  <div className="rounded-xl bg-card border border-border/50 p-6 card-hover flex flex-col gap-4">
-    <p className="text-sm text-secondary-foreground leading-relaxed italic">"{quote}"</p>
-    <div className="mt-auto">
-      <p className="font-display font-semibold text-sm text-foreground">{name}</p>
-      <p className="text-xs text-muted-foreground mt-0.5">{role}</p>
+  <div className="card-premium p-6 flex flex-col gap-4 group">
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground font-display font-bold text-sm flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+        {name.charAt(0)}
+      </div>
+      <div className="min-w-0">
+        <p className="font-display font-semibold text-sm text-foreground truncate">{name}</p>
+        <p className="text-[11px] text-muted-foreground truncate">{role}</p>
+      </div>
     </div>
+    <p className="text-sm text-secondary-foreground/80 leading-relaxed flex-1">"{quote}"</p>
   </div>
 );
 
