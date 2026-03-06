@@ -310,6 +310,19 @@
     border-radius: 1px;
   }
 
+  /* ── Builder card gradient ── */
+  .builder-card-gradient {
+    background: linear-gradient(
+      160deg,
+      hsl(210 100% 20% / 0.9) 0%,
+      hsl(210 80% 15% / 0.85) 20%,
+      hsl(160 40% 14% / 0.8) 40%,
+      hsl(45 40% 14% / 0.75) 60%,
+      hsl(25 40% 13% / 0.8) 80%,
+      hsl(0 30% 12% / 0.85) 100%
+    );
+  }
+
   /* ── Gradient border bottom ── */
   .gradient-border-bottom {
     position: relative;
