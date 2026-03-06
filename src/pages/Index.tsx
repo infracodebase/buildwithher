@@ -306,6 +306,66 @@ const Index = () => {
         </div>
       </motion.section>
 
+      {/* ─── BE PART OF THE MOVEMENT ─── */}
+      <motion.section {...fadeUp} className="section-glow relative overflow-hidden">
+        <div className="absolute bottom-0 left-[20%] w-[400px] h-[400px] orb-warm rounded-full pointer-events-none opacity-40" />
+        <div className="container py-24 md:py-32 relative z-10">
+          <div className="text-center mb-6 max-w-2xl mx-auto">
+            <span className="badge-glow mb-6 inline-flex">The Movement</span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+              Be Part of the <span className="gradient-text">Movement</span>
+            </h2>
+          </div>
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2 text-muted-foreground leading-relaxed">
+            <p>Women across the world are building careers in cloud, AI, infrastructure, DevOps, security, and platform engineering.</p>
+            <p>Some are transitioning into tech. Some are already working in cloud. Some are still learning.</p>
+            <p>What connects them is simple.</p>
+            <p className="text-foreground font-medium text-lg">They kept building.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {sampleBuilders.slice(0, 8).map((builder, i) => (
+              <motion.div
+                key={builder.id}
+                {...stagger}
+                transition={{ delay: 0.05 + i * 0.06 }}
+                className="flex flex-col gap-2.5"
+              >
+                <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
+                  <div className="absolute inset-0 builder-card-gradient" />
+                  <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />
+                  <div className="relative z-10 h-full flex flex-col items-center justify-between p-6 text-center">
+                    <div className="space-y-0.5">
+                      <p className="text-[11px] font-display font-semibold tracking-widest uppercase text-foreground/90">Build with Her</p>
+                      <p className="text-[9px] tracking-wider uppercase text-foreground/40">Powered by Infracodebase</p>
+                    </div>
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-foreground/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
+                      <span className="font-display font-bold text-2xl md:text-3xl text-foreground/80">{builder.name.charAt(0)}</span>
+                    </div>
+                    <div className="space-y-1.5">
+                      <h3 className="font-display font-semibold text-sm text-foreground leading-tight">{builder.role}</h3>
+                      <p className="text-xs text-foreground/50">{builder.country}</p>
+                      <p className="text-[10px] text-foreground/40 leading-relaxed max-w-[90%] mx-auto">{builder.tags.join(" • ")}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center">
+                  <p className="text-sm font-display font-medium text-foreground/80">{builder.name}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <p className="font-display text-xl md:text-2xl font-semibold text-foreground mb-6">Your story could be here.</p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <GradientButton to="/meet-the-builders" size="lg" icon>View the Member Wall</GradientButton>
+              <GradientButton to="/meet-the-builders" variant="outline" size="lg">Add Your Profile</GradientButton>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* ─── WHAT YOU BUILD HERE — 5 PREMIUM CARDS ─── */}
       <motion.section {...fadeUp} className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-arc-top pointer-events-none" />
