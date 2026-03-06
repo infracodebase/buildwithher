@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
-import SectionWrapper from "@/components/SectionWrapper";
 import GradientButton from "@/components/GradientButton";
 import BuilderCard, { BuilderProfile } from "@/components/BuilderCard";
 import ProfileModal from "@/components/ProfileModal";
 import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Users, Clock } from "lucide-react";
+import { Users, Clock, ArrowRight } from "lucide-react";
 
 const MeetTheBuilders = () => {
   const [builders, setBuilders] = useState<BuilderProfile[]>(sampleBuilders);
@@ -18,58 +16,93 @@ const MeetTheBuilders = () => {
     setBuilders((prev) => [profile, ...prev]);
   };
 
+  const totalCount = builders.length + 66;
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <PageHero
-        title="Meet the Builders"
-        actions={
-          <>
-            <GradientButton onClick={() => setModalOpen(true)}>Create Your Profile</GradientButton>
-            <GradientButton to="/community" variant="outline">Join the Community</GradientButton>
-          </>
-        }
-      >
-        <div className="space-y-3 text-left max-w-xl mx-auto">
-          <p>Women across the world are learning and building in cloud infrastructure.</p>
-          <p>Some are transitioning. Some are already working in tech. Some are just starting. Some are already leading.</p>
-          <p>What connects them is simple. <span className="text-foreground font-medium">They kept building.</span></p>
-          <p>This page highlights women in the Build with Her community who are learning, growing, and sharing their journeys.</p>
-          <p>Because visibility matters. And because no one should feel like they are building alone.</p>
-        </div>
-      </PageHero>
 
-      {/* Builder Count */}
-      <SectionWrapper>
-        <div className="flex flex-col items-center gap-4">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-4 rounded-2xl bg-card border border-border/50 px-10 py-8 glow-gradient"
-          >
-            <Users className="w-10 h-10 text-primary" />
-            <div>
-              <p className="font-display text-5xl font-bold gradient-text">{builders.length + 66}</p>
-              <p className="text-muted-foreground text-sm font-medium">Builders</p>
-            </div>
+      {/* Hero */}
+      <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden">
+        <div className="absolute inset-0 gradient-arc pointer-events-none" />
+        <div className="container relative z-10 max-w-3xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <span className="badge-glow">Builder Wall</span>
           </motion.div>
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <Clock size={14} />
-            <span>Takes less than 60 seconds</span>
-          </div>
-          <GradientButton onClick={() => setModalOpen(true)}>Create Your Profile</GradientButton>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text"
+          >
+            Meet the Builders
+          </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+          >
+            <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple — <span className="text-foreground font-medium">they kept building</span>.</p>
+            <p className="mt-3">Because visibility matters. And because no one should feel like they are building alone.</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 flex flex-wrap gap-3 justify-center"
+          >
+            <GradientButton onClick={() => setModalOpen(true)} size="lg" icon>Create Your Profile</GradientButton>
+            <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
+          </motion.div>
         </div>
-      </SectionWrapper>
+      </section>
+
+      {/* Builder Count Module */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="section-glow"
+      >
+        <div className="container py-16">
+          <div className="max-w-md mx-auto">
+            <div className="card-premium p-10 text-center gradient-border-card glow-gradient">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <Users className="w-8 h-8 text-primary" />
+                <span className="font-display text-6xl font-bold gradient-text">{totalCount}</span>
+              </div>
+              <p className="text-muted-foreground font-medium mb-5">Builders and growing</p>
+              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mb-5">
+                <Clock size={13} />
+                <span>Takes less than 60 seconds</span>
+              </div>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors font-display"
+              >
+                Create Your Profile <ArrowRight size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.section>
 
       {/* Builder Grid */}
-      <SectionWrapper className="border-t border-border/30">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {builders.map((builder) => (
-            <BuilderCard key={builder.id} profile={builder} />
-          ))}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="section-glow"
+      >
+        <div className="container py-16 md:py-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {builders.map((builder) => (
+              <BuilderCard key={builder.id} profile={builder} />
+            ))}
+          </div>
         </div>
-      </SectionWrapper>
+      </motion.section>
 
       <ProfileModal
         open={modalOpen}

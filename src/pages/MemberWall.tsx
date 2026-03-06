@@ -1,89 +1,113 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import SectionWrapper from "@/components/SectionWrapper";
 import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials } from "@/data/communityData";
+import { motion } from "framer-motion";
 import { Users, Globe, Cloud, TrendingUp } from "lucide-react";
 
 const stats = [
-  { icon: Users, label: "78 Members" },
-  { icon: Globe, label: "12 Countries" },
-  { icon: Cloud, label: "Cloud • AI • Infrastructure" },
-  { icon: TrendingUp, label: "Growing every month" },
+  { icon: Users, value: "78", label: "Members" },
+  { icon: Globe, value: "12", label: "Countries" },
+  { icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
+  { icon: TrendingUp, value: "Growing", label: "Every month" },
 ];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" as const },
+  transition: { duration: 0.6 },
+};
 
 const MemberWall = () => (
   <div className="min-h-screen bg-background">
     <Navbar />
     <PageHero
       title="Build with Her Member Wall"
-      actions={<GradientButton to="/meet-the-builders">Join the Wall</GradientButton>}
+      badge="Community Wall"
+      actions={<GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>}
     >
-      <div className="space-y-3 text-left max-w-xl mx-auto">
-        <p>You are not the only one building quietly.</p>
-        <p>This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
-        <p>Some are transitioning. Some are already working in tech. Some are still learning. Some are already leading.</p>
-        <p>What connects them is simple. <span className="text-foreground font-medium">They kept going.</span></p>
-      </div>
+      <p>You are not the only one building quietly. This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
 
-    {/* Stats strip */}
-    <SectionWrapper>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map(({ icon: Icon, label }) => (
-          <div key={label} className="rounded-xl bg-card border border-border/50 p-5 text-center card-hover">
-            <Icon className="w-6 h-6 mx-auto mb-2 text-primary" />
-            <p className="font-display font-semibold text-sm text-foreground">{label}</p>
-          </div>
-        ))}
+    {/* Stats Strip */}
+    <motion.section {...fadeUp}>
+      <div className="container py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {stats.map(({ icon: Icon, value, label }) => (
+            <div key={label} className="stat-card">
+              <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
+              <p className="font-display font-bold text-foreground text-lg">{value}</p>
+              <p className="text-xs text-muted-foreground">{label}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </SectionWrapper>
+    </motion.section>
 
     {/* Intro */}
-    <SectionWrapper className="border-t border-border/30">
-      <div className="max-w-2xl mx-auto space-y-4 text-muted-foreground leading-relaxed">
-        <p>When you are learning or growing in cloud, it is easy to feel invisible.</p>
-        <p>You study. You practice. You apply. You improve.</p>
-        <p>And sometimes it feels like no one sees the discipline behind it.</p>
-        <p className="text-foreground font-medium">This wall exists to change that.</p>
-        <p>It exists to make your journey more visible. And to remind every woman who lands here that she is not building alone.</p>
+    <motion.section {...fadeUp} className="band-gradient section-glow">
+      <div className="container py-20 md:py-28">
+        <div className="max-w-2xl mx-auto text-center space-y-4 text-muted-foreground leading-relaxed">
+          <p className="text-lg">When you are learning or growing in cloud, it is easy to feel invisible.</p>
+          <p>You study. You practice. You apply. You improve. And sometimes it feels like no one sees the discipline behind it.</p>
+          <p className="text-foreground font-medium text-lg">This wall exists to change that.</p>
+          <p>It exists to make your journey more visible. And to remind every woman who lands here that she is not building alone.</p>
+        </div>
       </div>
-    </SectionWrapper>
+    </motion.section>
 
     {/* Quote Grid */}
-    <SectionWrapper className="border-t border-border/30">
-      <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">Community Voices</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {testimonials.map((t) => (
-          <QuoteCard key={t.name} name={t.name} role={t.role} quote={t.quote} />
-        ))}
+    <motion.section {...fadeUp} className="section-glow">
+      <div className="container py-24 md:py-32">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-14">
+          Community <span className="gradient-text">Voices</span>
+        </h2>
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+          {testimonials.map((t) => (
+            <div key={t.name} className="break-inside-avoid">
+              <QuoteCard name={t.name} role={t.role} quote={t.quote} />
+            </div>
+          ))}
+        </div>
       </div>
-    </SectionWrapper>
+    </motion.section>
 
     {/* Why This Wall Exists */}
-    <SectionWrapper className="border-t border-border/30">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">Why This Wall Exists</h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p>Visibility matters. Not because attention is everything. But because being seen can lead to connection, confidence, opportunities, and belief.</p>
-          <p>When more women become visible in cloud, AI, and infrastructure, more women can imagine themselves there too.</p>
+    <motion.section {...fadeUp} className="band-gradient section-glow">
+      <div className="container py-20 md:py-28">
+        <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-6">Why This Wall Exists</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>Visibility matters. Not because attention is everything. But because being seen can lead to connection, confidence, opportunities, and belief.</p>
+              <p>When more women become visible in cloud, AI, and infrastructure, more women can imagine themselves there too.</p>
+            </div>
+          </div>
+          <div className="card-premium p-8 text-center gradient-border-card">
+            <p className="font-display text-5xl font-bold gradient-text mb-2">78+</p>
+            <p className="text-muted-foreground text-sm mb-1">Women builders visible</p>
+            <p className="text-xs text-muted-foreground">across 12 countries</p>
+          </div>
         </div>
       </div>
-    </SectionWrapper>
+    </motion.section>
 
     {/* Final CTA */}
-    <SectionWrapper className="border-t border-border/30">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="font-display text-2xl md:text-3xl font-bold gradient-text mb-4">Add your story to the wall</h2>
-        <p className="text-muted-foreground mb-8">Let yourself be seen for your work, your growth, your discipline, and your journey.</p>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <GradientButton to="/meet-the-builders">Join the Wall</GradientButton>
-          <GradientButton to="/community" variant="outline">Join the Community</GradientButton>
-        </div>
+    <section className="relative cta-band section-glow">
+      <div className="container py-28 md:py-36">
+        <motion.div {...fadeUp} className="max-w-2xl mx-auto text-center">
+          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6">Add your story to the wall</h2>
+          <p className="text-muted-foreground text-lg mb-10">Let yourself be seen for your work, your growth, your discipline, and your journey.</p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>
+            <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
+          </div>
+        </motion.div>
       </div>
-    </SectionWrapper>
+    </section>
 
     <Footer />
   </div>

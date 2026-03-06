@@ -1,40 +1,71 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import SectionWrapper from "@/components/SectionWrapper";
 import GradientButton from "@/components/GradientButton";
+import { motion } from "framer-motion";
+import { Heart, Eye, Users, Palette, Handshake } from "lucide-react";
 
 const sections = [
-  { title: "Why Community Matters", copy: "Learning alone is possible. But growing in isolation is exhausting. Community gives you context, encouragement, and a sense of shared purpose. It reminds you that the questions you are asking, the frustrations you are facing, and the progress you are making are all part of a larger story." },
-  { title: "Belonging Changes Everything", copy: "When you belong somewhere, you stop questioning whether you should be here. You start focusing on what you can build, what you can learn, and how you can contribute. Belonging does not mean you are the same as everyone else. It means you are welcome exactly as you are." },
-  { title: "Visibility Matters", copy: "You do not need to be the loudest voice in the room. But you deserve to be seen. Visibility opens doors: to opportunities, to mentorship, to collaboration, and to belief in yourself. Build with Her creates opportunities for you to share your work and your journey." },
-  { title: "Personal Brand", copy: "Your personal brand is not about marketing. It is about clarity. Who you are, what you do, and where you are going. When you can communicate that with honesty and confidence, you stand out — not because you are performing, but because you are being yourself." },
-  { title: "Open Collaboration", copy: "The best engineers learn from each other. Build with Her encourages open collaboration: sharing resources, pair programming, joint projects, and honest conversations about what is working and what is not." },
+  {
+    icon: Heart,
+    title: "Why Community Matters",
+    copy: "Learning alone is possible. But growing in isolation is exhausting. Community gives you context, encouragement, and a sense of shared purpose.",
+  },
+  {
+    icon: Users,
+    title: "Belonging Changes Everything",
+    copy: "When you belong somewhere, you stop questioning whether you should be here. You start focusing on what you can build, learn, and contribute.",
+  },
+  {
+    icon: Eye,
+    title: "Visibility Matters",
+    copy: "You do not need to be the loudest voice. But you deserve to be seen. Visibility opens doors — to opportunities, mentorship, collaboration, and belief in yourself.",
+  },
+  {
+    icon: Palette,
+    title: "Personal Brand",
+    copy: "Your personal brand is not about marketing. It is about clarity. Who you are, what you do, and where you are going. Honest and confident.",
+  },
+  {
+    icon: Handshake,
+    title: "Open Collaboration",
+    copy: "The best engineers learn from each other. Build with Her encourages sharing resources, pair programming, joint projects, and honest conversations.",
+  },
 ];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" as const },
+  transition: { duration: 0.6 },
+};
 
 const Community = () => (
   <div className="min-h-screen bg-background">
     <Navbar />
-    <PageHero title="A community built around we, not just me">
-      <p>You can be ambitious and still need support.</p>
-      <p className="mt-1">You can be talented and still need belonging.</p>
-      <p className="mt-1">You can be disciplined and still not want to do everything alone.</p>
+    <PageHero title="A community built around we, not just me" badge="Community">
+      <p>You can be ambitious and still need support. You can be talented and still need belonging. You can be disciplined and still not want to do everything alone.</p>
     </PageHero>
 
-    {sections.map(({ title, copy }, i) => (
-      <SectionWrapper key={title} className={i > 0 ? "border-t border-border/30" : ""}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">{title}</h2>
-          <p className="text-muted-foreground leading-relaxed">{copy}</p>
+    <motion.section {...fadeUp} className="section-glow">
+      <div className="container py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {sections.map(({ icon: Icon, title, copy }) => (
+            <div key={title} className="card-premium p-8 group">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-display font-semibold text-foreground text-lg mb-3">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{copy}</p>
+            </div>
+          ))}
         </div>
-      </SectionWrapper>
-    ))}
 
-    <SectionWrapper className="border-t border-border/30">
-      <div className="text-center">
-        <GradientButton to="/meet-the-builders">Join the Community</GradientButton>
+        <div className="mt-16 text-center">
+          <GradientButton to="/meet-the-builders" size="lg" icon>Join the Community</GradientButton>
+        </div>
       </div>
-    </SectionWrapper>
+    </motion.section>
 
     <Footer />
   </div>

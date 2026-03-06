@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import GradientButton from "./GradientButton";
 import { BuilderProfile } from "./BuilderCard";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Sparkles } from "lucide-react";
 
 const cloudOptions = [
   "AWS", "Azure", "GCP", "DevOps", "Platform Engineering",
@@ -60,74 +60,91 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-card border-border">
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-card border-border/50 rounded-2xl">
         {submitted ? (
-          <div className="py-12 text-center flex flex-col items-center gap-4">
-            <CheckCircle className="w-12 h-12 text-accent" />
-            <h3 className="font-display text-xl font-bold text-foreground">Profile Created!</h3>
-            <p className="text-muted-foreground text-sm">Your builder profile has been added to the grid.</p>
+          <div className="py-16 text-center flex flex-col items-center gap-5">
+            <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center">
+              <CheckCircle className="w-8 h-8 text-accent" />
+            </div>
+            <h3 className="font-display text-2xl font-bold text-foreground">Welcome, Builder!</h3>
+            <p className="text-muted-foreground text-sm max-w-xs">Your profile has been added to the grid. You are now visible.</p>
             <GradientButton onClick={handleClose}>Close</GradientButton>
           </div>
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle className="font-display text-lg">Create Your Builder Profile</DialogTitle>
+              <div className="flex items-center gap-2 mb-1">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <DialogTitle className="font-display text-lg">Create Your Builder Profile</DialogTitle>
+              </div>
               <p className="text-sm text-muted-foreground">Takes less than 60 seconds</p>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-2">
-              <div>
-                <Label className="text-xs">Full Name *</Label>
-                <Input value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 bg-secondary border-border" />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label className="text-xs text-muted-foreground">Full Name *</Label>
+                  <Input value={name} onChange={(e) => setName(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                </div>
+                <div>
+                  <Label className="text-xs text-muted-foreground">Country *</Label>
+                  <Input value={country} onChange={(e) => setCountry(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label className="text-xs text-muted-foreground">Role / Title *</Label>
+                  <Input value={role} onChange={(e) => setRole(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                </div>
+                <div>
+                  <Label className="text-xs text-muted-foreground">Company or School</Label>
+                  <Input value={company} onChange={(e) => setCompany(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                </div>
               </div>
               <div>
-                <Label className="text-xs">Country *</Label>
-                <Input value={country} onChange={(e) => setCountry(e.target.value)} required className="mt-1 bg-secondary border-border" />
-              </div>
-              <div>
-                <Label className="text-xs">Role / Title *</Label>
-                <Input value={role} onChange={(e) => setRole(e.target.value)} required className="mt-1 bg-secondary border-border" />
-              </div>
-              <div>
-                <Label className="text-xs">Company or School (optional)</Label>
-                <Input value={company} onChange={(e) => setCompany(e.target.value)} className="mt-1 bg-secondary border-border" />
-              </div>
-              <div>
-                <Label className="text-xs">Cloud Focus *</Label>
+                <Label className="text-xs text-muted-foreground">Cloud Focus *</Label>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {cloudOptions.map((opt) => (
-                    <label key={opt} className="flex items-center gap-1.5 cursor-pointer">
+                    <label
+                      key={opt}
+                      className={`flex items-center gap-1.5 cursor-pointer px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
+                        focus.includes(opt)
+                          ? "bg-primary/10 border-primary/30 text-foreground"
+                          : "bg-secondary/30 border-border/30 text-muted-foreground hover:border-border/60"
+                      }`}
+                    >
                       <Checkbox
                         checked={focus.includes(opt)}
                         onCheckedChange={() => toggleFocus(opt)}
+                        className="hidden"
                       />
-                      <span className="text-xs text-muted-foreground">{opt}</span>
+                      {opt}
                     </label>
                   ))}
                 </div>
               </div>
               <div>
-                <Label className="text-xs">What are you currently building or learning?</Label>
-                <Textarea value={building} onChange={(e) => setBuilding(e.target.value)} className="mt-1 bg-secondary border-border" rows={2} />
+                <Label className="text-xs text-muted-foreground">What are you currently building or learning?</Label>
+                <Textarea value={building} onChange={(e) => setBuilding(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={2} />
               </div>
               <div>
-                <Label className="text-xs">What would you say to another woman learning cloud?</Label>
-                <Textarea value={statement} onChange={(e) => setStatement(e.target.value)} className="mt-1 bg-secondary border-border" rows={2} />
+                <Label className="text-xs text-muted-foreground">What would you say to another woman learning cloud?</Label>
+                <Textarea value={statement} onChange={(e) => setStatement(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={2} />
               </div>
               <div>
-                <Label className="text-xs">LinkedIn</Label>
-                <Input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="mt-1 bg-secondary border-border" placeholder="https://linkedin.com/in/..." />
+                <Label className="text-xs text-muted-foreground">LinkedIn</Label>
+                <Input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" placeholder="https://linkedin.com/in/..." />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <Label className="text-xs">GitHub (optional)</Label>
-                  <Input value={github} onChange={(e) => setGithub(e.target.value)} className="mt-1 bg-secondary border-border" />
+                  <Label className="text-xs text-muted-foreground">GitHub</Label>
+                  <Input value={github} onChange={(e) => setGithub(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                 </div>
                 <div>
-                  <Label className="text-xs">Portfolio (optional)</Label>
-                  <Input value={portfolio} onChange={(e) => setPortfolio(e.target.value)} className="mt-1 bg-secondary border-border" />
+                  <Label className="text-xs text-muted-foreground">Portfolio</Label>
+                  <Input value={portfolio} onChange={(e) => setPortfolio(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                 </div>
               </div>
-              <GradientButton type="submit" className="mt-2 w-full">Create Profile</GradientButton>
+              <GradientButton type="submit" className="mt-3 w-full" size="lg">Create Profile</GradientButton>
             </form>
           </>
         )}
