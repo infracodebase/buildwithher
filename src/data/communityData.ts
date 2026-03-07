@@ -16,6 +16,8 @@ export const testimonials = [
 ];
 
 export const sampleBuilders: BuilderProfile[] = [
+  { id: "m1", name: "Manisha Sarkar", role: "Cloud & DevOps Engineer", country: "India", photo: "/images/manisha.png", statement: "Building resilient cloud infrastructure and growing every day.", tags: ["AWS", "Kubernetes", "DevOps"], linkedin: "https://www.linkedin.com/in/manisha-sarkar-ab7929110/" },
+  { id: "m2", name: "Bunrinmwa Gobum", role: "Cloud & DevOps Engineer", country: "Nigeria", photo: "/images/bunrinmwa.jpeg", statement: "Passionate about cloud infrastructure and committed to continuous growth.", tags: ["AWS", "DevOps", "Infrastructure"], linkedin: "https://www.linkedin.com/in/bunrinmwa-gobum-5bb64323a/" },
   { id: "1", name: "Emmanuella Blessing Udeh", role: "AWS Cloud Administrator", country: "Nigeria", statement: "Building strong foundations before scaling and seeing AI as a co-worker that supports growth.", tags: ["AWS", "Security", "FinOps"] },
   { id: "2", name: "Comfort Benton", role: "Cloud Engineer", country: "United States", statement: "Each session brings new insight, new connections, and new encouragement.", tags: ["AWS", "DevOps", "Terraform"] },
   { id: "3", name: "Elizabeth Waithiru", role: "Cloud & DevOps Engineer", country: "Kenya", statement: "An amazing initiative that bridges the crack many slip into.", tags: ["Kubernetes", "Terraform", "DevOps"] },
