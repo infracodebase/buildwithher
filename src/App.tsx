@@ -9,6 +9,7 @@ import Programs from "./pages/Programs";
 import Community from "./pages/Community";
 import Events from "./pages/Events";
 import MeetTheBuilders from "./pages/MeetTheBuilders";
+import JoinTheBuilders from "./pages/JoinTheBuilders";
 import MemberWall from "./pages/MemberWall";
 import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/community" element={<Community />} />
             <Route path="/events" element={<Events />} />
             <Route path="/meet-the-builders" element={<MeetTheBuilders />} />
+            <Route path="/join-the-builders" element={<JoinTheBuilders />} />
             <Route path="/member-wall" element={<MemberWall />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="*" element={<NotFound />} />
