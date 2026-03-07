@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
 import BuilderCard, { BuilderProfile } from "@/components/BuilderCard";
 import ProfileModal from "@/components/ProfileModal";
+import GlobalMap from "@/components/GlobalMap";
 import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
 import { Users, Clock, ArrowRight } from "lucide-react";
@@ -85,6 +86,22 @@ const MeetTheBuilders = () => {
               </button>
             </div>
           </div>
+        </div>
+      </motion.section>
+
+      {/* Global Map */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="band-gradient section-glow"
+      >
+        <div className="container py-20 md:py-28">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Building Across the World</h2>
+            <p className="text-muted-foreground leading-relaxed">Women in this community are building across cloud, AI, infrastructure, DevOps, and platform engineering from many countries.</p>
+          </div>
+          <GlobalMap />
         </div>
       </motion.section>
 
