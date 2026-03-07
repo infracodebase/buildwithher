@@ -329,33 +329,29 @@ const Index = () => {
                 key={builder.id}
                 {...stagger}
                 transition={{ delay: 0.05 + i * 0.06 }}
-                className="flex flex-col gap-2.5"
               >
                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
                   <div className="absolute inset-0 builder-card-gradient" />
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />
-                  <div className="relative z-10 h-full flex flex-col items-center justify-between p-6 text-center">
+                  <div className="relative z-10 h-full flex flex-col items-center justify-between p-5 md:p-6 text-center">
                     <div className="space-y-0.5">
-                      <p className="text-[11px] font-display font-semibold tracking-widest uppercase text-foreground/90">Build with Her</p>
-                      <p className="text-[9px] tracking-wider uppercase text-foreground/40">Powered by Infracodebase</p>
+                      <p className="text-[10px] font-display font-semibold tracking-widest uppercase text-foreground/90">Build with Her</p>
+                      <p className="text-[8px] tracking-wider uppercase text-foreground/40">Powered by Infracodebase</p>
                     </div>
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-foreground/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
+                    <div className="w-20 h-20 rounded-full border-2 border-foreground/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
                       {builder.photo ? (
                         <img src={builder.photo} alt={builder.name} className="w-full h-full object-cover" />
                       ) : (
-                        <span className="font-display font-bold text-2xl md:text-3xl text-foreground/80">{builder.name.charAt(0)}</span>
+                        <span className="font-display font-bold text-2xl text-foreground/80">{builder.name.charAt(0)}</span>
                       )}
                     </div>
-                    <div className="space-y-1">
-                      <h3 className="font-display font-bold text-base text-foreground leading-tight">{builder.name}</h3>
-                      <p className="text-xs text-foreground/70">{builder.role}</p>
-                      <p className="text-[11px] text-foreground/50">{builder.country}</p>
-                      <p className="text-[10px] text-foreground/40 leading-relaxed max-w-[90%] mx-auto">{builder.tags.join(" • ")}</p>
+                    <div className="space-y-1 min-w-0 w-full">
+                      <h3 className="font-display font-bold text-[15px] text-foreground leading-tight truncate">{builder.name}</h3>
+                      <p className="text-[11px] text-foreground/65 truncate">{builder.role}</p>
+                      <p className="text-[10px] text-foreground/45">{builder.country}</p>
+                      <p className="text-[9px] text-foreground/35 leading-relaxed truncate">{builder.tags.join(" • ")}</p>
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-center">
-                  <p className="text-sm font-display font-medium text-foreground/80">{builder.name}</p>
                 </div>
               </motion.div>
             ))}

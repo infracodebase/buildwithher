@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import BrandLockup from "./BrandLockup";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Programs", path: "/programs" },
@@ -32,12 +34,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="font-display text-lg font-bold tracking-tight flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
-            <div className="w-3 h-3 rounded-sm bg-primary" />
-          </div>
-          <span className="text-foreground">Build with Her</span>
-        </Link>
+        <BrandLockup size="sm" />
 
         <div className="hidden lg:flex items-center gap-0.5">
           {navLinks.map((link) => (
@@ -55,16 +52,22 @@ const Navbar = () => {
           ))}
         </div>
 
-        <Link
-          to="/meet-the-builders"
-          className="hidden lg:inline-flex h-8 px-4 items-center rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold hover:bg-primary/90 transition-all glow-blue"
-        >
-          Join Community
-        </Link>
+        <div className="hidden lg:flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            to="/meet-the-builders"
+            className="h-8 px-4 inline-flex items-center rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold hover:bg-primary/90 transition-all glow-blue"
+          >
+            Join Community
+          </Link>
+        </div>
 
-        <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-foreground">
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex lg:hidden items-center gap-2">
+          <ThemeToggle />
+          <button onClick={() => setOpen(!open)} className="p-2 text-foreground">
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
