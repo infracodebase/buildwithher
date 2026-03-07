@@ -183,11 +183,11 @@ const Index = () => {
                 transition={{ delay: i * 0.08 }}
                 className="w-10 h-10 rounded-full border-2 border-background overflow-hidden bg-gradient-to-br from-secondary to-muted flex items-center justify-center text-foreground font-display font-bold text-xs"
                 title={b.name}>
-                  {b.photo ? (
-                    <img src={b.photo} alt={b.name} className="w-full h-full object-cover" />
-                  ) : (
-                    b.name.charAt(0)
-                  )}
+                  {b.photo ?
+                <img src={b.photo} alt={b.name} className="w-full h-full object-cover" /> :
+
+                b.name.charAt(0)
+                }
                 </motion.div>
               )}
               <div className="w-10 h-10 rounded-full border-2 border-background bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">
@@ -327,12 +327,12 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {sampleBuilders.slice(0, 8).map((builder, i) => (
-              <motion.div
-                key={builder.id}
-                {...stagger}
-                transition={{ delay: 0.05 + i * 0.06 }}
-              >
+            {sampleBuilders.slice(0, 8).map((builder, i) =>
+            <motion.div
+              key={builder.id}
+              {...stagger}
+              transition={{ delay: 0.05 + i * 0.06 }}>
+              
                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4] builder-card-wrapper">
                   <div className="absolute inset-0 builder-card-gradient" />
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />
@@ -342,11 +342,11 @@ const Index = () => {
                       <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Powered by Infracodebase</p>
                     </div>
                     <div className="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
-                      {builder.photo ? (
-                        <img src={builder.photo} alt={builder.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="font-display font-bold text-2xl builder-card-text-primary">{builder.name.charAt(0)}</span>
-                      )}
+                      {builder.photo ?
+                    <img src={builder.photo} alt={builder.name} className="w-full h-full object-cover" /> :
+
+                    <span className="font-display font-bold text-2xl builder-card-text-primary">{builder.name.charAt(0)}</span>
+                    }
                     </div>
                     <div className="space-y-1 min-w-0 w-full">
                       <h3 className="font-display font-bold text-[15px] builder-card-text-primary leading-tight truncate">{builder.name}</h3>
@@ -357,7 +357,7 @@ const Index = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )}
           </div>
 
           <div className="mt-14 text-center">
@@ -473,47 +473,47 @@ const Index = () => {
       {/* ─── WOMEN IN CLOUD IDENTITY ─── */}
       <section className="relative section-glow band-gradient overflow-hidden">
         <div className="absolute inset-0 gradient-arc pointer-events-none opacity-60" />
-        <div className="container py-24 md:py-32 relative z-10">
-          <motion.div {...fadeUp} className="max-w-4xl mx-auto text-center">
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              This is what it looks like when <br className="hidden md:block" />
-              <span className="gradient-text">women build in cloud</span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
-              Real women. Real roles. Real infrastructure. Growing together across AWS, Azure, GCP, and beyond.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
-            {sampleBuilders.slice(0, 8).map((b, i) =>
-            <motion.div
-              key={b.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
-              className="card-premium p-5 text-center group">
-              
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center text-foreground font-display font-bold text-lg mx-auto mb-3 group-hover:from-primary/30 group-hover:to-accent/20 transition-all">
-                  {b.name.charAt(0)}
-                </div>
-                <p className="font-display font-semibold text-sm text-foreground truncate">{b.name.split(' ')[0]}</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5 truncate">{b.role}</p>
-                <div className="flex items-center justify-center gap-1 mt-1.5 text-[10px] text-muted-foreground/60">
-                  <MapPin size={8} />
-                  {b.country}
-                </div>
-                <div className="flex flex-wrap gap-1 justify-center mt-3">
-                  {b.tags.slice(0, 2).map((tag) =>
-                <span key={tag} className="px-2 py-0.5 rounded-full text-[9px] bg-secondary/80 text-muted-foreground border border-border/20">{tag}</span>
-                )}
-                </div>
-              </motion.div>
-            )}
-          </div>
-          <div className="mt-10 text-center">
-            <GradientButton to="/meet-the-builders" icon>Meet All Builders</GradientButton>
-          </div>
-        </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       </section>
 
       {/* ─── COMMUNITY VOICES ─── */}
