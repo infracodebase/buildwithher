@@ -47,7 +47,7 @@ const MeetTheBuilders = () => {
             transition={{ duration: 0.6, delay: 0.35 }}
             className="mt-8 flex flex-wrap gap-3 justify-center">
             
-            <GradientButton to="/join-the-builders" size="lg" icon>Be Part of the Movement</GradientButton>
+            <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
             <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
         </div>
@@ -115,6 +115,34 @@ const MeetTheBuilders = () => {
         </div>
       </motion.section>
 
+
+      {/* Final CTA Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="cta-band section-glow"
+      >
+        <div className="container py-28 md:py-36 text-center max-w-3xl mx-auto">
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-6">
+            Become a Builder Today
+          </h1>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+            Add your story to the wall and become visible with women building across the world.
+            <br />
+            <span className="text-foreground font-medium">Now it is your turn to be seen.</span>
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
+            <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
+          </div>
+          <p className="mt-4 text-xs text-muted-foreground/60 flex items-center justify-center gap-1.5">
+            <Clock size={12} />
+            Takes less than 60 seconds.
+          </p>
+        </div>
+      </motion.section>
 
       <Footer />
     </div>);
