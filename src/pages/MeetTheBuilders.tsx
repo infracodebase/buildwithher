@@ -34,16 +34,16 @@ const MeetTheBuilders = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text"
-          >
+            className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text">
+            
             Meet the Builders
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
-          >
+            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            
             <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple — <span className="text-foreground font-medium">they kept building</span>.</p>
             <p className="mt-3">Because visibility matters. And because no one should feel like they are building alone.</p>
           </motion.div>
@@ -51,8 +51,8 @@ const MeetTheBuilders = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 flex flex-wrap gap-3 justify-center"
-          >
+            className="mt-8 flex flex-wrap gap-3 justify-center">
+            
             <GradientButton onClick={() => setModalOpen(true)} size="lg" icon>Create Your Profile</GradientButton>
             <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
@@ -64,29 +64,29 @@ const MeetTheBuilders = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="section-glow"
-      >
-        <div className="container py-16">
-          <div className="max-w-md mx-auto">
-            <div className="card-premium p-10 text-center gradient-border-card glow-gradient">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <Users className="w-8 h-8 text-primary" />
-                <span className="font-display text-6xl font-bold gradient-text">{totalCount}</span>
-              </div>
-              <p className="text-muted-foreground font-medium mb-5">Builders and growing</p>
-              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mb-5">
-                <Clock size={13} />
-                <span>Takes less than 60 seconds</span>
-              </div>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors font-display"
-              >
-                Create Your Profile <ArrowRight size={14} />
-              </button>
-            </div>
-          </div>
-        </div>
+        className="section-glow">
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       </motion.section>
 
       {/* Global Map */}
@@ -94,8 +94,8 @@ const MeetTheBuilders = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="band-gradient section-glow"
-      >
+        className="band-gradient section-glow">
+        
         <div className="container py-20 md:py-28">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Building Across the World</h2>
@@ -110,13 +110,13 @@ const MeetTheBuilders = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="section-glow"
-      >
+        className="section-glow">
+        
         <div className="container py-16 md:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {builders.map((builder, i) => (
-              <BuilderCard key={builder.id} profile={builder} index={i} />
-            ))}
+            {builders.map((builder, i) =>
+            <BuilderCard key={builder.id} profile={builder} index={i} />
+            )}
           </div>
         </div>
       </motion.section>
@@ -124,12 +124,12 @@ const MeetTheBuilders = () => {
       <ProfileModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        onSubmit={handleNewProfile}
-      />
+        onSubmit={handleNewProfile} />
+      
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default MeetTheBuilders;
