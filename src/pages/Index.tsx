@@ -340,11 +340,16 @@ const Index = () => {
                       <p className="text-[9px] tracking-wider uppercase text-foreground/40">Powered by Infracodebase</p>
                     </div>
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-foreground/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
-                      <span className="font-display font-bold text-2xl md:text-3xl text-foreground/80">{builder.name.charAt(0)}</span>
+                      {builder.photo ? (
+                        <img src={builder.photo} alt={builder.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="font-display font-bold text-2xl md:text-3xl text-foreground/80">{builder.name.charAt(0)}</span>
+                      )}
                     </div>
-                    <div className="space-y-1.5">
-                      <h3 className="font-display font-semibold text-sm text-foreground leading-tight">{builder.role}</h3>
-                      <p className="text-xs text-foreground/50">{builder.country}</p>
+                    <div className="space-y-1">
+                      <h3 className="font-display font-bold text-base text-foreground leading-tight">{builder.name}</h3>
+                      <p className="text-xs text-foreground/70">{builder.role}</p>
+                      <p className="text-[11px] text-foreground/50">{builder.country}</p>
                       <p className="text-[10px] text-foreground/40 leading-relaxed max-w-[90%] mx-auto">{builder.tags.join(" • ")}</p>
                     </div>
                   </div>

@@ -41,9 +41,10 @@ const BuilderCard = ({ profile }: { profile: BuilderProfile; index?: number }) =
           </div>
 
           {/* Professional identity */}
-          <div className="space-y-1.5">
-            <h3 className="font-display font-semibold text-sm text-foreground leading-tight">{profile.role}</h3>
-            <p className="text-xs text-foreground/50">{profile.country}</p>
+          <div className="space-y-1">
+            <h3 className="font-display font-bold text-base text-foreground leading-tight">{profile.name}</h3>
+            <p className="text-xs text-foreground/70">{profile.role}</p>
+            <p className="text-[11px] text-foreground/50">{profile.country}</p>
             <p className="text-[10px] text-foreground/40 leading-relaxed max-w-[90%] mx-auto">{skillsString}</p>
           </div>
         </div>
