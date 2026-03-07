@@ -50,6 +50,14 @@ const MeetTheBuilders = () => {
             <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
             <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-4 text-xs text-muted-foreground/60 flex items-center justify-center gap-1.5">
+            <Clock size={12} />
+            Create your builder card in under 60 seconds.
+          </motion.p>
         </div>
       </section>
 
