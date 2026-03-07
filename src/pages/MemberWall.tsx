@@ -5,13 +5,20 @@ import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Users, Globe, Cloud, TrendingUp } from "lucide-react";
+import { Users, Globe, Cloud, TrendingUp, Shield } from "lucide-react";
 
 const stats = [
   { icon: Users, value: "78", label: "Members" },
   { icon: Globe, value: "12", label: "Countries" },
   { icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
   { icon: TrendingUp, value: "Growing", label: "Every month" },
+];
+
+const snapshotCards = [
+  { icon: Users, value: "78+", label: "Members", desc: "Women building in cloud infrastructure" },
+  { icon: Globe, value: "12", label: "Countries", desc: "A truly global community" },
+  { icon: Cloud, value: "AWS • Azure • GCP", label: "Cloud Platforms", desc: "Multi-cloud expertise" },
+  { icon: Shield, value: "DevOps • Security • Platform Engineering • Cloud Architecture", label: "Roles", desc: "Diverse technical roles" },
 ];
 
 const fadeUp = {
@@ -59,16 +66,52 @@ const MemberWall = () => (
       </div>
     </motion.section>
 
-    {/* Quote Grid */}
+    {/* Community Snapshot */}
     <motion.section {...fadeUp} className="section-glow">
       <div className="container py-24 md:py-32">
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-14">
-          Community <span className="gradient-text">Voices</span>
-        </h2>
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <span className="badge-glow mb-6 inline-flex">Overview</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Community <span className="gradient-text">Snapshot</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">A growing global community of women building real cloud infrastructure.</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 + i * 0.08 }}
+              className="card-premium p-6 text-center group gradient-border-card"
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                <Icon className="w-6 h-6 text-primary" />
+              </div>
+              <p className="font-display font-bold text-foreground text-lg mb-1">{value}</p>
+              <p className="text-xs font-medium text-foreground/80 mb-1">{label}</p>
+              <p className="text-[11px] text-muted-foreground">{desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+
+    {/* Community Voices / Profile Wall */}
+    <motion.section {...fadeUp} className="band-gradient section-glow">
+      <div className="container py-24 md:py-32">
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <span className="badge-glow mb-6 inline-flex">Testimonials</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Community <span className="gradient-text">Voices</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Real words from real women building in cloud and infrastructure.</p>
+        </div>
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
           {testimonials.map((t) => (
             <div key={t.name} className="break-inside-avoid">
-              <QuoteCard name={t.name} role={t.role} quote={t.quote} />
+              <QuoteCard name={t.name} role={t.role} quote={t.quote} photo={t.photo} />
             </div>
           ))}
         </div>
@@ -76,7 +119,7 @@ const MemberWall = () => (
     </motion.section>
 
     {/* Why This Wall Exists */}
-    <motion.section {...fadeUp} className="band-gradient section-glow">
+    <motion.section {...fadeUp} className="section-glow">
       <div className="container py-20 md:py-28">
         <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>

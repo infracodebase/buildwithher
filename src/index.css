@@ -374,6 +374,36 @@
     );
   }
 
+  .builder-card-text-primary {
+    color: hsl(210 40% 92%);
+  }
+  .builder-card-text-secondary {
+    color: hsl(210 40% 92% / 0.65);
+  }
+  .builder-card-text-muted {
+    color: hsl(210 40% 92% / 0.45);
+  }
+
+  .light .builder-card-gradient {
+    background: linear-gradient(
+      160deg,
+      hsl(210 60% 30% / 0.92) 0%,
+      hsl(210 50% 25% / 0.88) 20%,
+      hsl(160 35% 24% / 0.85) 40%,
+      hsl(45 35% 24% / 0.82) 60%,
+      hsl(25 35% 22% / 0.85) 80%,
+      hsl(0 25% 20% / 0.88) 100%
+    );
+  }
+
+  .builder-card-wrapper {
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+  .light .builder-card-wrapper {
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 2px 12px hsl(0 0% 0% / 0.08);
+  }
+
   /* ── Gradient border bottom ── */
   .gradient-border-bottom {
     position: relative;
