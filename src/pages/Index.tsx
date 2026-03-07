@@ -364,7 +364,7 @@ const Index = () => {
             <p className="font-display text-xl md:text-2xl font-semibold text-foreground mb-6">Your story could be here.</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <GradientButton to="/meet-the-builders" size="lg" icon>View the Member Wall</GradientButton>
-              <GradientButton to="/meet-the-builders" variant="outline" size="lg">Add Your Profile</GradientButton>
+              <GradientButton to="/join-the-builders" variant="outline" size="lg">Add Your Profile</GradientButton>
             </div>
           </div>
         </div>
