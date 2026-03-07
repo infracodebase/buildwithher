@@ -19,7 +19,7 @@ const sections = [
   {
     icon: Eye,
     title: "Visibility Matters",
-    copy: "You do not need to be the loudest voice. But you deserve to be seen. Visibility opens doors — to opportunities, mentorship, collaboration, and belief in yourself.",
+    copy: "You do not need to be the loudest voice. But you deserve to be seen. Visibility opens doors to opportunities, mentorship, collaboration, and belief in yourself.",
   },
   {
     icon: Palette,

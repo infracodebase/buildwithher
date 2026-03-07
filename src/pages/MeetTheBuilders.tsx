@@ -44,7 +44,7 @@ const MeetTheBuilders = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             
-            <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple — <span className="text-foreground font-medium">they kept building</span>.</p>
+            <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple. <span className="text-foreground font-medium">They kept building</span>.</p>
             <p className="mt-3">Because visibility matters. And because no one should feel like they are building alone.</p>
           </motion.div>
           <motion.div
@@ -53,7 +53,7 @@ const MeetTheBuilders = () => {
             transition={{ duration: 0.6, delay: 0.35 }}
             className="mt-8 flex flex-wrap gap-3 justify-center">
             
-            <GradientButton onClick={() => setModalOpen(true)} size="lg" icon>Create Your Profile</GradientButton>
+            <GradientButton onClick={() => setModalOpen(true)} size="lg" icon>Be Part of the Movement</GradientButton>
             <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
         </div>

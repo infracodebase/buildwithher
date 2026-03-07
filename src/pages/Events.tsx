@@ -30,7 +30,7 @@ const eventTypes = [
   {
     icon: Mic,
     title: "Featured Speakers",
-    desc: "Women and allies sharing what they've learned — real stories, real lessons, real encouragement.",
+    desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
     details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
     status: "Monthly",
   },

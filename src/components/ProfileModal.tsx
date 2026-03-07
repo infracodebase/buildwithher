@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import GradientButton from "./GradientButton";
 import { BuilderProfile } from "./BuilderCard";
-import { CheckCircle, Sparkles } from "lucide-react";
+import { CheckCircle, Sparkles, Globe, Heart } from "lucide-react";
 
 const cloudOptions = [
   "AWS", "Azure", "GCP", "DevOps", "Platform Engineering",
@@ -67,19 +67,29 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
               <CheckCircle className="w-8 h-8 text-accent" />
             </div>
             <h3 className="font-display text-2xl font-bold text-foreground">Welcome, Builder!</h3>
-            <p className="text-muted-foreground text-sm max-w-xs">Your profile has been added to the grid. You are now visible.</p>
+            <p className="text-muted-foreground text-sm max-w-xs">Your profile is now visible on the Builder Wall. You are part of the movement.</p>
             <GradientButton onClick={handleClose}>Close</GradientButton>
           </div>
         ) : (
           <>
             <DialogHeader>
-              <div className="flex items-center gap-2 mb-1">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <DialogTitle className="font-display text-lg">Create Your Builder Profile</DialogTitle>
+              <div className="text-center space-y-4 pt-2 pb-2">
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Heart className="w-5 h-5 text-primary" />
+                  </div>
+                </div>
+                <DialogTitle className="font-display text-2xl font-bold text-foreground">Be Part of the Movement</DialogTitle>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
+                  Add your profile and let other women see they are not building alone. Takes less than 60 seconds.
+                </p>
+                <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground/70">
+                  <span className="flex items-center gap-1"><Globe className="w-3 h-3" /> 12 countries</span>
+                  <span className="flex items-center gap-1"><Sparkles className="w-3 h-3" /> 78+ builders</span>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">Takes less than 60 seconds</p>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-2">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <Label className="text-xs text-muted-foreground">Full Name *</Label>
@@ -144,7 +154,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
                   <Input value={portfolio} onChange={(e) => setPortfolio(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                 </div>
               </div>
-              <GradientButton type="submit" className="mt-3 w-full" size="lg">Create Profile</GradientButton>
+              <GradientButton type="submit" className="mt-3 w-full" size="lg">Share Your Story</GradientButton>
             </form>
           </>
         )}

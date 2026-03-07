@@ -213,7 +213,7 @@ const Index = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
                 <p>If learning cloud feels slow, confusing, or lonely, it does not mean you lack talent.</p>
-                <p>Many women are simply trying to learn in isolation — without enough support, visibility, or guidance.</p>
+                <p>Many women are simply trying to learn in isolation, without enough support, visibility, or guidance.</p>
                 <p>The market keeps getting more competitive. More people. More identical job titles. More noise.</p>
                 <p className="text-foreground font-medium text-lg">Build with Her exists to change that.</p>
               </div>
@@ -244,20 +244,20 @@ const Index = () => {
       <motion.section {...fadeUp} className="section-glow relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] orb-blue rounded-full pointer-events-none opacity-50" />
         <div className="container py-24 md:py-32">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="badge-glow mb-6 inline-flex">Why It Matters</span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold gradient-text-blue mb-8 leading-tight">
                 The roles that shape<br />modern systems
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>Cloud infrastructure is where modern systems are built — architecture, automation, security, compliance, reliability, AI infrastructure.</p>
+                <p>Cloud infrastructure is where modern systems are built: architecture, automation, security, compliance, reliability, AI infrastructure.</p>
                 <p>These roles shape how companies operate. They also sit in some of the <span className="text-foreground font-medium">highest pay bands</span> in technology.</p>
                 <p>Yet women remain heavily underrepresented in these roles. When women are missing from these positions, it affects more than representation.</p>
                 <p className="text-foreground font-medium">Build with Her exists to help change that reality.</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4 self-center">
               {[
               { value: "Income", sub: "Higher earning potential", icon: "💰" },
               { value: "Influence", sub: "Shape technical decisions", icon: "⚡" },
