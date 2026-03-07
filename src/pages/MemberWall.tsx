@@ -5,7 +5,7 @@ import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Users, Globe, Cloud, TrendingUp, Shield, Cpu } from "lucide-react";
+import { Users, Globe, Cloud, TrendingUp, Shield } from "lucide-react";
 
 const stats = [
   { icon: Users, value: "78", label: "Members" },
