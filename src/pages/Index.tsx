@@ -181,10 +181,13 @@ const Index = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="w-10 h-10 rounded-full border-2 border-background bg-gradient-to-br from-secondary to-muted flex items-center justify-center text-foreground font-display font-bold text-xs"
+                className="w-10 h-10 rounded-full border-2 border-background overflow-hidden bg-gradient-to-br from-secondary to-muted flex items-center justify-center text-foreground font-display font-bold text-xs"
                 title={b.name}>
-                
-                  {b.name.charAt(0)}
+                  {b.photo ? (
+                    <img src={b.photo} alt={b.name} className="w-full h-full object-cover" />
+                  ) : (
+                    b.name.charAt(0)
+                  )}
                 </motion.div>
               )}
               <div className="w-10 h-10 rounded-full border-2 border-background bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">
