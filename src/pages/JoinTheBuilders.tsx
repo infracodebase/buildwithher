@@ -44,11 +44,9 @@ const JoinTheBuilders = () => {
   const [generating, setGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Dynamic community stats
+  // Fixed community stats
   const communityStats = useMemo(() => {
-    const total = sampleBuilders.length;
-    const countries = new Set(sampleBuilders.map((b) => b.country)).size;
-    return { total, countries };
+    return { total: 78, countries: 12 };
   }, []);
 
   const toggleFocus = (item: string) => {
@@ -87,7 +85,7 @@ const JoinTheBuilders = () => {
     }
   };
 
-  const linkedinPost = `I'm proud to be part of Build With Her.
+  const shareMessage = `I'm proud to be part of Build With Her.
 
 A global community of women building in cloud, AI, infrastructure, DevOps, and platform engineering.
 
@@ -97,7 +95,7 @@ Community matters.
 
 Join us and share your builder story.
 
-buildwithher.dev`;
+https://buildwithher.dev`;
 
   const shareUrl = "https://buildwithher.dev";
 
@@ -178,28 +176,31 @@ buildwithher.dev`;
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => { navigator.clipboard.writeText(shareMessage); }}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary/80 transition-colors"
                   >
                     <Linkedin className="w-4 h-4" /> LinkedIn
                   </a>
                   <a
-                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Join Build With Her, a global community of women building in cloud, AI, and infrastructure.")}&url=${encodeURIComponent(shareUrl)}`}
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary/80 transition-colors"
                   >
                     <Twitter className="w-4 h-4" /> X
                   </a>
-                  <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary/80 transition-colors"
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(shareMessage);
+                      toast({ title: "Copied!", description: "Your Facebook post text has been copied." });
+                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank", "noopener,noreferrer");
+                    }}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary/80 transition-colors w-full text-left"
                   >
                     <Facebook className="w-4 h-4" /> Facebook
-                  </a>
+                  </button>
                   <button
-                    onClick={() => copyText(shareUrl, "Link")}
+                    onClick={() => copyText(shareMessage, "Full message")}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary/80 transition-colors w-full text-left"
                   >
                     <Link2 className="w-4 h-4" /> Copy Link
@@ -343,15 +344,15 @@ buildwithher.dev`;
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Suggested LinkedIn Post</p>
-                        <button
-                          onClick={() => copyText(linkedinPost, "LinkedIn post")}
+                       <button
+                          onClick={() => copyText(shareMessage, "Post text")}
                           className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 font-medium transition-colors"
                         >
                           <Copy size={12} /> Copy
                         </button>
                       </div>
                       <div className="rounded-xl bg-secondary/50 border border-border/50 p-4">
-                        <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{linkedinPost}</p>
+                        <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">{shareMessage}</p>
                       </div>
                     </div>
 
@@ -361,12 +362,13 @@ buildwithher.dev`;
                         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => { navigator.clipboard.writeText(shareMessage); }}
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
                       >
                         <Linkedin size={15} /> LinkedIn
                       </a>
                       <a
-                        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(linkedinPost)}`}
+                        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
@@ -374,22 +376,31 @@ buildwithher.dev`;
                         <Twitter size={15} /> X
                       </a>
                       <button
-                        onClick={() => copyText(shareUrl, "Profile link")}
+                        onClick={() => {
+                          navigator.clipboard.writeText(shareMessage);
+                          toast({ title: "Copied!", description: "Your Facebook post text has been copied." });
+                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank", "noopener,noreferrer");
+                        }}
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
                       >
-                        <Link2 size={15} /> Copy Link
+                        <Facebook size={15} /> Facebook
                       </button>
                       <button
-                        onClick={() => copyText(linkedinPost, "Post text")}
+                        onClick={() => {
+                          navigator.clipboard.writeText(shareMessage);
+                          toast({ title: "Copied!", description: "Your Instagram caption has been copied. Download your Builder Card and paste the caption into your Instagram post or story." });
+                        }}
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
+                      >
+                        <Camera size={15} /> Instagram
+                      </button>
+                      <button
+                        onClick={() => copyText(shareMessage, "Full message")}
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors col-span-2"
                       >
                         <Copy size={15} /> Copy Text
                       </button>
                     </div>
-
-                    <p className="text-xs text-muted-foreground">
-                      For Instagram, download the card image and upload it directly to your post or story.
-                    </p>
                   </div>
 
                   <div className="text-center">
