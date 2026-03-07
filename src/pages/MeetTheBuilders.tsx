@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
 import BuilderCard, { BuilderProfile } from "@/components/BuilderCard";
-import ProfileModal from "@/components/ProfileModal";
 import GlobalMap from "@/components/GlobalMap";
 import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
@@ -11,11 +10,6 @@ import { Users, Clock, ArrowRight } from "lucide-react";
 
 const MeetTheBuilders = () => {
   const [builders, setBuilders] = useState<BuilderProfile[]>(sampleBuilders);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleNewProfile = (profile: BuilderProfile) => {
-    setBuilders((prev) => [profile, ...prev]);
-  };
 
   const totalCount = builders.length + 66;
 
@@ -53,7 +47,7 @@ const MeetTheBuilders = () => {
             transition={{ duration: 0.6, delay: 0.35 }}
             className="mt-8 flex flex-wrap gap-3 justify-center">
             
-            <GradientButton onClick={() => setModalOpen(true)} size="lg" icon>Be Part of the Movement</GradientButton>
+            <GradientButton to="/join-the-builders" size="lg" icon>Be Part of the Movement</GradientButton>
             <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
         </div>
@@ -121,11 +115,6 @@ const MeetTheBuilders = () => {
         </div>
       </motion.section>
 
-      <ProfileModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onSubmit={handleNewProfile} />
-      
 
       <Footer />
     </div>);
