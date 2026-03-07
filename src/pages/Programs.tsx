@@ -34,7 +34,7 @@ const programs = [
   {
     icon: MessageCircle,
     title: "Community Conversations",
-    desc: "Open discussions on topics that matter — from career pivots to emerging tools, from imposter syndrome to infrastructure patterns.",
+    desc: "Open discussions on topics that matter, from career pivots to emerging tools, from imposter syndrome to infrastructure patterns.",
     tags: ["Career", "Community", "Learning"],
   },
 ];

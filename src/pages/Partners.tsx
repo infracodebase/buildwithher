@@ -27,7 +27,7 @@ const partnerTypes = [
   {
     icon: Network,
     title: "Ecosystem Partners",
-    desc: "Cloud providers, training platforms, and developer communities — let's build stronger access together.",
+    desc: "Cloud providers, training platforms, and developer communities. Let's build stronger access together.",
     cta: "Join the Ecosystem",
   },
 ];
