@@ -537,7 +537,7 @@ const Index = () => {
               transition={{ delay: i * 0.04 }}
               className="break-inside-avoid">
               
-                <QuoteCard name={t.name} role={t.role} quote={t.quote} />
+                <QuoteCard name={t.name} role={t.role} quote={t.quote} photo={t.photo} />
               </motion.div>
             )}
           </div>
