@@ -163,40 +163,36 @@ const BuilderProfile = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-2.5">
-                  {builder.linkedin && (
-                    <Button 
-                      asChild 
-                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
-                      size="sm"
+                  <Button 
+                    asChild 
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                    size="sm"
+                  >
+                    <a
+                      href={builder.linkedin || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(builder.name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={builder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Linkedin size={14} />
-                        Connect on LinkedIn
-                      </a>
-                    </Button>
-                  )}
+                      <Linkedin size={14} />
+                      Connect on LinkedIn
+                    </a>
+                  </Button>
 
-                  {builder.infracodbaseUserId && (
-                    <Button
-                      variant="outline"
-                      asChild
-                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
-                      size="sm"
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
+                    size="sm"
+                  >
+                    <a
+                      href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Globe size={14} />
-                        View Infrastructure Portfolio
-                      </a>
-                    </Button>
-                  )}
+                      <Globe size={14} />
+                      View Infrastructure Portfolio
+                    </a>
+                  </Button>
 
                   {/* Share */}
                   <Popover open={shareOpen} onOpenChange={setShareOpen}>
@@ -267,16 +263,14 @@ const BuilderProfile = () => {
               className="flex-1 min-w-0 space-y-6"
             >
               {/* 1. Builder Story */}
-              {builder.bio && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    Builder Story
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    "{builder.bio}"
-                  </p>
-                </section>
-              )}
+              <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                  Builder Story
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  "{builder.bio || builder.statement}"
+                </p>
+              </section>
 
               {/* 2. Technical Skills */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
@@ -307,57 +301,53 @@ const BuilderProfile = () => {
               </section>
 
               {/* 3. What I'm Building */}
-              {builder.building && builder.building.length > 0 && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    What I'm Building
-                  </h2>
-                  <ul className="space-y-2">
-                    {builder.building.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
+              <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                  What I'm Building
+                </h2>
+                <ul className="space-y-2">
+                  {(builder.building && builder.building.length > 0 ? builder.building : ["Building in cloud infrastructure"]).map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-muted-foreground"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
 
               {/* 4. Built on Infracodebase */}
-              {builder.infracodbaseUserId && (
-                <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-                      <Globe className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
-                        Built on Infracodebase
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
-                      </p>
-                      <Button 
-                        asChild 
-                        className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
-                        size="sm"
-                      >
-                        <a
-                          href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Infrastructure Portfolio
-                          <ExternalLink size={14} />
-                        </a>
-                      </Button>
-                    </div>
+              <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-5 h-5 text-primary" />
                   </div>
-                </section>
-              )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
+                      Built on Infracodebase
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
+                    </p>
+                    <Button 
+                      asChild 
+                      className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                      size="sm"
+                    >
+                      <a
+                        href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Infrastructure Portfolio
+                        <ExternalLink size={14} />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </section>
 
               {/* 5. Community Voice */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
