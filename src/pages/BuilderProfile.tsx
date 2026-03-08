@@ -163,40 +163,36 @@ const BuilderProfile = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-2.5">
-                  {builder.linkedin && (
-                    <Button 
-                      asChild 
-                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
-                      size="sm"
+                  <Button 
+                    asChild 
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                    size="sm"
+                  >
+                    <a
+                      href={builder.linkedin || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(builder.name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={builder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Linkedin size={14} />
-                        Connect on LinkedIn
-                      </a>
-                    </Button>
-                  )}
+                      <Linkedin size={14} />
+                      Connect on LinkedIn
+                    </a>
+                  </Button>
 
-                  {builder.infracodbaseUserId && (
-                    <Button
-                      variant="outline"
-                      asChild
-                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
-                      size="sm"
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
+                    size="sm"
+                  >
+                    <a
+                      href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Globe size={14} />
-                        View Infrastructure Portfolio
-                      </a>
-                    </Button>
-                  )}
+                      <Globe size={14} />
+                      View Infrastructure Portfolio
+                    </a>
+                  </Button>
 
                   {/* Share */}
                   <Popover open={shareOpen} onOpenChange={setShareOpen}>
