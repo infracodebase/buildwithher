@@ -316,6 +316,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Security Engineer ensuring that infrastructure is built with security as a core principle.",
     tags: ["Security", "AWS", "DevOps"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/patience-ogbeba/",
     building: ["Cloud security frameworks and policies", "Security-first infrastructure automation"]
   },
   { 
