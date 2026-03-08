@@ -486,7 +486,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "I love how you're highlighting that the challenge isn't talent, but access and that structural change is key.",
     bio: "I'm a DevOps Engineer working with AWS and Kubernetes, focused on building reliable cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes clusters on AWS", "Reliable DevOps infrastructure"]
   },
   {
     id: "29",
