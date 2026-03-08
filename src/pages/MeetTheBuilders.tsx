@@ -208,7 +208,7 @@ const MeetTheBuilders = () => {
             Takes less than 60 seconds.
           </p>
           <p className="mt-2 text-xs text-muted-foreground/50">
-            Join 78+ women building across 12 countries.
+            Join {sampleBuilders.length}+ builders across {new Set(sampleBuilders.map(b => b.country)).size} countries.
           </p>
         </div>
       </motion.section>
