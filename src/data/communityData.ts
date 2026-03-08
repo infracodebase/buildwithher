@@ -582,7 +582,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
     tags: ["Cloud Architecture", "FinOps", "Platform Engineering"],
     cloudPlatforms: ["Azure", "AWS"],
-    linkedin: "https://www.linkedin.com/in/shannonkuehn/"
+    linkedin: "https://www.linkedin.com/in/shannonkuehn/",
+    building: ["FinOps strategies for enterprise cloud", "Platform engineering at scale"]
   },
   {
     id: "35",
