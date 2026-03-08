@@ -518,7 +518,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer specializing in AWS, Azure, cloud security, and DevOps practices.",
     tags: ["AWS", "Azure", "Cloud Security", "DevOps"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/eric-nyuydze-wiryenkfea-198862162/"
+    linkedin: "https://www.linkedin.com/in/eric-nyuydze-wiryenkfea-198862162/",
+    building: ["Cloud security architectures on AWS and Azure", "DevOps best practices for teams"]
   },
   {
     id: "31",
