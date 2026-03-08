@@ -167,11 +167,21 @@ const MeetTheBuilders = () => {
         className="section-glow">
         
         <div className="container py-16 md:py-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {builders.map((builder, i) =>
-            <BuilderCard key={builder.id} profile={builder} index={i} />
+          {/* Filters */}
+          <BuilderFilters selectedFilters={filters} onFilterChange={setFilters} />
+          
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {filteredBuilders.map((builder, i) =>
+              <BuilderCard key={builder.id} profile={builder} index={i} />
             )}
           </div>
+          
+          {filteredBuilders.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground">No builders match your selected filters.</p>
+            </div>
+          )}
         </div>
       </motion.section>
 
