@@ -407,7 +407,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & Infrastructure Engineer building scalable solutions and championing women in tech.",
     tags: ["AWS", "Cloud Architecture", "Infrastructure"], 
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/marian-bolous-91156992/" 
+    linkedin: "https://www.linkedin.com/in/marian-bolous-91156992/",
+    building: ["Scalable cloud infrastructure solutions", "Cloud engineering community initiatives"]
   },
   { 
     id: "24", 
