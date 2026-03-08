@@ -18,13 +18,15 @@ const MeetTheBuilders = () => {
     regions: [] as string[],
   });
 
-  // Shuffle once on mount using a stable ref
-  const shuffledBuilders = useRef(
-    [...sampleBuilders].sort(() => Math.random() - 0.5)
-  ).current;
+  // Shuffle once on mount, pinning Manisha Sarkar first
+  const shuffledBuilders = useRef(() => {
+    const manisha = sampleBuilders.find(b => b.name === "Manisha Sarkar");
+    const others = sampleBuilders.filter(b => b.name !== "Manisha Sarkar").sort(() => Math.random() - 0.5);
+    return manisha ? [manisha, ...others] : others;
+  }).current();
 
   const filteredBuilders = useMemo(() => {
-    return shuffledBuilders.filter((builder) => {
+    const filtered = shuffledBuilders.filter((builder) => {
       if (filters.cloudPlatforms.length > 0) {
         const builderPlatforms = builder.cloudPlatforms || [];
         const hasMatch = filters.cloudPlatforms.some(
@@ -49,6 +51,13 @@ const MeetTheBuilders = () => {
       }
       return true;
     });
+    // Pin Manisha first if she's in the filtered results
+    const manishaIdx = filtered.findIndex(b => b.name === "Manisha Sarkar");
+    if (manishaIdx > 0) {
+      const [manisha] = filtered.splice(manishaIdx, 1);
+      filtered.unshift(manisha);
+    }
+    return filtered;
   }, [filters, shuffledBuilders]);
 
   return (
