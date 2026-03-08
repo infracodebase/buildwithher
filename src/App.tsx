@@ -16,6 +16,7 @@ import Partners from "./pages/Partners";
 import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
+import Resources from "./pages/Resources";
 
 const queryClient = new QueryClient();
 
