@@ -5,7 +5,7 @@ import GradientButton from "@/components/GradientButton";
 import BuilderCard from "@/components/BuilderCard";
 import BuilderFilters from "@/components/BuilderFilters";
 import GlobalMap from "@/components/GlobalMap";
-import { sampleBuilders, ExtendedBuilderProfile } from "@/data/communityData";
+import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 
