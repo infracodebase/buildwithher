@@ -534,7 +534,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Director of Cloud Engineering focused on secure architecture, scalability, and cloud-native solutions.",
     tags: ["Cloud Engineering", "Secure Architecture", "Scalability"],
     cloudPlatforms: ["AWS", "Azure", "GCP"],
-    linkedin: "https://www.linkedin.com/in/jaswindder-kummar/"
+    linkedin: "https://www.linkedin.com/in/jaswindder-kummar/",
+    building: ["Secure cloud-native architectures", "Scalable enterprise cloud platforms"]
   },
   {
     id: "32",
