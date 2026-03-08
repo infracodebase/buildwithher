@@ -550,7 +550,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm the Founder of Infracodebase, building AI agent engineering tools and supporting women in tech infrastructure.",
     tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/"
+    linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
+    building: ["AI agent engineering tools on Infracodebase", "Community platforms for women in tech"]
   },
   {
     id: "33",
