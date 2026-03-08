@@ -1,17 +1,59 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
-import BuilderCard, { BuilderProfile } from "@/components/BuilderCard";
+import BuilderCard from "@/components/BuilderCard";
+import BuilderFilters from "@/components/BuilderFilters";
 import GlobalMap from "@/components/GlobalMap";
 import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Users, Clock, ArrowRight } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const MeetTheBuilders = () => {
-  const [builders, setBuilders] = useState<BuilderProfile[]>(sampleBuilders);
+  const [filters, setFilters] = useState({
+    cloudPlatforms: [] as string[],
+    roles: [] as string[],
+    skills: [] as string[],
+    regions: [] as string[],
+  });
 
-  const totalCount = builders.length + 66;
+  const filteredBuilders = useMemo(() => {
+    return sampleBuilders.filter((builder) => {
+      // Cloud platforms filter
+      if (filters.cloudPlatforms.length > 0) {
+        const builderPlatforms = builder.cloudPlatforms || [];
+        const hasMatchingPlatform = filters.cloudPlatforms.some(
+          (p) => builderPlatforms.includes(p) || builder.tags.includes(p)
+        );
+        if (!hasMatchingPlatform) return false;
+      }
+
+      // Roles filter
+      if (filters.roles.length > 0) {
+        const hasMatchingRole = filters.roles.some(
+          (r) => builder.roleCategory === r || builder.role.toLowerCase().includes(r.toLowerCase())
+        );
+        if (!hasMatchingRole) return false;
+      }
+
+      // Skills filter
+      if (filters.skills.length > 0) {
+        const hasMatchingSkill = filters.skills.some((s) =>
+          builder.tags.some((t) => t.toLowerCase().includes(s.toLowerCase()))
+        );
+        if (!hasMatchingSkill) return false;
+      }
+
+      // Region filter
+      if (filters.regions.length > 0) {
+        if (!builder.region || !filters.regions.includes(builder.region)) return false;
+      }
+
+      return true;
+    });
+  }, [filters]);
+
+  const totalCount = sampleBuilders.length + 66;
 
   return (
     <div className="min-h-screen bg-background">
@@ -125,11 +167,21 @@ const MeetTheBuilders = () => {
         className="section-glow">
         
         <div className="container py-16 md:py-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {builders.map((builder, i) =>
-            <BuilderCard key={builder.id} profile={builder} index={i} />
+          {/* Filters */}
+          <BuilderFilters selectedFilters={filters} onFilterChange={setFilters} />
+          
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {filteredBuilders.map((builder, i) =>
+              <BuilderCard key={builder.id} profile={builder} index={i} />
             )}
           </div>
+          
+          {filteredBuilders.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground">No builders match your selected filters.</p>
+            </div>
+          )}
         </div>
       </motion.section>
 
