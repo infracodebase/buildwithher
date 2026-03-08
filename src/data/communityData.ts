@@ -91,7 +91,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building strong foundations before scaling and seeing AI as a co-worker that supports growth.", 
     bio: "I specialize in AWS cloud administration with a focus on IAM, secure cloud architecture, and FinOps practices.",
     tags: ["AWS", "Security", "FinOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Secure cloud architectures with IAM best practices", "FinOps dashboards for cost optimization"]
   },
   { 
     id: "2", 
@@ -105,7 +106,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Each session brings new insight, new connections, and new encouragement.", 
     bio: "I'm a Cloud Engineer focused on infrastructure and operations, AWS certified and passionate about building resilient systems.",
     tags: ["AWS", "DevOps", "Terraform"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Resilient cloud infrastructure on AWS", "Automated deployment pipelines with Terraform"]
   },
   { 
     id: "3", 
@@ -119,7 +121,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "An amazing initiative that bridges the crack many slip into.", 
     bio: "I'm a Cloud & DevOps Engineer specializing in CI/CD, Kubernetes, and Terraform. Building scalable infrastructure across East Africa.",
     tags: ["Kubernetes", "Terraform", "DevOps"],
-    cloudPlatforms: ["AWS", "GCP"]
+    cloudPlatforms: ["AWS", "GCP"],
+    building: ["CI/CD pipelines with Kubernetes", "Infrastructure as Code with Terraform"]
   },
   { 
     id: "4", 
@@ -133,7 +136,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "This is the kind of space I didn't know I was looking for until I found it.", 
     bio: "I'm a Cloud & DevOps Engineer working with AWS and Infrastructure as Code to build reliable cloud systems.",
     tags: ["AWS", "DevOps", "AI Infrastructure"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud automation with AWS and IaC", "AI-integrated infrastructure solutions"]
   },
   { 
     id: "5", 
@@ -147,7 +151,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "When people come together to learn, build, and mentor, it creates resilience.", 
     bio: "I'm a Senior Technical Writer at Security Research Labs, focused on making complex security concepts accessible.",
     tags: ["Security", "Platform Engineering"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Security documentation and research frameworks", "Platform engineering knowledge bases"]
   },
   { 
     id: "6", 
@@ -161,7 +166,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Grateful to be part of a space where women are empowered to build with depth and clarity.", 
     bio: "I'm starting my DevOps journey with a focus on AWS and Kubernetes, eager to learn and grow in cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes cluster management", "AWS DevOps automation workflows"]
   },
   { 
     id: "7", 
@@ -175,7 +181,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "AI is not the competitor, AI is the co-worker.", 
     bio: "I'm a DevOps Engineer and Business Analyst working with Azure and AI infrastructure solutions.",
     tags: ["DevOps", "Azure", "AI Infrastructure"],
-    cloudPlatforms: ["Azure"]
+    cloudPlatforms: ["Azure"],
+    building: ["AI-powered infrastructure on Azure", "DevOps automation for business solutions"]
   },
   { 
     id: "8", 
@@ -189,7 +196,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "AI builds with you, engineering is changing, and impostor syndrome is easier to carry in community.", 
     bio: "I'm a Senior Full Stack Engineer with expertise in GCP and platform engineering, building scalable web applications.",
     tags: ["GCP", "Platform Engineering"],
-    cloudPlatforms: ["GCP"]
+    cloudPlatforms: ["GCP"],
+    building: ["Scalable web applications on GCP", "Platform engineering tools for developer productivity"]
   },
   { 
     id: "9", 
@@ -203,7 +211,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Grateful to be part of a community that wants to see me grow while guiding the way.", 
     bio: "I'm a Customer Acquisition Specialist and Cloud & Tech Advocate, bridging business and technology.",
     tags: ["AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud advocacy programs", "AWS-based tech solutions for business growth"]
   },
   { 
     id: "10", 
@@ -217,7 +226,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "It was enlightening and I'm looking forward to more conversations like this.", 
     bio: "I'm training in Cloud Security and DevOps, passionate about building secure infrastructure from the ground up.",
     tags: ["Security", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud security monitoring tools", "DevOps security automation"]
   },
   { 
     id: "11", 
@@ -231,7 +241,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Always ready to listen, offer solutions, and help us become better.", 
     bio: "I'm a student exploring AWS and AI infrastructure, committed to academic excellence and cloud learning.",
     tags: ["AWS", "AI Infrastructure"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["AWS cloud learning projects", "AI infrastructure experiments"]
   },
   { 
     id: "13", 
@@ -245,7 +256,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building cloud solutions with passion and precision.", 
     bio: "I'm a Cloud Engineer working across AWS and Azure, focused on building reliable and scalable solutions.",
     tags: ["AWS", "Azure", "DevOps"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Multi-cloud solutions across AWS and Azure", "DevOps pipelines for scalable deployments"]
   },
   { 
     id: "14", 
@@ -259,7 +271,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "This community has been a game-changer for my cloud journey.", 
     bio: "I'm a Cloud & DevOps Engineer specializing in AWS and Terraform, building automation for modern infrastructure.",
     tags: ["AWS", "DevOps", "Terraform"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Infrastructure automation with Terraform", "Modern DevOps workflows on AWS"]
   },
   { 
     id: "15", 
@@ -273,7 +286,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Growth is better when shared with others who truly understand the journey.", 
     bio: "I'm a Cloud Engineer focused on AWS and cloud architecture, passionate about collaborative learning.",
     tags: ["AWS", "Cloud Architecture"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud architecture designs on AWS", "Collaborative cloud learning resources"]
   },
   { 
     id: "16", 
@@ -287,7 +301,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Security is the foundation of every great cloud architecture.", 
     bio: "I'm a Cloud Security Engineer ensuring that infrastructure is built with security as a core principle.",
     tags: ["Security", "AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud security frameworks and policies", "Security-first infrastructure automation"]
   },
   { 
     id: "17", 
@@ -301,7 +316,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "The sense of belonging and support in this community is unmatched.", 
     bio: "I'm a Cloud Solutions Architect designing scalable cloud architectures with AWS and exploring AI integration.",
     tags: ["AWS", "Cloud Architecture", "AI"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Scalable cloud architectures with AI integration", "AWS solutions for emerging markets"]
   },
   { 
     id: "18", 
@@ -315,7 +331,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Every step forward in cloud is a step toward building something meaningful.", 
     bio: "I'm a DevOps Engineer working with Kubernetes and AWS to build reliable deployment pipelines.",
     tags: ["DevOps", "Kubernetes", "AWS"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes deployment pipelines", "Reliable cloud infrastructure on AWS"]
   },
   { 
     id: "19", 
@@ -329,7 +346,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Infrastructure is the backbone of innovation.", 
     bio: "I'm a Cloud Infrastructure Engineer specializing in AWS and Terraform for infrastructure as code.",
     tags: ["AWS", "Terraform", "Infrastructure"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Infrastructure as Code with Terraform", "Scalable AWS cloud environments"]
   },
   { 
     id: "20", 
@@ -343,7 +361,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building platforms that empower teams and communities.", 
     bio: "I'm a Cloud & Platform Engineer building internal developer platforms and DevOps tooling.",
     tags: ["Platform Engineering", "AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Internal developer platforms", "DevOps tooling for engineering teams"]
   },
   { 
     id: "21", 
@@ -357,7 +376,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Every cloud journey starts with a single step of curiosity.", 
     bio: "I'm a Cloud Engineer exploring AWS and Azure, passionate about cloud architecture design.",
     tags: ["AWS", "Azure", "Cloud Architecture"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Multi-cloud architecture designs", "Cloud migration strategies"]
   },
   { 
     id: "22", 
@@ -371,7 +391,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "The future of cloud is diverse, inclusive, and powerful.", 
     bio: "I'm a Cloud & DevOps Engineer focused on building secure and inclusive cloud solutions.",
     tags: ["DevOps", "AWS", "Security"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Secure cloud solutions on AWS", "Inclusive DevOps practices"]
   },
   { 
     id: "23", 
@@ -386,7 +407,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & Infrastructure Engineer building scalable solutions and championing women in tech.",
     tags: ["AWS", "Cloud Architecture", "Infrastructure"], 
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/marian-bolous-91156992/" 
+    linkedin: "https://www.linkedin.com/in/marian-bolous-91156992/",
+    building: ["Scalable cloud infrastructure solutions", "Cloud engineering community initiatives"]
   },
   { 
     id: "24", 
@@ -401,7 +423,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer passionate about Kubernetes and building collaborative cloud communities.",
     tags: ["AWS", "DevOps", "Kubernetes"], 
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/loweh-goodness-63682a281/" 
+    linkedin: "https://www.linkedin.com/in/loweh-goodness-63682a281/",
+    building: ["Kubernetes orchestration on AWS", "Collaborative cloud DevOps workflows"]
   },
   {
     id: "25",
@@ -416,7 +439,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm an Engineering Leader passionate about cloud architecture, platform engineering, and building inclusive engineering teams.",
     tags: ["Engineering Leadership", "Cloud", "Platform Engineering"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/diamantinoalmeida/"
+    linkedin: "https://www.linkedin.com/in/diamantinoalmeida/",
+    building: ["Engineering leadership frameworks", "Cloud platform strategy and architecture"]
   },
   {
     id: "26",
@@ -431,7 +455,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm an Engineering Manager focused on AI products, GenAI, and building high-performing engineering teams.",
     tags: ["Engineering Management", "AI Products", "GenAI"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/princemokut/"
+    linkedin: "https://www.linkedin.com/in/princemokut/",
+    building: ["AI product engineering at scale", "GenAI-powered team workflows"]
   },
   {
     id: "27",
@@ -446,7 +471,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior DevOps & Platform Engineer building scalable infrastructure and championing accessibility in tech.",
     tags: ["DevOps", "Platform Engineering", "Cloud"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/phevos-skordos/"
+    linkedin: "https://www.linkedin.com/in/phevos-skordos/",
+    building: ["Platform engineering for developer experience", "Multi-cloud DevOps automation"]
   },
   {
     id: "28",
@@ -460,7 +486,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "I love how you're highlighting that the challenge isn't talent, but access and that structural change is key.",
     bio: "I'm a DevOps Engineer working with AWS and Kubernetes, focused on building reliable cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes clusters on AWS", "Reliable DevOps infrastructure"]
   },
   {
     id: "29",
@@ -475,7 +502,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Cloud & AI Solutions Architect designing scalable, intelligent cloud systems.",
     tags: ["Cloud", "AI", "Architecture"],
     cloudPlatforms: ["AWS", "Azure", "GCP"],
-    linkedin: "https://www.linkedin.com/in/vinod-soni-4211a5238/"
+    linkedin: "https://www.linkedin.com/in/vinod-soni-4211a5238/",
+    building: ["AI-powered cloud solutions architecture", "Multi-cloud enterprise systems"]
   },
   {
     id: "30",
@@ -490,7 +518,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer specializing in AWS, Azure, cloud security, and DevOps practices.",
     tags: ["AWS", "Azure", "Cloud Security", "DevOps"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/eric-nyuydze-wiryenkfea-198862162/"
+    linkedin: "https://www.linkedin.com/in/eric-nyuydze-wiryenkfea-198862162/",
+    building: ["Cloud security architectures on AWS and Azure", "DevOps best practices for teams"]
   },
   {
     id: "31",
@@ -505,7 +534,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Director of Cloud Engineering focused on secure architecture, scalability, and cloud-native solutions.",
     tags: ["Cloud Engineering", "Secure Architecture", "Scalability"],
     cloudPlatforms: ["AWS", "Azure", "GCP"],
-    linkedin: "https://www.linkedin.com/in/jaswindder-kummar/"
+    linkedin: "https://www.linkedin.com/in/jaswindder-kummar/",
+    building: ["Secure cloud-native architectures", "Scalable enterprise cloud platforms"]
   },
   {
     id: "32",
@@ -520,7 +550,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm the Founder of Infracodebase, building AI agent engineering tools and supporting women in tech infrastructure.",
     tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/"
+    linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
+    building: ["AI agent engineering tools on Infracodebase", "Community platforms for women in tech"]
   },
   {
     id: "33",
@@ -535,7 +566,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud and AI Leader focused on driving innovation and building inclusive tech communities.",
     tags: ["Cloud", "AI", "Leadership"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/sarshar-roshan/"
+    linkedin: "https://www.linkedin.com/in/sarshar-roshan/",
+    building: ["Cloud and AI innovation initiatives", "Inclusive tech leadership programs"]
   },
   {
     id: "34",
@@ -550,7 +582,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
     tags: ["Cloud Architecture", "FinOps", "Platform Engineering"],
     cloudPlatforms: ["Azure", "AWS"],
-    linkedin: "https://www.linkedin.com/in/shannonkuehn/"
+    linkedin: "https://www.linkedin.com/in/shannonkuehn/",
+    building: ["FinOps strategies for enterprise cloud", "Platform engineering at scale"]
   },
   {
     id: "35",
@@ -565,7 +598,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Software Engineer and educator focused on AI Assisted Coding and AI Agents, helping engineers build smarter with modern tools.",
     tags: ["AI Agents", "AI Assisted Coding", "Software Engineering"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/shreyshahh/"
+    linkedin: "https://www.linkedin.com/in/shreyshahh/",
+    building: ["AI-assisted coding tools and workflows", "AI agent education platforms"]
   },
 ];
 
