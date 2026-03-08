@@ -301,24 +301,22 @@ const BuilderProfile = () => {
               </section>
 
               {/* 3. What I'm Building */}
-              {builder.building && builder.building.length > 0 && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    What I'm Building
-                  </h2>
-                  <ul className="space-y-2">
-                    {builder.building.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
+              <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                  What I'm Building
+                </h2>
+                <ul className="space-y-2">
+                  {(builder.building && builder.building.length > 0 ? builder.building : ["Building in cloud infrastructure"]).map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-muted-foreground"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
 
               {/* 4. Built on Infracodebase */}
               {builder.infracodbaseUserId && (
