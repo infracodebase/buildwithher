@@ -140,9 +140,19 @@ const MeetTheBuilders = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="cta-band section-glow"
+        className="cta-band section-glow relative overflow-hidden"
       >
-        <div className="container py-28 md:py-36 text-center max-w-3xl mx-auto">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/images/colors.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            opacity: 0.1,
+            mixBlendMode: 'screen',
+          }}
+        />
+        <div className="container relative z-10 py-28 md:py-36 text-center max-w-3xl mx-auto">
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-6">
             Become a Builder Today
           </h1>
