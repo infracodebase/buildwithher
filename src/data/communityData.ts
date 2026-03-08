@@ -18,6 +18,8 @@ export const testimonials = [
   { name: "Comfort Etim", role: "Cloud Engineer | AWS", photo: "/images/comfort_etim.jpeg", quote: "Being part of this community has shown me that growth is better when shared with others who truly understand the journey." },
   { name: "Esperance Ngalu Mukenge", role: "Cloud Solutions Architect", photo: "/images/esperance.jpeg", quote: "The sense of belonging and support in this community is unmatched. Together we are building something truly meaningful." },
   { name: "Millicent Eze", role: "Cloud & DevOps Engineer", photo: "/images/millicent.jpeg", quote: "This community has been a game-changer for my cloud journey. The support and mentorship here are incredible." },
+  { name: "Marian Bolous", role: "Cloud & Infrastructure Engineer", photo: "/images/marian_bolous.jpeg", quote: "Being part of this community has given me the confidence to keep pushing forward in cloud engineering. The support here is real." },
+  { name: "Loweh Goodness", role: "Cloud & DevOps Engineer", photo: "/images/loweh_goodness.jpeg", quote: "This community showed me that women in cloud are not alone. We are building, learning, and growing together every day." },
 ];
 
 export const sampleBuilders: BuilderProfile[] = [
