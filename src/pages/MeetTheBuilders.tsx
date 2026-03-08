@@ -110,7 +110,43 @@ const MeetTheBuilders = () => {
         </div>
       </section>
 
-      {/* 2. Filters + 3. New Builders Signal + Builder Grid */}
+      {/* 2. Community Snapshot — Stats + Map */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="band-gradient section-glow"
+      >
+        <div className="container pt-8 pb-20 md:pt-8 md:pb-28">
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Community Snapshot</h2>
+            <p className="text-muted-foreground leading-relaxed">Women in this community are building across cloud, AI, infrastructure, DevOps, and platform engineering from many countries.</p>
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">
+            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+              <Users size={20} className="mx-auto mb-2 text-primary" />
+              <p className="font-display text-2xl font-bold text-foreground">{sampleBuilders.length}+</p>
+              <p className="text-xs text-muted-foreground mt-1">Builders</p>
+            </div>
+            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+              <Globe size={20} className="mx-auto mb-2 text-primary" />
+              <p className="font-display text-2xl font-bold text-foreground">{new Set(sampleBuilders.map(b => b.country)).size}</p>
+              <p className="text-xs text-muted-foreground mt-1">Countries</p>
+            </div>
+            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+              <Cpu size={20} className="mx-auto mb-2 text-primary" />
+              <p className="font-display text-2xl font-bold text-foreground">Cloud + AI</p>
+              <p className="text-xs text-muted-foreground mt-1">Infrastructure Focus</p>
+            </div>
+          </div>
+
+          <GlobalMap />
+        </div>
+      </motion.section>
+
+      {/* 3. Filters + New Builders Signal + Builder Grid */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -133,42 +169,6 @@ const MeetTheBuilders = () => {
               <p className="text-muted-foreground">No builders match your selected filters.</p>
             </div>
           )}
-        </div>
-      </motion.section>
-
-      {/* 5. Building Across the World — Stats + Map */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="band-gradient section-glow"
-      >
-        <div className="container py-20 md:py-28">
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Building Across the World</h2>
-            <p className="text-muted-foreground leading-relaxed">Women in this community are building across cloud, AI, infrastructure, DevOps, and platform engineering from many countries.</p>
-          </div>
-
-          {/* Stats row */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">
-            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
-              <Users size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">78+</p>
-              <p className="text-xs text-muted-foreground mt-1">Members</p>
-            </div>
-            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
-              <Globe size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">12</p>
-              <p className="text-xs text-muted-foreground mt-1">Countries</p>
-            </div>
-            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
-              <Cpu size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">Cloud + AI</p>
-              <p className="text-xs text-muted-foreground mt-1">Infrastructure Focus</p>
-            </div>
-          </div>
-
-          <GlobalMap />
         </div>
       </motion.section>
 
