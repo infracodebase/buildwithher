@@ -396,6 +396,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer exploring AWS and Azure, passionate about cloud architecture design.",
     tags: ["AWS", "Azure", "Cloud Architecture"],
     cloudPlatforms: ["AWS", "Azure"],
+    linkedin: "https://www.linkedin.com/in/oladunjoye-praise/",
     building: ["Multi-cloud architecture designs", "Cloud migration strategies"]
   },
   { 
