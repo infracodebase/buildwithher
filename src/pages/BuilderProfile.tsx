@@ -5,7 +5,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
-import { sampleBuilders, ExtendedBuilderProfile } from "@/data/communityData";
+import { sampleBuilders } from "@/data/communityData";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
