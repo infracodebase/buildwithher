@@ -566,7 +566,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud and AI Leader focused on driving innovation and building inclusive tech communities.",
     tags: ["Cloud", "AI", "Leadership"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/sarshar-roshan/"
+    linkedin: "https://www.linkedin.com/in/sarshar-roshan/",
+    building: ["Cloud and AI innovation initiatives", "Inclusive tech leadership programs"]
   },
   {
     id: "34",
