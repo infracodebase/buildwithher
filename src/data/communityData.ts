@@ -471,7 +471,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior DevOps & Platform Engineer building scalable infrastructure and championing accessibility in tech.",
     tags: ["DevOps", "Platform Engineering", "Cloud"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/phevos-skordos/"
+    linkedin: "https://www.linkedin.com/in/phevos-skordos/",
+    building: ["Platform engineering for developer experience", "Multi-cloud DevOps automation"]
   },
   {
     id: "28",
