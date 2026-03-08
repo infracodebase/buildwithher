@@ -188,6 +188,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a DevOps Engineer and Business Analyst working with Azure and AI infrastructure solutions.",
     tags: ["DevOps", "Azure", "AI Infrastructure"],
     cloudPlatforms: ["Azure"],
+    linkedin: "https://www.linkedin.com/in/obianuju-owoh/",
     building: ["AI-powered infrastructure on Azure", "DevOps automation for business solutions"]
   },
   { 
