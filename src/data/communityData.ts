@@ -455,7 +455,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm an Engineering Manager focused on AI products, GenAI, and building high-performing engineering teams.",
     tags: ["Engineering Management", "AI Products", "GenAI"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/princemokut/"
+    linkedin: "https://www.linkedin.com/in/princemokut/",
+    building: ["AI product engineering at scale", "GenAI-powered team workflows"]
   },
   {
     id: "27",
