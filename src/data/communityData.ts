@@ -439,7 +439,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm an Engineering Leader passionate about cloud architecture, platform engineering, and building inclusive engineering teams.",
     tags: ["Engineering Leadership", "Cloud", "Platform Engineering"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/diamantinoalmeida/"
+    linkedin: "https://www.linkedin.com/in/diamantinoalmeida/",
+    building: ["Engineering leadership frameworks", "Cloud platform strategy and architecture"]
   },
   {
     id: "26",
