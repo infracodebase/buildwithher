@@ -598,7 +598,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Software Engineer and educator focused on AI Assisted Coding and AI Agents, helping engineers build smarter with modern tools.",
     tags: ["AI Agents", "AI Assisted Coding", "Software Engineering"],
     cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/shreyshahh/"
+    linkedin: "https://www.linkedin.com/in/shreyshahh/",
+    building: ["AI-assisted coding tools and workflows", "AI agent education platforms"]
   },
 ];
 
