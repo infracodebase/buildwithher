@@ -26,7 +26,7 @@ const MeetTheBuilders = () => {
   }).current();
 
   const filteredBuilders = useMemo(() => {
-    return shuffledBuilders.filter((builder) => {
+    const filtered = shuffledBuilders.filter((builder) => {
       if (filters.cloudPlatforms.length > 0) {
         const builderPlatforms = builder.cloudPlatforms || [];
         const hasMatch = filters.cloudPlatforms.some(
@@ -51,6 +51,13 @@ const MeetTheBuilders = () => {
       }
       return true;
     });
+    // Pin Manisha first if she's in the filtered results
+    const manishaIdx = filtered.findIndex(b => b.name === "Manisha Sarkar");
+    if (manishaIdx > 0) {
+      const [manisha] = filtered.splice(manishaIdx, 1);
+      filtered.unshift(manisha);
+    }
+    return filtered;
   }, [filters, shuffledBuilders]);
 
   return (
