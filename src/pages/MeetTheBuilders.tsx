@@ -20,6 +20,16 @@ const MeetTheBuilders = () => {
       {/* Hero */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 gradient-arc pointer-events-none" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/images/colors.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.12,
+            mixBlendMode: 'screen',
+          }}
+        />
         <div className="container relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="badge-glow">Builder Wall</span>
@@ -130,9 +140,19 @@ const MeetTheBuilders = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="cta-band section-glow"
+        className="cta-band section-glow relative overflow-hidden"
       >
-        <div className="container py-28 md:py-36 text-center max-w-3xl mx-auto">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/images/colors.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            opacity: 0.1,
+            mixBlendMode: 'screen',
+          }}
+        />
+        <div className="container relative z-10 py-28 md:py-36 text-center max-w-3xl mx-auto">
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-6">
             Become a Builder Today
           </h1>
