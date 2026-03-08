@@ -537,6 +537,36 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS", "Azure"],
     linkedin: "https://www.linkedin.com/in/sarshar-roshan/"
   },
+  {
+    id: "34",
+    slug: "shannon-eldridge-kuehn",
+    name: "Shannon Eldridge-Kuehn",
+    role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps",
+    roleCategory: "Cloud Engineer",
+    country: "United States",
+    region: "North America",
+    photo: "/images/shannon_eldridge_kuehn.jpeg",
+    statement: "I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
+    bio: "I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
+    tags: ["Cloud Architecture", "FinOps", "Platform Engineering"],
+    cloudPlatforms: ["Azure", "AWS"],
+    linkedin: "https://www.linkedin.com/in/shannonkuehn/"
+  },
+  {
+    id: "35",
+    slug: "shrey-shah",
+    name: "Shrey Shah",
+    role: "Senior Software Engineer | AI Assisted Coding & Agents Educator",
+    roleCategory: "AI Infrastructure",
+    country: "Canada",
+    region: "North America",
+    photo: "/images/shrey_shah.jpeg",
+    statement: "Wow amazing work!",
+    bio: "I'm a Senior Software Engineer and educator focused on AI Assisted Coding and AI Agents, helping engineers build smarter with modern tools.",
+    tags: ["AI Agents", "AI Assisted Coding", "Software Engineering"],
+    cloudPlatforms: ["AWS", "GCP"],
+    linkedin: "https://www.linkedin.com/in/shreyshahh/"
+  },
 ];
 
 // Filter options for the Builder Wall
