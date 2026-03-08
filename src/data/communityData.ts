@@ -91,7 +91,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building strong foundations before scaling and seeing AI as a co-worker that supports growth.", 
     bio: "I specialize in AWS cloud administration with a focus on IAM, secure cloud architecture, and FinOps practices.",
     tags: ["AWS", "Security", "FinOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Secure cloud architectures with IAM best practices", "FinOps dashboards for cost optimization"]
   },
   { 
     id: "2", 
@@ -105,7 +106,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Each session brings new insight, new connections, and new encouragement.", 
     bio: "I'm a Cloud Engineer focused on infrastructure and operations, AWS certified and passionate about building resilient systems.",
     tags: ["AWS", "DevOps", "Terraform"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Resilient cloud infrastructure on AWS", "Automated deployment pipelines with Terraform"]
   },
   { 
     id: "3", 
