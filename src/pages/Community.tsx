@@ -40,12 +40,104 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
+const row1 = [
+  "/images/community_1.jpeg",
+  "/images/community_2.jpeg",
+  "/images/community_3.jpeg",
+  "/images/community_4.jpeg",
+  "/images/community_5.jpeg",
+];
+const row2 = [
+  "/images/community_4.jpeg",
+  "/images/community_1.jpeg",
+  "/images/community_5.jpeg",
+  "/images/community_2.jpeg",
+  "/images/community_3.jpeg",
+];
+
+const ScrollRow = ({
+  images,
+  direction = "left",
+  duration = 40,
+}: {
+  images: string[];
+  direction?: "left" | "right";
+  duration?: number;
+}) => {
+  const doubled = [...images, ...images];
+  return (
+    <div className="overflow-hidden [&:hover_.scroll-track]:pause">
+      <motion.div
+        className="scroll-track flex gap-4"
+        animate={{
+          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
+        }}
+        transition={{ duration, repeat: Infinity, ease: "linear" }}
+        style={{ willChange: "transform" }}
+      >
+        {doubled.map((src, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 h-[220px] w-[340px] md:w-[400px] rounded-xl overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
+          >
+            <img
+              src={src}
+              alt="Build with Her community session"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
 const Community = () => (
   <div className="min-h-screen bg-background">
     <Navbar />
-    <PageHero title="A community built around we, not just me" badge="Community">
-      <p>You can be ambitious and still need support. You can be talented and still need belonging. You can be disciplined and still not want to do everything alone.</p>
+    <PageHero
+      title="A community built around we, not just me"
+      badge="Community"
+    >
+      <p>
+        You can be ambitious and still need support. You can be talented and
+        still need belonging. You can be disciplined and still not want to do
+        everything alone.
+      </p>
     </PageHero>
+
+    {/* Community Moments */}
+    <motion.section {...fadeUp} className="py-24 md:py-32 overflow-hidden">
+      <div className="container text-center mb-12">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+          Community Moments
+        </h2>
+        <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          Real sessions. Real builders. Real conversations.
+          <br />
+          Across cloud, infrastructure, DevOps, AI, and platform engineering.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <ScrollRow images={row1} direction="left" duration={45} />
+        <ScrollRow images={row2} direction="right" duration={50} />
+      </div>
+
+      <div className="container text-center mt-12 max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+          Weekly Build with Her community sessions bringing together engineers
+          and learners across continents.
+        </p>
+        <p className="text-foreground font-display font-semibold text-sm md:text-base mt-4">
+          These are not webinars.
+          <br />
+          They are working sessions where people learn, ask questions, and build
+          together.
+        </p>
+      </div>
+    </motion.section>
 
     <motion.section {...fadeUp} className="section-glow">
       <div className="container py-24 md:py-32">
@@ -55,14 +147,20 @@ const Community = () => (
               <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <Icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="font-display font-semibold text-foreground text-lg mb-3">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{copy}</p>
+              <h3 className="font-display font-semibold text-foreground text-lg mb-3">
+                {title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {copy}
+              </p>
             </div>
           ))}
         </div>
 
         <div className="mt-16 text-center">
-          <GradientButton to="/meet-the-builders" size="lg" icon>Join the Community</GradientButton>
+          <GradientButton to="/meet-the-builders" size="lg" icon>
+            Join the Community
+          </GradientButton>
         </div>
       </div>
     </motion.section>
