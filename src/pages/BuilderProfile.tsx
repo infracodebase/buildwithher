@@ -166,7 +166,7 @@ const BuilderProfile = () => {
                           onClick={handleCopyLink}
                           className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
                         >
-                          {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
+                          {copied ? <Check size={14} className="text-primary" /> : <Copy size={14} />}
                           {copied ? "Copied!" : "Copy link"}
                         </button>
                         <button
