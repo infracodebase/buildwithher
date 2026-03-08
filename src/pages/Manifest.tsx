@@ -405,7 +405,7 @@ const Manifest = () => {
           <motion.div {...fade()}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 justify-items-center">
               {[
-                { src: "/images/tarak.jpeg", name: "Tarak Bach", alt: "Tarak Bach, Co-Founder of Build with Her" },
+                { src: "/images/tarak.jpeg", name: "Tarak", alt: "Tarak, Co-Founder of Build with Her" },
                 { src: "/images/justin.jpeg", name: "Justin O'Connor", alt: "Justin O'Connor, Co-Founder of Build with Her" },
               ].map((f) => (
                 <div key={f.name} className="flex flex-col items-center">
