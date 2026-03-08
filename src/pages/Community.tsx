@@ -40,58 +40,13 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-const row1 = [
+const communityPhotos = [
   "/images/community_1.jpeg",
   "/images/community_2.jpeg",
   "/images/community_3.jpeg",
   "/images/community_4.jpeg",
   "/images/community_5.jpeg",
 ];
-const row2 = [
-  "/images/community_4.jpeg",
-  "/images/community_1.jpeg",
-  "/images/community_5.jpeg",
-  "/images/community_2.jpeg",
-  "/images/community_3.jpeg",
-];
-
-const ScrollRow = ({
-  images,
-  direction = "left",
-  duration = 40,
-}: {
-  images: string[];
-  direction?: "left" | "right";
-  duration?: number;
-}) => {
-  const doubled = [...images, ...images];
-  return (
-    <div className="overflow-hidden [&:hover_.scroll-track]:pause">
-      <motion.div
-        className="scroll-track flex gap-4"
-        animate={{
-          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
-        }}
-        transition={{ duration, repeat: Infinity, ease: "linear" }}
-        style={{ willChange: "transform" }}
-      >
-        {doubled.map((src, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 h-[220px] w-[340px] md:w-[400px] rounded-xl overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
-          >
-            <img
-              src={src}
-              alt="Build with Her community session"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
 
 const Community = () => (
   <div className="min-h-screen bg-background">
