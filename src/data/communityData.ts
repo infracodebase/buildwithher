@@ -316,7 +316,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "The sense of belonging and support in this community is unmatched.", 
     bio: "I'm a Cloud Solutions Architect designing scalable cloud architectures with AWS and exploring AI integration.",
     tags: ["AWS", "Cloud Architecture", "AI"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Scalable cloud architectures with AI integration", "AWS solutions for emerging markets"]
   },
   { 
     id: "18", 
@@ -330,7 +331,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Every step forward in cloud is a step toward building something meaningful.", 
     bio: "I'm a DevOps Engineer working with Kubernetes and AWS to build reliable deployment pipelines.",
     tags: ["DevOps", "Kubernetes", "AWS"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes deployment pipelines", "Reliable cloud infrastructure on AWS"]
   },
   { 
     id: "19", 
@@ -344,7 +346,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Infrastructure is the backbone of innovation.", 
     bio: "I'm a Cloud Infrastructure Engineer specializing in AWS and Terraform for infrastructure as code.",
     tags: ["AWS", "Terraform", "Infrastructure"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Infrastructure as Code with Terraform", "Scalable AWS cloud environments"]
   },
   { 
     id: "20", 
@@ -358,7 +361,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building platforms that empower teams and communities.", 
     bio: "I'm a Cloud & Platform Engineer building internal developer platforms and DevOps tooling.",
     tags: ["Platform Engineering", "AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Internal developer platforms", "DevOps tooling for engineering teams"]
   },
   { 
     id: "21", 
@@ -372,7 +376,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Every cloud journey starts with a single step of curiosity.", 
     bio: "I'm a Cloud Engineer exploring AWS and Azure, passionate about cloud architecture design.",
     tags: ["AWS", "Azure", "Cloud Architecture"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Multi-cloud architecture designs", "Cloud migration strategies"]
   },
   { 
     id: "22", 
@@ -386,7 +391,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "The future of cloud is diverse, inclusive, and powerful.", 
     bio: "I'm a Cloud & DevOps Engineer focused on building secure and inclusive cloud solutions.",
     tags: ["DevOps", "AWS", "Security"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Secure cloud solutions on AWS", "Inclusive DevOps practices"]
   },
   { 
     id: "23", 
