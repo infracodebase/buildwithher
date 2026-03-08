@@ -140,6 +140,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer working with AWS and Infrastructure as Code to build reliable cloud systems.",
     tags: ["AWS", "DevOps", "AI Infrastructure"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/lydiah-nganga/",
     building: ["Cloud automation with AWS and IaC", "AI-integrated infrastructure solutions"]
   },
   { 
