@@ -332,6 +332,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Solutions Architect designing scalable cloud architectures with AWS and exploring AI integration.",
     tags: ["AWS", "Cloud Architecture", "AI"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/esperance-ngalu-mukenge/",
     building: ["Scalable cloud architectures with AI integration", "AWS solutions for emerging markets"]
   },
   { 
