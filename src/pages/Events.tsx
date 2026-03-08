@@ -115,7 +115,7 @@ const Events = () => (
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Past Sessions</h2>
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Watch previous Build with Her sessions and learn from real cloud, AI, and infrastructure practitioners.
+            Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
