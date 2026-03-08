@@ -319,37 +319,35 @@ const BuilderProfile = () => {
               </section>
 
               {/* 4. Built on Infracodebase */}
-              {builder.infracodbaseUserId && (
-                <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-                      <Globe className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
-                        Built on Infracodebase
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
-                      </p>
-                      <Button 
-                        asChild 
-                        className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
-                        size="sm"
-                      >
-                        <a
-                          href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Infrastructure Portfolio
-                          <ExternalLink size={14} />
-                        </a>
-                      </Button>
-                    </div>
+              <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-5 h-5 text-primary" />
                   </div>
-                </section>
-              )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
+                      Built on Infracodebase
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
+                    </p>
+                    <Button 
+                      asChild 
+                      className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                      size="sm"
+                    >
+                      <a
+                        href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Infrastructure Portfolio
+                        <ExternalLink size={14} />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </section>
 
               {/* 5. Community Voice */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">

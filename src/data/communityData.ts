@@ -508,6 +508,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a DevOps Engineer working with AWS and Kubernetes, focused on building reliable cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/mekuanint-legese/",
     building: ["Kubernetes clusters on AWS", "Reliable DevOps infrastructure"]
   },
   {
