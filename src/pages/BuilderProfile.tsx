@@ -1,53 +1,52 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Github, Globe, Share2, Award } from "lucide-react";
+import { ArrowLeft, ExternalLink, Linkedin, Github, Globe, Share2, Award, Copy, Check } from "lucide-react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
-import { sampleBuilders, ExtendedBuilderProfile } from "@/data/communityData";
+import { sampleBuilders } from "@/data/communityData";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const builder = sampleBuilders.find((b) => b.slug === slug);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  if (!builder) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <div className="container py-32 text-center">
-          <h1 className="font-display text-3xl font-bold text-foreground mb-4">Builder Not Found</h1>
-          <p className="text-muted-foreground mb-8">The builder profile you're looking for doesn't exist.</p>
-          <GradientButton to="/meet-the-builders">Back to Builder Wall</GradientButton>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  const profileUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const handleShare = async () => {
-    const shareUrl = window.location.href;
-    const shareText = `I'm proud to be part of Build With Her — a global community of women building in cloud, AI, and infrastructure. Check out ${builder.name}'s profile:`;
-    
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: `${builder.name} - Build With Her`,
-          text: shareText,
-          url: shareUrl,
-        });
-      } catch (err) {
-        // User cancelled sharing
-      }
-    } else {
-      await navigator.clipboard.writeText(shareUrl);
-      toast({
-        title: "Link copied!",
-        description: "Profile link has been copied to your clipboard.",
-      });
-    }
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(profileUrl);
+    setCopied(true);
+    toast({
+      title: "Link copied!",
+      description: "Profile link has been copied to your clipboard.",
+    });
+    setTimeout(() => {
+      setCopied(false);
+      setShareOpen(false);
+    }, 1500);
+  };
+
+  const handleShareOnX = () => {
+    const text = encodeURIComponent(`I'm proud to be part of Build With Her — a global community of women building in cloud, AI, and infrastructure. Check out this builder's profile:`);
+    const url = encodeURIComponent(profileUrl);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+    setShareOpen(false);
+  };
+
+  const handleShareOnLinkedIn = () => {
+    const url = encodeURIComponent(profileUrl);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'noopener,noreferrer');
+    setShareOpen(false);
   };
 
   return (
@@ -82,11 +81,11 @@ const BuilderProfile = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row gap-8 items-start"
+            className="flex flex-col lg:flex-row gap-8 items-start"
           >
             {/* Profile Photo */}
             <div className="flex-shrink-0">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden border-2 border-border/50 bg-secondary/50 shadow-xl">
+              <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden border border-border/30 bg-secondary/30 shadow-2xl">
                 {builder.photo ? (
                   <img 
                     src={builder.photo} 
@@ -95,7 +94,7 @@ const BuilderProfile = () => {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <span className="font-display font-bold text-4xl text-foreground/60">
+                    <span className="font-display font-bold text-5xl text-foreground/60">
                       {builder.name.charAt(0)}
                     </span>
                   </div>
@@ -104,22 +103,102 @@ const BuilderProfile = () => {
             </div>
 
             {/* Profile Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start gap-3 mb-2">
-                <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                  {builder.name}
-                </h1>
-                <Badge variant="outline" className="flex-shrink-0 mt-2 text-[10px] border-primary/30 text-primary">
-                  <Award size={10} className="mr-1" />
-                  Builder
-                </Badge>
+            <div className="flex-1 min-w-0 space-y-4">
+              {/* Name Row with Actions */}
+              <div className="flex flex-col md:flex-row md:items-center gap-4">
+                <div className="flex items-center gap-3">
+                  <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+                    {builder.name}
+                  </h1>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-2 md:ml-auto">
+                  {builder.linkedin && (
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      asChild
+                      className="gap-2"
+                    >
+                      <a href={builder.linkedin} target="_blank" rel="noopener noreferrer">
+                        <Linkedin size={14} />
+                        Connect on LinkedIn
+                      </a>
+                    </Button>
+                  )}
+                  {builder.infracodbaseUserId && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      asChild
+                      className="gap-2"
+                    >
+                      <a 
+                        href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <Globe size={14} />
+                        View Infracodebase Portfolio
+                      </a>
+                    </Button>
+                  )}
+                  
+                  {/* Share Dropdown */}
+                  <Popover open={shareOpen} onOpenChange={setShareOpen}>
+                    <PopoverTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="gap-2"
+                      >
+                        <Share2 size={14} />
+                        Share
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent 
+                      align="end" 
+                      className="w-48 p-1"
+                    >
+                      <div className="flex flex-col">
+                        <button
+                          onClick={handleCopyLink}
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
+                        >
+                          {copied ? <Check size={14} className="text-primary" /> : <Copy size={14} />}
+                          {copied ? "Copied!" : "Copy link"}
+                        </button>
+                        <button
+                          onClick={handleShareOnX}
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                          </svg>
+                          Share on X
+                        </button>
+                        <button
+                          onClick={handleShareOnLinkedIn}
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
+                        >
+                          <Linkedin size={14} />
+                          Share on LinkedIn
+                        </button>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
               </div>
-              
-              <p className="text-lg text-muted-foreground mb-1">{builder.role}</p>
-              <p className="text-sm text-muted-foreground/70 mb-4">{builder.country}</p>
+
+              {/* Role and Country */}
+              <div>
+                <p className="text-lg text-muted-foreground">{builder.role}</p>
+                <p className="text-sm text-muted-foreground/70">{builder.country}</p>
+              </div>
 
               {/* Skills */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2">
                 {builder.tags.map((tag) => (
                   <Badge 
                     key={tag} 
@@ -131,43 +210,20 @@ const BuilderProfile = () => {
                 ))}
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3">
-                {builder.linkedin && (
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild
-                    className="gap-2"
-                  >
-                    <a href={builder.linkedin} target="_blank" rel="noopener noreferrer">
-                      <Linkedin size={14} />
-                      Connect on LinkedIn
-                    </a>
-                  </Button>
+              {/* Metadata Row */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground/60">
+                <span className="flex items-center gap-1.5">
+                  <Award size={12} className="text-primary" />
+                  Build With Her Builder
+                </span>
+                <span className="hidden sm:inline">·</span>
+                <span>Joined Build With Her in 2025</span>
+                {builder.infracodbaseUserId && (
+                  <>
+                    <span className="hidden sm:inline">·</span>
+                    <span>Infracodebase Portfolio</span>
+                  </>
                 )}
-                {builder.github && (
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild
-                    className="gap-2"
-                  >
-                    <a href={builder.github} target="_blank" rel="noopener noreferrer">
-                      <Github size={14} />
-                      View GitHub
-                    </a>
-                  </Button>
-                )}
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleShare}
-                  className="gap-2"
-                >
-                  <Share2 size={14} />
-                  Share Profile
-                </Button>
               </div>
             </div>
           </motion.div>
