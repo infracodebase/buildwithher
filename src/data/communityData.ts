@@ -252,6 +252,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a student exploring AWS and AI infrastructure, committed to academic excellence and cloud learning.",
     tags: ["AWS", "AI Infrastructure"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/benedicta-otoibhi/",
     building: ["AWS cloud learning projects", "AI infrastructure experiments"]
   },
   { 
