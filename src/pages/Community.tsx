@@ -76,15 +76,11 @@ const Community = () => (
       </div>
 
       <div
-        className="group overflow-hidden"
+        className="overflow-hidden"
         style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)" }}
       >
-        <motion.div
-          className="flex gap-5 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          style={{ willChange: "transform" }}
-          whileHover={{ animationPlayState: "paused" } as any}
+        <div
+          className="flex gap-5 w-max animate-[scroll-left_30s_linear_infinite] hover:[animation-play-state:paused]"
         >
           {[...communityPhotos, ...communityPhotos].map((src, i) => (
             <div
@@ -99,7 +95,7 @@ const Community = () => (
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <div className="container text-center mt-12 max-w-2xl mx-auto">
