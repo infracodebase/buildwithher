@@ -346,7 +346,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {sampleBuilders.slice(0, 8).map((builder, i) =>
+            {featuredBuilders.slice(0, 12).map((builder, i) =>
             <motion.div
               key={builder.id}
               {...stagger}

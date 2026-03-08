@@ -624,6 +624,22 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     linkedin: "https://www.linkedin.com/in/shreyshahh/",
     building: ["AI-assisted coding tools and workflows", "AI agent education platforms"]
   },
+  {
+    id: "36",
+    slug: "tarak",
+    name: "Tarak",
+    role: "Co-Founder of Infracodebase",
+    roleCategory: "Platform Engineer",
+    country: "France",
+    region: "Europe",
+    photo: "/images/tarak.jpeg",
+    statement: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum.",
+    bio: "I am building platforms, ecosystems, and communities that help people learn, build, and grow in cloud, AI, and infrastructure.",
+    tags: ["Cloud", "AI", "Infrastructure", "Platform Engineering", "DevOps", "Architecture"],
+    cloudPlatforms: ["AWS", "Azure", "GCP"],
+    linkedin: "https://www.linkedin.com/in/tarak-bach-hamba/",
+    building: ["Build with Her community growth", "Infrastructure education and visibility", "Cloud and AI ecosystem building", "Practical paths into platform engineering"]
+  },
 ];
 
 // Filter options for the Builder Wall
