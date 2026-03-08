@@ -423,7 +423,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer passionate about Kubernetes and building collaborative cloud communities.",
     tags: ["AWS", "DevOps", "Kubernetes"], 
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/loweh-goodness-63682a281/" 
+    linkedin: "https://www.linkedin.com/in/loweh-goodness-63682a281/",
+    building: ["Kubernetes orchestration on AWS", "Collaborative cloud DevOps workflows"]
   },
   {
     id: "25",
