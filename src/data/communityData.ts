@@ -204,6 +204,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Full Stack Engineer with expertise in GCP and platform engineering, building scalable web applications.",
     tags: ["GCP", "Platform Engineering"],
     cloudPlatforms: ["GCP"],
+    linkedin: "https://www.linkedin.com/in/tawni-glover/",
     building: ["Scalable web applications on GCP", "Platform engineering tools for developer productivity"]
   },
   { 
