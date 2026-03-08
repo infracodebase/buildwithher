@@ -108,6 +108,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer focused on infrastructure and operations, AWS certified and passionate about building resilient systems.",
     tags: ["AWS", "DevOps", "Terraform"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/comfort-benton/",
     building: ["Resilient cloud infrastructure on AWS", "Automated deployment pipelines with Terraform"]
   },
   { 
