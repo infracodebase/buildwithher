@@ -29,6 +29,8 @@ export const testimonials = [
   { name: "Jaswindder Kummar", role: "Director, Cloud Engineering", photo: "/images/jaswindder_kummar.jpeg", quote: "A fantastic initiative. Focusing on real journeys, hands-on learning, and community support is key to empowering women in tech." },
   { name: "Justin O'Connor", role: "Founder, Infracodebase", photo: "/images/justin_oconnor.jpeg", quote: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators. Supporting women in tech matters. I have seen firsthand how community, opportunity and encouragement change careers. Being able to contribute to that work is a real privilege." },
   { name: "Sarshar Roshan", role: "Cloud / AI Leader", photo: "/images/sarshar_roshan.jpeg", quote: "Supporting women building in cloud and AI infrastructure." },
+  { name: "Shannon Eldridge-Kuehn", role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps", photo: "/images/shannon_eldridge_kuehn.jpeg", quote: "Shout-out to Tarak and Justin O'Connor for the opportunity to be featured on International Women's Day! Thank you! I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first. Some of those moves didn't look like progress at the time. A few felt uncomfortable. More than once, I wondered if I was stepping outside my lane or if I even had one." },
+  { name: "Shrey Shah", role: "Senior Software Engineer | AI Assisted Coding & Agents Educator", photo: "/images/shrey_shah.jpeg", quote: "Wow amazing work!" },
 ];
 
 // Extended builder profile with additional fields for profile pages
@@ -534,6 +536,36 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     tags: ["Cloud", "AI", "Leadership"],
     cloudPlatforms: ["AWS", "Azure"],
     linkedin: "https://www.linkedin.com/in/sarshar-roshan/"
+  },
+  {
+    id: "34",
+    slug: "shannon-eldridge-kuehn",
+    name: "Shannon Eldridge-Kuehn",
+    role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps",
+    roleCategory: "Cloud Engineer",
+    country: "United States",
+    region: "North America",
+    photo: "/images/shannon_eldridge_kuehn.jpeg",
+    statement: "I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
+    bio: "I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first.",
+    tags: ["Cloud Architecture", "FinOps", "Platform Engineering"],
+    cloudPlatforms: ["Azure", "AWS"],
+    linkedin: "https://www.linkedin.com/in/shannonkuehn/"
+  },
+  {
+    id: "35",
+    slug: "shrey-shah",
+    name: "Shrey Shah",
+    role: "Senior Software Engineer | AI Assisted Coding & Agents Educator",
+    roleCategory: "AI Infrastructure",
+    country: "Canada",
+    region: "North America",
+    photo: "/images/shrey_shah.jpeg",
+    statement: "Wow amazing work!",
+    bio: "I'm a Senior Software Engineer and educator focused on AI Assisted Coding and AI Agents, helping engineers build smarter with modern tools.",
+    tags: ["AI Agents", "AI Assisted Coding", "Software Engineering"],
+    cloudPlatforms: ["AWS", "GCP"],
+    linkedin: "https://www.linkedin.com/in/shreyshahh/"
   },
 ];
 
