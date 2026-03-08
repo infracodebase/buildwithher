@@ -502,7 +502,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Cloud & AI Solutions Architect designing scalable, intelligent cloud systems.",
     tags: ["Cloud", "AI", "Architecture"],
     cloudPlatforms: ["AWS", "Azure", "GCP"],
-    linkedin: "https://www.linkedin.com/in/vinod-soni-4211a5238/"
+    linkedin: "https://www.linkedin.com/in/vinod-soni-4211a5238/",
+    building: ["AI-powered cloud solutions architecture", "Multi-cloud enterprise systems"]
   },
   {
     id: "30",
