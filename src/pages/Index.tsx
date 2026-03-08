@@ -85,8 +85,27 @@ const FloatingCard = ({ name, role, country, delay, className }: {name: string;r
   </motion.div>;
 
 
+// Intentionally mixed homepage builder order — one unified community
+const homepageFeaturedOrder = [
+  "tarak",
+  "manisha-sarkar",
+  "justin-oconnor",
+  "bunrinmwa-gobum",
+  "diamantino-almeida",
+  "emmanuella-blessing-udeh",
+  "comfort-benton",
+  "sarshar-roshan",
+  "elizabeth-waithiru",
+  "lydiah-nganga",
+  "maria-sivenkova",
+  "karthika-k",
+];
+
 const Index = () => {
-  const spotlightBuilders = sampleBuilders.slice(0, 6);
+  const featuredBuilders = homepageFeaturedOrder
+    .map(slug => sampleBuilders.find(b => b.slug === slug))
+    .filter(Boolean) as typeof sampleBuilders;
+  const spotlightBuilders = featuredBuilders.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-background">
