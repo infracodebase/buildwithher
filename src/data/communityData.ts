@@ -124,6 +124,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer specializing in CI/CD, Kubernetes, and Terraform. Building scalable infrastructure across East Africa.",
     tags: ["Kubernetes", "Terraform", "DevOps"],
     cloudPlatforms: ["AWS", "GCP"],
+    linkedin: "https://www.linkedin.com/in/elizabeth-waithiru/",
     building: ["CI/CD pipelines with Kubernetes", "Infrastructure as Code with Terraform"]
   },
   { 
