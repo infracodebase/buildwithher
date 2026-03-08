@@ -31,6 +31,7 @@ export const testimonials = [
   { name: "Sarshar Roshan", role: "Cloud / AI Leader", photo: "/images/sarshar_roshan.jpeg", quote: "Supporting women building in cloud and AI infrastructure." },
   { name: "Shannon Eldridge-Kuehn", role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps", photo: "/images/shannon_eldridge_kuehn.jpeg", quote: "Shout-out to Tarak and Justin O'Connor for the opportunity to be featured on International Women's Day! Thank you! I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first. Some of those moves didn't look like progress at the time. A few felt uncomfortable. More than once, I wondered if I was stepping outside my lane or if I even had one." },
   { name: "Shrey Shah", role: "Senior Software Engineer | AI Assisted Coding & Agents Educator", photo: "/images/shrey_shah.jpeg", quote: "Wow amazing work!" },
+  { name: "Tarak", role: "Co-Founder of Infracodebase", photo: "/images/tarak.jpeg", quote: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum." },
 ];
 
 // Extended builder profile with additional fields for profile pages
@@ -622,6 +623,22 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS", "GCP"],
     linkedin: "https://www.linkedin.com/in/shreyshahh/",
     building: ["AI-assisted coding tools and workflows", "AI agent education platforms"]
+  },
+  {
+    id: "36",
+    slug: "tarak",
+    name: "Tarak",
+    role: "Co-Founder of Infracodebase",
+    roleCategory: "Platform Engineer",
+    country: "France",
+    region: "Europe",
+    photo: "/images/tarak.jpeg",
+    statement: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum.",
+    bio: "I am building platforms, ecosystems, and communities that help people learn, build, and grow in cloud, AI, and infrastructure.",
+    tags: ["Cloud", "AI", "Infrastructure", "Platform Engineering", "DevOps", "Architecture"],
+    cloudPlatforms: ["AWS", "Azure", "GCP"],
+    linkedin: "https://www.linkedin.com/in/tarak-bach-hamba/",
+    building: ["Build with Her community growth", "Infrastructure education and visibility", "Cloud and AI ecosystem building", "Practical paths into platform engineering"]
   },
 ];
 

@@ -18,11 +18,13 @@ const MeetTheBuilders = () => {
     regions: [] as string[],
   });
 
-  // Shuffle once on mount, pinning Manisha Sarkar first
+  // Shuffle once on mount, pinning Tarak first, then Manisha second
   const shuffledBuilders = useRef(() => {
-    const manisha = sampleBuilders.find(b => b.name === "Manisha Sarkar");
-    const others = sampleBuilders.filter(b => b.name !== "Manisha Sarkar").sort(() => Math.random() - 0.5);
-    return manisha ? [manisha, ...others] : others;
+    const tarak = sampleBuilders.find(b => b.slug === "tarak");
+    const manisha = sampleBuilders.find(b => b.slug === "manisha-sarkar");
+    const others = sampleBuilders.filter(b => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
+    const pinned = [tarak, manisha].filter(Boolean) as typeof sampleBuilders;
+    return [...pinned, ...others];
   }).current();
 
   const filteredBuilders = useMemo(() => {
@@ -51,11 +53,16 @@ const MeetTheBuilders = () => {
       }
       return true;
     });
-    // Pin Manisha first if she's in the filtered results
-    const manishaIdx = filtered.findIndex(b => b.name === "Manisha Sarkar");
-    if (manishaIdx > 0) {
+    // Pin Tarak first, then Manisha second in filtered results
+    const tarakIdx = filtered.findIndex(b => b.slug === "tarak");
+    if (tarakIdx > 0) {
+      const [tarak] = filtered.splice(tarakIdx, 1);
+      filtered.unshift(tarak);
+    }
+    const manishaIdx = filtered.findIndex(b => b.slug === "manisha-sarkar");
+    if (manishaIdx > 1) {
       const [manisha] = filtered.splice(manishaIdx, 1);
-      filtered.unshift(manisha);
+      filtered.splice(1, 0, manisha);
     }
     return filtered;
   }, [filters, shuffledBuilders]);
