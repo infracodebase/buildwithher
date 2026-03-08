@@ -80,7 +80,7 @@ const Community = () => (
         style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)" }}
       >
         <div
-          className="flex gap-5 w-max animate-[scroll-left_30s_linear_infinite] hover:[animation-play-state:paused]"
+          className="flex gap-5 w-max animate-scroll-left hover:[animation-play-state:paused]"
         >
           {[...communityPhotos, ...communityPhotos].map((src, i) => (
             <div
