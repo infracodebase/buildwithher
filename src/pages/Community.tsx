@@ -63,7 +63,7 @@ const Community = () => (
     </PageHero>
 
     {/* Community Moments */}
-    <motion.section {...fadeUp} className="py-24 md:py-32">
+    <motion.section {...fadeUp} className="py-24 md:py-32 overflow-hidden">
       <div className="container text-center mb-12">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
           Community Moments
@@ -75,22 +75,31 @@ const Community = () => (
         </p>
       </div>
 
-      <div className="container overflow-x-auto pb-4 scrollbar-hide">
-        <div className="flex gap-5 w-max px-4">
-          {communityPhotos.map((src, i) => (
+      <div
+        className="group overflow-hidden"
+        style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)" }}
+      >
+        <motion.div
+          className="flex gap-5 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          style={{ willChange: "transform" }}
+          whileHover={{ animationPlayState: "paused" } as any}
+        >
+          {[...communityPhotos, ...communityPhotos].map((src, i) => (
             <div
               key={i}
-              className="flex-shrink-0 h-[280px] w-[400px] md:w-[460px] rounded-[14px] overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
+              className="flex-shrink-0 h-[260px] md:h-[300px] w-[380px] md:w-[440px] rounded-[14px] overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
             >
               <img
                 src={src}
-                alt={`Build with Her community session ${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                alt={`Build with Her community session ${(i % communityPhotos.length) + 1}`}
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <div className="container text-center mt-12 max-w-2xl mx-auto">
