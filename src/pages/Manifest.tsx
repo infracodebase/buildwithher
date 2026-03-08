@@ -403,23 +403,28 @@ const Manifest = () => {
       <section className="py-20 md:py-28">
         <div className="container max-w-[760px] mx-auto text-center">
           <motion.div {...fade()}>
-            <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-border/50 shadow-lg">
-              <img
-                src="/images/tarak.jpeg"
-                alt="Tarak Bach, Founder of Build with Her"
-                className="w-full h-full object-cover"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 justify-items-center">
+              {[
+                { src: "/images/tarak.jpeg", name: "Tarak Bach", alt: "Tarak Bach, Co-Founder of Build with Her" },
+                { src: "/images/justin.jpeg", name: "Justin O'Connor", alt: "Justin O'Connor, Co-Founder of Build with Her" },
+              ].map((f) => (
+                <div key={f.name} className="flex flex-col items-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
+                    <img src={f.src} alt={f.alt} className="w-full h-full object-cover" />
+                  </div>
+                  <p className="mt-6 font-display text-lg font-bold text-foreground">{f.name}</p>
+                  <p className="text-muted-foreground text-sm">Co-Founder, Build with Her</p>
+                </div>
+              ))}
             </div>
-            <p className="mt-6 font-display text-lg font-bold text-foreground">Tarak Bach</p>
-            <p className="text-muted-foreground text-sm">Founder, Build with Her</p>
-            <p className="mt-8 text-foreground text-base md:text-lg leading-relaxed">
-              This is the kind of founding I care about.
+            <p className="mt-10 text-foreground text-base md:text-lg leading-relaxed">
+              This is the kind of founding we care about.
             </p>
             <p className="text-foreground text-base md:text-lg leading-relaxed">
-              And this is the stand I am taking.
+              And this is the stand we are taking.
             </p>
             <p className="mt-8 text-muted-foreground text-sm">Written in 2026</p>
-            <p className="mt-4 font-caveat text-2xl md:text-3xl text-primary/80">Tarak</p>
+            <p className="mt-4 font-caveat text-2xl md:text-3xl text-primary/80">Tarak & Justin</p>
           </motion.div>
         </div>
       </section>
