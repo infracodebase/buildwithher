@@ -18,10 +18,12 @@ const MeetTheBuilders = () => {
     regions: [] as string[],
   });
 
-  // Shuffle once on mount using a stable ref
-  const shuffledBuilders = useRef(
-    [...sampleBuilders].sort(() => Math.random() - 0.5)
-  ).current;
+  // Shuffle once on mount, pinning Manisha Sarkar first
+  const shuffledBuilders = useRef(() => {
+    const manisha = sampleBuilders.find(b => b.name === "Manisha Sarkar");
+    const others = sampleBuilders.filter(b => b.name !== "Manisha Sarkar").sort(() => Math.random() - 0.5);
+    return manisha ? [manisha, ...others] : others;
+  }).current();
 
   const filteredBuilders = useMemo(() => {
     return shuffledBuilders.filter((builder) => {
