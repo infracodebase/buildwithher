@@ -300,6 +300,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer focused on AWS and cloud architecture, passionate about collaborative learning.",
     tags: ["AWS", "Cloud Architecture"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/comfort-etim/",
     building: ["Cloud architecture designs on AWS", "Collaborative cloud learning resources"]
   },
   { 
