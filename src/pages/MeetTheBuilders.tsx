@@ -20,6 +20,16 @@ const MeetTheBuilders = () => {
       {/* Hero */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 gradient-arc pointer-events-none" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/images/colors.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.12,
+            mixBlendMode: 'screen',
+          }}
+        />
         <div className="container relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="badge-glow">Builder Wall</span>
