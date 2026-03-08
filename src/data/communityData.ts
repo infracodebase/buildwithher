@@ -156,6 +156,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Technical Writer at Security Research Labs, focused on making complex security concepts accessible.",
     tags: ["Security", "Platform Engineering"],
     cloudPlatforms: ["AWS", "Azure"],
+    linkedin: "https://www.linkedin.com/in/maria-sivenkova/",
     building: ["Security documentation and research frameworks", "Platform engineering knowledge bases"]
   },
   { 
