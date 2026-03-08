@@ -268,6 +268,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer working across AWS and Azure, focused on building reliable and scalable solutions.",
     tags: ["AWS", "Azure", "DevOps"],
     cloudPlatforms: ["AWS", "Azure"],
+    linkedin: "https://www.linkedin.com/in/bhavika-mantri/",
     building: ["Multi-cloud solutions across AWS and Azure", "DevOps pipelines for scalable deployments"]
   },
   { 
