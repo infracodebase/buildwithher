@@ -263,16 +263,14 @@ const BuilderProfile = () => {
               className="flex-1 min-w-0 space-y-6"
             >
               {/* 1. Builder Story */}
-              {builder.bio && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    Builder Story
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    "{builder.bio}"
-                  </p>
-                </section>
-              )}
+              <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                  Builder Story
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  "{builder.bio || builder.statement}"
+                </p>
+              </section>
 
               {/* 2. Technical Skills */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
