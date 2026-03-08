@@ -6,6 +6,7 @@ import BrandLockup from "./BrandLockup";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
+  { label: "Manifest", path: "/manifest" },
   { label: "Programs", path: "/programs" },
   { label: "Community", path: "/community" },
   { label: "Events", path: "/events" },

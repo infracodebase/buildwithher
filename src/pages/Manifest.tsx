@@ -1,15 +1,13 @@
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion, type Easing } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
-import { ArrowRight } from "lucide-react";
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, delay, ease: "easeOut" },
+  transition: { duration: 0.6, delay, ease: "easeOut" as Easing },
 });
 
 const principles = [
