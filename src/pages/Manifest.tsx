@@ -38,8 +38,8 @@ const principles = [
 ];
 
 const HandwrittenQuote = ({ children }: { children: string }) => (
-  <motion.div {...fade()} className="py-16 md:py-20 text-center">
-    <p className="font-caveat text-2xl md:text-3xl lg:text-4xl text-primary/80 italic leading-relaxed max-w-2xl mx-auto">
+  <motion.div {...fade()} className="py-[72px] text-center">
+    <p className="font-caveat text-2xl md:text-3xl lg:text-4xl italic leading-relaxed max-w-[760px] mx-auto text-foreground/60 dark:text-primary/70">
       "{children}"
     </p>
   </motion.div>
@@ -54,7 +54,7 @@ const SectionBlock = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <motion.div {...fade()} className={`max-w-3xl mx-auto ${className}`}>
+  <motion.div {...fade()} className={`max-w-[760px] mx-auto ${className}`}>
     <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-8">
       {title}
     </h2>
@@ -73,7 +73,7 @@ const Manifest = () => {
       <section className="relative pt-32 pb-16 md:pt-44 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 gradient-arc pointer-events-none" />
         <div className="absolute inset-0 gradient-arc-top pointer-events-none" />
-        <div className="container relative z-10 max-w-3xl mx-auto text-center">
+        <div className="container relative z-10 max-w-[760px] mx-auto text-center">
           <motion.div {...fade()}>
             <span className="badge-glow">Manifest</span>
           </motion.div>
@@ -100,11 +100,11 @@ const Manifest = () => {
       </section>
 
       {/* ── Founding Statement ── */}
-      <section className="pt-8 pb-16 md:pb-20">
-        <div className="container max-w-3xl mx-auto">
+      <section className="pt-8 pb-[72px]">
+        <div className="container max-w-[760px] mx-auto">
           <motion.div
             {...fade()}
-            className="rounded-2xl border border-border/50 p-8 md:p-12 text-center"
+            className="rounded-2xl border border-border/50 p-8 md:p-12 text-center shadow-sm dark:shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
             style={{
               background:
                 "linear-gradient(180deg, hsl(var(--card-elevated)) 0%, hsl(var(--card)) 100%)",
@@ -122,7 +122,7 @@ const Manifest = () => {
       </section>
 
       {/* ── Why I'm Building This ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container">
           <SectionBlock title="Why I'm Building This">
             <p>
@@ -148,7 +148,7 @@ const Manifest = () => {
       <HandwrittenQuote>Talent is everywhere. Access is not.</HandwrittenQuote>
 
       {/* ── The Moment We Are In ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container">
           <SectionBlock title="The Moment We Are In">
             <p>We are living through massive layoffs.</p>
@@ -185,7 +185,7 @@ const Manifest = () => {
       </section>
 
       {/* ── Why This Moment Matters ── */}
-      <section className="py-16 md:py-24 band-gradient-warm">
+      <section className="py-[72px] band-gradient-warm">
         <div className="container">
           <SectionBlock title="Why This Moment Matters">
             <p>Technology is changing faster than access to opportunity.</p>
@@ -217,7 +217,7 @@ const Manifest = () => {
       <HandwrittenQuote>The problem is not talent. The problem is access.</HandwrittenQuote>
 
       {/* ── The Gap Starts Earlier ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container">
           <SectionBlock title="The Gap Starts Earlier">
             <p>And the gap does not start at the top.</p>
@@ -238,7 +238,7 @@ const Manifest = () => {
       </section>
 
       {/* ── Why Build with Her Exists ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container">
           <SectionBlock title="Why Build with Her Exists">
             <p>Build with Her exists to make cloud engineering more accessible.</p>
@@ -263,7 +263,7 @@ const Manifest = () => {
       </section>
 
       {/* ── Why Community Matters ── */}
-      <section className="py-16 md:py-24 band-gradient">
+      <section className="py-[72px] band-gradient">
         <div className="container">
           <SectionBlock title="Why Community Matters">
             <p>When you are learning cloud engineering it is easy to feel invisible.</p>
@@ -292,7 +292,7 @@ const Manifest = () => {
       <HandwrittenQuote>No one should have to build alone.</HandwrittenQuote>
 
       {/* ── Our Principles ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container max-w-5xl mx-auto">
           <motion.div {...fade()} className="text-center mb-12 md:mb-16">
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
@@ -309,7 +309,7 @@ const Manifest = () => {
               <motion.div
                 key={p.title}
                 {...fade(i * 0.08)}
-                className="card-premium p-6 md:p-8"
+                className="rounded-2xl border border-border/50 p-6 md:p-8 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_24px_-6px_hsl(var(--primary)/0.2)]"
               >
                 <h3 className="font-display text-lg font-bold text-foreground mb-3">
                   {p.title}
@@ -324,7 +324,7 @@ const Manifest = () => {
       </section>
 
       {/* ── Backed by Infracodebase ── */}
-      <section className="py-16 md:py-24 band-gradient-warm">
+      <section className="py-[72px] band-gradient-warm">
         <div className="container">
           <SectionBlock title="Why Being Backed by Infracodebase Matters">
             <p>Build with Her is supported by Infracodebase.</p>
@@ -356,7 +356,7 @@ const Manifest = () => {
       </section>
 
       {/* ── The World We Want To Build ── */}
-      <section className="py-16 md:py-24">
+      <section className="py-[72px]">
         <div className="container">
           <SectionBlock title="The World We Want To Build">
             <p>
@@ -377,7 +377,7 @@ const Manifest = () => {
 
       {/* ── Final CTA ── */}
       <section className="py-20 md:py-32 cta-band section-glow">
-        <div className="container max-w-3xl mx-auto text-center relative z-10">
+        <div className="container max-w-[760px] mx-auto text-center relative z-10">
           <motion.p
             {...fade()}
             className="text-foreground text-lg md:text-xl lg:text-2xl leading-relaxed font-body max-w-2xl mx-auto"
@@ -394,11 +394,16 @@ const Manifest = () => {
         </div>
       </section>
 
+      {/* ── Divider ── */}
+      <div className="container max-w-[760px] mx-auto">
+        <div className="h-px bg-border/50 dark:shadow-[0_0_12px_hsl(var(--primary)/0.15)]" />
+      </div>
+
       {/* ── Founder Signature ── */}
       <section className="py-20 md:py-28">
-        <div className="container max-w-2xl mx-auto text-center">
+        <div className="container max-w-[760px] mx-auto text-center">
           <motion.div {...fade()}>
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden mx-auto border-2 border-border/50 shadow-lg">
+            <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-border/50 shadow-lg">
               <img
                 src="/images/tarak.jpeg"
                 alt="Tarak Bach, Founder of Build with Her"
