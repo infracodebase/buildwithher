@@ -226,7 +226,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "It was enlightening and I'm looking forward to more conversations like this.", 
     bio: "I'm training in Cloud Security and DevOps, passionate about building secure infrastructure from the ground up.",
     tags: ["Security", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud security monitoring tools", "DevOps security automation"]
   },
   { 
     id: "11", 
@@ -240,7 +241,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Always ready to listen, offer solutions, and help us become better.", 
     bio: "I'm a student exploring AWS and AI infrastructure, committed to academic excellence and cloud learning.",
     tags: ["AWS", "AI Infrastructure"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["AWS cloud learning projects", "AI infrastructure experiments"]
   },
   { 
     id: "13", 
