@@ -256,7 +256,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Building cloud solutions with passion and precision.", 
     bio: "I'm a Cloud Engineer working across AWS and Azure, focused on building reliable and scalable solutions.",
     tags: ["AWS", "Azure", "DevOps"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Multi-cloud solutions across AWS and Azure", "DevOps pipelines for scalable deployments"]
   },
   { 
     id: "14", 
@@ -270,7 +271,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "This community has been a game-changer for my cloud journey.", 
     bio: "I'm a Cloud & DevOps Engineer specializing in AWS and Terraform, building automation for modern infrastructure.",
     tags: ["AWS", "DevOps", "Terraform"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Infrastructure automation with Terraform", "Modern DevOps workflows on AWS"]
   },
   { 
     id: "15", 
@@ -284,7 +286,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Growth is better when shared with others who truly understand the journey.", 
     bio: "I'm a Cloud Engineer focused on AWS and cloud architecture, passionate about collaborative learning.",
     tags: ["AWS", "Cloud Architecture"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud architecture designs on AWS", "Collaborative cloud learning resources"]
   },
   { 
     id: "16", 
@@ -298,7 +301,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Security is the foundation of every great cloud architecture.", 
     bio: "I'm a Cloud Security Engineer ensuring that infrastructure is built with security as a core principle.",
     tags: ["Security", "AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud security frameworks and policies", "Security-first infrastructure automation"]
   },
   { 
     id: "17", 
