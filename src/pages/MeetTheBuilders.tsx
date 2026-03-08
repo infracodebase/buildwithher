@@ -18,11 +18,13 @@ const MeetTheBuilders = () => {
     regions: [] as string[],
   });
 
-  // Shuffle once on mount, pinning Manisha Sarkar first
+  // Shuffle once on mount, pinning Tarak first, then Manisha second
   const shuffledBuilders = useRef(() => {
-    const manisha = sampleBuilders.find(b => b.name === "Manisha Sarkar");
-    const others = sampleBuilders.filter(b => b.name !== "Manisha Sarkar").sort(() => Math.random() - 0.5);
-    return manisha ? [manisha, ...others] : others;
+    const tarak = sampleBuilders.find(b => b.slug === "tarak");
+    const manisha = sampleBuilders.find(b => b.slug === "manisha-sarkar");
+    const others = sampleBuilders.filter(b => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
+    const pinned = [tarak, manisha].filter(Boolean) as typeof sampleBuilders;
+    return [...pinned, ...others];
   }).current();
 
   const filteredBuilders = useMemo(() => {
