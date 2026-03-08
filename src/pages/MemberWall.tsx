@@ -39,36 +39,9 @@ const MemberWall = () => (
       <p>You are not the only one building quietly. This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
 
-    {/* Stats Strip */}
-    <motion.section {...fadeUp}>
-      <div className="container py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div key={label} className="stat-card">
-              <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
-              <p className="font-display font-bold text-foreground text-lg">{value}</p>
-              <p className="text-xs text-muted-foreground">{label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.section>
-
-    {/* Intro */}
-    <motion.section {...fadeUp} className="band-gradient section-glow">
-      <div className="container py-20 md:py-28">
-        <div className="max-w-2xl mx-auto text-center space-y-4 text-muted-foreground leading-relaxed">
-          <p className="text-lg">When you are learning or growing in cloud, it is easy to feel invisible.</p>
-          <p>You study. You practice. You apply. You improve. And sometimes it feels like no one sees the discipline behind it.</p>
-          <p className="text-foreground font-medium text-lg">This wall exists to change that.</p>
-          <p>It exists to make your journey more visible. And to remind every woman who lands here that she is not building alone.</p>
-        </div>
-      </div>
-    </motion.section>
-
     {/* Community Snapshot */}
     <motion.section {...fadeUp} className="section-glow">
-      <div className="container py-24 md:py-32">
+      <div className="container pt-8 pb-24 md:pt-8 md:pb-32">
         <div className="text-center mb-14 max-w-2xl mx-auto">
           <span className="badge-glow mb-6 inline-flex">Overview</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -94,6 +67,33 @@ const MemberWall = () => (
               <p className="text-[11px] text-muted-foreground">{desc}</p>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </motion.section>
+
+    {/* Stats Strip */}
+    <motion.section {...fadeUp}>
+      <div className="container py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {stats.map(({ icon: Icon, value, label }) => (
+            <div key={label} className="stat-card">
+              <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
+              <p className="font-display font-bold text-foreground text-lg">{value}</p>
+              <p className="text-xs text-muted-foreground">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+
+    {/* Intro */}
+    <motion.section {...fadeUp} className="band-gradient section-glow">
+      <div className="container py-20 md:py-28">
+        <div className="max-w-2xl mx-auto text-center space-y-4 text-muted-foreground leading-relaxed">
+          <p className="text-lg">When you are learning or growing in cloud, it is easy to feel invisible.</p>
+          <p>You study. You practice. You apply. You improve. And sometimes it feels like no one sees the discipline behind it.</p>
+          <p className="text-foreground font-medium text-lg">This wall exists to change that.</p>
+          <p>It exists to make your journey more visible. And to remind every woman who lands here that she is not building alone.</p>
         </div>
       </div>
     </motion.section>
