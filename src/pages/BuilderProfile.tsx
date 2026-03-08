@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Github, Globe, Share2, Award, Copy, Check } from "lucide-react";
+import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,6 +16,7 @@ import {
 
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const builder = sampleBuilders.find((b) => b.slug === slug);
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -26,8 +27,8 @@ const BuilderProfile = () => {
     await navigator.clipboard.writeText(profileUrl);
     setCopied(true);
     toast({
-      title: "Link copied!",
-      description: "Profile link has been copied to your clipboard.",
+      title: "Profile link copied.",
+      description: "Share it with your network!",
     });
     setTimeout(() => {
       setCopied(false);
@@ -58,6 +59,10 @@ const BuilderProfile = () => {
     setShareOpen(false);
   };
 
+  const handleCreateBuilderCard = () => {
+    navigate("/join-the-builders");
+  };
+
   if (!builder) {
     return (
       <div className="min-h-screen bg-background">
@@ -82,7 +87,7 @@ const BuilderProfile = () => {
           {/* Back link */}
           <Link
             to="/meet-the-builders"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-8"
           >
             <ArrowLeft size={16} />
             Back to Builder Wall
@@ -159,7 +164,11 @@ const BuilderProfile = () => {
                 {/* Action Buttons */}
                 <div className="space-y-2.5">
                   {builder.linkedin && (
-                    <Button asChild className="w-full gap-2" size="sm">
+                    <Button 
+                      asChild 
+                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                      size="sm"
+                    >
                       <a
                         href={builder.linkedin}
                         target="_blank"
@@ -175,7 +184,7 @@ const BuilderProfile = () => {
                     <Button
                       variant="outline"
                       asChild
-                      className="w-full gap-2"
+                      className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
                       size="sm"
                     >
                       <a
@@ -184,7 +193,7 @@ const BuilderProfile = () => {
                         rel="noopener noreferrer"
                       >
                         <Globe size={14} />
-                        View Infracodebase Portfolio
+                        View Infrastructure Portfolio
                       </a>
                     </Button>
                   )}
@@ -192,7 +201,11 @@ const BuilderProfile = () => {
                   {/* Share */}
                   <Popover open={shareOpen} onOpenChange={setShareOpen}>
                     <PopoverTrigger asChild>
-                      <Button variant="ghost" size="sm" className="w-full gap-2">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
+                      >
                         <Share2 size={14} />
                         Share Profile
                       </Button>
@@ -237,14 +250,12 @@ const BuilderProfile = () => {
                 </div>
 
                 {/* Primary CTA */}
-                <a
-                  href="https://lovable.dev/projects/3e23062f-4918-4dad-90a0-3a981c04b767"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-[hsl(var(--gradient-blue))] via-[hsl(var(--gradient-green))] to-[hsl(var(--gradient-yellow))] hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+                <button
+                  onClick={handleCreateBuilderCard}
+                  className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-[hsl(var(--gradient-blue))] via-[hsl(var(--gradient-green))] to-[hsl(var(--gradient-yellow))] transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:brightness-110"
                 >
                   Create Your Builder Card
-                </a>
+                </button>
               </div>
             </motion.aside>
 
@@ -255,7 +266,7 @@ const BuilderProfile = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex-1 min-w-0 space-y-6"
             >
-              {/* Builder Story */}
+              {/* 1. Builder Story */}
               {builder.bio && (
                 <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
                   <h2 className="font-display text-lg font-semibold text-foreground mb-3">
@@ -267,57 +278,7 @@ const BuilderProfile = () => {
                 </section>
               )}
 
-              {/* What I'm Building */}
-              {builder.building && builder.building.length > 0 && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    What I'm Building
-                  </h2>
-                  <ul className="space-y-2">
-                    {builder.building.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              {/* Built on Infracodebase */}
-              {builder.infracodbaseUserId && (
-                <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-                      <Globe className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
-                        Built on Infracodebase
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        Explore the cloud architectures and infrastructure
-                        platforms this builder has created on Infracodebase.
-                      </p>
-                      <Button asChild className="gap-2" size="sm">
-                        <a
-                          href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Infrastructure Portfolio
-                          <ExternalLink size={14} />
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </section>
-              )}
-
-              {/* Technical Skills */}
+              {/* 2. Technical Skills */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
                 <h2 className="font-display text-lg font-semibold text-foreground mb-3">
                   Technical Skills
@@ -345,7 +306,60 @@ const BuilderProfile = () => {
                 </div>
               </section>
 
-              {/* Community Voice */}
+              {/* 3. What I'm Building */}
+              {builder.building && builder.building.length > 0 && (
+                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                    What I'm Building
+                  </h2>
+                  <ul className="space-y-2">
+                    {builder.building.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-muted-foreground"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* 4. Built on Infracodebase */}
+              {builder.infracodbaseUserId && (
+                <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+                      <Globe className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
+                        Built on Infracodebase
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
+                      </p>
+                      <Button 
+                        asChild 
+                        className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
+                        size="sm"
+                      >
+                        <a
+                          href={`https://infracodebase.com/users/${builder.infracodbaseUserId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Infrastructure Portfolio
+                          <ExternalLink size={14} />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {/* 5. Community Voice */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
                 <h2 className="font-display text-lg font-semibold text-foreground mb-3">
                   Community Voice
@@ -356,50 +370,6 @@ const BuilderProfile = () => {
                   </p>
                 </blockquote>
               </section>
-
-              {/* Connect */}
-              {(builder.linkedin || builder.github || builder.website) && (
-                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                  <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                    Connect
-                  </h2>
-                  <div className="flex flex-wrap gap-3">
-                    {builder.linkedin && (
-                      <a
-                        href={builder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border/50 bg-secondary/30 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors text-sm"
-                      >
-                        <Linkedin size={16} />
-                        LinkedIn
-                      </a>
-                    )}
-                    {builder.github && (
-                      <a
-                        href={builder.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border/50 bg-secondary/30 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors text-sm"
-                      >
-                        <Github size={16} />
-                        GitHub
-                      </a>
-                    )}
-                    {builder.website && (
-                      <a
-                        href={builder.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border/50 bg-secondary/30 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors text-sm"
-                      >
-                        <Globe size={16} />
-                        Website
-                      </a>
-                    )}
-                  </div>
-                </section>
-              )}
             </motion.main>
           </div>
         </div>
