@@ -166,7 +166,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Grateful to be part of a space where women are empowered to build with depth and clarity.", 
     bio: "I'm starting my DevOps journey with a focus on AWS and Kubernetes, eager to learn and grow in cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Kubernetes cluster management", "AWS DevOps automation workflows"]
   },
   { 
     id: "7", 
@@ -180,7 +181,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "AI is not the competitor, AI is the co-worker.", 
     bio: "I'm a DevOps Engineer and Business Analyst working with Azure and AI infrastructure solutions.",
     tags: ["DevOps", "Azure", "AI Infrastructure"],
-    cloudPlatforms: ["Azure"]
+    cloudPlatforms: ["Azure"],
+    building: ["AI-powered infrastructure on Azure", "DevOps automation for business solutions"]
   },
   { 
     id: "8", 
@@ -194,7 +196,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "AI builds with you, engineering is changing, and impostor syndrome is easier to carry in community.", 
     bio: "I'm a Senior Full Stack Engineer with expertise in GCP and platform engineering, building scalable web applications.",
     tags: ["GCP", "Platform Engineering"],
-    cloudPlatforms: ["GCP"]
+    cloudPlatforms: ["GCP"],
+    building: ["Scalable web applications on GCP", "Platform engineering tools for developer productivity"]
   },
   { 
     id: "9", 
@@ -208,7 +211,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "Grateful to be part of a community that wants to see me grow while guiding the way.", 
     bio: "I'm a Customer Acquisition Specialist and Cloud & Tech Advocate, bridging business and technology.",
     tags: ["AWS", "DevOps"],
-    cloudPlatforms: ["AWS"]
+    cloudPlatforms: ["AWS"],
+    building: ["Cloud advocacy programs", "AWS-based tech solutions for business growth"]
   },
   { 
     id: "10", 
