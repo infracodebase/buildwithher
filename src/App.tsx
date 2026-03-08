@@ -38,6 +38,7 @@ const App = () => (
             <Route path="/member-wall" element={<MemberWall />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/manifest" element={<Manifest />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/builders/:slug" element={<BuilderProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

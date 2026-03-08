@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Builders", path: "/meet-the-builders" },
   { label: "Member Wall", path: "/member-wall" },
   { label: "Partners", path: "/partners" },
+  { label: "Resources", path: "/resources" },
 ];
 
 const Navbar = () => {
