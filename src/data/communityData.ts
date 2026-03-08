@@ -220,6 +220,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Customer Acquisition Specialist and Cloud & Tech Advocate, bridging business and technology.",
     tags: ["AWS", "DevOps"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/oluwatoyin-adeboye/",
     building: ["Cloud advocacy programs", "AWS-based tech solutions for business growth"]
   },
   { 
