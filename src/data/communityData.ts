@@ -18,6 +18,8 @@ export const testimonials = [
   { name: "Comfort Etim", role: "Cloud Engineer | AWS", photo: "/images/comfort_etim.jpeg", quote: "Being part of this community has shown me that growth is better when shared with others who truly understand the journey." },
   { name: "Esperance Ngalu Mukenge", role: "Cloud Solutions Architect", photo: "/images/esperance.jpeg", quote: "The sense of belonging and support in this community is unmatched. Together we are building something truly meaningful." },
   { name: "Millicent Eze", role: "Cloud & DevOps Engineer", photo: "/images/millicent.jpeg", quote: "This community has been a game-changer for my cloud journey. The support and mentorship here are incredible." },
+  { name: "Marian Bolous", role: "Cloud & Infrastructure Engineer", photo: "/images/marian_bolous.jpeg", quote: "Being part of this community has given me the confidence to keep pushing forward in cloud engineering. The support here is real." },
+  { name: "Loweh Goodness", role: "Cloud & DevOps Engineer", photo: "/images/loweh_goodness.jpeg", quote: "This community showed me that women in cloud are not alone. We are building, learning, and growing together every day." },
 ];
 
 export const sampleBuilders: BuilderProfile[] = [
@@ -44,4 +46,6 @@ export const sampleBuilders: BuilderProfile[] = [
   { id: "20", name: "Paulina Addah", role: "Cloud & Platform Engineer", country: "Ghana", photo: "/images/paulina.jpeg", statement: "Building platforms that empower teams and communities.", tags: ["Platform Engineering", "AWS", "DevOps"] },
   { id: "21", name: "Oladunjoye Praise", role: "Cloud Engineer", country: "Nigeria", photo: "/images/oladunjoye.jpeg", statement: "Every cloud journey starts with a single step of curiosity.", tags: ["AWS", "Azure", "Cloud Architecture"] },
   { id: "22", name: "Chinenye Genevieve Onyema", role: "Cloud & DevOps Engineer", country: "Nigeria", photo: "/images/chinenye.jpeg", statement: "The future of cloud is diverse, inclusive, and powerful.", tags: ["DevOps", "AWS", "Security"] },
+  { id: "23", name: "Marian Bolous", role: "Cloud & Infrastructure Engineer", country: "Egypt", photo: "/images/marian_bolous.jpeg", statement: "Being part of this community has given me the confidence to keep pushing forward in cloud engineering.", tags: ["AWS", "Cloud Architecture", "Infrastructure"], linkedin: "https://www.linkedin.com/in/marian-bolous-91156992/" },
+  { id: "24", name: "Loweh Goodness", role: "Cloud & DevOps Engineer", country: "Nigeria", photo: "/images/loweh_goodness.jpeg", statement: "This community showed me that women in cloud are not alone. We are building and growing together.", tags: ["AWS", "DevOps", "Kubernetes"], linkedin: "https://www.linkedin.com/in/loweh-goodness-63682a281/" },
 ];
