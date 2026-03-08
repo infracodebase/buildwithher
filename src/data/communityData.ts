@@ -380,6 +380,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & Platform Engineer building internal developer platforms and DevOps tooling.",
     tags: ["Platform Engineering", "AWS", "DevOps"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/paulina-addah/",
     building: ["Internal developer platforms", "DevOps tooling for engineering teams"]
   },
   { 
