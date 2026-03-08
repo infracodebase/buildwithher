@@ -40,58 +40,13 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-const row1 = [
+const communityPhotos = [
   "/images/community_1.jpeg",
   "/images/community_2.jpeg",
   "/images/community_3.jpeg",
   "/images/community_4.jpeg",
   "/images/community_5.jpeg",
 ];
-const row2 = [
-  "/images/community_4.jpeg",
-  "/images/community_1.jpeg",
-  "/images/community_5.jpeg",
-  "/images/community_2.jpeg",
-  "/images/community_3.jpeg",
-];
-
-const ScrollRow = ({
-  images,
-  direction = "left",
-  duration = 40,
-}: {
-  images: string[];
-  direction?: "left" | "right";
-  duration?: number;
-}) => {
-  const doubled = [...images, ...images];
-  return (
-    <div className="overflow-hidden [&:hover_.scroll-track]:pause">
-      <motion.div
-        className="scroll-track flex gap-4"
-        animate={{
-          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
-        }}
-        transition={{ duration, repeat: Infinity, ease: "linear" }}
-        style={{ willChange: "transform" }}
-      >
-        {doubled.map((src, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 h-[220px] w-[340px] md:w-[400px] rounded-xl overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
-          >
-            <img
-              src={src}
-              alt="Build with Her community session"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
 
 const Community = () => (
   <div className="min-h-screen bg-background">
@@ -108,7 +63,7 @@ const Community = () => (
     </PageHero>
 
     {/* Community Moments */}
-    <motion.section {...fadeUp} className="py-24 md:py-32 overflow-hidden">
+    <motion.section {...fadeUp} className="py-24 md:py-32">
       <div className="container text-center mb-12">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
           Community Moments
@@ -120,15 +75,28 @@ const Community = () => (
         </p>
       </div>
 
-      <div className="space-y-4">
-        <ScrollRow images={row1} direction="left" duration={45} />
-        <ScrollRow images={row2} direction="right" duration={50} />
+      <div className="container overflow-x-auto pb-4 scrollbar-hide">
+        <div className="flex gap-5 w-max px-4">
+          {communityPhotos.map((src, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 h-[280px] w-[400px] md:w-[460px] rounded-[14px] overflow-hidden shadow-md dark:shadow-primary/5 hover:shadow-xl transition-shadow"
+            >
+              <img
+                src={src}
+                alt={`Build with Her community session ${i + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="container text-center mt-12 max-w-2xl mx-auto">
         <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-          Weekly Build with Her community sessions bringing together engineers
-          and learners across continents.
+          Weekly Build with Her community sessions bringing together builders
+          across continents.
         </p>
         <p className="text-foreground font-display font-semibold text-sm md:text-base mt-4">
           These are not webinars.
