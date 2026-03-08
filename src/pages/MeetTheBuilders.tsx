@@ -18,8 +18,13 @@ const MeetTheBuilders = () => {
     regions: [] as string[],
   });
 
+  // Shuffle once on mount using a stable ref
+  const shuffledBuilders = useRef(
+    [...sampleBuilders].sort(() => Math.random() - 0.5)
+  ).current;
+
   const filteredBuilders = useMemo(() => {
-    return sampleBuilders.filter((builder) => {
+    return shuffledBuilders.filter((builder) => {
       if (filters.cloudPlatforms.length > 0) {
         const builderPlatforms = builder.cloudPlatforms || [];
         const hasMatch = filters.cloudPlatforms.some(
@@ -44,7 +49,7 @@ const MeetTheBuilders = () => {
       }
       return true;
     });
-  }, [filters]);
+  }, [filters, shuffledBuilders]);
 
   return (
     <div className="min-h-screen bg-background">
