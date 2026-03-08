@@ -151,7 +151,8 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     statement: "When people come together to learn, build, and mentor, it creates resilience.", 
     bio: "I'm a Senior Technical Writer at Security Research Labs, focused on making complex security concepts accessible.",
     tags: ["Security", "Platform Engineering"],
-    cloudPlatforms: ["AWS", "Azure"]
+    cloudPlatforms: ["AWS", "Azure"],
+    building: ["Security documentation and research frameworks", "Platform engineering knowledge bases"]
   },
   { 
     id: "6", 
