@@ -364,6 +364,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Infrastructure Engineer specializing in AWS and Terraform for infrastructure as code.",
     tags: ["AWS", "Terraform", "Infrastructure"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/asalu-oluwatunmise/",
     building: ["Infrastructure as Code with Terraform", "Scalable AWS cloud environments"]
   },
   { 
