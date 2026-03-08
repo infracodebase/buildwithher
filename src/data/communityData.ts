@@ -412,6 +412,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer focused on building secure and inclusive cloud solutions.",
     tags: ["DevOps", "AWS", "Security"],
     cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/chinenye-genevieve-onyema/",
     building: ["Secure cloud solutions on AWS", "Inclusive DevOps practices"]
   },
   { 
