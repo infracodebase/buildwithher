@@ -1,17 +1,59 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
-import BuilderCard, { BuilderProfile } from "@/components/BuilderCard";
+import BuilderCard from "@/components/BuilderCard";
+import BuilderFilters from "@/components/BuilderFilters";
 import GlobalMap from "@/components/GlobalMap";
-import { sampleBuilders } from "@/data/communityData";
+import { sampleBuilders, ExtendedBuilderProfile } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Users, Clock, ArrowRight } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const MeetTheBuilders = () => {
-  const [builders, setBuilders] = useState<BuilderProfile[]>(sampleBuilders);
+  const [filters, setFilters] = useState({
+    cloudPlatforms: [] as string[],
+    roles: [] as string[],
+    skills: [] as string[],
+    regions: [] as string[],
+  });
 
-  const totalCount = builders.length + 66;
+  const filteredBuilders = useMemo(() => {
+    return sampleBuilders.filter((builder) => {
+      // Cloud platforms filter
+      if (filters.cloudPlatforms.length > 0) {
+        const builderPlatforms = builder.cloudPlatforms || [];
+        const hasMatchingPlatform = filters.cloudPlatforms.some(
+          (p) => builderPlatforms.includes(p) || builder.tags.includes(p)
+        );
+        if (!hasMatchingPlatform) return false;
+      }
+
+      // Roles filter
+      if (filters.roles.length > 0) {
+        const hasMatchingRole = filters.roles.some(
+          (r) => builder.roleCategory === r || builder.role.toLowerCase().includes(r.toLowerCase())
+        );
+        if (!hasMatchingRole) return false;
+      }
+
+      // Skills filter
+      if (filters.skills.length > 0) {
+        const hasMatchingSkill = filters.skills.some((s) =>
+          builder.tags.some((t) => t.toLowerCase().includes(s.toLowerCase()))
+        );
+        if (!hasMatchingSkill) return false;
+      }
+
+      // Region filter
+      if (filters.regions.length > 0) {
+        if (!builder.region || !filters.regions.includes(builder.region)) return false;
+      }
+
+      return true;
+    });
+  }, [filters]);
+
+  const totalCount = sampleBuilders.length + 66;
 
   return (
     <div className="min-h-screen bg-background">

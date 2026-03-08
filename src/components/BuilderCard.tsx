@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
+import { ExtendedBuilderProfile } from "@/data/communityData";
 
 export interface BuilderProfile {
   id: string;
@@ -12,11 +13,28 @@ export interface BuilderProfile {
   linkedin?: string;
 }
 
-const BuilderCard = ({ profile }: { profile: BuilderProfile; index?: number }) => {
+interface BuilderCardProps {
+  profile: BuilderProfile | ExtendedBuilderProfile;
+  index?: number;
+}
+
+const BuilderCard = ({ profile }: BuilderCardProps) => {
   const skillsString = profile.tags.join(" • ");
+  
+  // Get slug from extended profile or generate from name
+  const slug = 'slug' in profile && profile.slug 
+    ? profile.slug 
+    : profile.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  const handleCardClick = () => {
+    window.open(`/builders/${slug}`, '_blank');
+  };
 
   return (
-    <div className="group relative rounded-2xl overflow-hidden aspect-[3/4] cursor-pointer builder-card-wrapper">
+    <div 
+      className="group relative rounded-2xl overflow-hidden aspect-[3/4] cursor-pointer builder-card-wrapper"
+      onClick={handleCardClick}
+    >
       {/* ── Default state ── */}
       <div className="absolute inset-0 builder-card-gradient" />
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />

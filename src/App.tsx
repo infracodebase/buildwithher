@@ -13,6 +13,7 @@ import MeetTheBuilders from "./pages/MeetTheBuilders";
 import JoinTheBuilders from "./pages/JoinTheBuilders";
 import MemberWall from "./pages/MemberWall";
 import Partners from "./pages/Partners";
+import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/join-the-builders" element={<JoinTheBuilders />} />
             <Route path="/member-wall" element={<MemberWall />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/builders/:slug" element={<BuilderProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
