@@ -11,7 +11,7 @@ const stats = [
 { icon: Users, value: "78", label: "Members" },
 { icon: Globe, value: "12", label: "Countries" },
 { icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
-{ icon: TrendingUp, value: "Growing", label: "Every month" }];
+{ icon: TrendingUp, value: "Growing", label: "Every week" }];
 
 
 const snapshotCards = [
