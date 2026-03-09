@@ -8,34 +8,34 @@ import { motion } from "framer-motion";
 import { Users, Globe, Cloud, TrendingUp, Shield } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: "78", label: "Members" },
-  { icon: Globe, value: "12", label: "Countries" },
-  { icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
-  { icon: TrendingUp, value: "Growing", label: "Every month" },
-];
+{ icon: Users, value: "78", label: "Members" },
+{ icon: Globe, value: "12", label: "Countries" },
+{ icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
+{ icon: TrendingUp, value: "Growing", label: "Every month" }];
+
 
 const snapshotCards = [
-  { icon: Users, value: "78+", label: "Members", desc: "Women building in cloud infrastructure" },
-  { icon: Globe, value: "12", label: "Countries", desc: "A truly global community" },
-  { icon: Cloud, value: "AWS • Azure • GCP", label: "Cloud Platforms", desc: "Multi-cloud expertise" },
-  { icon: Shield, value: "DevOps • Security • Platform Engineering • Cloud Architecture", label: "Roles", desc: "Diverse technical roles" },
-];
+{ icon: Users, value: "78+", label: "Members", desc: "Women building in cloud infrastructure" },
+{ icon: Globe, value: "12", label: "Countries", desc: "A truly global community" },
+{ icon: Cloud, value: "AWS • Azure • GCP", label: "Cloud Platforms", desc: "Multi-cloud expertise" },
+{ icon: Shield, value: "DevOps • Security • Platform Engineering • Cloud Architecture", label: "Roles", desc: "Diverse technical roles" }];
+
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-80px" as const },
-  transition: { duration: 0.6 },
+  transition: { duration: 0.6 }
 };
 
-const MemberWall = () => (
-  <div className="min-h-screen bg-background">
+const MemberWall = () =>
+<div className="min-h-screen bg-background">
     <Navbar />
     <PageHero
-      title="Build with Her Member Wall"
-      badge="Community Wall"
-      actions={<GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>}
-    >
+    title="Build with Her Member Wall"
+    badge="Community Wall"
+    actions={<GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>}>
+    
       <p>You are not the only one building quietly. This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
 
@@ -50,23 +50,23 @@ const MemberWall = () => (
           <p className="mt-4 text-muted-foreground">A growing global community of women building real cloud infrastructure.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 + i * 0.08 }}
-              className="card-premium p-6 text-center group gradient-border-card"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                <Icon className="w-6 h-6 text-primary" />
-              </div>
-              <p className="font-display font-bold text-foreground text-lg mb-1">{value}</p>
-              <p className="text-xs font-medium text-foreground/80 mb-1">{label}</p>
-              <p className="text-[11px] text-muted-foreground">{desc}</p>
-            </motion.div>
-          ))}
+          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) => {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        )}
         </div>
       </div>
     </motion.section>
@@ -75,13 +75,13 @@ const MemberWall = () => (
     <motion.section {...fadeUp}>
       <div className="container py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div key={label} className="stat-card">
+          {stats.map(({ icon: Icon, value, label }) =>
+        <div key={label} className="stat-card">
               <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
               <p className="font-display font-bold text-foreground text-lg">{value}</p>
               <p className="text-xs text-muted-foreground">{label}</p>
             </div>
-          ))}
+        )}
         </div>
       </div>
     </motion.section>
@@ -109,11 +109,11 @@ const MemberWall = () => (
           <p className="mt-4 text-muted-foreground">Real words from real women building in cloud and infrastructure.</p>
         </div>
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-          {testimonials.map((t) => (
-            <div key={t.name} className="break-inside-avoid">
+          {testimonials.map((t) =>
+        <div key={t.name} className="break-inside-avoid">
               <QuoteCard name={t.name} role={t.role} quote={t.quote} photo={t.photo} />
             </div>
-          ))}
+        )}
         </div>
       </div>
     </motion.section>
@@ -153,7 +153,7 @@ const MemberWall = () => (
     </section>
 
     <Footer />
-  </div>
-);
+  </div>;
+
 
 export default MemberWall;
