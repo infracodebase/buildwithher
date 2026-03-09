@@ -42,7 +42,7 @@ const MemberWall = () =>
     {/* Community Snapshot */}
     <motion.section {...fadeUp} className="section-glow">
       <div className="container pt-8 pb-24 md:pt-8 md:pb-32">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
+        <div className="text-center mb-8 max-w-2xl mx-auto">
           <span className="badge-glow mb-6 inline-flex">Overview</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
             Community <span className="gradient-text">Snapshot</span>
