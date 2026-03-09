@@ -50,12 +50,21 @@ const MemberWall = () =>
           <p className="mt-4 text-muted-foreground">A growing global community of women building real cloud infrastructure.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) => {}
-
-
-
-
-
+          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="card-premium p-6 text-center"
+            >
+              <Icon className="w-6 h-6 mx-auto mb-3 text-primary" />
+              <p className="font-display font-bold text-foreground text-xl">{value}</p>
+              <p className="text-sm font-medium text-foreground mt-1">{label}</p>
+              <p className="text-xs text-muted-foreground mt-1">{desc}</p>
+            </motion.div>
+          ))
 
 
 
