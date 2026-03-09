@@ -65,13 +65,6 @@ const MemberWall = () =>
               <p className="text-xs text-muted-foreground mt-1">{desc}</p>
             </motion.div>
           ))}
-
-
-
-
-
-
-
         )}
         </div>
       </div>
