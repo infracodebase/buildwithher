@@ -15,10 +15,10 @@ const stats = [
 
 
 const snapshotCards = [
-{ icon: Users, value: "78+", label: "Members", desc: "Women building in cloud infrastructure" },
-{ icon: Globe, value: "12", label: "Countries", desc: "A truly global community" },
-{ icon: Cloud, value: "AWS • Azure • GCP", label: "Cloud Platforms", desc: "Multi-cloud expertise" },
-{ icon: Shield, value: "DevOps • Security • Platform Engineering • Cloud Architecture", label: "Roles", desc: "Diverse technical roles" }];
+{ icon: Users, value: "78", label: "Builders", desc: "Women building in cloud infrastructure" },
+{ icon: Globe, value: "12", label: "Countries represented", desc: "A truly global community" },
+{ icon: Cloud, value: "Cloud • AI • Infrastructure", label: "What we build", desc: "Multi-cloud expertise" },
+{ icon: TrendingUp, value: "Growing", label: "Every month", desc: "New builders joining regularly" }];
 
 
 const fadeUp = {
@@ -42,7 +42,7 @@ const MemberWall = () =>
     {/* Community Snapshot */}
     <motion.section {...fadeUp} className="section-glow">
       <div className="container pt-8 pb-24 md:pt-8 md:pb-32">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
+        <div className="text-center mb-8 max-w-2xl mx-auto">
           <span className="badge-glow mb-6 inline-flex">Overview</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
             Community <span className="gradient-text">Snapshot</span>
