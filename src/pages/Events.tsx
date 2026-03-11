@@ -40,6 +40,7 @@ const pastEvents = [
     speaker: "Fatima",
     role: "Software Engineer with hands-on experience building and operating systems at enterprise scale.",
     embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
+    source: "Build with Her",
   },
   {
     title: "Delivering Secure Cloud Infrastructure at Scale with AI",
@@ -47,6 +48,7 @@ const pastEvents = [
     speaker: "Seif",
     role: "Principal Security Engineer",
     embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
+    source: "Build with Her",
   },
   {
     title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
@@ -54,6 +56,15 @@ const pastEvents = [
     speaker: "Alex",
     role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
     embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
+    source: "Build with Her",
+  },
+  {
+    title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
+    subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
+    speaker: "Shannon Eldridge-Kuehn",
+    role: "Principal Solutions Architect",
+    embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
+    source: "Build with Her",
   },
 ];
 
