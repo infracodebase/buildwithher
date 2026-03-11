@@ -7,62 +7,62 @@ const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, delay, ease: "easeOut" as Easing },
+  transition: { duration: 0.6, delay, ease: "easeOut" as Easing }
 });
 
 const principles = [
-  {
-    title: "Start Anywhere",
-    body: "You do not need the perfect background to enter cloud engineering.\n\nCuriosity and discipline matter more than credentials.",
-  },
-  {
-    title: "Learn by Building",
-    body: "The best way to learn cloud infrastructure is by building real systems.\n\nReal architectures.\nReal deployments.",
-  },
-  {
-    title: "Document the Journey",
-    body: "Sharing what you learn helps others grow faster.",
-  },
-  {
-    title: "Build in Public",
-    body: "Visibility creates opportunity.\n\nThe Builder Wall exists for this reason.",
-  },
-  {
-    title: "No One Builds Alone",
-    body: "Community accelerates learning and confidence.",
-  },
-  {
-    title: "Access Matters",
-    body: "Talent is everywhere.\n\nOpportunity is not.",
-  },
-];
+{
+  title: "Start Anywhere",
+  body: "You do not need the perfect background to enter cloud engineering.\n\nCuriosity and discipline matter more than credentials."
+},
+{
+  title: "Learn by Building",
+  body: "The best way to learn cloud infrastructure is by building real systems.\n\nReal architectures.\nReal deployments."
+},
+{
+  title: "Document the Journey",
+  body: "Sharing what you learn helps others grow faster."
+},
+{
+  title: "Build in Public",
+  body: "Visibility creates opportunity.\n\nThe Builder Wall exists for this reason."
+},
+{
+  title: "No One Builds Alone",
+  body: "Community accelerates learning and confidence."
+},
+{
+  title: "Access Matters",
+  body: "Talent is everywhere.\n\nOpportunity is not."
+}];
 
-const HandwrittenQuote = ({ children }: { children: string }) => (
-  <motion.div {...fade()} className="py-[72px] text-center">
+
+const HandwrittenQuote = ({ children }: {children: string;}) =>
+<motion.div {...fade()} className="py-[72px] text-center">
     <p className="font-caveat text-2xl md:text-3xl lg:text-4xl italic leading-relaxed max-w-[760px] mx-auto text-foreground/60 dark:text-primary/70">
       "{children}"
     </p>
-  </motion.div>
-);
+  </motion.div>;
+
 
 const SectionBlock = ({
   title,
   children,
-  className = "",
-}: {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <motion.div {...fade()} className={`max-w-[760px] mx-auto ${className}`}>
+  className = ""
+
+
+
+
+}: {title: string;children: React.ReactNode;className?: string;}) =>
+<motion.div {...fade()} className={`max-w-[760px] mx-auto ${className}`}>
     <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-8">
       {title}
     </h2>
     <div className="space-y-6 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
       {children}
     </div>
-  </motion.div>
-);
+  </motion.div>;
+
 
 const Manifest = () => {
   return (
@@ -79,16 +79,16 @@ const Manifest = () => {
           </motion.div>
           <motion.h1
             {...fade(0.1)}
-            className="mt-8 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text leading-tight"
-          >
+            className="mt-8 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text leading-tight">
+            
             Talent is everywhere.
             <br />
             Access is not.
           </motion.h1>
           <motion.p
             {...fade(0.2)}
-            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
-          >
+            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            
             Build with Her exists to close that gap in cloud engineering.
           </motion.p>
           <motion.div {...fade(0.3)} className="mt-8">
@@ -107,9 +107,9 @@ const Manifest = () => {
             className="rounded-2xl border border-border/50 p-8 md:p-12 text-center shadow-sm dark:shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
             style={{
               background:
-                "linear-gradient(180deg, hsl(var(--card-elevated)) 0%, hsl(var(--card)) 100%)",
-            }}
-          >
+              "linear-gradient(180deg, hsl(var(--card-elevated)) 0%, hsl(var(--card)) 100%)"
+            }}>
+            
             <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6">
               Founding Statement
             </h2>
@@ -305,12 +305,12 @@ const Manifest = () => {
             </p>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {principles.map((p, i) => (
-              <motion.div
-                key={p.title}
-                {...fade(i * 0.08)}
-                className="rounded-2xl border border-border/50 p-6 md:p-8 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_24px_-6px_hsl(var(--primary)/0.2)]"
-              >
+            {principles.map((p, i) =>
+            <motion.div
+              key={p.title}
+              {...fade(i * 0.08)}
+              className="rounded-2xl border border-border/50 p-6 md:p-8 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_24px_-6px_hsl(var(--primary)/0.2)]">
+              
                 <h3 className="font-display text-lg font-bold text-foreground mb-3">
                   {p.title}
                 </h3>
@@ -318,7 +318,7 @@ const Manifest = () => {
                   {p.body}
                 </p>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -380,8 +380,8 @@ const Manifest = () => {
         <div className="container max-w-[760px] mx-auto text-center relative z-10">
           <motion.p
             {...fade()}
-            className="text-foreground text-lg md:text-xl lg:text-2xl leading-relaxed font-body max-w-2xl mx-auto"
-          >
+            className="text-foreground text-lg md:text-xl lg:text-2xl leading-relaxed font-body max-w-2xl mx-auto">
+            
             If you believe talent should not be limited by access
             <br />
             you can help build something bigger than yourself.
@@ -405,17 +405,17 @@ const Manifest = () => {
           <motion.div {...fade()}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 justify-items-center">
               {[
-                { src: "/images/tarak.jpeg", name: "Tarak", alt: "Tarak, Co-Founder of Build with Her" },
-                { src: "/images/justin.jpeg", name: "Justin O'Connor", alt: "Justin O'Connor, Co-Founder of Build with Her" },
-              ].map((f) => (
-                <div key={f.name} className="flex flex-col items-center">
+              { src: "/images/tarak.jpeg", name: "Tarak", alt: "Tarak, Co-Founder of Build with Her" },
+              { src: "/images/justin.jpeg", name: "Justin O'Connor", alt: "Justin O'Connor, Co-Founder of Build with Her" }].
+              map((f) =>
+              <div key={f.name} className="flex flex-col items-center">
                   <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
                     <img src={f.src} alt={f.alt} className="w-full h-full object-cover" />
                   </div>
                   <p className="mt-6 font-display text-lg font-bold text-foreground">{f.name}</p>
-                  <p className="text-muted-foreground text-sm">Co-Founder, Build with Her</p>
+                  <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
                 </div>
-              ))}
+              )}
             </div>
             <p className="mt-10 text-foreground text-base md:text-lg leading-relaxed">
               This is the kind of founding we care about.
@@ -430,8 +430,8 @@ const Manifest = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Manifest;
