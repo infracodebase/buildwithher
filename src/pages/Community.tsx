@@ -43,6 +43,7 @@ const fadeUp = {
 const communityPhotos = [
   "/images/community_1.jpeg",
   "/images/community_2.jpeg",
+  "/images/community_6.jpeg",
   "/images/community_3.jpeg",
   "/images/community_4.jpeg",
   "/images/community_5.jpeg",
