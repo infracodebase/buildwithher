@@ -129,7 +129,7 @@ const Events = () => (
             Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {pastEvents.map((evt) => (
             <div key={evt.title} className="card-premium overflow-hidden group flex flex-col">
               <div className="relative aspect-video w-full">
@@ -143,6 +143,11 @@ const Events = () => (
                 />
               </div>
               <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                    {evt.source}
+                  </span>
+                </div>
                 <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
                 {evt.subtitle && (
                   <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
