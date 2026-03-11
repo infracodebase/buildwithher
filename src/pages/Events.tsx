@@ -35,6 +35,22 @@ const upcomingEvents = [
 
 const pastEvents = [
   {
+    title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
+    subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
+    speaker: "Shannon Eldridge-Kuehn",
+    role: "Principal Solutions Architect",
+    embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
+    source: "Build with Her",
+  },
+  {
+    title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
+    subtitle: "",
+    speaker: "Alex",
+    role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
+    embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
+    source: "Build with Her",
+  },
+  {
     title: "Building with AI You Can Trust",
     subtitle: "How teams actually build with AI in production environments.",
     speaker: "Fatima",
@@ -48,22 +64,6 @@ const pastEvents = [
     speaker: "Seif",
     role: "Principal Security Engineer",
     embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
-    source: "Build with Her",
-  },
-  {
-    title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
-    subtitle: "",
-    speaker: "Alex",
-    role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
-    embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
-    source: "Build with Her",
-  },
-  {
-    title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
-    subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
-    speaker: "Shannon Eldridge-Kuehn",
-    role: "Principal Solutions Architect",
-    embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
     source: "Build with Her",
   },
 ];
