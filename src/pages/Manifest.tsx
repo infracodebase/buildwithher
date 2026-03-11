@@ -413,7 +413,7 @@ const Manifest = () => {
                     <img src={f.src} alt={f.alt} className="w-full h-full object-cover" />
                   </div>
                   <p className="mt-6 font-display text-lg font-bold text-foreground">{f.name}</p>
-                  <p className="text-muted-foreground text-sm">Founder, Infracodebase</p>
+                  <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
                 </div>
               )}
             </div>
