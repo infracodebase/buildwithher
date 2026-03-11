@@ -40,6 +40,7 @@ const pastEvents = [
     speaker: "Fatima",
     role: "Software Engineer with hands-on experience building and operating systems at enterprise scale.",
     embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
+    source: "Build with Her",
   },
   {
     title: "Delivering Secure Cloud Infrastructure at Scale with AI",
@@ -47,6 +48,7 @@ const pastEvents = [
     speaker: "Seif",
     role: "Principal Security Engineer",
     embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
+    source: "Build with Her",
   },
   {
     title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
@@ -54,6 +56,15 @@ const pastEvents = [
     speaker: "Alex",
     role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
     embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
+    source: "Build with Her",
+  },
+  {
+    title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
+    subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
+    speaker: "Shannon Eldridge-Kuehn",
+    role: "Principal Solutions Architect",
+    embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
+    source: "Build with Her",
   },
 ];
 
@@ -118,7 +129,7 @@ const Events = () => (
             Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {pastEvents.map((evt) => (
             <div key={evt.title} className="card-premium overflow-hidden group flex flex-col">
               <div className="relative aspect-video w-full">
@@ -132,6 +143,11 @@ const Events = () => (
                 />
               </div>
               <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                    {evt.source}
+                  </span>
+                </div>
                 <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
                 {evt.subtitle && (
                   <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
