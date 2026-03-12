@@ -76,6 +76,22 @@ const JoinTheBuilders = () => {
     e.preventDefault();
     setGenerating(true);
     try {
+      // Save to database
+      await submitBuilder({
+        name,
+        country,
+        role,
+        company: company || undefined,
+        cloud_focus: focus,
+        what_building: building || undefined,
+        statement: statement || undefined,
+        linkedin: linkedin || undefined,
+        github: github || undefined,
+        portfolio: portfolio || undefined,
+        photoFile,
+      });
+
+      // Generate visual card
       const url = await generateBuilderCard({
         name,
         role,
@@ -86,8 +102,9 @@ const JoinTheBuilders = () => {
       });
       setCardImageUrl(url);
       setSubmitted(true);
-    } catch {
-      toast({ title: "Error", description: "Could not generate your Builder Card. Please try again." });
+    } catch (err) {
+      console.error("Submission error:", err);
+      toast({ title: "Error", description: "Could not save your profile. Please try again." });
     } finally {
       setGenerating(false);
     }
