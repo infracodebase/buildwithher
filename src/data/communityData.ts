@@ -238,7 +238,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm training in Cloud Security and DevOps, passionate about building secure infrastructure from the ground up.",
     tags: ["Security", "DevOps"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/dudutari-kalabumo/",
+    linkedin: "https://www.linkedin.com/in/dudutari-samaria-kalabumo-b00594220/",
     building: ["Cloud security monitoring tools", "DevOps security automation"]
   },
   { 
