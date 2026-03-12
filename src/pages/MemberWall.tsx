@@ -7,18 +7,14 @@ import { testimonials } from "@/data/communityData";
 import { motion } from "framer-motion";
 import { Users, Globe, Cloud, TrendingUp, Shield } from "lucide-react";
 
-const stats = [
-{ icon: Users, value: "78", label: "Members" },
-{ icon: Globe, value: "12", label: "Countries" },
-{ icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
-{ icon: TrendingUp, value: "Growing", label: "Every week" }];
+const stats = [];
 
 
 const snapshotCards = [
-{ icon: Users, value: "78", label: "Builders", desc: "Women building in cloud infrastructure" },
-{ icon: Globe, value: "12", label: "Countries represented", desc: "A truly global community" },
-{ icon: Cloud, value: "Cloud • AI • Infrastructure", label: "What we build", desc: "Multi-cloud expertise" },
-{ icon: TrendingUp, value: "Growing", label: "Every week", desc: "New builders joining regularly" }];
+  { icon: Users, value: "78+", label: "Builders in the community" },
+  { icon: Globe, value: "13", label: "Countries represented" },
+  { icon: Cloud, value: "Cloud • AI • Infrastructure", label: "Technologies builders are working with" },
+  { icon: TrendingUp, value: "Growing every week", label: "New builders joining the movement" }];
 
 
 const fadeUp = {
@@ -39,50 +35,35 @@ const MemberWall = () =>
       <p>You are not the only one building quietly. This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
 
-    {/* Community Snapshot */}
+    {/* Our Impact */}
     <motion.section {...fadeUp} className="section-glow">
       <div className="container pt-8 pb-24 md:pt-8 md:pb-32">
         <div className="text-center mb-8 max-w-2xl mx-auto">
           <span className="badge-glow mb-6 inline-flex">Overview</span>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Community <span className="gradient-text">Snapshot</span>
+            Our <span className="gradient-text">Impact</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">A growing global community of women building real cloud infrastructure.</p>
+          <p className="mt-4 text-muted-foreground">Builders across the world are learning, building, and growing together in cloud, AI, and infrastructure.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {snapshotCards.map(({ icon: Icon, value, label, desc }, i) =>
-        <motion.div
-          key={label}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: i * 0.1 }}
-          className="card-premium p-6 text-center">
-          
+          {snapshotCards.map(({ icon: Icon, value, label }, i) =>
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="card-premium p-6 text-center">
               <Icon className="w-6 h-6 mx-auto mb-3 text-primary" />
               <p className="font-display font-bold text-foreground text-xl">{value}</p>
               <p className="text-sm font-medium text-foreground mt-1">{label}</p>
-              <p className="text-xs text-muted-foreground mt-1">{desc}</p>
             </motion.div>
-        )}
+          )}
         </div>
       </div>
     </motion.section>
 
-    {/* Stats Strip */}
-    <motion.section {...fadeUp}>
-      
-
-
-
-
-
-
-
-
-
-    
-    </motion.section>
+    {/* Stats Strip - removed as part of deduplication */}
 
     {/* Intro */}
     <motion.section {...fadeUp} className="band-gradient section-glow">

@@ -8,7 +8,7 @@ import GlobalMap from "@/components/GlobalMap";
 import NewBuildersSignal from "@/components/NewBuildersSignal";
 import { sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Clock, Users, Globe, Cpu } from "lucide-react";
+import { Clock, Users, Globe, Cpu, TrendingUp } from "lucide-react";
 
 const MeetTheBuilders = () => {
   const [filters, setFilters] = useState({
