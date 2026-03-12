@@ -94,7 +94,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I specialize in AWS cloud administration with a focus on IAM, secure cloud architecture, and FinOps practices.",
     tags: ["AWS", "Security", "FinOps"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/emmanuella-blessing-udeh/",
+    linkedin: "https://www.linkedin.com/in/emmanuellablessing/",
     building: ["Secure cloud architectures with IAM best practices", "FinOps dashboards for cost optimization"]
   },
   { 
@@ -174,7 +174,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm starting my DevOps journey with a focus on AWS and Kubernetes, eager to learn and grow in cloud infrastructure.",
     tags: ["DevOps", "AWS", "Kubernetes"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/karthika-k/",
+    linkedin: "https://www.linkedin.com/in/karthika-k-a55b432bb/",
     building: ["Kubernetes cluster management", "AWS DevOps automation workflows"]
   },
   { 
@@ -238,7 +238,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm training in Cloud Security and DevOps, passionate about building secure infrastructure from the ground up.",
     tags: ["Security", "DevOps"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/dudutari-kalabumo/",
+    linkedin: "https://www.linkedin.com/in/dudutari-samaria-kalabumo-b00594220/",
     building: ["Cloud security monitoring tools", "DevOps security automation"]
   },
   { 
@@ -254,7 +254,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a student exploring AWS and AI infrastructure, committed to academic excellence and cloud learning.",
     tags: ["AWS", "AI Infrastructure"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/benedicta-otoibhi/",
+    linkedin: "https://www.linkedin.com/in/benedictaotoibhi/",
     building: ["AWS cloud learning projects", "AI infrastructure experiments"]
   },
   { 
@@ -414,7 +414,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer focused on building secure and inclusive cloud solutions.",
     tags: ["DevOps", "AWS", "Security"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/chinenye-genevieve-onyema/",
+    linkedin: "https://www.linkedin.com/in/chinenyeonyema/",
     building: ["Secure cloud solutions on AWS", "Inclusive DevOps practices"]
   },
   { 
