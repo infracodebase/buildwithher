@@ -235,7 +235,7 @@ const MeetTheBuilders = () => {
             Takes less than 60 seconds.
           </p>
           <p className="mt-2 text-xs text-muted-foreground/50">
-            Join {sampleBuilders.length}+ builders across {new Set(sampleBuilders.map((b) => b.country)).size} countries.
+            Join {builders.length}+ builders across {new Set(builders.map((b) => b.country)).size} countries.
           </p>
         </div>
       </motion.section>
