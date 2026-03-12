@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      builders: {
+        Row: {
+          cloud_focus: string[] | null
+          company: string | null
+          country: string
+          created_at: string
+          github: string | null
+          id: string
+          linkedin: string | null
+          name: string
+          photo_url: string | null
+          portfolio: string | null
+          role: string
+          skills: string[] | null
+          slug: string | null
+          statement: string | null
+          what_building: string | null
+        }
+        Insert: {
+          cloud_focus?: string[] | null
+          company?: string | null
+          country: string
+          created_at?: string
+          github?: string | null
+          id?: string
+          linkedin?: string | null
+          name: string
+          photo_url?: string | null
+          portfolio?: string | null
+          role: string
+          skills?: string[] | null
+          slug?: string | null
+          statement?: string | null
+          what_building?: string | null
+        }
+        Update: {
+          cloud_focus?: string[] | null
+          company?: string | null
+          country?: string
+          created_at?: string
+          github?: string | null
+          id?: string
+          linkedin?: string | null
+          name?: string
+          photo_url?: string | null
+          portfolio?: string | null
+          role?: string
+          skills?: string[] | null
+          slug?: string | null
+          statement?: string | null
+          what_building?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
