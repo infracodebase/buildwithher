@@ -250,12 +250,17 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     country: "Nigeria", 
     region: "Africa",
     photo: "/images/benedicta.jpeg", 
-    statement: "Always ready to listen, offer solutions, and help us become better.", 
-    bio: "I'm a student exploring AWS and AI infrastructure, committed to academic excellence and cloud learning.",
-    tags: ["AWS", "AI Infrastructure"],
+    statement: "You're always ready to listen, offer solutions, and help us become better with each passing day.", 
+    bio: "I'm building technology that helps students achieve more, stay motivated, and master complex subjects. My focus is exploring how cloud infrastructure and AI can power scalable learning platforms that make education more accessible and personalized.\n\nBy combining AWS cloud services with AI models, I'm learning how to design systems that store educational content, analyze student performance, and deliver personalized learning experiences. My goal is to build platforms that support students globally and help them reach their academic potential.",
+    tags: ["AWS", "AI Infrastructure", "Cloud Architecture", "Python", "Machine Learning", "Educational Technology"],
     cloudPlatforms: ["AWS"],
     linkedin: "https://www.linkedin.com/in/benedictaotoibhi/",
-    building: ["AWS cloud learning projects", "AI infrastructure experiments"]
+    building: [
+      "Cloud-based educational platforms that scale globally",
+      "AI systems that analyze student performance and recommend personalized learning paths",
+      "Infrastructure for storing and delivering educational content such as lessons and videos",
+      "Intelligent assistants that help students get answers instantly"
+    ]
   },
   { 
     id: "13", 
