@@ -245,7 +245,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "11", 
     slug: "benedicta-otoibhi",
     name: "Benedicta Otoibhi", 
-    role: "Student & Academic Achiever", 
+    role: "Academic Excellence Coach",
     roleCategory: "Cloud Engineer",
     country: "Nigeria", 
     region: "Africa",
