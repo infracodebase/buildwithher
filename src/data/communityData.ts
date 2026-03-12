@@ -158,7 +158,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Technical Writer at Security Research Labs, focused on making complex security concepts accessible.",
     tags: ["Security", "Platform Engineering"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/maria-sivenkova/",
+    linkedin: "https://www.linkedin.com/in/mariasivenkova/",
     building: ["Security documentation and research frameworks", "Platform engineering knowledge bases"]
   },
   { 
@@ -206,7 +206,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Senior Full Stack Engineer with expertise in GCP and platform engineering, building scalable web applications.",
     tags: ["GCP", "Platform Engineering"],
     cloudPlatforms: ["GCP"],
-    linkedin: "https://www.linkedin.com/in/tawni-glover/",
+    linkedin: "https://www.linkedin.com/in/tawni-webdev/",
     building: ["Scalable web applications on GCP", "Platform engineering tools for developer productivity"]
   },
   { 
@@ -222,7 +222,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Customer Acquisition Specialist and Cloud & Tech Advocate, bridging business and technology.",
     tags: ["AWS", "DevOps"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/oluwatoyin-adeboye/",
+    linkedin: "https://www.linkedin.com/in/oluwatoyin-adeboye-063733264/",
     building: ["Cloud advocacy programs", "AWS-based tech solutions for business growth"]
   },
   { 
@@ -286,7 +286,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud & DevOps Engineer specializing in AWS and Terraform, building automation for modern infrastructure.",
     tags: ["AWS", "DevOps", "Terraform"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/millicent-eze/",
+    linkedin: "https://www.linkedin.com/in/millicent-eze-14427a235/",
     building: ["Infrastructure automation with Terraform", "Modern DevOps workflows on AWS"]
   },
   { 
@@ -302,7 +302,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer focused on AWS and cloud architecture, passionate about collaborative learning.",
     tags: ["AWS", "Cloud Architecture"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/comfort-etim/",
+    linkedin: "https://www.linkedin.com/in/comfort-etim20102315/",
     building: ["Cloud architecture designs on AWS", "Collaborative cloud learning resources"]
   },
   { 
@@ -350,7 +350,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a DevOps Engineer working with Kubernetes and AWS to build reliable deployment pipelines.",
     tags: ["DevOps", "Kubernetes", "AWS"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/ngozi-hannah-opara/",
+    linkedin: "https://www.linkedin.com/in/ngozihannahopara/",
     building: ["Kubernetes deployment pipelines", "Reliable cloud infrastructure on AWS"]
   },
   { 
@@ -398,7 +398,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I'm a Cloud Engineer exploring AWS and Azure, passionate about cloud architecture design.",
     tags: ["AWS", "Azure", "Cloud Architecture"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/oladunjoye-praise/",
+    linkedin: "https://www.linkedin.com/in/oladunjoyepraise/",
     building: ["Multi-cloud architecture designs", "Cloud migration strategies"]
   },
   { 
