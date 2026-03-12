@@ -32,6 +32,7 @@ export const testimonials = [
   { name: "Shannon Eldridge-Kuehn", role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps", photo: "/images/shannon_eldridge_kuehn.jpeg", quote: "Shout-out to Tarak and Justin O'Connor for the opportunity to be featured on International Women's Day! Thank you! I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first. Some of those moves didn't look like progress at the time. A few felt uncomfortable. More than once, I wondered if I was stepping outside my lane or if I even had one." },
   { name: "Shrey Shah", role: "Senior Software Engineer | AI Assisted Coding & Agents Educator", photo: "/images/shrey_shah.jpeg", quote: "Wow amazing work!" },
   { name: "Tarak", role: "Co-Founder of Infracodebase", photo: "/images/tarak.jpeg", quote: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum." },
+  { name: "Deborah Maiyaki", role: "Cloud Security & DevOps Trainee", photo: "/images/deborah_maiyaki.jpeg", quote: "Having people in tech especially cloud who I know I can always learn and collaborate with is everything for me." },
 ];
 
 // Extended builder profile with additional fields for profile pages
@@ -639,6 +640,22 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS", "Azure", "GCP"],
     linkedin: "https://www.linkedin.com/in/tarak-bach-hamba/",
     building: ["Build with Her community growth", "Infrastructure education and visibility", "Cloud and AI ecosystem building", "Practical paths into platform engineering"]
+  },
+  {
+    id: "37",
+    slug: "deborah-maiyaki",
+    name: "Deborah Maiyaki",
+    role: "Cloud Security & DevOps Trainee",
+    roleCategory: "Security Engineer",
+    country: "Nigeria",
+    region: "Africa",
+    photo: "/images/deborah_maiyaki.jpeg",
+    statement: "Having people in tech especially cloud who I know I can always learn and collaborate with is everything for me.",
+    bio: "Deborah Maiyaki is a Virtual Assistant growing into Cloud Security and DevOps, focused on learning, collaboration, and building secure systems in the cloud. She believes strongly in community and the power of learning alongside others in tech.",
+    tags: ["Cloud Security", "DevOps", "AWS", "IAM", "Community", "Learning in Public"],
+    cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/deborahmaiyaki/",
+    building: ["Cloud security learning projects", "Community-driven DevOps collaboration"]
   },
 ];
 
