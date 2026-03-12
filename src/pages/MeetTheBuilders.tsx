@@ -126,7 +126,7 @@ const MeetTheBuilders = () => {
         </div>
       </section>
 
-      {/* 2. Community Snapshot — Stats + Map */}
+      {/* 2. Our Impact — Stats + Map */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -135,26 +135,31 @@ const MeetTheBuilders = () => {
       >
         <div className="container pt-8 pb-20 md:pt-8 md:pb-28">
           <div className="text-center mb-12 max-w-2xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Community Snapshot</h2>
-            <p className="text-muted-foreground leading-relaxed">Women in this community are building across cloud, AI, infrastructure, DevOps, and platform engineering from many countries.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Our Impact</h2>
+            <p className="text-muted-foreground leading-relaxed">Builders across the world are learning, building, and growing together in cloud, AI, and infrastructure.</p>
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-14">
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Users size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">{sampleBuilders.length}+</p>
-              <p className="text-xs text-muted-foreground mt-1">Builders</p>
+              <p className="font-display text-2xl font-bold text-foreground">78+</p>
+              <p className="text-xs text-muted-foreground mt-1">Builders in the community</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Globe size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">{new Set(sampleBuilders.map(b => b.country)).size}</p>
-              <p className="text-xs text-muted-foreground mt-1">Countries</p>
+              <p className="font-display text-2xl font-bold text-foreground">13</p>
+              <p className="text-xs text-muted-foreground mt-1">Countries represented</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Cpu size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">Cloud + AI</p>
-              <p className="text-xs text-muted-foreground mt-1">Infrastructure Focus</p>
+              <p className="font-display text-2xl font-bold text-foreground">Cloud • AI • Infrastructure</p>
+              <p className="text-xs text-muted-foreground mt-1">Technologies builders are working with</p>
+            </div>
+            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+              <TrendingUp size={20} className="mx-auto mb-2 text-primary" />
+              <p className="font-display text-2xl font-bold text-foreground">Growing every week</p>
+              <p className="text-xs text-muted-foreground mt-1">New builders joining the movement</p>
             </div>
           </div>
 
