@@ -94,7 +94,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     bio: "I specialize in AWS cloud administration with a focus on IAM, secure cloud architecture, and FinOps practices.",
     tags: ["AWS", "Security", "FinOps"],
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/emmanuella-blessing-udeh/",
+    linkedin: "https://www.linkedin.com/in/emmanuellablessing/",
     building: ["Secure cloud architectures with IAM best practices", "FinOps dashboards for cost optimization"]
   },
   { 
