@@ -15,10 +15,10 @@ const stats = [
 
 
 const snapshotCards = [
-{ icon: Users, value: "78", label: "Builders", desc: "Women building in cloud infrastructure" },
-{ icon: Globe, value: "12", label: "Countries represented", desc: "A truly global community" },
-{ icon: Cloud, value: "Cloud • AI • Infrastructure", label: "What we build", desc: "Multi-cloud expertise" },
-{ icon: TrendingUp, value: "Growing", label: "Every week", desc: "New builders joining regularly" }];
+  { icon: Users, value: "78+", label: "Builders in the community" },
+  { icon: Globe, value: "13", label: "Countries represented" },
+  { icon: Cloud, value: "Cloud • AI • Infrastructure", label: "Technologies builders are working with" },
+  { icon: TrendingUp, value: "Growing every week", label: "New builders joining the movement" }];
 
 
 const fadeUp = {
