@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const [github, setGithub] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [cardImageUrl, setCardImageUrl] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
