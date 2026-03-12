@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
+import { submitBuilder } from "@/hooks/useBuilders";
 import {
   Popover,
   PopoverContent,
@@ -39,6 +40,7 @@ const JoinTheBuilders = () => {
   const [github, setGithub] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [cardImageUrl, setCardImageUrl] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
@@ -58,6 +60,7 @@ const JoinTheBuilders = () => {
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setPhotoFile(file);
       const reader = new FileReader();
       reader.onloadend = () => setPhotoPreview(reader.result as string);
       reader.readAsDataURL(file);
@@ -68,6 +71,22 @@ const JoinTheBuilders = () => {
     e.preventDefault();
     setGenerating(true);
     try {
+      // Save to database
+      await submitBuilder({
+        name,
+        country,
+        role,
+        company: company || undefined,
+        cloud_focus: focus,
+        what_building: building || undefined,
+        statement: statement || undefined,
+        linkedin: linkedin || undefined,
+        github: github || undefined,
+        portfolio: portfolio || undefined,
+        photoFile,
+      });
+
+      // Generate visual card
       const url = await generateBuilderCard({
         name,
         role,
@@ -78,8 +97,9 @@ const JoinTheBuilders = () => {
       });
       setCardImageUrl(url);
       setSubmitted(true);
-    } catch {
-      toast({ title: "Error", description: "Could not generate your Builder Card. Please try again." });
+    } catch (err) {
+      console.error("Submission error:", err);
+      toast({ title: "Error", description: "Could not save your profile. Please try again." });
     } finally {
       setGenerating(false);
     }
