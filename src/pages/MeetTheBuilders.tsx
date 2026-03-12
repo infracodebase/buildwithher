@@ -7,10 +7,13 @@ import BuilderFilters from "@/components/BuilderFilters";
 import GlobalMap from "@/components/GlobalMap";
 import NewBuildersSignal from "@/components/NewBuildersSignal";
 import { sampleBuilders } from "@/data/communityData";
+import { useBuilders } from "@/hooks/useBuilders";
 import { motion } from "framer-motion";
 import { Clock, Users, Globe, Cpu, TrendingUp } from "lucide-react";
 
 const MeetTheBuilders = () => {
+  const { data: allBuilders, isLoading } = useBuilders();
+
   const [filters, setFilters] = useState({
     cloudPlatforms: [] as string[],
     roles: [] as string[],
@@ -18,12 +21,15 @@ const MeetTheBuilders = () => {
     regions: [] as string[]
   });
 
+  // Use DB-merged builders when available, fallback to static
+  const builders = allBuilders || sampleBuilders;
+
   // Shuffle once on mount, pinning Tarak first, then Manisha second
   const shuffledBuilders = useRef(() => {
-    const tarak = sampleBuilders.find((b) => b.slug === "tarak");
-    const manisha = sampleBuilders.find((b) => b.slug === "manisha-sarkar");
-    const others = sampleBuilders.filter((b) => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
-    const pinned = [tarak, manisha].filter(Boolean) as typeof sampleBuilders;
+    const tarak = builders.find((b) => b.slug === "tarak");
+    const manisha = builders.find((b) => b.slug === "manisha-sarkar");
+    const others = builders.filter((b) => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
+    const pinned = [tarak, manisha].filter(Boolean) as typeof builders;
     return [...pinned, ...others];
   }).current();
 
