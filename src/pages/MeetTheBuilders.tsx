@@ -15,14 +15,14 @@ const MeetTheBuilders = () => {
     cloudPlatforms: [] as string[],
     roles: [] as string[],
     skills: [] as string[],
-    regions: [] as string[],
+    regions: [] as string[]
   });
 
   // Shuffle once on mount, pinning Tarak first, then Manisha second
   const shuffledBuilders = useRef(() => {
-    const tarak = sampleBuilders.find(b => b.slug === "tarak");
-    const manisha = sampleBuilders.find(b => b.slug === "manisha-sarkar");
-    const others = sampleBuilders.filter(b => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
+    const tarak = sampleBuilders.find((b) => b.slug === "tarak");
+    const manisha = sampleBuilders.find((b) => b.slug === "manisha-sarkar");
+    const others = sampleBuilders.filter((b) => b.slug !== "tarak" && b.slug !== "manisha-sarkar").sort(() => Math.random() - 0.5);
     const pinned = [tarak, manisha].filter(Boolean) as typeof sampleBuilders;
     return [...pinned, ...others];
   }).current();
@@ -44,7 +44,7 @@ const MeetTheBuilders = () => {
       }
       if (filters.skills.length > 0) {
         const hasMatch = filters.skills.some((s) =>
-          builder.tags.some((t) => t.toLowerCase().includes(s.toLowerCase()))
+        builder.tags.some((t) => t.toLowerCase().includes(s.toLowerCase()))
         );
         if (!hasMatch) return false;
       }
@@ -54,12 +54,12 @@ const MeetTheBuilders = () => {
       return true;
     });
     // Pin Tarak first, then Manisha second in filtered results
-    const tarakIdx = filtered.findIndex(b => b.slug === "tarak");
+    const tarakIdx = filtered.findIndex((b) => b.slug === "tarak");
     if (tarakIdx > 0) {
       const [tarak] = filtered.splice(tarakIdx, 1);
       filtered.unshift(tarak);
     }
-    const manishaIdx = filtered.findIndex(b => b.slug === "manisha-sarkar");
+    const manishaIdx = filtered.findIndex((b) => b.slug === "manisha-sarkar");
     if (manishaIdx > 1) {
       const [manisha] = filtered.splice(manishaIdx, 1);
       filtered.splice(1, 0, manisha);
@@ -81,9 +81,9 @@ const MeetTheBuilders = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.12,
-            mixBlendMode: 'screen',
-          }}
-        />
+            mixBlendMode: 'screen'
+          }} />
+        
         <div className="container relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="badge-glow">Builder Wall</span>
@@ -92,16 +92,16 @@ const MeetTheBuilders = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text"
-          >
+            className="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text">
+            
             Meet the Builders
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
-          >
+            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            
             <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple. <span className="text-foreground font-medium">They keep building</span>.</p>
             <p className="mt-3">Because visibility matters. And because no one should feel like they are building alone.</p>
           </motion.div>
@@ -109,8 +109,8 @@ const MeetTheBuilders = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 flex flex-wrap gap-3 justify-center"
-          >
+            className="mt-8 flex flex-wrap gap-3 justify-center">
+            
             <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
             <GradientButton to="/join-the-builders" variant="outline" size="lg">Join the Community</GradientButton>
           </motion.div>
@@ -118,8 +118,8 @@ const MeetTheBuilders = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-4 text-xs text-muted-foreground/60 flex items-center justify-center gap-1.5"
-          >
+            className="mt-4 text-xs text-muted-foreground/60 flex items-center justify-center gap-1.5">
+            
             <Clock size={12} />
             Create your builder card in under 60 seconds.
           </motion.p>
@@ -131,8 +131,8 @@ const MeetTheBuilders = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="band-gradient section-glow"
-      >
+        className="band-gradient section-glow">
+        
         <div className="container pt-8 pb-20 md:pt-8 md:pb-28">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Our Impact</h2>
@@ -148,7 +148,7 @@ const MeetTheBuilders = () => {
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Globe size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">13</p>
+              <p className="font-display text-2xl font-bold text-foreground">12</p>
               <p className="text-xs text-muted-foreground mt-1">Countries represented</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
@@ -172,24 +172,24 @@ const MeetTheBuilders = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="section-glow"
-      >
+        className="section-glow">
+        
         <div className="container py-16 md:py-24">
           <BuilderFilters selectedFilters={filters} onFilterChange={setFilters} />
 
           <NewBuildersSignal builders={sampleBuilders} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {filteredBuilders.map((builder, i) => (
-              <BuilderCard key={builder.id} profile={builder} index={i} />
-            ))}
+            {filteredBuilders.map((builder, i) =>
+            <BuilderCard key={builder.id} profile={builder} index={i} />
+            )}
           </div>
 
-          {filteredBuilders.length === 0 && (
-            <div className="text-center py-16">
+          {filteredBuilders.length === 0 &&
+          <div className="text-center py-16">
               <p className="text-muted-foreground">No builders match your selected filters.</p>
             </div>
-          )}
+          }
         </div>
       </motion.section>
 
@@ -199,8 +199,8 @@ const MeetTheBuilders = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="cta-band section-glow relative overflow-hidden"
-      >
+        className="cta-band section-glow relative overflow-hidden">
+        
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -208,9 +208,9 @@ const MeetTheBuilders = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
             opacity: 0.1,
-            mixBlendMode: 'screen',
-          }}
-        />
+            mixBlendMode: 'screen'
+          }} />
+        
         <div className="container relative z-10 py-28 md:py-36 text-center max-w-3xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-6">
             Become a Builder Today
@@ -229,14 +229,14 @@ const MeetTheBuilders = () => {
             Takes less than 60 seconds.
           </p>
           <p className="mt-2 text-xs text-muted-foreground/50">
-            Join {sampleBuilders.length}+ builders across {new Set(sampleBuilders.map(b => b.country)).size} countries.
+            Join {sampleBuilders.length}+ builders across {new Set(sampleBuilders.map((b) => b.country)).size} countries.
           </p>
         </div>
       </motion.section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default MeetTheBuilders;
