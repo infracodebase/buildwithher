@@ -7,11 +7,7 @@ import { testimonials } from "@/data/communityData";
 import { motion } from "framer-motion";
 import { Users, Globe, Cloud, TrendingUp, Shield } from "lucide-react";
 
-const stats = [
-{ icon: Users, value: "78", label: "Members" },
-{ icon: Globe, value: "12", label: "Countries" },
-{ icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
-{ icon: TrendingUp, value: "Growing", label: "Every week" }];
+const stats = [];
 
 
 const snapshotCards = [
