@@ -142,13 +142,13 @@ const GlobalMap = () => {
     <div className="space-y-10">
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
-        {stats.map(({ icon: Icon, value, label }) => (
-          <div key={label} className="text-center">
-            <Icon className="w-5 h-5 mx-auto mb-2 text-primary" />
-            <p className="font-display font-bold text-foreground text-lg">{value}</p>
-            <p className="text-xs text-muted-foreground">{label}</p>
-          </div>
-        ))}
+        {stats.map(({ icon: Icon, value, label }) => {}
+
+
+
+
+
+        )}
       </div>
 
       {/* Map */}
