@@ -651,7 +651,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     region: "Africa",
     photo: "/images/deborah_maiyaki.jpeg",
     statement: "Having people in tech especially cloud who I know I can always learn and collaborate with is everything for me.",
-    bio: "Deborah Maiyaki is a Virtual Assistant growing into Cloud Security and DevOps, focused on learning, collaboration, and building secure systems in the cloud. She believes strongly in community and the power of learning alongside others in tech.",
+    bio: "I am a Cloud Security and DevOps trainee building secure and well-structured infrastructure across AWS and Microsoft Azure.\n\nI focus on designing segmented VPC and VNet architectures, enforcing least-privilege access, hardening Linux and Windows servers, managing IAM roles and policies, and implementing monitoring, logging, and alerting systems that provide real-time visibility and actionable insights.",
     tags: ["Cloud Security", "DevOps", "AWS", "IAM", "Community", "Learning in Public"],
     cloudPlatforms: ["AWS"],
     linkedin: "https://www.linkedin.com/in/deborahmaiyaki/",
