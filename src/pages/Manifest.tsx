@@ -399,32 +399,34 @@ const Manifest = () => {
         <div className="h-px bg-border/50 dark:shadow-[0_0_12px_hsl(var(--primary)/0.15)]" />
       </div>
 
-      {/* ── Founder Signature ── */}
+      {/* ── Team Signature ── */}
       <section className="py-20 md:py-28">
         <div className="container max-w-[760px] mx-auto text-center">
           <motion.div {...fade()}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-12 justify-items-center">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 justify-items-center">
               {[
-              { src: "/images/tarak.jpeg", name: "Tarak", alt: "Tarak, Co-Founder of Build with Her" },
-              { src: "/images/justin.jpeg", name: "Justin O'Connor", alt: "Justin O'Connor, Co-Founder of Build with Her" }].
-              map((f) =>
-              <div key={f.name} className="flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
-                    <img src={f.src} alt={f.alt} className="w-full h-full object-cover" />
+              { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Infracodebase", alt: "Tarak, Co-Founder of Build with Her" },
+              { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Infracodebase", alt: "Justin O'Connor, Co-Founder of Build with Her" },
+              { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Infracodebase", alt: "Manisha Sarkar, Community Lead at Infracodebase" },
+              { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Infracodebase", alt: "Bunrinmwa Gobum, Community Lead at Infracodebase" }].
+              map((person) =>
+              <div key={person.name} className="flex flex-col items-center">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
+                    <img src={person.src} alt={person.alt} className="w-full h-full object-cover" />
                   </div>
-                  <p className="mt-6 font-display text-lg font-bold text-foreground">{f.name}</p>
-                  <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
+                  <p className="mt-4 font-display text-base md:text-lg font-bold text-foreground text-center">{person.name}</p>
+                  <p className="text-muted-foreground text-xs md:text-sm text-center">{person.title}</p>
                 </div>
               )}
             </div>
             <p className="mt-10 text-foreground text-base md:text-lg leading-relaxed">
-              This is the kind of founding we care about.
+              This is the kind of world we are building.
             </p>
             <p className="text-foreground text-base md:text-lg leading-relaxed">
               And this is the stand we are taking.
             </p>
-            <p className="mt-8 text-muted-foreground text-sm">Written in 2026</p>
-            <p className="mt-4 font-caveat text-2xl md:text-3xl text-primary/80">Tarak & Justin</p>
+            <p className="mt-8 text-muted-foreground text-sm">2026</p>
+            <p className="mt-4 font-caveat text-2xl md:text-3xl text-primary/80">The Build with Her Team</p>
           </motion.div>
         </div>
       </section>
