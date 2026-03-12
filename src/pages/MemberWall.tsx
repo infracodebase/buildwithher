@@ -63,20 +63,7 @@ const MemberWall = () =>
       </div>
     </motion.section>
 
-    {/* Stats Strip */}
-    <motion.section {...fadeUp}>
-      
-
-
-
-
-
-
-
-
-
-    
-    </motion.section>
+    {/* Stats Strip - removed as part of deduplication */}
 
     {/* Intro */}
     <motion.section {...fadeUp} className="band-gradient section-glow">
