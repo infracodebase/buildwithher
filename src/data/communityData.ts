@@ -641,6 +641,22 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     linkedin: "https://www.linkedin.com/in/tarak-bach-hamba/",
     building: ["Build with Her community growth", "Infrastructure education and visibility", "Cloud and AI ecosystem building", "Practical paths into platform engineering"]
   },
+  {
+    id: "37",
+    slug: "deborah-maiyaki",
+    name: "Deborah Maiyaki",
+    role: "Cloud Security & DevOps Trainee",
+    roleCategory: "Security Engineer",
+    country: "Nigeria",
+    region: "Africa",
+    photo: "/images/deborah_maiyaki.jpeg",
+    statement: "Having people in tech especially cloud who I know I can always learn and collaborate with is everything for me.",
+    bio: "Deborah Maiyaki is a Virtual Assistant growing into Cloud Security and DevOps, focused on learning, collaboration, and building secure systems in the cloud. She believes strongly in community and the power of learning alongside others in tech.",
+    tags: ["Cloud Security", "DevOps", "AWS", "IAM", "Community", "Learning in Public"],
+    cloudPlatforms: ["AWS"],
+    linkedin: "https://www.linkedin.com/in/deborahmaiyaki/",
+    building: ["Cloud security learning projects", "Community-driven DevOps collaboration"]
+  },
 ];
 
 // Filter options for the Builder Wall
