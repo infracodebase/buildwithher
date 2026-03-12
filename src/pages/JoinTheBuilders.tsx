@@ -20,11 +20,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 const cloudOptions = [
   "AWS", "Azure", "GCP", "DevOps", "Platform Engineering",
