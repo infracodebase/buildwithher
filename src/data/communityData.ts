@@ -263,14 +263,14 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     name: "Bhavika Mantri", 
     role: "Cloud Engineer", 
     roleCategory: "Cloud Engineer",
-    country: "India", 
-    region: "Asia",
+    country: "United States", 
+    region: "North America",
     photo: "/images/bhavika.jpeg", 
     statement: "Building cloud solutions with passion and precision.", 
     bio: "I'm a Cloud Engineer working across AWS and Azure, focused on building reliable and scalable solutions.",
     tags: ["AWS", "Azure", "DevOps"],
     cloudPlatforms: ["AWS", "Azure"],
-    linkedin: "https://www.linkedin.com/in/bhavika-mantri/",
+    linkedin: "https://www.linkedin.com/in/bhavikamantri/",
     building: ["Multi-cloud solutions across AWS and Azure", "DevOps pipelines for scalable deployments"]
   },
   { 
