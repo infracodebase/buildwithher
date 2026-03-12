@@ -183,7 +183,7 @@ const MeetTheBuilders = () => {
         <div className="container py-16 md:py-24">
           <BuilderFilters selectedFilters={filters} onFilterChange={setFilters} />
 
-          <NewBuildersSignal builders={sampleBuilders} />
+          <NewBuildersSignal builders={builders} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {filteredBuilders.map((builder, i) =>
