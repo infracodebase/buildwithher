@@ -99,6 +99,8 @@ const JoinTheBuilders = () => {
         photoDataUrl: photoPreview,
       });
       setCardImageUrl(url);
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      setSubmittedSlug(slug);
       setSubmitted(true);
     } catch (err) {
       console.error("Submission error:", err);
