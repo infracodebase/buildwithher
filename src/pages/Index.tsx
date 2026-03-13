@@ -222,39 +222,22 @@ const Index = () => {
       </section>
 
       {/* ─── PAIN BAND ─── */}
-      <motion.section {...fadeUp} className="relative band-gradient-warm">
+      <motion.section {...fadeUp} className="relative band-gradient-warm pb-8">
         <div className="container py-24 md:py-32">
           <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-12 items-center">
             <div className="md:col-span-3">
               <span className="badge-glow mb-6 inline-flex">The Reality</span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                You are <span className="gradient-text">not</span> the problem
+                You are <span className="gradient-text font-extrabold brightness-125">not</span> the problem
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-base max-w-[520px]">
                 <p>If learning cloud feels slow, confusing, or lonely, it does not mean you lack talent.</p>
-                <p>Many women are simply trying to learn in isolation, without enough support, visibility, or guidance.</p>
-                <p>The market keeps getting more competitive. More people. More identical job titles. More noise.</p>
+                <p>Many women are simply trying to learn in isolation — without enough visibility, support, or guidance.</p>
+                <p>The market keeps getting louder. More people. More identical job titles.</p>
                 <p className="text-foreground font-medium text-lg">Build with Her exists to change that.</p>
               </div>
             </div>
-            <div className="md:col-span-2 flex flex-col gap-3">
-              {["What to learn", "What really matters", "How to stand out"].map((item, i) =>
-              <motion.div
-                key={item}
-                {...stagger}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                className="card-premium gradient-border-card flex items-center gap-4 !p-5">
-                
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-display font-bold">{i + 1}</span>
-                  </div>
-                  <div>
-                    <span className="text-foreground font-display font-semibold">{item}</span>
-                    <p className="text-xs text-muted-foreground mt-0.5">The question every builder faces</p>
-                  </div>
-                </motion.div>
-              )}
-            </div>
+            <BuilderPathCards />
           </div>
         </div>
       </motion.section>
