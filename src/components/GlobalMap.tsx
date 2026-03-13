@@ -132,18 +132,41 @@ function fillRegion(_x1: number, _y1: number, _x2: number, _y2: number, points: 
 
 const worldDots = generateDots();
 
+function MapBottomStats() {
+  const { data: metrics } = useCommunityMetrics();
+  return (
+    <div className="absolute bottom-4 left-4 flex items-center gap-4">
+      <div>
+        <span className="font-display font-bold text-xl text-foreground">{metrics ? metrics.builderCount : "…"}</span>
+        <span className="text-xs text-muted-foreground ml-1">Builders</span>
+      </div>
+      <div>
+        <span className="font-display font-bold text-xl text-foreground">{metrics ? metrics.countryCount : "…"}</span>
+        <span className="text-xs text-muted-foreground ml-1">Countries</span>
+      </div>
+    </div>
+  );
+}
+
 const GlobalMap = () => {
   const [zoom, setZoom] = useState(1);
   const [hoveredMarker, setHoveredMarker] = useState<string | null>(null);
+  const { data: metrics } = useCommunityMetrics();
 
   const handleZoomIn = useCallback(() => setZoom((z) => Math.min(z + 0.3, 2.5)), []);
   const handleZoomOut = useCallback(() => setZoom((z) => Math.max(z - 0.3, 0.7)), []);
+
+  const dynamicStats = [
+    { icon: Users, value: metrics ? `${metrics.builderCount}` : "…", label: "Builders" },
+    { icon: Globe, value: metrics ? `${metrics.countryCount}` : "…", label: "Countries" },
+    { icon: Cloud, value: "Cloud • AI", label: "Infrastructure" },
+  ];
 
   return (
     <div className="space-y-10">
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
-        {stats.map(({ icon: Icon, value, label }) => (
+        {dynamicStats.map(({ icon: Icon, value, label }) => (
           <div key={label} className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-4 text-center">
             <Icon size={18} className="mx-auto mb-2 text-primary" />
             <p className="font-display text-xl font-bold text-foreground">{value}</p>
