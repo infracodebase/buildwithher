@@ -530,7 +530,7 @@ https://buildwithher.dev`;
 
                     <div>
                       <Label className="text-xs text-muted-foreground">Builder Story</Label>
-                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Share your journey, mission, and what drives you..." />
+                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" />
                     </div>
 
                     <div>
