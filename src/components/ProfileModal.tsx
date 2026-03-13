@@ -55,7 +55,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
   const handleClose = () => {
     setSubmitted(false);
     setName(""); setRole(""); setCountry(""); setCompany(""); setFocus([]);
-    setBuilding(""); setStatement(""); setLinkedin(""); setGithub(""); setPortfolio("");
+    setBuilding(""); setBuilderStory(""); setStatement(""); setLinkedin(""); setGithub(""); setPortfolio("");
     onClose();
   };
 
