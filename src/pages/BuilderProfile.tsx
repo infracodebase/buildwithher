@@ -221,7 +221,7 @@ const BuilderProfile = () => {
                         className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
                       >
                         <Share2 size={14} />
-                        Share your builder profile
+                        Share your builder profile →
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent align="center" className="w-48 p-1">
