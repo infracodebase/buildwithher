@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Users, Globe, Cloud, Plus, Minus } from "lucide-react";
+import { useCommunityMetrics } from "@/hooks/useCommunityMetrics";
 
 const markers = [
 { label: "Nigeria", top: 52, left: 50, count: 8 },
