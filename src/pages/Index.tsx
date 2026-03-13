@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials, sampleBuilders } from "@/data/communityData";
-import { motion } from "framer-motion";
-import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, MapPin } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, MapPin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 const builderPathData = [
@@ -35,70 +35,83 @@ const BuilderPathCards = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <div className="md:col-span-2 flex flex-col gap-3">
-      {builderPathData.map((item, i) => (
-        <motion.div
-          key={item.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 + i * 0.1 }}
-          onMouseEnter={() => setHoveredIdx(i)}
-          onMouseLeave={() => setHoveredIdx(null)}
-          className={`card-premium gradient-border-card !p-5 cursor-default transition-all duration-200 ${
-            hoveredIdx === i ? "-translate-y-1 shadow-[0_12px_40px_hsl(var(--primary)/0.12)]" : ""
-          } ${hoveredIdx !== null && hoveredIdx !== i ? "opacity-60" : "opacity-100"}`}
-        >
-          <div className="flex items-center gap-4">
-            <div className={`w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-              hoveredIdx === i ? "bg-primary/20" : ""
-            }`}>
-              <span className={`text-primary font-display font-bold transition-all duration-200 ${
-                hoveredIdx === i ? "brightness-125" : ""
-              }`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <div>
-              <span className="text-foreground font-display font-semibold">{item.title}</span>
-              <p className="text-xs text-muted-foreground mt-0.5">{item.subtitle}</p>
-            </div>
-          </div>
-
-          {/* Expanded content on hover */}
+    <div className="md:col-span-2 flex flex-col">
+      <p className="text-xs text-muted-foreground/80 text-center mb-4 font-medium tracking-wide">
+        Explore the three questions every builder faces.
+      </p>
+      <div className="flex flex-col gap-3">
+        {builderPathData.map((item, i) => (
           <motion.div
-            initial={false}
-            animate={{
-              height: hoveredIdx === i ? "auto" : 0,
-              opacity: hoveredIdx === i ? 1 : 0,
-            }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden"
+            key={item.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 + i * 0.1 }}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            className={`card-premium gradient-border-card !p-5 cursor-default transition-all duration-200 ${
+              hoveredIdx === i ? "-translate-y-1 shadow-[0_12px_40px_hsl(var(--primary)/0.12)] border-[hsl(var(--primary)/0.4)]" : "border-transparent"
+            } ${hoveredIdx !== null && hoveredIdx !== i ? "opacity-60" : "opacity-100"}`}
           >
-            <div className="pt-4 space-y-2 text-xs text-muted-foreground leading-relaxed">
-              <p>{item.intro}</p>
-              <ul className="space-y-1 pl-1">
-                {item.bullets.map((b, bi) => (
-                  <motion.li
-                    key={b}
-                    initial={false}
-                    animate={{
-                      opacity: hoveredIdx === i ? 1 : 0.5,
-                      y: hoveredIdx === i ? 0 : 2,
-                    }}
-                    transition={{ delay: hoveredIdx === i ? bi * 0.04 : 0, duration: 0.2 }}
-                    className="flex items-start gap-2"
-                  >
-                    <span className="text-primary mt-0.5">•</span>
-                    <span>{b}</span>
-                  </motion.li>
-                ))}
-              </ul>
-              <p className="text-foreground/80 font-medium">{item.outro}</p>
+            <div className="flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                hoveredIdx === i ? "bg-primary/20" : ""
+              }`}>
+                <span className={`text-primary font-display font-bold transition-all duration-200 ${
+                  hoveredIdx === i ? "brightness-125" : ""
+                }`}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-foreground font-display font-semibold">{item.title}</span>
+                <p className="text-xs text-muted-foreground mt-0.5">{item.subtitle}</p>
+              </div>
+              <div className="flex-shrink-0">
+                <motion.div
+                  animate={{ rotate: hoveredIdx === i ? 180 : 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="w-5 h-5 text-muted-foreground/60" />
+                </motion.div>
+              </div>
             </div>
+
+            {/* Expanded content on hover */}
+            <motion.div
+              initial={false}
+              animate={{
+                height: hoveredIdx === i ? "auto" : 0,
+                opacity: hoveredIdx === i ? 1 : 0,
+              }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="pt-4 space-y-2 text-xs text-muted-foreground leading-relaxed">
+                <p>{item.intro}</p>
+                <ul className="space-y-1 pl-1">
+                  {item.bullets.map((b, bi) => (
+                    <motion.li
+                      key={b}
+                      initial={false}
+                      animate={{
+                        opacity: hoveredIdx === i ? 1 : 0.5,
+                        y: hoveredIdx === i ? 0 : 2,
+                      }}
+                      transition={{ delay: hoveredIdx === i ? bi * 0.04 : 0, duration: 0.2 }}
+                      className="flex items-start gap-2"
+                    >
+                      <span className="text-primary mt-0.5">•</span>
+                      <span>{b}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+                <p className="text-foreground/80 font-medium">{item.outro}</p>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
