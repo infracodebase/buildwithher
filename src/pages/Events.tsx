@@ -199,67 +199,6 @@ const Events = () => {
         </motion.section>
       )}
 
-      {/* ── Event Types ── */}
-      <motion.section {...fadeUp} className="section-glow">
-        <div className="container py-20 md:py-28">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Event Formats</h2>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-              Different ways to learn, connect, and grow with the community.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {eventTypes.map(({ icon: Icon, title, desc, details, status }) => (
-              <div key={title} className="card-premium p-8 group">
-                <div className="flex items-start justify-between mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="badge-glow !py-1 !px-3">{status}</span>
-                </div>
-                <h3 className="font-display font-semibold text-foreground text-lg mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-5">{desc}</p>
-                <div className="space-y-2">
-                  {details.map((d) => (
-                    <div key={d} className="flex items-center gap-2.5">
-                      <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0" />
-                      <span className="text-xs text-secondary-foreground">{d}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ── What Happens in a Session ── */}
-      <motion.section {...fadeUp} className="band-gradient">
-        <div className="container py-20 md:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">What Happens in a Session</h2>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-10">
-              Build with Her sessions are collaborative and practical. You can expect:
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-14">
-              {sessionPoints.map((point) => (
-                <span key={point} className="badge-glow !py-2 !px-5 text-[13px]">
-                  {point}
-                </span>
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-center gap-6">
-              {stats.map(({ icon: Icon, label }) => (
-                <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
-                  <Icon className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
       {/* ── CTA ── */}
       <motion.section {...fadeUp} className="cta-band">
         <div className="container py-20 md:py-28 text-center relative z-10">
