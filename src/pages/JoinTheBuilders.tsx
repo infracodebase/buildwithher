@@ -81,6 +81,7 @@ const JoinTheBuilders = () => {
         cloud_focus: focus,
         what_building: building || undefined,
         statement: statement || undefined,
+        builder_story: builderStory || undefined,
         linkedin: linkedin || undefined,
         github: github || undefined,
         portfolio: portfolio || undefined,
