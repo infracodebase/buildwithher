@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import GradientButton from "@/components/GradientButton";
 import { motion } from "framer-motion";
-import { Radio, Wrench, MessageCircle, Mic, Calendar, Play, Globe, Users, Zap } from "lucide-react";
+import { Radio, Wrench, MessageCircle, Mic, Calendar, Globe, Zap, Play } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
