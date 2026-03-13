@@ -283,11 +283,15 @@ const BuilderProfile = () => {
             >
               {/* 1. Builder Story */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
-                <h2 className="font-display text-lg font-semibold text-foreground mb-3">
+                <h2 className="font-display text-lg font-semibold text-foreground mb-2">
                   Builder Story
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  "{builder.bio || builder.statement}"
+                  I am currently training in Cloud Computing and DevOps Engineering. I want to build the infrastructure that holds the data, secures the apps, and scales the business.
+
+So, what do you get when you hire me?
+
+You get a leader who understands the bottom line. You get a tech-savvy operator who can translate between human teams and AI tools. And you get a future engineer who is building the technical skills to scale your infrastructure.
                 </p>
               </section>
 
