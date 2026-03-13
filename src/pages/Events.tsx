@@ -121,36 +121,36 @@ const Events = () =>
             Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {pastEvents.map((evt) =>
-        <div key={evt.title} className="card-premium overflow-hidden group flex flex-col">
-              <div className="relative aspect-video w-full">
-                <iframe
-              src={evt.embedUrl}
-              title={evt.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              className="absolute inset-0 w-full h-full" />
-            
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {pastEvents.map((evt) => (
+            <a
+              key={evt.title}
+              href={`https://www.youtube.com/watch?v=${evt.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-xl overflow-hidden aspect-[3/4] block transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/10"
+            >
+              <img
+                src={`https://img.youtube.com/vi/${evt.videoId}/hqdefault.jpg`}
+                alt={evt.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <span className="text-[10px] font-medium text-primary-foreground bg-primary/90 px-2 py-0.5 rounded">
+                  {evt.source}
+                </span>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                    {evt.source}
-                  </span>
+              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-1">
+                <div className="w-8 h-8 rounded-full bg-primary/90 flex items-center justify-center mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Play className="w-4 h-4 text-primary-foreground fill-primary-foreground" />
                 </div>
-                <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
-                {evt.subtitle &&
-            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
-            }
-                <div className="mt-auto pt-3 border-t border-border/40">
-                  <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
-                </div>
+                <h3 className="font-display font-semibold text-foreground text-xs md:text-sm leading-snug line-clamp-2">{evt.title}</h3>
+                <p className="text-[11px] text-muted-foreground">{evt.speaker}</p>
               </div>
-            </div>
-        )}
+            </a>
+          ))}
         </div>
       </div>
     </motion.section>
