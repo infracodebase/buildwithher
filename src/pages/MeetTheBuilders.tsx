@@ -109,7 +109,8 @@ const MeetTheBuilders = () => {
             className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             
             <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple. <span className="text-foreground font-medium">They keep building</span>.</p>
-            <p className="mt-3">Because visibility matters. And because no one should feel like they are building alone.</p>
+            <p className="mt-3">Meet builders learning, shipping, and growing together.</p>
+            <p className="mt-2 text-sm">Because visibility matters. And because no one should feel like they are building alone.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

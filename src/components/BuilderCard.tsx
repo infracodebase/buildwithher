@@ -21,10 +21,13 @@ interface BuilderCardProps {
 const BuilderCard = ({ profile }: BuilderCardProps) => {
   const skillsString = profile.tags.join(" • ");
   
-  // Get slug from extended profile or generate from name
   const slug = 'slug' in profile && profile.slug 
     ? profile.slug 
     : profile.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  const joinedYear = 'createdAt' in profile && profile.createdAt
+    ? new Date(profile.createdAt).getFullYear()
+    : null;
 
   const handleCardClick = () => {
     window.open(`/builders/${slug}`, '_blank');
@@ -55,23 +58,28 @@ const BuilderCard = ({ profile }: BuilderCardProps) => {
           )}
         </div>
 
-        {/* Professional identity — Name first */}
+        {/* Professional identity */}
         <div className="space-y-1 min-w-0 w-full">
           <h3 className="font-display font-bold text-[15px] md:text-base builder-card-text-primary leading-tight truncate">{profile.name}</h3>
           <p className="text-[11px] builder-card-text-secondary truncate">{profile.role}</p>
           <p className="text-[10px] builder-card-text-muted">{profile.country}</p>
           <p className="text-[9px] builder-card-text-muted leading-relaxed truncate">{skillsString}</p>
-          {profile.linkedin && (
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[10px] text-primary/70 hover:text-primary transition-colors mt-0.5"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink size={9} />
-            </a>
-          )}
+          <div className="flex items-center justify-center gap-2">
+            {profile.linkedin && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[10px] text-primary/70 hover:text-primary transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ExternalLink size={9} />
+              </a>
+            )}
+            {joinedYear && (
+              <span className="text-[9px] builder-card-text-muted opacity-60">Joined in {joinedYear}</span>
+            )}
+          </div>
         </div>
       </div>
 

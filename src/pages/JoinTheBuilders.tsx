@@ -293,7 +293,7 @@ https://buildwithher.dev`;
                         {country || "Your Country"}
                       </p>
                       <p className="text-[10px] builder-card-text-muted leading-relaxed truncate">
-                        {skillsString || "Your skills"}
+                        {skillsString || "Cloud Focus"}
                       </p>
                     </div>
                   </div>
@@ -315,7 +315,7 @@ https://buildwithher.dev`;
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              Join {communityStats.total}+ women building across {communityStats.countries} countries
+              Join {communityStats.total}+ builders across {communityStats.countries} countries
             </p>
           </motion.div>
 
@@ -339,18 +339,18 @@ https://buildwithher.dev`;
                     <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center">
                       <CheckCircle className="w-8 h-8 text-accent" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-foreground">Welcome, Builder!</h3>
+                    <h3 className="font-display text-2xl font-bold text-foreground">🎉 Your builder profile is live!</h3>
                     <p className="text-muted-foreground text-sm max-w-xs">
-                      Your profile is now visible on the Builder Wall. You are part of the movement.
+                      Your profile is now visible on the Builder Wall. Share it with your network.
                     </p>
                   </div>
 
                   {/* Share Your Builder Card */}
                   <div className="space-y-6 rounded-2xl bg-card border border-border/50 p-6 md:p-8 shadow-lg">
                     <div>
-                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Share Your Builder Card</h3>
+                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Share it with your network</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Download your Builder Card and share it on social media. Invite more women to build with us.
+                        Show the world what you're building. Download your Builder Card and share it on social media.
                       </p>
                     </div>
 
@@ -530,7 +530,7 @@ https://buildwithher.dev`;
 
                     <div>
                       <Label className="text-xs text-muted-foreground">Builder Story</Label>
-                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Share your journey, mission, and what drives you..." />
+                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" />
                     </div>
 
                     <div>

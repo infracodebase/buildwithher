@@ -221,7 +221,7 @@ const BuilderProfile = () => {
                         className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
                       >
                         <Share2 size={14} />
-                        Share Profile
+                        Share your builder profile
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent align="center" className="w-48 p-1">
@@ -261,6 +261,7 @@ const BuilderProfile = () => {
                       </div>
                     </PopoverContent>
                   </Popover>
+                  <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
                 </div>
 
                 {/* Primary CTA */}
