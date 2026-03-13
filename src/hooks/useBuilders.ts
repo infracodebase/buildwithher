@@ -15,6 +15,7 @@ function dbRowToProfile(row: {
   skills: string[] | null;
   what_building: string | null;
   statement: string | null;
+  builder_story: string | null;
   linkedin: string | null;
   github: string | null;
   portfolio: string | null;
@@ -30,6 +31,7 @@ function dbRowToProfile(row: {
     country: row.country,
     photo: row.photo_url || undefined,
     statement: row.statement || row.what_building || "",
+    bio: row.builder_story || undefined,
     tags,
     linkedin: row.linkedin || undefined,
     slug: row.slug || row.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
@@ -37,6 +39,7 @@ function dbRowToProfile(row: {
     website: row.portfolio || undefined,
     building: row.what_building ? [row.what_building] : undefined,
     cloudPlatforms: row.cloud_focus || undefined,
+    createdAt: row.created_at,
   };
 }
 
