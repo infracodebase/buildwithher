@@ -56,6 +56,7 @@ const JoinTheBuilders = () => {
   const [generating, setGenerating] = useState(false);
   const [submittedSlug, setSubmittedSlug] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
 
   // Fixed community stats
   const communityStats = useMemo(() => {
