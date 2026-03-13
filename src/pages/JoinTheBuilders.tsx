@@ -339,9 +339,9 @@ https://buildwithher.dev`;
                     <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center">
                       <CheckCircle className="w-8 h-8 text-accent" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-foreground">Welcome, Builder!</h3>
+                    <h3 className="font-display text-2xl font-bold text-foreground">🎉 Your builder profile is live!</h3>
                     <p className="text-muted-foreground text-sm max-w-xs">
-                      Your profile is now visible on the Builder Wall. You are part of the movement.
+                      Your profile is now visible on the Builder Wall. Share it with your network.
                     </p>
                   </div>
 
