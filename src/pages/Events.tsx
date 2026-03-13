@@ -160,24 +160,32 @@ const Events = () =>
       <div className="container py-20 md:py-28">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="badge-glow mb-4 inline-block">Up Next</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Infracodebase community events</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Sessions</h2>
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
             Join upcoming Build with Her sessions and learn alongside the community.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {upcomingEvents.map((evt) =>
-        <div key={evt.title} className="card-premium p-7 group flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {upcomingEvents.map((evt) => (
+            <div
+              key={evt.title}
+              className="group relative rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted to-secondary" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div className="absolute top-3 left-3 flex items-center gap-2">
+                <span className="text-[10px] font-medium text-primary-foreground bg-primary/90 px-2 py-0.5 rounded">
                   {evt.format}
                 </span>
-                <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
               </div>
-              <h3 className="font-display font-semibold text-foreground text-lg mb-2 leading-snug">{evt.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{evt.desc}</p>
+              <div className="absolute top-3 right-3">
+                <span className="badge-glow !py-0.5 !px-2 text-[10px]">{evt.status}</span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-1">
+                <h3 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{evt.title}</h3>
+              </div>
             </div>
-        )}
+          ))}
         </div>
       </div>
     </motion.section>
