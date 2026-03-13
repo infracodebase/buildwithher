@@ -21,6 +21,50 @@ type SeriesFilter = (typeof SERIES_FILTERS)[number];
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
 
+const eventTypes = [
+  {
+    icon: Radio,
+    title: "Webinars",
+    desc: "Monthly sessions with real practitioners sharing technical lessons and career journeys.",
+    details: ["Cloud architecture", "AI-assisted engineering", "Security & compliance", "Career perspectives"],
+    status: "Monthly",
+  },
+  {
+    icon: Wrench,
+    title: "Workshops",
+    desc: "Hands-on collaborative sessions where you build real infrastructure alongside other women.",
+    details: ["Kubernetes deployments", "Landing zones", "Terraform modules", "Secure design"],
+    status: "Quarterly",
+  },
+  {
+    icon: MessageCircle,
+    title: "Community Conversations",
+    desc: "Open, honest discussions on topics that matter to women in cloud and infrastructure.",
+    details: ["Career pivots", "Impostor syndrome", "Emerging tools", "Infrastructure patterns"],
+    status: "Bi-weekly",
+  },
+  {
+    icon: Mic,
+    title: "Featured Speakers",
+    desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
+    details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
+    status: "Monthly",
+  },
+];
+
+const sessionPoints = [
+  "Real architecture discussions",
+  "Hands-on problem solving",
+  "Open technical questions",
+  "Shared learning from real experiences",
+  "Builders helping builders",
+];
+
+const stats = [
+  { icon: Globe, label: "Builders from 12+ countries" },
+  { icon: Calendar, label: "Weekly live sessions" },
+  { icon: Zap, label: "Cloud · AI · Infrastructure" },
+];
 
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
@@ -43,23 +87,47 @@ const Events = () => {
         <p>Events help you learn in public and connect with others who understand the journey.</p>
       </PageHero>
 
-      {/* ── Series Filter ── */}
+      {/* ── Two-Layer Filters ── */}
       <div className="container pt-16 pb-4">
-        <div className="flex justify-center overflow-x-auto scrollbar-none">
-          <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
-            {SERIES_FILTERS.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                  activeFilter === filter
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+        <div className="space-y-3 max-w-2xl mx-auto">
+          {/* Row 1: Series */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Series</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {SERIES_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setSeriesFilter(filter)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    seriesFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Session Type */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Type</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {TYPE_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setTypeFilter(filter)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                    typeFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
