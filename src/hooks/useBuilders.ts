@@ -131,6 +131,7 @@ export async function submitBuilder(args: {
     skills: args.cloud_focus,
     what_building: args.what_building || null,
     statement: args.statement || null,
+    builder_story: args.builder_story || null,
     linkedin: args.linkedin || null,
     github: args.github || null,
     portfolio: args.portfolio || null,
