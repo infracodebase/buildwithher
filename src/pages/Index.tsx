@@ -12,7 +12,7 @@ const builderPathData = [
     title: "What to learn",
     subtitle: "How to focus when cloud feels overwhelming",
     bullets: ["compute", "networking", "security", "automation"],
-    intro: "Cloud can feel endless — AWS, Azure, GCP services, Kubernetes, DevOps tools, AI infrastructure. Instead of trying to learn everything, focus on understanding how infrastructure layers work together. Start with the foundations:",
+    intro: "Cloud can feel endless: AWS, Azure, GCP services, Kubernetes, DevOps tools, AI infrastructure. Instead of trying to learn everything, focus on understanding how infrastructure layers work together. Start with the foundations:",
     outro: "Once these layers make sense, the rest of the ecosystem becomes much easier to navigate.",
   },
   {
