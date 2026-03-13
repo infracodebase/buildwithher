@@ -18,6 +18,9 @@ const fadeUp = {
 const SERIES_FILTERS = ["All", "Build with Her", "Infracodebase"] as const;
 type SeriesFilter = (typeof SERIES_FILTERS)[number];
 
+const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
+type TypeFilter = (typeof TYPE_FILTERS)[number];
+
 const eventTypes = [
   {
     icon: Radio,
@@ -64,16 +67,18 @@ const stats = [
 ];
 
 const Events = () => {
-  const [activeFilter, setActiveFilter] = useState<SeriesFilter>("All");
+  const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>("All Types");
 
-  const filteredPast = useMemo(
-    () => (activeFilter === "All" ? pastSessions : pastSessions.filter((s) => s.source === activeFilter)),
-    [activeFilter]
-  );
-  const filteredUpcoming = useMemo(
-    () => (activeFilter === "All" ? upcomingSessions : upcomingSessions.filter((s) => s.source === activeFilter)),
-    [activeFilter]
-  );
+  const applyFilters = (sessions: typeof pastSessions) =>
+    sessions.filter(
+      (s) =>
+        (seriesFilter === "All" || s.source === seriesFilter) &&
+        (typeFilter === "All Types" || s.sessionType === typeFilter)
+    );
+
+  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter]);
+  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -82,23 +87,47 @@ const Events = () => {
         <p>Events help you learn in public and connect with others who understand the journey.</p>
       </PageHero>
 
-      {/* ── Series Filter ── */}
+      {/* ── Two-Layer Filters ── */}
       <div className="container pt-16 pb-4">
-        <div className="flex justify-center overflow-x-auto scrollbar-none">
-          <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
-            {SERIES_FILTERS.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                  activeFilter === filter
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+        <div className="space-y-3 max-w-2xl mx-auto">
+          {/* Row 1: Series */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Series</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {SERIES_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setSeriesFilter(filter)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    seriesFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Session Type */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Type</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {TYPE_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setTypeFilter(filter)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                    typeFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
