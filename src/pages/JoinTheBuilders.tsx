@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const [submitted, setSubmitted] = useState(false);
   const [cardImageUrl, setCardImageUrl] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
+  const [submittedSlug, setSubmittedSlug] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fixed community stats
@@ -98,6 +99,8 @@ const JoinTheBuilders = () => {
         photoDataUrl: photoPreview,
       });
       setCardImageUrl(url);
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      setSubmittedSlug(slug);
       setSubmitted(true);
     } catch (err) {
       console.error("Submission error:", err);
@@ -345,24 +348,57 @@ https://buildwithher.dev`;
                     </p>
                   </div>
 
-                  {/* Share Your Builder Card */}
+                  {/* Share on LinkedIn */}
+                  <div className="space-y-4 rounded-2xl bg-card border border-border/50 p-6 md:p-8 shadow-lg">
+                    <h3 className="font-display text-xl font-bold text-foreground mb-1">Share it with your network</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Show the world what you're building.
+                    </p>
+
+                    <a
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://buildwithher.lovable.app/builders/${submittedSlug}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md"
+                    >
+                      <Linkedin size={18} /> Share on LinkedIn
+                    </a>
+
+                    {/* Copy profile link */}
+                    <div className="rounded-xl bg-secondary/50 border border-border/50 p-4 space-y-2">
+                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Copy your profile link</p>
+                      <div className="flex items-center gap-2">
+                        <code className="flex-1 text-sm text-foreground truncate">buildwithher.lovable.app/builders/{submittedSlug}</code>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(`https://buildwithher.lovable.app/builders/${submittedSlug}`);
+                            toast({ title: "Copied!", description: "Profile link copied to clipboard." });
+                          }}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-primary hover:bg-primary/10 transition-colors border border-primary/20"
+                        >
+                          <Copy size={12} /> Copy
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Download Builder Card */}
                   <div className="space-y-6 rounded-2xl bg-card border border-border/50 p-6 md:p-8 shadow-lg">
                     <div>
-                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Share it with your network</h3>
+                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Download Your Builder Card</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Show the world what you're building. Download your Builder Card and share it on social media.
+                        Download your Builder Card and share it on social media.
                       </p>
                     </div>
 
-                    {/* Download CTA (primary) */}
                     <button
                       onClick={downloadCard}
-                      className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md"
+                      className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
                     >
                       <Download size={18} /> Download Builder Card
                     </button>
 
-                    {/* LinkedIn post preview */}
+                    {/* Suggested LinkedIn Post */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Suggested LinkedIn Post</p>
@@ -381,7 +417,7 @@ https://buildwithher.dev`;
                     {/* Share actions */}
                     <div className="grid grid-cols-2 gap-2">
                       <a
-                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://buildwithher.lovable.app/builders/${submittedSlug}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => { navigator.clipboard.writeText(shareMessage); }}
@@ -401,7 +437,7 @@ https://buildwithher.dev`;
                         onClick={() => {
                           navigator.clipboard.writeText(shareMessage);
                           toast({ title: "Copied!", description: "Your Facebook post text has been copied." });
-                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank", "noopener,noreferrer");
+                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://buildwithher.lovable.app/builders/${submittedSlug}`)}`, "_blank", "noopener,noreferrer");
                         }}
                         className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-secondary/80 text-foreground border border-border/50 hover:bg-secondary transition-colors"
                       >
