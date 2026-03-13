@@ -141,6 +141,14 @@ const Manifest = () => {
               Choosing a direction even when it is uncomfortable.
             </p>
             <p>And right now, it is uncomfortable.</p>
+            <div className="mt-8 space-y-0.5">
+              <p className="font-caveat text-xl text-primary/85 -rotate-[1.5deg] origin-left tracking-[0.04em] leading-[1.2] opacity-95">
+                Tarak
+              </p>
+              <p className="text-sm text-muted-foreground font-body">
+                Co-Founder, Infracodebase
+              </p>
+            </div>
           </SectionBlock>
         </div>
       </section>
