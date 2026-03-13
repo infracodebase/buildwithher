@@ -6,7 +6,7 @@ import GradientButton from "@/components/GradientButton";
 import SessionCard from "@/components/SessionCard";
 import { pastSessions, upcomingSessions } from "@/data/sessionsData";
 import { motion } from "framer-motion";
-import { Globe, Calendar, Zap } from "lucide-react";
+import { Globe, Calendar } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -32,8 +32,8 @@ const sessionPoints = [
 const stats = [
   { icon: Globe, label: "Builders from 12+ countries" },
   { icon: Calendar, label: "Weekly live sessions" },
-  { icon: Zap, label: "Cloud · AI · Infrastructure" },
-];
+  { label: "Cloud • AI • Infrastructure" },
+] as const;
 
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
@@ -72,10 +72,10 @@ const Events = () => {
               ))}
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              {stats.map(({ icon: Icon, label }) => (
-                <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
-                  <Icon className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{label}</span>
+              {stats.map((stat) => (
+                <div key={stat.label} className="stat-card flex items-center gap-3 px-6 py-4">
+                  {"icon" in stat && <stat.icon className="w-5 h-5 text-primary" />}
+                  <span className="text-sm font-medium text-foreground">{stat.label}</span>
                 </div>
               ))}
             </div>
