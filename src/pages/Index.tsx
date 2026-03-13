@@ -12,7 +12,7 @@ const builderPathData = [
     title: "What to learn",
     subtitle: "How to focus when cloud feels overwhelming",
     bullets: ["compute", "networking", "security", "automation"],
-    intro: "Cloud can feel endless — AWS, Azure, GCP services, Kubernetes, DevOps tools, AI infrastructure. Instead of trying to learn everything, focus on understanding how infrastructure layers work together. Start with the foundations:",
+    intro: "Cloud can feel endless: AWS, Azure, GCP services, Kubernetes, DevOps tools, AI infrastructure. Instead of trying to learn everything, focus on understanding how infrastructure layers work together. Start with the foundations:",
     outro: "Once these layers make sense, the rest of the ecosystem becomes much easier to navigate.",
   },
   {
@@ -27,7 +27,7 @@ const builderPathData = [
     subtitle: "Visibility turns learning into opportunity",
     bullets: ["infrastructure architectures", "infrastructure code", "cloud experiments", "lessons from real systems"],
     intro: "Many talented builders stay invisible. They learn quietly but never show what they build. Standing out comes from sharing your work:",
-    outro: "Sharing what you build — not just the certifications you earn — is what creates visibility and opportunity.",
+    outro: "Sharing what you build, not just the certifications you earn, is what creates visibility and opportunity.",
   },
 ];
 
@@ -329,7 +329,7 @@ const Index = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-base max-w-[520px]">
                 <p>If learning cloud feels slow, confusing, or lonely, it does not mean you lack talent.</p>
-                <p>Many women are simply trying to learn in isolation — without enough visibility, support, or guidance.</p>
+                <p>Many women are simply trying to learn in isolation, without enough visibility, support, or guidance.</p>
                 <p>The market keeps getting louder. More people. More identical job titles.</p>
                 <p className="text-foreground font-medium text-lg">Build with Her exists to change that.</p>
               </div>
