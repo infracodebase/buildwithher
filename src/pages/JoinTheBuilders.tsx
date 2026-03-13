@@ -315,7 +315,7 @@ https://buildwithher.dev`;
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              Join {communityStats.total}+ women building across {communityStats.countries} countries
+              Join {communityStats.total}+ builders across {communityStats.countries} countries
             </p>
           </motion.div>
 
