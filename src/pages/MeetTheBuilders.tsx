@@ -9,7 +9,8 @@ import NewBuildersSignal from "@/components/NewBuildersSignal";
 import { sampleBuilders } from "@/data/communityData";
 import { useBuilders } from "@/hooks/useBuilders";
 import { motion } from "framer-motion";
-import { Clock, Users, Globe, Cpu, TrendingUp } from "lucide-react";
+import { Clock, Users, Globe, Cpu, TrendingUp, Zap } from "lucide-react";
+import { useCommunityMetrics } from "@/hooks/useCommunityMetrics";
 
 const MeetTheBuilders = () => {
   const { data: allBuilders, isLoading } = useBuilders();
