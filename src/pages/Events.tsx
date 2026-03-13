@@ -15,28 +15,29 @@ const fadeUp = {
 const upcomingEvents = [
   {
     title: "Building Self-Service, Secure, and Scalable Developer Platforms",
-    format: "Live Webinar",
-    status: "Live Webinar",
+    subtitle: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable self-service infrastructure for developers, security and compliance by default, standardized deployment workflows, and clear visibility and ownership across systems. We'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
+    speaker: "Lalit Kale",
+    role: "Sr Cloud Architect",
     imageUrl: "/images/webinar_with_lalit.png",
-    desc: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable:\n\n• self-service infrastructure for developers\n• security and compliance by default\n• standardized deployment workflows\n• clear visibility and ownership across systems\n\nWe'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
-    speakers: [
-      { name: "Lalit Kale", role: "Sr Cloud Architect" },
-      { name: "Tarak", role: "Co-Founder, Infracodebase" },
-      { name: "Justin", role: "Founder, Infracodebase" }
-    ],
+    source: "Infracodebase",
+    status: "Live Webinar",
     registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
   },
   {
     title: "Terraform Landing Zones Workshop",
-    format: "Hands-on Workshop",
-    status: "Coming Soon",
-    desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
+    subtitle: "Build a reusable landing zone structure using Terraform with guided collaboration.",
+    speaker: "",
+    role: "",
+    source: "Infracodebase",
+    status: "Coming Soon"
   },
   {
     title: "Women in Platform Engineering",
-    format: "Community Conversation",
-    status: "Coming Soon",
-    desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
+    subtitle: "An open conversation about career paths, challenges, and opportunities in platform engineering.",
+    speaker: "",
+    role: "",
+    source: "Build with Her",
+    status: "Coming Soon"
   }
 ];
 
@@ -196,36 +197,37 @@ const Events = () =>
             Join upcoming Build with Her sessions and learn alongside the community.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {upcomingEvents.map((evt) => (
-            <div key={evt.title} className="card-premium p-0 group flex flex-col overflow-hidden">
-              {evt.imageUrl && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
+              <div className="relative aspect-video w-full overflow-hidden">
+                {evt.imageUrl ? (
                   <img
                     src={evt.imageUrl}
                     alt={evt.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
-                </div>
-              )}
-              <div className="p-7 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    {evt.format}
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                ) : (
+                  <div className="absolute inset-0 w-full h-full bg-muted/50 flex items-center justify-center">
+                    <Calendar className="w-10 h-10 text-muted-foreground/40" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                    {evt.source}
                   </span>
                   <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
                 </div>
-                <h3 className="font-display font-semibold text-foreground text-lg mb-2 leading-snug">{evt.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1 whitespace-pre-line">{evt.desc}</p>
-                {evt.speakers && (
-                  <div className="mt-4 space-y-1">
-                    {evt.speakers.map((speaker) => (
-                      <div key={speaker.name} className="text-xs">
-                        <span className="font-medium text-foreground">{speaker.name}</span>
-                        <span className="text-muted-foreground"> — {speaker.role}</span>
-                      </div>
-                    ))}
+                <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
+                {evt.subtitle && (
+                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
+                )}
+                {evt.speaker && (
+                  <div className="mt-auto pt-3 border-t border-border/40">
+                    <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
                   </div>
                 )}
                 {evt.registerLink && (
@@ -233,7 +235,7 @@ const Events = () =>
                     href={evt.registerLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                    className="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
                     Register for the Webinar
                   </a>
