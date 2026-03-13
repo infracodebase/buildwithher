@@ -19,7 +19,7 @@ type SeriesFilter = typeof SERIES_FILTERS[number];
 const upcomingEvents = [
   {
     title: "Building Self-Service, Secure, and Scalable Developer Platforms",
-    subtitle: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable self-service infrastructure for developers, security and compliance by default, standardized deployment workflows, and clear visibility and ownership across systems. We'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
+    subtitle: "In this session, Lalit Kale (Sr Cloud Architect) joins us to discuss how organizations are building platforms that enable self-service infrastructure for developers, security and compliance by default, standardized deployment workflows, and clear visibility and ownership across systems. We'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
     speaker: "Lalit Kale",
     role: "Sr Cloud Architect",
     imageUrl: "/images/webinar_with_lalit.png",
