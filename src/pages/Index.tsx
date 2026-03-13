@@ -27,7 +27,7 @@ const builderPathData = [
     subtitle: "Visibility turns learning into opportunity",
     bullets: ["infrastructure architectures", "infrastructure code", "cloud experiments", "lessons from real systems"],
     intro: "Many talented builders stay invisible. They learn quietly but never show what they build. Standing out comes from sharing your work:",
-    outro: "Sharing what you build — not just the certifications you earn — is what creates visibility and opportunity.",
+    outro: "Sharing what you build, not just the certifications you earn, is what creates visibility and opportunity.",
   },
 ];
 
