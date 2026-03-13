@@ -32,8 +32,8 @@ const sessionPoints = [
 const stats = [
   { icon: Globe, label: "Builders from 12+ countries" },
   { icon: Calendar, label: "Weekly live sessions" },
-  { icon: Zap, label: "Cloud · AI · Infrastructure" },
-];
+  { label: "Cloud • AI • Infrastructure" },
+] as const;
 
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
