@@ -145,7 +145,7 @@ const Events = () =>
             Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {pastEvents.map((evt) => (
             <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
               <div className="relative aspect-video w-full overflow-hidden">
