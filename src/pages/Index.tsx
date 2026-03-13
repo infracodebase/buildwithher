@@ -260,7 +260,7 @@ const RoleCards = () => {
   const activeIdx = expandedIdx ?? hoveredIdx;
 
   return (
-    <div className="grid grid-cols-2 gap-4 self-center">
+    <div className="grid grid-cols-2 gap-4 self-center items-start">
       {roleCardsData.map((item, i) => {
         const isExpanded = expandedIdx === i;
         return (
@@ -289,9 +289,13 @@ const RoleCards = () => {
                 <ChevronDown className="w-5 h-5 text-muted-foreground/60" />
               </motion.div>
             </div>
-            <motion.div
-                  animate={{ height: isExpanded ? "auto" : 0, opacity: isExpanded ? 1 : 0 }}
-                  initial={false}
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  key={`${item.value}-content`}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
@@ -310,6 +314,8 @@ const RoleCards = () => {
                     <p className="text-foreground font-medium">{item.content.outro}</p>
                   </div>
                 </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         );
       })}
