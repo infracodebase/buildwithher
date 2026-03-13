@@ -501,7 +501,7 @@ https://buildwithher.dev`;
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     {/* Photo upload */}
                     <div>
-                      <Label className="text-xs text-muted-foreground">Profile Photo</Label>
+                      <Label className="text-xs text-muted-foreground">Profile Photo *</Label>
                       <div className="mt-2 flex items-center gap-4">
                         <div
                           onClick={() => fileInputRef.current?.click()}
