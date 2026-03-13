@@ -4,7 +4,8 @@ import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials, sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, ArrowRight, MapPin } from "lucide-react";
+import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, MapPin } from "lucide-react";
+import { useState } from "react";
 
 const audienceCards = [
 { icon: Rocket, title: "Transitioning into Cloud", desc: "Starting your cloud journey with real guidance and community support." },
