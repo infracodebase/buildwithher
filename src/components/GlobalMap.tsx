@@ -149,7 +149,6 @@ const GlobalMap = () => {
             <p className="text-xs text-muted-foreground">{label}</p>
           </div>
         ))}
-        )}
       </div>
 
       {/* Map */}
