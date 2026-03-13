@@ -293,7 +293,7 @@ https://buildwithher.dev`;
                         {country || "Your Country"}
                       </p>
                       <p className="text-[10px] builder-card-text-muted leading-relaxed truncate">
-                        {skillsString || "Your skills"}
+                        {skillsString || "Cloud Focus"}
                       </p>
                     </div>
                   </div>
