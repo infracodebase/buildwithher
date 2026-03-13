@@ -294,7 +294,7 @@ const BuilderProfile = () => {
               {/* 2. Technical Skills */}
               <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
                 <h2 className="font-display text-lg font-semibold text-foreground mb-3">
-                  Technical Skills
+                  Cloud Focus
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {builder.tags.map((tag) => (
