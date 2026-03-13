@@ -21,50 +21,6 @@ type SeriesFilter = (typeof SERIES_FILTERS)[number];
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
 
-const eventTypes = [
-  {
-    icon: Radio,
-    title: "Webinars",
-    desc: "Monthly sessions with real practitioners sharing technical lessons and career journeys.",
-    details: ["Cloud architecture", "AI-assisted engineering", "Security & compliance", "Career perspectives"],
-    status: "Monthly",
-  },
-  {
-    icon: Wrench,
-    title: "Workshops",
-    desc: "Hands-on collaborative sessions where you build real infrastructure alongside other women.",
-    details: ["Kubernetes deployments", "Landing zones", "Terraform modules", "Secure design"],
-    status: "Quarterly",
-  },
-  {
-    icon: MessageCircle,
-    title: "Community Conversations",
-    desc: "Open, honest discussions on topics that matter to women in cloud and infrastructure.",
-    details: ["Career pivots", "Impostor syndrome", "Emerging tools", "Infrastructure patterns"],
-    status: "Bi-weekly",
-  },
-  {
-    icon: Mic,
-    title: "Featured Speakers",
-    desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
-    details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
-    status: "Monthly",
-  },
-];
-
-const sessionPoints = [
-  "Real architecture discussions",
-  "Hands-on problem solving",
-  "Open technical questions",
-  "Shared learning from real experiences",
-  "Builders helping builders",
-];
-
-const stats = [
-  { icon: Globe, label: "Builders from 12+ countries" },
-  { icon: Calendar, label: "Weekly live sessions" },
-  { icon: Zap, label: "Cloud · AI · Infrastructure" },
-];
 
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
