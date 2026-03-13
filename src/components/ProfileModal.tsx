@@ -27,6 +27,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
   const [company, setCompany] = useState("");
   const [focus, setFocus] = useState<string[]>([]);
   const [building, setBuilding] = useState("");
+  const [builderStory, setBuilderStory] = useState("");
   const [statement, setStatement] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
@@ -54,7 +55,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
   const handleClose = () => {
     setSubmitted(false);
     setName(""); setRole(""); setCountry(""); setCompany(""); setFocus([]);
-    setBuilding(""); setStatement(""); setLinkedin(""); setGithub(""); setPortfolio("");
+    setBuilding(""); setBuilderStory(""); setStatement(""); setLinkedin(""); setGithub(""); setPortfolio("");
     onClose();
   };
 
@@ -131,6 +132,10 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
                     </label>
                   ))}
                 </div>
+              </div>
+              <div>
+                <Label className="text-xs text-muted-foreground">Builder Story</Label>
+                <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Share your journey, mission, and what drives you..." />
               </div>
               <div>
                 <Label className="text-xs text-muted-foreground">What are you currently building or learning?</Label>

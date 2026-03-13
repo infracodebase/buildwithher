@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       builders: {
         Row: {
+          builder_story: string | null
           cloud_focus: string[] | null
           company: string | null
           country: string
@@ -33,6 +34,7 @@ export type Database = {
           what_building: string | null
         }
         Insert: {
+          builder_story?: string | null
           cloud_focus?: string[] | null
           company?: string | null
           country: string
@@ -50,6 +52,7 @@ export type Database = {
           what_building?: string | null
         }
         Update: {
+          builder_story?: string | null
           cloud_focus?: string[] | null
           company?: string | null
           country?: string
