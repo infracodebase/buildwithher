@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const [submitted, setSubmitted] = useState(false);
   const [cardImageUrl, setCardImageUrl] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
+  const [submittedSlug, setSubmittedSlug] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fixed community stats
