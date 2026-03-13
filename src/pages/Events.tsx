@@ -6,7 +6,7 @@ import GradientButton from "@/components/GradientButton";
 import SessionCard from "@/components/SessionCard";
 import { pastSessions, upcomingSessions } from "@/data/sessionsData";
 import { motion } from "framer-motion";
-import { Globe, Calendar, Zap } from "lucide-react";
+import { Globe, Calendar } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
