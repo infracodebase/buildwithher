@@ -17,6 +17,7 @@ const upcomingEvents = [
     title: "Building Self-Service, Secure, and Scalable Developer Platforms",
     format: "Live Webinar",
     status: "Live Webinar",
+    imageUrl: "/images/webinar_with_lalit.png",
     desc: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable:\n\n• self-service infrastructure for developers\n• security and compliance by default\n• standardized deployment workflows\n• clear visibility and ownership across systems\n\nWe'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
     speakers: [
       { name: "Lalit Kale", role: "Sr Cloud Architect" },
