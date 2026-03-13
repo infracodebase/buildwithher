@@ -261,6 +261,7 @@ const BuilderProfile = () => {
                       </div>
                     </PopoverContent>
                   </Popover>
+                  <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
                 </div>
 
                 {/* Primary CTA */}

@@ -348,9 +348,9 @@ https://buildwithher.dev`;
                   {/* Share Your Builder Card */}
                   <div className="space-y-6 rounded-2xl bg-card border border-border/50 p-6 md:p-8 shadow-lg">
                     <div>
-                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Share Your Builder Card</h3>
+                      <h3 className="font-display text-xl font-bold text-foreground mb-2">Share it with your network</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
-                        Download your Builder Card and share it on social media. Invite more women to build with us.
+                        Show the world what you're building. Download your Builder Card and share it on social media.
                       </p>
                     </div>
 
