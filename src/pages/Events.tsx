@@ -245,11 +245,7 @@ const Events = () => {
                         src={evt.imageUrl}
                         alt={evt.title}
                         className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
-                    ) : (
-                      <div className="absolute inset-0 w-full h-full bg-muted/50 flex items-center justify-center">
-                        <Calendar className="w-10 h-10 text-muted-foreground/40" />
-                      </div>
-                    )}
+                    ) : null}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
