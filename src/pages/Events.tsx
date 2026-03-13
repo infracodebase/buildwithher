@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import GradientButton from "@/components/GradientButton";
 import { motion } from "framer-motion";
-import { Radio, Wrench, MessageCircle, Mic, Calendar, Play, Globe, Users, Zap } from "lucide-react";
+import { Radio, Wrench, MessageCircle, Mic, Calendar, Globe, Zap, Play } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -36,34 +36,26 @@ const upcomingEvents = [
 const pastEvents = [
 {
   title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
-  subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
   speaker: "Shannon Eldridge-Kuehn",
-  role: "Principal Solutions Architect",
-  embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
+  videoId: "SLpgv8zCzPU",
   source: "Build with Her"
 },
 {
-  title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
-  subtitle: "",
+  title: "Operating Cloud Engineering at Scale",
   speaker: "Alex",
-  role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
-  embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
+  videoId: "H8Osx6GcLSE",
   source: "Build with Her"
 },
 {
   title: "Building with AI You Can Trust",
-  subtitle: "How teams actually build with AI in production environments.",
   speaker: "Fatima",
-  role: "Software Engineer with hands-on experience building and operating systems at enterprise scale.",
-  embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
+  videoId: "vOMo1RquRsY",
   source: "Build with Her"
 },
 {
   title: "Delivering Secure Cloud Infrastructure at Scale with AI",
-  subtitle: "",
   speaker: "Seif",
-  role: "Principal Security Engineer",
-  embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
+  videoId: "Ld8WG8CtagA",
   source: "Build with Her"
 }];
 
@@ -129,36 +121,36 @@ const Events = () =>
             Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {pastEvents.map((evt) =>
-        <div key={evt.title} className="card-premium overflow-hidden group flex flex-col">
-              <div className="relative aspect-video w-full">
-                <iframe
-              src={evt.embedUrl}
-              title={evt.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              className="absolute inset-0 w-full h-full" />
-            
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {pastEvents.map((evt) => (
+            <a
+              key={evt.title}
+              href={`https://www.youtube.com/watch?v=${evt.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-xl overflow-hidden aspect-[3/4] block transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/10"
+            >
+              <img
+                src={`https://img.youtube.com/vi/${evt.videoId}/hqdefault.jpg`}
+                alt={evt.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <span className="text-[10px] font-medium text-primary-foreground bg-primary/90 px-2 py-0.5 rounded">
+                  {evt.source}
+                </span>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                    {evt.source}
-                  </span>
+              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-1">
+                <div className="w-8 h-8 rounded-full bg-primary/90 flex items-center justify-center mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Play className="w-4 h-4 text-primary-foreground fill-primary-foreground" />
                 </div>
-                <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
-                {evt.subtitle &&
-            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
-            }
-                <div className="mt-auto pt-3 border-t border-border/40">
-                  <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
-                </div>
+                <h3 className="font-display font-semibold text-foreground text-xs md:text-sm leading-snug line-clamp-2">{evt.title}</h3>
+                <p className="text-[11px] text-muted-foreground">{evt.speaker}</p>
               </div>
-            </div>
-        )}
+            </a>
+          ))}
         </div>
       </div>
     </motion.section>
@@ -168,24 +160,32 @@ const Events = () =>
       <div className="container py-20 md:py-28">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="badge-glow mb-4 inline-block">Up Next</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Infracodebase community events</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Sessions</h2>
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
             Join upcoming Build with Her sessions and learn alongside the community.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {upcomingEvents.map((evt) =>
-        <div key={evt.title} className="card-premium p-7 group flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {upcomingEvents.map((evt) => (
+            <div
+              key={evt.title}
+              className="group relative rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted to-secondary" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div className="absolute top-3 left-3 flex items-center gap-2">
+                <span className="text-[10px] font-medium text-primary-foreground bg-primary/90 px-2 py-0.5 rounded">
                   {evt.format}
                 </span>
-                <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
               </div>
-              <h3 className="font-display font-semibold text-foreground text-lg mb-2 leading-snug">{evt.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{evt.desc}</p>
+              <div className="absolute top-3 right-3">
+                <span className="badge-glow !py-0.5 !px-2 text-[10px]">{evt.status}</span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-1">
+                <h3 className="font-display font-semibold text-foreground text-sm leading-snug line-clamp-2">{evt.title}</h3>
+              </div>
             </div>
-        )}
+          ))}
         </div>
       </div>
     </motion.section>
