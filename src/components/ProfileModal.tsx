@@ -27,6 +27,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
   const [company, setCompany] = useState("");
   const [focus, setFocus] = useState<string[]>([]);
   const [building, setBuilding] = useState("");
+  const [builderStory, setBuilderStory] = useState("");
   const [statement, setStatement] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");

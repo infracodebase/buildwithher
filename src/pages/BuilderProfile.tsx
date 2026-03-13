@@ -4,7 +4,7 @@ import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check } 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { sampleBuilders } from "@/data/communityData";
+import { useBuilders } from "@/hooks/useBuilders";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -17,7 +17,8 @@ import {
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const builder = sampleBuilders.find((b) => b.slug === slug);
+  const { data: allBuilders, isLoading } = useBuilders();
+  const builder = allBuilders?.find((b) => b.slug === slug);
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -62,6 +63,23 @@ const BuilderProfile = () => {
   const handleCreateBuilderCard = () => {
     navigate("/join-the-builders");
   };
+
+  // Derive joined year from createdAt if available
+  const joinedYear = builder?.createdAt
+    ? new Date(builder.createdAt).getFullYear()
+    : 2025;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="container pt-32 pb-20 text-center">
+          <p className="text-muted-foreground">Loading builder profile...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!builder) {
     return (
@@ -156,7 +174,7 @@ const BuilderProfile = () => {
 
                   {/* Metadata */}
                   <div className="text-center text-xs text-muted-foreground/50 space-y-0.5">
-                    <p>Joined Build With Her in 2025</p>
+                    <p>Joined Build With Her in {joinedYear}</p>
                     {builder.infracodbaseUserId && <p>Infracodebase Portfolio</p>}
                   </div>
                 </div>
@@ -267,7 +285,7 @@ const BuilderProfile = () => {
                 <h2 className="font-display text-lg font-semibold text-foreground mb-3">
                   Builder Story
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   "{builder.bio || builder.statement}"
                 </p>
               </section>
