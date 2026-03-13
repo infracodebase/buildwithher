@@ -340,7 +340,7 @@ const Index = () => {
       </motion.section>
 
       {/* ─── WHY THIS MATTERS — SPLIT ─── */}
-      <motion.section {...fadeUp} className="section-glow relative overflow-hidden">
+      <motion.section {...fadeUp} className="section-glow relative overflow-hidden mt-12 md:mt-16">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] orb-blue rounded-full pointer-events-none opacity-50" />
         <div className="container py-24 md:py-32">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
