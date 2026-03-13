@@ -15,28 +15,29 @@ const fadeUp = {
 const upcomingEvents = [
   {
     title: "Building Self-Service, Secure, and Scalable Developer Platforms",
-    format: "Live Webinar",
-    status: "Live Webinar",
+    subtitle: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable self-service infrastructure for developers, security and compliance by default, standardized deployment workflows, and clear visibility and ownership across systems. We'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
+    speaker: "Lalit Kale",
+    role: "Sr Cloud Architect",
     imageUrl: "/images/webinar_with_lalit.png",
-    desc: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable:\n\n• self-service infrastructure for developers\n• security and compliance by default\n• standardized deployment workflows\n• clear visibility and ownership across systems\n\nWe'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
-    speakers: [
-      { name: "Lalit Kale", role: "Sr Cloud Architect" },
-      { name: "Tarak", role: "Co-Founder, Infracodebase" },
-      { name: "Justin", role: "Founder, Infracodebase" }
-    ],
+    source: "Infracodebase",
+    status: "Live Webinar",
     registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
   },
   {
     title: "Terraform Landing Zones Workshop",
-    format: "Hands-on Workshop",
-    status: "Coming Soon",
-    desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
+    subtitle: "Build a reusable landing zone structure using Terraform with guided collaboration.",
+    speaker: "",
+    role: "",
+    source: "Infracodebase",
+    status: "Coming Soon"
   },
   {
     title: "Women in Platform Engineering",
-    format: "Community Conversation",
-    status: "Coming Soon",
-    desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
+    subtitle: "An open conversation about career paths, challenges, and opportunities in platform engineering.",
+    speaker: "",
+    role: "",
+    source: "Build with Her",
+    status: "Coming Soon"
   }
 ];
 
