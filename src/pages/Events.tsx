@@ -87,7 +87,35 @@ const Events = () => {
         <p>Every week we share a technical lecture, an engineering conversation, and a platform update so builders can learn from real systems and grow together.</p>
       </PageHero>
 
-      {/* ── Two-Layer Filters ── */}
+      {/* ── Inside a Session ── */}
+      <motion.section {...fadeUp} className="band-gradient">
+        <div className="container py-20 md:py-28">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Inside a Session</h2>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-10">
+              Build with Her sessions are collaborative and practical. You can expect:
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-14">
+              {sessionPoints.map((point) => (
+                <span key={point} className="badge-glow !py-2 !px-5 text-[13px]">
+                  {point}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              {stats.map(({ icon: Icon, label }) => (
+                <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
+                  <Icon className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium text-foreground">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── Sessions Library ── */}
+      {/* Filters */}
       <div className="container pt-16 pb-4">
         <div className="space-y-3 max-w-2xl mx-auto">
           {/* Row 1: Series */}
