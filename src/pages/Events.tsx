@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -11,6 +12,9 @@ const fadeUp = {
   viewport: { once: true, margin: "-80px" as const },
   transition: { duration: 0.6 }
 };
+
+const SERIES_FILTERS = ["All", "Build with Her", "Infracodebase"] as const;
+type SeriesFilter = typeof SERIES_FILTERS[number];
 
 const upcomingEvents = [
   {
@@ -41,284 +45,321 @@ const upcomingEvents = [
   }
 ];
 
-
 const pastEvents = [
-{
-  title: "Legal Background to Cloud Engineering: What It Really Takes",
-  subtitle: "A conversation exploring what it really takes to transition into cloud engineering from a legal background, and how skills from non-traditional paths can transfer into cloud and infrastructure careers.",
-  speaker: "Tarak",
-  role: "Co-Founder, Infracodebase",
-  imageUrl: "/images/legal_background_to_cloud.png",
-  source: "Build with Her"
-},
-{
-  title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
-  subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
-  speaker: "Shannon Eldridge-Kuehn",
-  role: "Principal Solutions Architect",
-  embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
-  source: "Build with Her"
-},
-{
-  title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
-  subtitle: "",
-  speaker: "Alex",
-  role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
-  embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
-  source: "Build with Her"
-},
-{
-  title: "Building with AI You Can Trust",
-  subtitle: "How teams actually build with AI in production environments.",
-  speaker: "Fatima",
-  role: "Software Engineer with hands-on experience building and operating systems at enterprise scale.",
-  embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
-  source: "Build with Her"
-},
-{
-  title: "Delivering Secure Cloud Infrastructure at Scale with AI",
-  subtitle: "",
-  speaker: "Seif",
-  role: "Principal Security Engineer",
-  embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
-  source: "Build with Her"
-}];
-
+  {
+    title: "Legal Background to Cloud Engineering: What It Really Takes",
+    subtitle: "A conversation exploring what it really takes to transition into cloud engineering from a legal background, and how skills from non-traditional paths can transfer into cloud and infrastructure careers.",
+    speaker: "Tarak",
+    role: "Co-Founder, Infracodebase",
+    imageUrl: "/images/legal_background_to_cloud.png",
+    source: "Build with Her"
+  },
+  {
+    title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
+    subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
+    speaker: "Shannon Eldridge-Kuehn",
+    role: "Principal Solutions Architect",
+    embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
+    source: "Build with Her"
+  },
+  {
+    title: "Operating Cloud Engineering at Scale in Regulated and Complex Enterprises",
+    subtitle: "",
+    speaker: "Alex",
+    role: "Director of Cloud Engineering operating in a risk-focused regulated enterprise environment.",
+    embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
+    source: "Infracodebase"
+  },
+  {
+    title: "Building with AI You Can Trust",
+    subtitle: "How teams actually build with AI in production environments.",
+    speaker: "Fatima",
+    role: "Software Engineer with hands-on experience building and operating systems at enterprise scale.",
+    embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
+    source: "Infracodebase"
+  },
+  {
+    title: "Delivering Secure Cloud Infrastructure at Scale with AI",
+    subtitle: "",
+    speaker: "Seif",
+    role: "Principal Security Engineer",
+    embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
+    source: "Infracodebase"
+  }
+];
 
 const eventTypes = [
-{
-  icon: Radio,
-  title: "Webinars",
-  desc: "Monthly sessions with real practitioners sharing technical lessons and career journeys.",
-  details: ["Cloud architecture", "AI-assisted engineering", "Security & compliance", "Career perspectives"],
-  status: "Monthly"
-},
-{
-  icon: Wrench,
-  title: "Workshops",
-  desc: "Hands-on collaborative sessions where you build real infrastructure alongside other women.",
-  details: ["Kubernetes deployments", "Landing zones", "Terraform modules", "Secure design"],
-  status: "Quarterly"
-},
-{
-  icon: MessageCircle,
-  title: "Community Conversations",
-  desc: "Open, honest discussions on topics that matter to women in cloud and infrastructure.",
-  details: ["Career pivots", "Impostor syndrome", "Emerging tools", "Infrastructure patterns"],
-  status: "Bi-weekly"
-},
-{
-  icon: Mic,
-  title: "Featured Speakers",
-  desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
-  details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
-  status: "Monthly"
-}];
-
+  {
+    icon: Radio,
+    title: "Webinars",
+    desc: "Monthly sessions with real practitioners sharing technical lessons and career journeys.",
+    details: ["Cloud architecture", "AI-assisted engineering", "Security & compliance", "Career perspectives"],
+    status: "Monthly"
+  },
+  {
+    icon: Wrench,
+    title: "Workshops",
+    desc: "Hands-on collaborative sessions where you build real infrastructure alongside other women.",
+    details: ["Kubernetes deployments", "Landing zones", "Terraform modules", "Secure design"],
+    status: "Quarterly"
+  },
+  {
+    icon: MessageCircle,
+    title: "Community Conversations",
+    desc: "Open, honest discussions on topics that matter to women in cloud and infrastructure.",
+    details: ["Career pivots", "Impostor syndrome", "Emerging tools", "Infrastructure patterns"],
+    status: "Bi-weekly"
+  },
+  {
+    icon: Mic,
+    title: "Featured Speakers",
+    desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
+    details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
+    status: "Monthly"
+  }
+];
 
 const sessionPoints = [
-"Real architecture discussions",
-"Hands-on problem solving",
-"Open technical questions",
-"Shared learning from real experiences",
-"Builders helping builders"];
-
+  "Real architecture discussions",
+  "Hands-on problem solving",
+  "Open technical questions",
+  "Shared learning from real experiences",
+  "Builders helping builders"
+];
 
 const stats = [
-{ icon: Globe, label: "Builders from 12+ countries" },
-{ icon: Calendar, label: "Weekly live sessions" },
-{ icon: Zap, label: "Cloud · AI · Infrastructure" }];
+  { icon: Globe, label: "Builders from 12+ countries" },
+  { icon: Calendar, label: "Weekly live sessions" },
+  { icon: Zap, label: "Cloud · AI · Infrastructure" }
+];
 
+const Events = () => {
+  const [activeFilter, setActiveFilter] = useState<SeriesFilter>("All");
 
-const Events = () =>
-<div className="min-h-screen bg-background">
-    <Navbar />
-    <PageHero title="Learn. Build. Grow." badge="Events">
-      <p>Events help you learn in public and connect with others who understand the journey.</p>
-    </PageHero>
+  const filteredPast = useMemo(
+    () => activeFilter === "All" ? pastEvents : pastEvents.filter(e => e.source === activeFilter),
+    [activeFilter]
+  );
+  const filteredUpcoming = useMemo(
+    () => activeFilter === "All" ? upcomingEvents : upcomingEvents.filter(e => e.source === activeFilter),
+    [activeFilter]
+  );
 
-    {/* ── Past Sessions ── */}
-    <motion.section {...fadeUp} className="section-glow">
-      <div className="container py-20 md:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Past Sessions</h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {pastEvents.map((evt) => (
-            <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
-              <div className="relative aspect-video w-full overflow-hidden">
-                {evt.embedUrl ? (
-                  <iframe
-                    src={evt.embedUrl}
-                    title={evt.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
-                ) : evt.imageUrl ? (
-                  <img
-                    src={evt.imageUrl}
-                    alt={evt.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
-                ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
-              </div>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                    {evt.source}
-                  </span>
-                </div>
-                <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
-                {evt.subtitle && (
-                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
-                )}
-                <div className="mt-auto pt-3 border-t border-border/40">
-                  <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <PageHero title="Learn. Build. Grow." badge="Events">
+        <p>Events help you learn in public and connect with others who understand the journey.</p>
+      </PageHero>
+
+      {/* ── Series Filter ── */}
+      <div className="container pt-16 pb-4">
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+            {SERIES_FILTERS.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeFilter === filter
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </motion.section>
 
-    {/* ── Upcoming Sessions ── */}
-    <motion.section {...fadeUp} className="band-gradient-warm">
-      <div className="container py-20 md:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="badge-glow mb-4 inline-block">Up Next</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Infracodebase community events</h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Join upcoming Build with Her sessions and learn alongside the community.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {upcomingEvents.map((evt) => (
-            <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
-              <div className="relative aspect-video w-full overflow-hidden">
-                {evt.imageUrl ? (
-                  <img
-                    src={evt.imageUrl}
-                    alt={evt.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
-                ) : (
-                  <div className="absolute inset-0 w-full h-full bg-muted/50 flex items-center justify-center">
-                    <Calendar className="w-10 h-10 text-muted-foreground/40" />
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
-              </div>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                    {evt.source}
-                  </span>
-                  <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
-                </div>
-                <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
-                {evt.subtitle && (
-                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
-                )}
-                {evt.speaker && (
-                  <div className="mt-auto pt-3 border-t border-border/40">
-                    <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
-                  </div>
-                )}
-                {evt.registerLink && (
-                  <a
-                    href={evt.registerLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    Register for the Webinar
-                  </a>
-                )}
-              </div>
+      {/* ── Past Sessions ── */}
+      {filteredPast.length > 0 && (
+        <motion.section {...fadeUp} className="section-glow">
+          <div className="container py-20 md:py-28">
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Past Sessions</h2>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                Watch previous sessions and learn from real cloud, AI, and infrastructure practitioners.
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </motion.section>
-
-    {/* ── Event Types ── */}
-    <motion.section {...fadeUp} className="section-glow">
-      <div className="container py-20 md:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Event Formats</h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Different ways to learn, connect, and grow with the community.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-          {eventTypes.map(({ icon: Icon, title, desc, details, status }) =>
-        <div key={title} className="card-premium p-8 group">
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="badge-glow !py-1 !px-3">{status}</span>
-              </div>
-              <h3 className="font-display font-semibold text-foreground text-lg mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{desc}</p>
-              <div className="space-y-2">
-                {details.map((d) =>
-            <div key={d} className="flex items-center gap-2.5">
-                    <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0" />
-                    <span className="text-xs text-secondary-foreground">{d}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              {filteredPast.map((evt) => (
+                <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    {evt.embedUrl ? (
+                      <iframe
+                        src={evt.embedUrl}
+                        title={evt.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                    ) : evt.imageUrl ? (
+                      <img
+                        src={evt.imageUrl}
+                        alt={evt.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                    ) : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
                   </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                        {evt.source}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
+                    {evt.subtitle && (
+                      <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
+                    )}
+                    <div className="mt-auto pt-3 border-t border-border/40">
+                      <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* ── Upcoming Sessions ── */}
+      {filteredUpcoming.length > 0 && (
+        <motion.section {...fadeUp} className="band-gradient-warm">
+          <div className="container py-20 md:py-28">
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="badge-glow mb-4 inline-block">Up Next</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Upcoming Infracodebase community events</h2>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                Join upcoming Build with Her sessions and learn alongside the community.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              {filteredUpcoming.map((evt) => (
+                <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    {evt.imageUrl ? (
+                      <img
+                        src={evt.imageUrl}
+                        alt={evt.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                    ) : (
+                      <div className="absolute inset-0 w-full h-full bg-muted/50 flex items-center justify-center">
+                        <Calendar className="w-10 h-10 text-muted-foreground/40" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[11px] font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                        {evt.source}
+                      </span>
+                      <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
+                    </div>
+                    <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
+                    {evt.subtitle && (
+                      <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
+                    )}
+                    {evt.speaker && (
+                      <div className="mt-auto pt-3 border-t border-border/40">
+                        <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
+                      </div>
+                    )}
+                    {evt.registerLink && (
+                      <a
+                        href={evt.registerLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                      >
+                        Register for the Webinar
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* ── Event Types ── */}
+      <motion.section {...fadeUp} className="section-glow">
+        <div className="container py-20 md:py-28">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Event Formats</h2>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+              Different ways to learn, connect, and grow with the community.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+            {eventTypes.map(({ icon: Icon, title, desc, details, status }) =>
+              <div key={title} className="card-premium p-8 group">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="badge-glow !py-1 !px-3">{status}</span>
+                </div>
+                <h3 className="font-display font-semibold text-foreground text-lg mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5">{desc}</p>
+                <div className="space-y-2">
+                  {details.map((d) =>
+                    <div key={d} className="flex items-center gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                      <span className="text-xs text-secondary-foreground">{d}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
-              </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── What Happens in a Session ── */}
+      <motion.section {...fadeUp} className="band-gradient">
+        <div className="container py-20 md:py-28">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">What Happens in a Session</h2>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-10">
+              Build with Her sessions are collaborative and practical. You can expect:
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-14">
+              {sessionPoints.map((point) =>
+                <span key={point} className="badge-glow !py-2 !px-5 text-[13px]">{point}</span>
+              )}
             </div>
-        )}
+            <div className="flex flex-wrap justify-center gap-6">
+              {stats.map(({ icon: Icon, label }) =>
+                <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
+                  <Icon className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium text-foreground">{label}</span>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.section>
+      </motion.section>
 
-    {/* ── What Happens in a Session ── */}
-    <motion.section {...fadeUp} className="band-gradient">
-      <div className="container py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">What Happens in a Session</h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-10">
-            Build with Her sessions are collaborative and practical. You can expect:
+      {/* ── CTA ── */}
+      <motion.section {...fadeUp} className="cta-band">
+        <div className="container py-20 md:py-28 text-center relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Start Building Together</h2>
+          <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-lg mx-auto">
+            Start learning and building together.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-14">
-            {sessionPoints.map((point) =>
-          <span key={point} className="badge-glow !py-2 !px-5 text-[13px]">{point}</span>
-          )}
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            {stats.map(({ icon: Icon, label }) =>
-          <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
-                <Icon className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">{label}</span>
-              </div>
-          )}
-          </div>
+          <GradientButton to="/join-the-builders" size="lg" icon>Join the Community</GradientButton>
         </div>
-      </div>
-    </motion.section>
+      </motion.section>
 
-    {/* ── CTA ── */}
-    <motion.section {...fadeUp} className="cta-band">
-      <div className="container py-20 md:py-28 text-center relative z-10">
-        <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Start Building Together</h2>
-        <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-lg mx-auto">
-          Start learning and building together.
-        </p>
-        <GradientButton to="/join-the-builders" size="lg" icon>Join the Community</GradientButton>
-      </div>
-    </motion.section>
-
-    <Footer />
-  </div>;
-
+      <Footer />
+    </div>
+  );
+};
 
 export default Events;
