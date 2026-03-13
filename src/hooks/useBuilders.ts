@@ -93,6 +93,7 @@ export async function submitBuilder(args: {
   cloud_focus: string[];
   what_building?: string;
   statement?: string;
+  builder_story?: string;
   linkedin?: string;
   github?: string;
   portfolio?: string;
