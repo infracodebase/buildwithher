@@ -4,7 +4,104 @@ import GradientButton from "@/components/GradientButton";
 import QuoteCard from "@/components/QuoteCard";
 import { testimonials, sampleBuilders } from "@/data/communityData";
 import { motion } from "framer-motion";
-import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, ArrowRight, MapPin } from "lucide-react";
+import { Sparkles, Eye, Shield, Heart, Award, GraduationCap, Users, Wrench, Radio, Zap, Target, Rocket, UserPlus, Palette, Handshake, MapPin } from "lucide-react";
+import { useState } from "react";
+
+const builderPathData = [
+  {
+    title: "What to learn",
+    subtitle: "How to focus when cloud feels overwhelming",
+    bullets: ["compute", "networking", "security", "automation"],
+    intro: "Cloud can feel endless — AWS, Azure, GCP services, Kubernetes, DevOps tools, AI infrastructure. Instead of trying to learn everything, focus on understanding how infrastructure layers work together. Start with the foundations:",
+    outro: "Once these layers make sense, the rest of the ecosystem becomes much easier to navigate.",
+  },
+  {
+    title: "What really matters",
+    subtitle: "The difference between learning and building",
+    bullets: ["design cloud architectures", "analyze existing infrastructure", "automate infrastructure workflows", "identify security, compliance, and reliability risks"],
+    intro: "Certifications help you understand concepts. But what really matters is learning how infrastructure systems behave in real environments. You grow when you start to:",
+    outro: "This is where learning becomes engineering.",
+  },
+  {
+    title: "How to stand out",
+    subtitle: "Visibility turns learning into opportunity",
+    bullets: ["infrastructure architectures", "infrastructure code", "cloud experiments", "lessons from real systems"],
+    intro: "Many talented builders stay invisible. They learn quietly but never show what they build. Standing out comes from sharing your work:",
+    outro: "Sharing what you build — not just the certifications you earn — is what creates visibility and opportunity.",
+  },
+];
+
+const BuilderPathCards = () => {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  return (
+    <div className="md:col-span-2 flex flex-col gap-3">
+      {builderPathData.map((item, i) => (
+        <motion.div
+          key={item.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 + i * 0.1 }}
+          onMouseEnter={() => setHoveredIdx(i)}
+          onMouseLeave={() => setHoveredIdx(null)}
+          className={`card-premium gradient-border-card !p-5 cursor-default transition-all duration-200 ${
+            hoveredIdx === i ? "-translate-y-1 shadow-[0_12px_40px_hsl(var(--primary)/0.12)]" : ""
+          } ${hoveredIdx !== null && hoveredIdx !== i ? "opacity-60" : "opacity-100"}`}
+        >
+          <div className="flex items-center gap-4">
+            <div className={`w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+              hoveredIdx === i ? "bg-primary/20" : ""
+            }`}>
+              <span className={`text-primary font-display font-bold transition-all duration-200 ${
+                hoveredIdx === i ? "brightness-125" : ""
+              }`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <div>
+              <span className="text-foreground font-display font-semibold">{item.title}</span>
+              <p className="text-xs text-muted-foreground mt-0.5">{item.subtitle}</p>
+            </div>
+          </div>
+
+          {/* Expanded content on hover */}
+          <motion.div
+            initial={false}
+            animate={{
+              height: hoveredIdx === i ? "auto" : 0,
+              opacity: hoveredIdx === i ? 1 : 0,
+            }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 space-y-2 text-xs text-muted-foreground leading-relaxed">
+              <p>{item.intro}</p>
+              <ul className="space-y-1 pl-1">
+                {item.bullets.map((b, bi) => (
+                  <motion.li
+                    key={b}
+                    initial={false}
+                    animate={{
+                      opacity: hoveredIdx === i ? 1 : 0.5,
+                      y: hoveredIdx === i ? 0 : 2,
+                    }}
+                    transition={{ delay: hoveredIdx === i ? bi * 0.04 : 0, duration: 0.2 }}
+                    className="flex items-start gap-2"
+                  >
+                    <span className="text-primary mt-0.5">•</span>
+                    <span>{b}</span>
+                  </motion.li>
+                ))}
+              </ul>
+              <p className="text-foreground/80 font-medium">{item.outro}</p>
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 const audienceCards = [
 { icon: Rocket, title: "Transitioning into Cloud", desc: "Starting your cloud journey with real guidance and community support." },
@@ -222,45 +319,28 @@ const Index = () => {
       </section>
 
       {/* ─── PAIN BAND ─── */}
-      <motion.section {...fadeUp} className="relative band-gradient-warm">
+      <motion.section {...fadeUp} className="relative band-gradient-warm pb-8">
         <div className="container py-24 md:py-32">
           <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-12 items-center">
             <div className="md:col-span-3">
               <span className="badge-glow mb-6 inline-flex">The Reality</span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                You are <span className="gradient-text">not</span> the problem
+                You are <span className="gradient-text font-extrabold brightness-125">not</span> the problem
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-base max-w-[520px]">
                 <p>If learning cloud feels slow, confusing, or lonely, it does not mean you lack talent.</p>
-                <p>Many women are simply trying to learn in isolation, without enough support, visibility, or guidance.</p>
-                <p>The market keeps getting more competitive. More people. More identical job titles. More noise.</p>
+                <p>Many women are simply trying to learn in isolation — without enough visibility, support, or guidance.</p>
+                <p>The market keeps getting louder. More people. More identical job titles.</p>
                 <p className="text-foreground font-medium text-lg">Build with Her exists to change that.</p>
               </div>
             </div>
-            <div className="md:col-span-2 flex flex-col gap-3">
-              {["What to learn", "What really matters", "How to stand out"].map((item, i) =>
-              <motion.div
-                key={item}
-                {...stagger}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                className="card-premium gradient-border-card flex items-center gap-4 !p-5">
-                
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-display font-bold">{i + 1}</span>
-                  </div>
-                  <div>
-                    <span className="text-foreground font-display font-semibold">{item}</span>
-                    <p className="text-xs text-muted-foreground mt-0.5">The question every builder faces</p>
-                  </div>
-                </motion.div>
-              )}
-            </div>
+            <BuilderPathCards />
           </div>
         </div>
       </motion.section>
 
       {/* ─── WHY THIS MATTERS — SPLIT ─── */}
-      <motion.section {...fadeUp} className="section-glow relative overflow-hidden">
+      <motion.section {...fadeUp} className="section-glow relative overflow-hidden mt-12 md:mt-16">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] orb-blue rounded-full pointer-events-none opacity-50" />
         <div className="container py-24 md:py-32">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
