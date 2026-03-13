@@ -329,7 +329,7 @@ const Index = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-base max-w-[520px]">
                 <p>If learning cloud feels slow, confusing, or lonely, it does not mean you lack talent.</p>
-                <p>Many women are simply trying to learn in isolation — without enough visibility, support, or guidance.</p>
+                <p>Many women are simply trying to learn in isolation, without enough visibility, support, or guidance.</p>
                 <p>The market keeps getting louder. More people. More identical job titles.</p>
                 <p className="text-foreground font-medium text-lg">Build with Her exists to change that.</p>
               </div>
