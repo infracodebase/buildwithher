@@ -169,10 +169,10 @@ const Events = () =>
           {upcomingEvents.map((evt) => (
             <div
               key={evt.title}
-              className="group relative rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/10"
+              className="group relative rounded-2xl overflow-hidden aspect-[3/4] transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/15"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted to-secondary" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted to-secondary transition-all duration-300 group-hover:scale-105 group-hover:brightness-[0.9]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background from-5% via-background/50 via-40% to-transparent opacity-85 group-hover:opacity-95 transition-opacity duration-200" />
               <div className="absolute top-3 left-3 flex items-center gap-2">
                 <span className="text-[10px] font-medium text-primary-foreground bg-primary/90 px-2 py-0.5 rounded">
                   {evt.format}
