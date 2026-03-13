@@ -142,13 +142,15 @@ const GlobalMap = () => {
     <div className="space-y-10">
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
-        {stats.map(({ icon: Icon, value, label }) => {}
-
-
-
-
-
-        )}
+{stats.map(({ icon: Icon, value, label }) => (
+          <div key={label} className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Icon className="w-5 h-5 text-primary" />
+              <span className="text-2xl font-display font-bold text-foreground">{value}</span>
+            </div>
+            <p className="text-xs text-muted-foreground">{label}</p>
+          </div>
+        ))}
       </div>
 
       {/* Map */}
