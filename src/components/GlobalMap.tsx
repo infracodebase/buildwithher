@@ -235,16 +235,7 @@ const GlobalMap = () => {
         </div>
 
         {/* Bottom info */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-4">
-          <div>
-            <span className="font-display font-bold text-xl text-foreground">78</span>
-            <span className="text-xs text-muted-foreground ml-1">Members</span>
-          </div>
-          <div>
-            <span className="font-display font-bold text-xl text-foreground">12</span>
-            <span className="text-xs text-muted-foreground ml-1">Countries</span>
-          </div>
-        </div>
+        <MapBottomStats />
 
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-muted-foreground/50">
           Scroll or + to zoom · Hover markers for details
