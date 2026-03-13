@@ -6,7 +6,7 @@ import GradientButton from "@/components/GradientButton";
 import SessionCard from "@/components/SessionCard";
 import { pastSessions, upcomingSessions } from "@/data/sessionsData";
 import { motion } from "framer-motion";
-import { Radio, Wrench, MessageCircle, Mic, Globe, Calendar, Zap } from "lucide-react";
+import { Globe, Calendar, Zap } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -20,37 +20,6 @@ type SeriesFilter = (typeof SERIES_FILTERS)[number];
 
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
-
-const eventTypes = [
-  {
-    icon: Radio,
-    title: "Webinars",
-    desc: "Monthly sessions with real practitioners sharing technical lessons and career journeys.",
-    details: ["Cloud architecture", "AI-assisted engineering", "Security & compliance", "Career perspectives"],
-    status: "Monthly",
-  },
-  {
-    icon: Wrench,
-    title: "Workshops",
-    desc: "Hands-on collaborative sessions where you build real infrastructure alongside other women.",
-    details: ["Kubernetes deployments", "Landing zones", "Terraform modules", "Secure design"],
-    status: "Quarterly",
-  },
-  {
-    icon: MessageCircle,
-    title: "Community Conversations",
-    desc: "Open, honest discussions on topics that matter to women in cloud and infrastructure.",
-    details: ["Career pivots", "Impostor syndrome", "Emerging tools", "Infrastructure patterns"],
-    status: "Bi-weekly",
-  },
-  {
-    icon: Mic,
-    title: "Featured Speakers",
-    desc: "Women and allies sharing what they've learned. Real stories, real lessons, real encouragement.",
-    details: ["Transitioning into cloud", "Building confidence", "Standing out", "Leadership journeys"],
-    status: "Monthly",
-  },
-];
 
 const sessionPoints = [
   "Real architecture discussions",
