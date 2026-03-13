@@ -26,22 +26,6 @@ const upcomingEvents = [
     source: "Infracodebase",
     status: "Live Webinar",
     registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
-  },
-  {
-    title: "Terraform Landing Zones Workshop",
-    subtitle: "Build a reusable landing zone structure using Terraform with guided collaboration.",
-    speaker: "",
-    role: "",
-    source: "Infracodebase",
-    status: "Coming Soon"
-  },
-  {
-    title: "Women in Platform Engineering",
-    subtitle: "An open conversation about career paths, challenges, and opportunities in platform engineering.",
-    speaker: "",
-    role: "",
-    source: "Build with Her",
-    status: "Coming Soon"
   }
 ];
 
