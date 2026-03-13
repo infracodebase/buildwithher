@@ -84,7 +84,7 @@ const Events = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <PageHero title="Learn. Build. Grow." badge="Events">
-        <p>Events help you learn in public and connect with others who understand the journey.</p>
+        <p>Every week we share a technical lecture, an engineering conversation, and a platform update so builders can learn from real systems and grow together.</p>
       </PageHero>
 
       {/* ── Two-Layer Filters ── */}
