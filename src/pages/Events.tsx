@@ -246,7 +246,6 @@ const Events = () => {
                         alt={evt.title}
                         className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
                     ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-3">
