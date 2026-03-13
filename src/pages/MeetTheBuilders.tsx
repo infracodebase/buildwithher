@@ -14,6 +14,7 @@ import { useCommunityMetrics } from "@/hooks/useCommunityMetrics";
 
 const MeetTheBuilders = () => {
   const { data: allBuilders, isLoading } = useBuilders();
+  const { data: metrics } = useCommunityMetrics();
 
   const [filters, setFilters] = useState({
     cloudPlatforms: [] as string[],
