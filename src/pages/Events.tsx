@@ -26,6 +26,7 @@ const upcomingEvents = [
     source: "Infracodebase",
     status: "Live Webinar",
     registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
+  }
 ];
 
 const pastEvents = [
