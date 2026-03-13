@@ -149,15 +149,15 @@ const MeetTheBuilders = () => {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto mb-14">
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Users size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">78+</p>
+              <p className="font-display text-2xl font-bold text-foreground">{metrics ? `${metrics.builderCount}+` : "…"}</p>
               <p className="text-xs text-muted-foreground mt-1">Builders in the community</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
               <Globe size={20} className="mx-auto mb-2 text-primary" />
-              <p className="font-display text-2xl font-bold text-foreground">12</p>
+              <p className="font-display text-2xl font-bold text-foreground">{metrics ? metrics.countryCount : "…"}</p>
               <p className="text-xs text-muted-foreground mt-1">Countries represented</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
@@ -169,6 +169,11 @@ const MeetTheBuilders = () => {
               <TrendingUp size={20} className="mx-auto mb-2 text-primary" />
               <p className="font-display text-2xl font-bold text-foreground">Growing every week</p>
               <p className="text-xs text-muted-foreground mt-1">New builders joining the movement</p>
+            </div>
+            <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+              <Zap size={20} className="mx-auto mb-2 text-primary" />
+              <p className="font-display text-2xl font-bold text-foreground">{metrics ? metrics.newThisWeek : "…"}</p>
+              <p className="text-xs text-muted-foreground mt-1">New builders this week</p>
             </div>
           </div>
 
