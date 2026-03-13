@@ -146,16 +146,23 @@ const Events = () =>
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-{pastEvents.map((evt) =>
+          {pastEvents.map((evt) => (
             <div key={evt.title} className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
               <div className="relative aspect-video w-full overflow-hidden">
-                <iframe
-                  src={evt.embedUrl}
-                  title={evt.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                {evt.embedUrl ? (
+                  <iframe
+                    src={evt.embedUrl}
+                    title={evt.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                ) : evt.imageUrl ? (
+                  <img
+                    src={evt.imageUrl}
+                    alt={evt.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-200 ease-out group-hover:brightness-[0.9] group-hover:scale-105" />
+                ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
               </div>
               <div className="p-6 flex flex-col flex-1">
@@ -165,16 +172,16 @@ const Events = () =>
                   </span>
                 </div>
                 <h3 className="font-display font-semibold text-foreground text-base mb-1 leading-snug">{evt.title}</h3>
-                {evt.subtitle &&
+                {evt.subtitle && (
                   <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.subtitle}</p>
-                }
+                )}
                 <div className="mt-auto pt-3 border-t border-border/40">
                   <p className="text-sm font-medium text-foreground">{evt.speaker}</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{evt.role}</p>
                 </div>
               </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </motion.section>
