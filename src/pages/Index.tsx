@@ -210,6 +210,118 @@ const homepageFeaturedOrder = [
 "maria-sivenkova",
 "karthika-k"];
 
+const roleCardsData = [
+  {
+    value: "Income",
+    sub: "Higher earning potential",
+    icon: "💰",
+    content: {
+      intro: "The people who design and run infrastructure often hold some of the highest-impact roles in technology.\n\nThese roles sit close to the systems that power entire companies.\n\nBut many women never receive clear pathways into these positions.\n\nWhen you step into infrastructure work, you gain access to opportunities such as:",
+      bullets: ["higher compensation", "stronger career mobility", "global demand for your skills", "the ability to choose where you work"],
+      outro: "Access to these roles can transform how your career grows over time."
+    }
+  },
+  {
+    value: "Influence",
+    sub: "Shape technical decisions",
+    icon: "⚡",
+    content: {
+      intro: "Infrastructure work gives you a voice in how systems are built.\n\nInstead of only implementing features, you influence how technology is designed across teams.\n\nThis means your perspective can shape decisions about:",
+      bullets: ["how platforms evolve", "how teams build and ship software", "how systems remain secure and reliable", "how engineering organizations scale"],
+      outro: "These decisions affect the direction of entire products and companies."
+    }
+  },
+  {
+    value: "Leadership",
+    sub: "Lead engineering teams",
+    icon: "🎯",
+    content: {
+      intro: "Infrastructure engineers often become the people others turn to when systems become complex.\n\nBecause you see how everything connects, you are naturally positioned to guide teams.\n\nOver time this opens paths such as:",
+      bullets: ["leading platform teams", "guiding architecture decisions", "mentoring other engineers", "shaping engineering culture"],
+      outro: "Leadership grows naturally when your work touches the foundation of how systems operate."
+    }
+  },
+  {
+    value: "Decision-making",
+    sub: "Build what matters",
+    icon: "🔑",
+    content: {
+      intro: "Infrastructure roles place you closer to the decisions that determine what gets built.\n\nYou are not just executing work, you help shape where engineering effort goes.\n\nYour perspective can influence:",
+      bullets: ["which systems scale first", "how reliability is prioritized", "where teams invest engineering time", "how technology supports real users"],
+      outro: "Being part of these decisions means your work shapes outcomes that matter."
+    }
+  }
+];
+
+const RoleCards = () => {
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
+  const activeIdx = expandedIdx ?? hoveredIdx;
+
+  return (
+    <div className="grid grid-cols-2 gap-4 self-center">
+      {roleCardsData.map((item, i) => {
+        const isExpanded = expandedIdx === i;
+        return (
+          <motion.div
+            key={item.value}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: 0.1 + i * 0.1 }}
+            className={`card-premium p-6 cursor-pointer transition-all duration-200 ${
+              hoveredIdx === i ? "-translate-y-1 border-[hsl(var(--primary)/0.4)] shadow-[0_12px_40px_hsl(var(--primary)/0.12)]" : ""
+            } ${activeIdx !== null && activeIdx !== i ? "opacity-60" : ""}`}
+            onClick={() => setExpandedIdx(isExpanded ? null : i)}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-display font-bold text-foreground text-lg">{item.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
+              </div>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              >
+                <ChevronDown className="w-5 h-5 text-muted-foreground/60" />
+              </motion.div>
+            </div>
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
+                    {item.content.intro.split("\n\n").map((p, pi) => (
+                      <p key={pi}>{p}</p>
+                    ))}
+                    <ul className="space-y-1.5 pl-1">
+                      {item.content.bullets.map((b, bi) => (
+                        <li key={bi} className="flex items-start gap-2">
+                          <span className="text-primary mt-0.5">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-foreground font-medium">{item.content.outro}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+
 
 const Index = () => {
   const featuredBuilders = homepageFeaturedOrder.
@@ -369,25 +481,7 @@ const Index = () => {
                 <p className="text-foreground font-medium">Build with Her exists to help change that reality.</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 self-center">
-              {[
-              { value: "Income", sub: "Higher earning potential", icon: "💰" },
-              { value: "Influence", sub: "Shape technical decisions", icon: "⚡" },
-              { value: "Leadership", sub: "Lead engineering teams", icon: "🎯" },
-              { value: "Decision-making", sub: "Build what matters", icon: "🔑" }].
-              map((item, i) =>
-              <motion.div
-                key={item.value}
-                {...stagger}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                className="card-premium p-6 group">
-                
-                  
-                  <p className="font-display font-bold text-foreground text-lg">{item.value}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
-                </motion.div>
-              )}
-            </div>
+            <RoleCards />
           </div>
         </div>
       </motion.section>
