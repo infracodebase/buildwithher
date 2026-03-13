@@ -18,6 +18,9 @@ const fadeUp = {
 const SERIES_FILTERS = ["All", "Build with Her", "Infracodebase"] as const;
 type SeriesFilter = (typeof SERIES_FILTERS)[number];
 
+const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
+type TypeFilter = (typeof TYPE_FILTERS)[number];
+
 const eventTypes = [
   {
     icon: Radio,
@@ -64,16 +67,18 @@ const stats = [
 ];
 
 const Events = () => {
-  const [activeFilter, setActiveFilter] = useState<SeriesFilter>("All");
+  const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>("All Types");
 
-  const filteredPast = useMemo(
-    () => (activeFilter === "All" ? pastSessions : pastSessions.filter((s) => s.source === activeFilter)),
-    [activeFilter]
-  );
-  const filteredUpcoming = useMemo(
-    () => (activeFilter === "All" ? upcomingSessions : upcomingSessions.filter((s) => s.source === activeFilter)),
-    [activeFilter]
-  );
+  const applyFilters = (sessions: typeof pastSessions) =>
+    sessions.filter(
+      (s) =>
+        (seriesFilter === "All" || s.source === seriesFilter) &&
+        (typeFilter === "All Types" || s.sessionType === typeFilter)
+    );
+
+  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter]);
+  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter]);
 
   return (
     <div className="min-h-screen bg-background">
