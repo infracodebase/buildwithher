@@ -81,6 +81,10 @@ const JoinTheBuilders = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!photoFile) {
+      setShowPhotoModal(true);
+      return;
+    }
     setGenerating(true);
     try {
       // Save to database
