@@ -13,24 +13,31 @@ const fadeUp = {
 };
 
 const upcomingEvents = [
-{
-  title: "Cloud Architecture Foundations",
-  format: "Live Webinar",
-  status: "Coming Soon",
-  desc: "A practical session covering cloud architecture patterns used in real production environments."
-},
-{
-  title: "Terraform Landing Zones Workshop",
-  format: "Hands-on Workshop",
-  status: "Coming Soon",
-  desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
-},
-{
-  title: "Women in Platform Engineering",
-  format: "Community Conversation",
-  status: "Coming Soon",
-  desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
-}];
+  {
+    title: "Building Self-Service, Secure, and Scalable Developer Platforms",
+    format: "Live Webinar",
+    status: "Live Webinar",
+    desc: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable:\n\n• self-service infrastructure for developers\n• security and compliance by default\n• standardized deployment workflows\n• clear visibility and ownership across systems\n\nWe'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
+    speakers: [
+      { name: "Lalit Kale", role: "Sr Cloud Architect" },
+      { name: "Tarak", role: "Co-Founder, Infracodebase" },
+      { name: "Justin", role: "Founder, Infracodebase" }
+    ],
+    registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
+  },
+  {
+    title: "Terraform Landing Zones Workshop",
+    format: "Hands-on Workshop",
+    status: "Coming Soon",
+    desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
+  },
+  {
+    title: "Women in Platform Engineering",
+    format: "Community Conversation",
+    status: "Coming Soon",
+    desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
+  }
+];
 
 
 const pastEvents = [
@@ -174,8 +181,8 @@ const Events = () =>
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {upcomingEvents.map((evt) =>
-        <div key={evt.title} className="card-premium p-7 group flex flex-col">
+          {upcomingEvents.map((evt) => (
+            <div key={evt.title} className="card-premium p-7 group flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                   {evt.format}
@@ -183,9 +190,29 @@ const Events = () =>
                 <span className="badge-glow !py-1 !px-3 text-[11px]">{evt.status}</span>
               </div>
               <h3 className="font-display font-semibold text-foreground text-lg mb-2 leading-snug">{evt.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{evt.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1 whitespace-pre-line">{evt.desc}</p>
+              {evt.speakers && (
+                <div className="mt-4 space-y-1">
+                  {evt.speakers.map((speaker) => (
+                    <div key={speaker.name} className="text-xs">
+                      <span className="font-medium text-foreground">{speaker.name}</span>
+                      <span className="text-muted-foreground"> — {speaker.role}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {evt.registerLink && (
+                <a
+                  href={evt.registerLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                >
+                  Register for the Webinar
+                </a>
+              )}
             </div>
-        )}
+          ))}
         </div>
       </div>
     </motion.section>
