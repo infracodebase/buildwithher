@@ -43,6 +43,14 @@ const upcomingEvents = [
 
 const pastEvents = [
 {
+  title: "Legal Background to Cloud Engineering: What It Really Takes",
+  subtitle: "A conversation exploring what it really takes to transition into cloud engineering from a legal background, and how skills from non-traditional paths can transfer into cloud and infrastructure careers.",
+  speaker: "Tarak",
+  role: "Co-Founder, Infracodebase",
+  imageUrl: "/images/legal_background_to_cloud.png",
+  source: "Build with Her"
+},
+{
   title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
   subtitle: "A conversation about non-linear career paths in technology, breaking into the industry, and rising into leadership roles in cloud and platform engineering.",
   speaker: "Shannon Eldridge-Kuehn",
