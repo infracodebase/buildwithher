@@ -72,10 +72,10 @@ const Events = () => {
               ))}
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              {stats.map(({ icon: Icon, label }) => (
-                <div key={label} className="stat-card flex items-center gap-3 px-6 py-4">
-                  <Icon className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{label}</span>
+              {stats.map((stat) => (
+                <div key={stat.label} className="stat-card flex items-center gap-3 px-6 py-4">
+                  {"icon" in stat && <stat.icon className="w-5 h-5 text-primary" />}
+                  <span className="text-sm font-medium text-foreground">{stat.label}</span>
                 </div>
               ))}
             </div>
