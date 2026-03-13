@@ -369,25 +369,7 @@ const Index = () => {
                 <p className="text-foreground font-medium">Build with Her exists to help change that reality.</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 self-center">
-              {[
-              { value: "Income", sub: "Higher earning potential", icon: "💰" },
-              { value: "Influence", sub: "Shape technical decisions", icon: "⚡" },
-              { value: "Leadership", sub: "Lead engineering teams", icon: "🎯" },
-              { value: "Decision-making", sub: "Build what matters", icon: "🔑" }].
-              map((item, i) =>
-              <motion.div
-                key={item.value}
-                {...stagger}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                className="card-premium p-6 group">
-                
-                  
-                  <p className="font-display font-bold text-foreground text-lg">{item.value}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
-                </motion.div>
-              )}
-            </div>
+            <RoleCards />
           </div>
         </div>
       </motion.section>
