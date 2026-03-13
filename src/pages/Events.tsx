@@ -13,24 +13,31 @@ const fadeUp = {
 };
 
 const upcomingEvents = [
-{
-  title: "Cloud Architecture Foundations",
-  format: "Live Webinar",
-  status: "Coming Soon",
-  desc: "A practical session covering cloud architecture patterns used in real production environments."
-},
-{
-  title: "Terraform Landing Zones Workshop",
-  format: "Hands-on Workshop",
-  status: "Coming Soon",
-  desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
-},
-{
-  title: "Women in Platform Engineering",
-  format: "Community Conversation",
-  status: "Coming Soon",
-  desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
-}];
+  {
+    title: "Building Self-Service, Secure, and Scalable Developer Platforms",
+    format: "Live Webinar",
+    status: "Live Webinar",
+    desc: "In this session, Lalit Kale (Sr Cloud Architect) joins Justin and Tarak to discuss how organizations are building platforms that enable:\n\n• self-service infrastructure for developers\n• security and compliance by default\n• standardized deployment workflows\n• clear visibility and ownership across systems\n\nWe'll also discuss how execution layers like Infracodebase help translate platform standards into governed, repeatable infrastructure workflows.",
+    speakers: [
+      { name: "Lalit Kale", role: "Sr Cloud Architect" },
+      { name: "Tarak", role: "Co-Founder, Infracodebase" },
+      { name: "Justin", role: "Founder, Infracodebase" }
+    ],
+    registerLink: "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true"
+  },
+  {
+    title: "Terraform Landing Zones Workshop",
+    format: "Hands-on Workshop",
+    status: "Coming Soon",
+    desc: "Build a reusable landing zone structure using Terraform with guided collaboration."
+  },
+  {
+    title: "Women in Platform Engineering",
+    format: "Community Conversation",
+    status: "Coming Soon",
+    desc: "An open conversation about career paths, challenges, and opportunities in platform engineering."
+  }
+];
 
 
 const pastEvents = [
