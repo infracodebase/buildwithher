@@ -634,6 +634,37 @@ https://buildwithher.dev`;
       </section>
 
       <Footer />
+
+      <AlertDialog open={showPhotoModal} onOpenChange={setShowPhotoModal}>
+        <AlertDialogContent className="sm:max-w-md bg-card border-border/50 rounded-2xl">
+          <AlertDialogHeader>
+            <div className="flex justify-center mb-2">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Camera className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+            <AlertDialogTitle className="text-center font-display text-xl font-bold text-foreground">
+              Add Your Photo to Be Seen by the Community
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-center text-sm text-muted-foreground leading-relaxed">
+              Your Builder Card is your place in the Build With Her community. Adding a profile photo helps other builders recognize you, connect with you, and celebrate the work you're doing.
+              <br /><br />
+              Profiles with photos are more likely to be discovered, shared, and remembered. Upload a photo to finalize your Builder Card, be recognized by other builders, and start growing your presence in the community.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="sm:justify-center">
+            <AlertDialogAction
+              onClick={() => {
+                setShowPhotoModal(false);
+                setTimeout(() => fileInputRef.current?.click(), 200);
+              }}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl px-6"
+            >
+              Upload Photo
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
