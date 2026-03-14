@@ -6,52 +6,52 @@ import { motion } from "framer-motion";
 import { Users, GraduationCap, Building2, Network, ExternalLink } from "lucide-react";
 
 const partnerTypes = [
-  {
-    icon: Users,
-    title: "Community Partnerships",
-    desc: "Co-host events, share resources, and amplify women in cloud and infrastructure. Together, we can reach more women who are building in silence.",
-    cta: "Become a Partner",
-  },
-  {
-    icon: GraduationCap,
-    title: "Universities",
-    desc: "Help students discover cloud, AI, and infrastructure early. We work with universities to introduce women to real-world cloud practices.",
-    cta: "Connect Your University",
-  },
-  {
-    icon: Building2,
-    title: "Companies",
-    desc: "From sponsoring workshops to providing mentorship, there are meaningful ways to support diversity in cloud and infrastructure.",
-    cta: "Sponsor a Program",
-  },
-  {
-    icon: Network,
-    title: "Ecosystem Partners",
-    desc: "Cloud providers, training platforms, and developer communities. Let's build stronger access together.",
-    cta: "Join the Ecosystem",
-  },
-];
+{
+  icon: Users,
+  title: "Community Partnerships",
+  desc: "Co-host events, share resources, and amplify women in cloud and infrastructure. Together, we can reach more women who are building in silence.",
+  cta: "Become a Partner"
+},
+{
+  icon: GraduationCap,
+  title: "Universities",
+  desc: "Help students discover cloud, AI, and infrastructure early. We work with universities to introduce women to real-world cloud practices.",
+  cta: "Connect Your University"
+},
+{
+  icon: Building2,
+  title: "Companies",
+  desc: "From sponsoring workshops to providing mentorship, there are meaningful ways to support diversity in cloud and infrastructure.",
+  cta: "Sponsor a Program"
+},
+{
+  icon: Network,
+  title: "Ecosystem Partners",
+  desc: "Cloud providers, training platforms, and developer communities. Let's build stronger access together.",
+  cta: "Join the Ecosystem"
+}];
+
 
 const communityPartners = [
-  {
-    name: "She Builds Tech",
-    type: "Community Partner",
-    description:
-      "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
-    link: "https://www.linkedin.com/company/she-builds-tech/",
-    cta: "Visit Community",
-  },
-];
+{
+  name: "She Builds Tech",
+  type: "Community Partner",
+  description:
+  "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
+  link: "https://www.linkedin.com/company/she-builds-tech/",
+  cta: "Visit Community"
+}];
+
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-80px" as const },
-  transition: { duration: 0.6 },
+  transition: { duration: 0.6 }
 };
 
-const Partners = () => (
-  <div className="min-h-screen bg-background">
+const Partners = () =>
+<div className="min-h-screen bg-background">
     <Navbar />
     <PageHero title="Let's build more access together" badge="Partners">
       <p>If more women are going to access cloud and infrastructure opportunities, we need stronger ecosystems around them.</p>
@@ -60,29 +60,29 @@ const Partners = () => (
     {/* Trust Signal */}
     <motion.section {...fadeUp} className="pb-8">
       <div className="container">
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium">
-            Trusted by communities including
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <a
-              href="https://www.linkedin.com/company/she-builds-tech/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="badge-glow hover:border-primary/40 transition-colors"
-            >
-              She Builds Tech
-            </a>
-          </div>
-        </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
       </div>
     </motion.section>
 
     <motion.section {...fadeUp} className="section-glow">
       <div className="container py-24 md:py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-          {partnerTypes.map(({ icon: Icon, title, desc, cta }) => (
-            <div key={title} className="card-premium p-8 group flex flex-col">
+          {partnerTypes.map(({ icon: Icon, title, desc, cta }) =>
+        <div key={title} className="card-premium p-8 group flex flex-col">
               <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <Icon className="w-5 h-5 text-primary" />
               </div>
@@ -90,7 +90,7 @@ const Partners = () => (
               <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{desc}</p>
               <span className="text-sm text-primary font-display font-medium">{cta} →</span>
             </div>
-          ))}
+        )}
         </div>
       </div>
     </motion.section>
@@ -111,21 +111,21 @@ const Partners = () => (
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {communityPartners.map(({ name, type, description, link, cta }) => (
-            <div key={name} className="card-premium p-8 group flex flex-col">
+          {communityPartners.map(({ name, type, description, link, cta }) =>
+        <div key={name} className="card-premium p-8 group flex flex-col">
               <span className="badge-glow text-[11px] self-start mb-5">{type}</span>
               <h3 className="font-display font-semibold text-foreground text-lg mb-3">{name}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{description}</p>
               <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-primary font-display font-medium hover:underline"
-              >
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-primary font-display font-medium hover:underline">
+            
                 {cta} <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
-          ))}
+        )}
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-10">
@@ -146,7 +146,7 @@ const Partners = () => (
     </section>
 
     <Footer />
-  </div>
-);
+  </div>;
+
 
 export default Partners;
