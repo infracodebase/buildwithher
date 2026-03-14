@@ -45,8 +45,8 @@ const GlobalMap = ({ builders }: GlobalMapProps) => {
       .filter(Boolean) as { country: string; names: string[]; lat: number; lng: number; count: number }[];
   }, [builders]);
 
-  const totalMembers = clusters.reduce((s, c) => s + c.count, 0) || 78;
-  const totalCountries = clusters.length || 12;
+  const totalMembers = 78;
+  const totalCountries = 12;
 
   return (
     <div className="w-full max-w-5xl mx-auto">
