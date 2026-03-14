@@ -237,9 +237,8 @@ const BuilderProfile = () => {
                 <div className="space-y-2.5">
                   {isOwner && (
                     <Button
-                      variant="outline"
                       size="sm"
-                      className="w-full gap-2 rounded-xl"
+                      className="w-full gap-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20 transition-all duration-200"
                       onClick={() => setEditOpen(true)}
                     >
                       <Pencil size={14} />
