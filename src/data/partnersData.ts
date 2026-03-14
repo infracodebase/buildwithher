@@ -28,7 +28,7 @@ export const partners: PartnerData[] = [
     name: "She Builds Tech",
     description:
       "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
-    tags: ["Mentorship", "Learning Initiatives", "Community Support"],
+    tags: ["Mentorship", "Learning Initiatives"],
     logoUrl: "/images/she_builds_tech.jpeg",
     cta_label: "Visit Community",
     cta_url: "https://www.linkedin.com/company/she-builds-tech/",

@@ -108,10 +108,11 @@ const Partners = () => {
         <p>If more women are going to access cloud and infrastructure opportunities, we need stronger ecosystems around them.</p>
       </PageHero>
 
-      {/* Trust Signal */}
-      <motion.section {...fadeUp} className="pb-8">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* ── Our Network (first major section) ── */}
+      <motion.section {...fadeUp} className="section-glow">
+        <div className="container py-24 md:py-32">
+          {/* Trusted-by strip */}
+          <div className="max-w-3xl mx-auto text-center mb-16">
             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Trusted by communities including</p>
             <a
               href="https://www.linkedin.com/company/she-builds-tech/"
@@ -122,11 +123,8 @@ const Partners = () => {
               She Builds Tech <ExternalLink className="w-3 h-3" />
             </a>
           </div>
-        </div>
-      </motion.section>
 
-      <motion.section {...fadeUp} className="section-glow">
-        <div className="container py-24 md:py-32">
+          {/* Partnership pathway cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
             {partnerTypes.map(({ icon: Icon, title, desc, cta, collab }) => (
               <div key={title} className="card-premium p-8 group flex flex-col">
