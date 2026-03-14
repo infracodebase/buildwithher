@@ -1,10 +1,12 @@
+import { useState, useMemo, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import GradientButton from "@/components/GradientButton";
-import { motion } from "framer-motion";
+import PartnerCard from "@/components/PartnerCard";
+import { partners, PARTNER_CATEGORIES, type PartnerCategory } from "@/data/partnersData";
+import { motion, AnimatePresence } from "framer-motion";
 import { Users, GraduationCap, Building2, Network, ExternalLink } from "lucide-react";
-import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
