@@ -59,16 +59,6 @@ const partnerTypes: {
   },
 ];
 
-const communityPartners = [
-  {
-    name: "She Builds Tech",
-    type: "Community Partner",
-    description:
-      "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
-    link: "https://www.linkedin.com/company/she-builds-tech/",
-    cta: "Visit Community",
-  },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
