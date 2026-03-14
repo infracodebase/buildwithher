@@ -17,6 +17,7 @@ import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
 import Resources from "./pages/Resources";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/partners" element={<Partners />} />
             <Route path="/manifest" element={<Manifest />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="/builders/:slug" element={<BuilderProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

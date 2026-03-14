@@ -1,28 +1,37 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check } from "lucide-react";
+import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil } from "lucide-react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
+import { useAuth } from "@/hooks/useAuth";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import EditProfileModal from "@/components/EditProfileModal";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useQueryClient } from "@tanstack/react-query";
 
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { data: allBuilders, isLoading } = useBuilders();
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
   const builder = allBuilders?.find((b) => b.slug === slug);
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   const profileUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  // Check if current user owns this profile
+  const isOwner = !!(user && builder?.userId && user.id === builder.userId);
 
   const handleCopyLink = async () => {
     await navigator.clipboard.writeText(profileUrl);
@@ -64,6 +73,10 @@ const BuilderProfile = () => {
     navigate("/join-the-builders");
   };
 
+  const handleProfileSaved = () => {
+    queryClient.invalidateQueries({ queryKey: ["builders"] });
+  };
+
   // Derive joined year from createdAt if available
   const joinedYear = builder?.createdAt
     ? new Date(builder.createdAt).getFullYear()
@@ -96,6 +109,8 @@ const BuilderProfile = () => {
     );
   }
 
+  const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-banner.png";
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -105,14 +120,35 @@ const BuilderProfile = () => {
           {/* Back link */}
           <Link
             to="/meet-the-builders"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-6"
           >
             <ArrowLeft size={16} />
             Back to Builder Wall
           </Link>
 
+          {/* Banner */}
+          <div className="relative rounded-2xl overflow-hidden mb-8" style={{ height: "clamp(180px, 20vw, 240px)" }}>
+            <img
+              src={bannerUrl}
+              alt="Profile banner"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            {isOwner && (
+              <Button
+                size="sm"
+                variant="secondary"
+                className="absolute top-4 right-4 gap-1.5 rounded-xl bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-background"
+                onClick={() => setEditOpen(true)}
+              >
+                <Pencil size={14} />
+                Edit Profile
+              </Button>
+            )}
+          </div>
+
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 -mt-16 relative z-10">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -181,6 +217,18 @@ const BuilderProfile = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-2.5">
+                  {isOwner && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full gap-2 rounded-xl"
+                      onClick={() => setEditOpen(true)}
+                    >
+                      <Pencil size={14} />
+                      Edit Profile
+                    </Button>
+                  )}
+
                   <Button 
                     asChild 
                     className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" 
@@ -287,11 +335,7 @@ const BuilderProfile = () => {
                   Builder Story
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  I am currently training in Cloud Computing and DevOps Engineering. I want to build the infrastructure that holds the data, secures the apps, and scales the business.
-
-So, what do you get when you hire me?
-
-You get a leader who understands the bottom line. You get a tech-savvy operator who can translate between human teams and AI tools. And you get a future engineer who is building the technical skills to scale your infrastructure.
+                  {builder.bio || "I am currently training in Cloud Computing and DevOps Engineering. I want to build the infrastructure that holds the data, secures the apps, and scales the business.\n\nSo, what do you get when you hire me?\n\nYou get a leader who understands the bottom line. You get a tech-savvy operator who can translate between human teams and AI tools. And you get a future engineer who is building the technical skills to scale your infrastructure."}
                 </p>
               </section>
 
@@ -387,6 +431,30 @@ You get a leader who understands the bottom line. You get a tech-savvy operator 
           </div>
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      {isOwner && builder.dbId && (
+        <EditProfileModal
+          open={editOpen}
+          onClose={() => setEditOpen(false)}
+          onSaved={handleProfileSaved}
+          builderId={builder.dbId}
+          initialData={{
+            name: builder.name,
+            role: builder.role,
+            country: builder.country,
+            photo_url: builder.photo,
+            banner_image_url: builder.bannerImageUrl,
+            cloud_focus: builder.tags,
+            builder_story: builder.bio,
+            what_building: builder.building?.join("\n"),
+            statement: builder.statement,
+            linkedin: builder.linkedin,
+            github: builder.github,
+            portfolio: builder.website,
+          }}
+        />
+      )}
 
       <Footer />
     </div>
