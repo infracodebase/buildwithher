@@ -127,19 +127,37 @@ const BuilderProfile = () => {
           </Link>
 
           {/* Banner */}
-          <div className="relative rounded-2xl overflow-hidden mb-8" style={{ height: "clamp(180px, 20vw, 240px)" }}>
+          <div
+            className={`relative rounded-2xl overflow-hidden mb-8 group ${isOwner ? "cursor-pointer" : ""}`}
+            style={{ height: "clamp(180px, 20vw, 240px)" }}
+            onClick={isOwner ? () => setEditOpen(true) : undefined}
+          >
             <img
               src={bannerUrl}
               alt="Profile banner"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+
+            {/* Owner: banner hover affordance */}
+            {isOwner && (
+              <div className="absolute inset-0 bg-background/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <Camera size={18} />
+                  Change banner
+                </div>
+              </div>
+            )}
+
+            {/* Edit Profile button */}
             {isOwner && (
               <Button
                 size="sm"
-                variant="secondary"
-                className="absolute top-4 right-4 gap-1.5 rounded-xl bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-background"
-                onClick={() => setEditOpen(true)}
+                className="absolute top-4 right-4 gap-2 rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 font-medium"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setEditOpen(true);
+                }}
               >
                 <Pencil size={14} />
                 Edit Profile
