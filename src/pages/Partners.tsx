@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import GradientButton from "@/components/GradientButton";
 import { motion } from "framer-motion";
-import { Users, GraduationCap, Building2, Network } from "lucide-react";
+import { Users, GraduationCap, Building2, Network, ExternalLink } from "lucide-react";
 
 const partnerTypes = [
   {
@@ -32,6 +32,17 @@ const partnerTypes = [
   },
 ];
 
+const communityPartners = [
+  {
+    name: "She Builds Tech",
+    type: "Community Partner",
+    description:
+      "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
+    link: "https://www.linkedin.com/company/she-builds-tech/",
+    cta: "Visit Community",
+  },
+];
+
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -45,6 +56,27 @@ const Partners = () => (
     <PageHero title="Let's build more access together" badge="Partners">
       <p>If more women are going to access cloud and infrastructure opportunities, we need stronger ecosystems around them.</p>
     </PageHero>
+
+    {/* Trust Signal */}
+    <motion.section {...fadeUp} className="pb-8">
+      <div className="container">
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium">
+            Trusted by communities including
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a
+              href="https://www.linkedin.com/company/she-builds-tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="badge-glow hover:border-primary/40 transition-colors"
+            >
+              She Builds Tech
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.section>
 
     <motion.section {...fadeUp} className="section-glow">
       <div className="container py-24 md:py-32">
@@ -60,6 +92,45 @@ const Partners = () => (
             </div>
           ))}
         </div>
+      </div>
+    </motion.section>
+
+    {/* Community Partners */}
+    <motion.section {...fadeUp} className="section-glow">
+      <div className="container py-24 md:py-32">
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-5">
+            Community Partners
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            Build With Her collaborates with communities that are helping more women access opportunities in cloud, infrastructure, AI, and modern engineering roles.
+          </p>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed mt-3">
+            These communities share our mission to support women who are building technical careers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {communityPartners.map(({ name, type, description, link, cta }) => (
+            <div key={name} className="card-premium p-8 group flex flex-col">
+              <span className="badge-glow text-[11px] self-start mb-5">{type}</span>
+              <h3 className="font-display font-semibold text-foreground text-lg mb-3">{name}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{description}</p>
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-primary font-display font-medium hover:underline"
+              >
+                {cta} <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-sm text-muted-foreground mt-10">
+          More community partnerships will be announced as the Build With Her ecosystem grows.
+        </p>
       </div>
     </motion.section>
 
