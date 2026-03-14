@@ -151,7 +151,7 @@ const BuilderProfile = () => {
           </div>
 
           {/* Spacer + owner action row */}
-          <div className="mt-6 md:mt-10 mb-6 flex items-center justify-between">
+          <div className="mt-4 md:mt-6 mb-4 flex items-center justify-between">
             <div />
             {isOwner && (
               <Button
