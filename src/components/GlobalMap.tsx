@@ -66,7 +66,7 @@ const GlobalMap = ({ builders }: GlobalMapProps) => {
           style={{ background: "#aad3df" }}
         >
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {clusters.map((c) => (
             <CircleMarker
