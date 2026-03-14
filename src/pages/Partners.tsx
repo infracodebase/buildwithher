@@ -6,7 +6,7 @@ import GradientButton from "@/components/GradientButton";
 import PartnerCard from "@/components/PartnerCard";
 import { partners, PARTNER_CATEGORIES, type PartnerCategory } from "@/data/partnersData";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, GraduationCap, Building2, Network, ExternalLink } from "lucide-react";
+import { Users, GraduationCap, Building2, Network } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -59,7 +59,6 @@ const partnerTypes: {
   },
 ];
 
-
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -108,44 +107,7 @@ const Partners = () => {
         <p>If more women are going to access cloud and infrastructure opportunities, we need stronger ecosystems around them.</p>
       </PageHero>
 
-      {/* ── Our Network (first major section) ── */}
-      <motion.section {...fadeUp} className="section-glow">
-        <div className="container py-24 md:py-32">
-          {/* Trusted-by strip */}
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Trusted by communities including</p>
-            <a
-              href="https://www.linkedin.com/company/she-builds-tech/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="badge-glow text-sm inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-            >
-              She Builds Tech <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-
-          {/* Partnership pathway cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {partnerTypes.map(({ icon: Icon, title, desc, cta, collab }) => (
-              <div key={title} className="card-premium p-8 group flex flex-col">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="font-display font-semibold text-foreground text-lg mb-3">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{desc}</p>
-                <button
-                  onClick={() => scrollToForm(collab)}
-                  className="text-sm text-primary font-display font-medium text-left hover:underline transition-colors cursor-pointer"
-                >
-                  {cta} →
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ── Partner Directory ── */}
+      {/* ── Section 1: Partners Building With Us ── */}
       <motion.section {...fadeUp} className="section-glow">
         <div className="container py-24 md:py-32">
           <div className="max-w-3xl mx-auto text-center mb-14">
@@ -158,7 +120,7 @@ const Partners = () => {
             </p>
           </div>
 
-          {/* Filters — same pattern as Events page */}
+          {/* Filters */}
           <div className="max-w-2xl mx-auto mb-10">
             <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
               <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Filter</span>
@@ -210,7 +172,36 @@ const Partners = () => {
         </div>
       </motion.section>
 
-      {/* Partner Inquiry Form */}
+      {/* ── Section 2: Partnership Pathways ── */}
+      <motion.section {...fadeUp} className="section-glow">
+        <div className="container py-24 md:py-32">
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-5">
+              Partnership Pathways
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+            {partnerTypes.map(({ icon: Icon, title, desc, cta, collab }) => (
+              <div key={title} className="card-premium p-8 group flex flex-col">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-display font-semibold text-foreground text-lg mb-3">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{desc}</p>
+                <button
+                  onClick={() => scrollToForm(collab)}
+                  className="text-sm text-primary font-display font-medium text-left hover:underline transition-colors cursor-pointer"
+                >
+                  {cta} →
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ── Section 3: Partner Inquiry Form ── */}
       <motion.section {...fadeUp} className="section-glow" id="partner-form" ref={formRef}>
         <div className="container py-24 md:py-32">
           <div className="max-w-2xl mx-auto">
@@ -282,17 +273,6 @@ const Partners = () => {
           </div>
         </div>
       </motion.section>
-
-      {/* CTA Band */}
-      <section className="relative cta-band section-glow">
-        <div className="container py-28 md:py-36">
-          <motion.div {...fadeUp} className="max-w-2xl mx-auto text-center">
-            <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6">Partner with Build with Her</h2>
-            <p className="text-muted-foreground text-lg mb-10">Let's create more access, more visibility, and more opportunity for women in cloud and infrastructure.</p>
-            <GradientButton to="/community" size="lg" icon>Get in Touch</GradientButton>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
     </div>

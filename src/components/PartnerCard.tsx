@@ -1,28 +1,27 @@
-import { ExternalLink, Users } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { PartnerData } from "@/data/partnersData";
 
 const PartnerCard = ({ partner }: { partner: PartnerData }) => {
   return (
     <div className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
-      {/* Visual header / logo area */}
-      <div className="relative w-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent py-10 px-8 flex flex-col items-center justify-center overflow-hidden">
+      {/* Full-width media header */}
+      <div className="relative w-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
-        <div className="relative z-10 flex flex-col items-center gap-3">
+        <div className="relative z-10 flex flex-col items-center justify-center p-6" style={{ minHeight: '168px' }}>
           {partner.logoUrl ? (
-            <div className="w-20 h-20 rounded-2xl border border-primary/20 overflow-hidden flex items-center justify-center bg-card">
-              <img
-                src={partner.logoUrl}
-                alt={`${partner.name} logo`}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={partner.logoUrl}
+              alt={`${partner.name} logo`}
+              className="w-auto object-contain"
+              style={{ maxHeight: '120px' }}
+            />
           ) : (
             <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <Users className="w-9 h-9 text-primary" />
+              <span className="text-2xl font-bold text-primary">{partner.name.charAt(0)}</span>
             </div>
           )}
           {partner.featuredLabel && (
-            <span className="text-[10px] font-medium uppercase tracking-widest text-primary/70">
+            <span className="mt-3 text-[10px] font-medium uppercase tracking-widest text-primary/70">
               {partner.featuredLabel}
             </span>
           )}
