@@ -170,7 +170,7 @@ const MeetTheBuilders = () => {
             </div>
           </div>
 
-          <GlobalMap />
+          <GlobalMap builders={builders} />
         </div>
       </motion.section>
 
