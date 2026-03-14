@@ -50,7 +50,7 @@ function dbRowToProfile(row: {
     slug: row.slug || row.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
     github: row.github || undefined,
     website: row.portfolio || undefined,
-    building: row.what_building ? [row.what_building] : undefined,
+    building: row.what_building ? row.what_building.split("\n").filter(line => line.trim()) : undefined,
     cloudPlatforms: row.cloud_focus || undefined,
     createdAt: row.created_at,
     userId: row.user_id || undefined,
