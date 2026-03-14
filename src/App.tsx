@@ -17,6 +17,7 @@ import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
 import Resources from "./pages/Resources";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
