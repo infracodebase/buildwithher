@@ -226,7 +226,7 @@ const EditProfileModal = ({
   };
 
   const currentBanner =
-    bannerPreview || "/images/build-with-her-banner.png";
+    bannerPreview || "/images/build-with-her-background.png";
 
   return (
     <Dialog open={open} onOpenChange={onClose}>

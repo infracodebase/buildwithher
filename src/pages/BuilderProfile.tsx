@@ -109,7 +109,7 @@ const BuilderProfile = () => {
     );
   }
 
-  const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-banner.png";
+  const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-background.png";
 
   return (
     <div className="min-h-screen bg-background">
