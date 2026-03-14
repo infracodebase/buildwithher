@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil } from "lucide-react";
+import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil, Camera } from "lucide-react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
