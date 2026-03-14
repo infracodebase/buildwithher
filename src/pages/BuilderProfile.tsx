@@ -319,13 +319,15 @@ const BuilderProfile = () => {
                   <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
                 </div>
 
-                {/* Primary CTA */}
-                <button
-                  onClick={handleCreateBuilderCard}
-                  className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-[hsl(var(--gradient-blue))] via-[hsl(var(--gradient-green))] to-[hsl(var(--gradient-yellow))] transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:brightness-110"
-                >
-                  Create Your Builder Card
-                </button>
+                {/* Primary CTA — only for non-owners */}
+                {!isOwner && (
+                  <button
+                    onClick={handleCreateBuilderCard}
+                    className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-[hsl(var(--gradient-blue))] via-[hsl(var(--gradient-green))] to-[hsl(var(--gradient-yellow))] transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:brightness-110"
+                  >
+                    Create Your Builder Card
+                  </button>
+                )}
               </div>
             </motion.aside>
 
