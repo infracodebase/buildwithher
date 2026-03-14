@@ -126,9 +126,9 @@ const BuilderProfile = () => {
             Back to Builder Wall
           </Link>
 
-          {/* Banner */}
+          {/* Banner — standalone */}
           <div
-            className={`relative rounded-2xl overflow-hidden mb-8 group ${isOwner ? "cursor-pointer" : ""}`}
+            className={`relative rounded-2xl overflow-hidden group ${isOwner ? "cursor-pointer" : ""}`}
             style={{ height: "clamp(180px, 20vw, 240px)" }}
             onClick={isOwner ? () => setEditOpen(true) : undefined}
           >
@@ -148,25 +148,25 @@ const BuilderProfile = () => {
                 </div>
               </div>
             )}
+          </div>
 
-            {/* Edit Profile button */}
+          {/* Spacer + owner action row */}
+          <div className="mt-6 md:mt-10 mb-6 flex items-center justify-between">
+            <div />
             {isOwner && (
               <Button
-                size="sm"
-                className="absolute top-4 right-4 gap-2 rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 font-medium"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditOpen(true);
-                }}
+                size="default"
+                className="gap-2 rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 font-medium px-5"
+                onClick={() => setEditOpen(true)}
               >
-                <Pencil size={14} />
+                <Pencil size={15} />
                 Edit Profile
               </Button>
             )}
           </div>
 
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-8 -mt-16 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-8">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -235,16 +235,6 @@ const BuilderProfile = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-2.5">
-                  {isOwner && (
-                    <Button
-                      size="sm"
-                      className="w-full gap-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20 transition-all duration-200"
-                      onClick={() => setEditOpen(true)}
-                    >
-                      <Pencil size={14} />
-                      Edit Profile
-                    </Button>
-                  )}
 
                   <Button 
                     asChild 
