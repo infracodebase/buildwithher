@@ -1,10 +1,12 @@
+import { useState, useMemo, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import GradientButton from "@/components/GradientButton";
-import { motion } from "framer-motion";
+import PartnerCard from "@/components/PartnerCard";
+import { partners, PARTNER_CATEGORIES, type PartnerCategory } from "@/data/partnersData";
+import { motion, AnimatePresence } from "framer-motion";
 import { Users, GraduationCap, Building2, Network, ExternalLink } from "lucide-react";
-import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -57,16 +59,6 @@ const partnerTypes: {
   },
 ];
 
-const communityPartners = [
-  {
-    name: "She Builds Tech",
-    type: "Community Partner",
-    description:
-      "She Builds Tech is a community dedicated to empowering women to grow and thrive in technology. Through mentorship, learning initiatives, and community support, they help women develop technical skills and build sustainable careers in tech.",
-    link: "https://www.linkedin.com/company/she-builds-tech/",
-    cta: "Visit Community",
-  },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -78,7 +70,13 @@ const fadeUp = {
 const Partners = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [collabType, setCollabType] = useState<string>("");
+  const [partnerFilter, setPartnerFilter] = useState<PartnerCategory>("All Partners");
   const { toast } = useToast();
+
+  const filteredPartners = useMemo(
+    () => partnerFilter === "All Partners" ? partners : partners.filter((p) => p.category === partnerFilter),
+    [partnerFilter]
+  );
 
   const scrollToForm = (type: CollaborationType) => {
     setCollabType(type);
@@ -149,91 +147,63 @@ const Partners = () => {
         </div>
       </motion.section>
 
-      {/* Community Partners */}
+      {/* ── Partner Directory ── */}
       <motion.section {...fadeUp} className="section-glow">
         <div className="container py-24 md:py-32">
           <div className="max-w-3xl mx-auto text-center mb-14">
+            <span className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground mb-3 block">Our Network</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-5">
-              Community Partners
+              Partners Building With Us
             </h2>
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-              Build With Her collaborates with communities that are helping more women access opportunities in cloud, infrastructure, AI, and modern engineering roles.
-            </p>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mt-3">
-              These communities share our mission to support women who are building technical careers.
+              We collaborate with communities, universities, companies, and ecosystem organizations helping more builders grow in cloud, AI, and infrastructure.
             </p>
           </div>
 
-          {/* Featured Partner Card */}
-          <div className="max-w-3xl mx-auto">
-            {communityPartners.map(({ name, type, description, link, cta }) => (
-              <div
-                key={name}
-                className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25"
-              >
-                {/* Visual header area */}
-                <div className="relative w-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent py-12 px-8 flex flex-col items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
-                  <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <Users className="w-9 h-9 text-primary" />
-                    </div>
-                    <span className="text-[10px] font-medium uppercase tracking-widest text-primary/70">
-                      First Community Partner
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 md:p-8 flex flex-col flex-1">
-                  {/* Metadata row */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[11px] font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded">
-                      {type}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-display font-bold text-foreground text-xl md:text-2xl mb-3">
-                    {name}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                    {description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {["Mentorship", "Learning Initiatives", "Community Support"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-medium px-2.5 py-0.5 rounded bg-muted text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <div className="mt-auto pt-4 border-t border-border/40">
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-display font-semibold hover:bg-primary/90 transition-colors"
-                    >
-                      {cta} <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
+          {/* Filters — same pattern as Events page */}
+          <div className="max-w-2xl mx-auto mb-10">
+            <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Filter</span>
+              <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+                {PARTNER_CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setPartnerFilter(cat)}
+                    className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                      partnerFilter === cat
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
 
-          {/* Future partners grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto mt-8">
-            {/* Additional partner cards will appear here */}
+          {/* Partner Grid */}
+          <div className="max-w-5xl mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={partnerFilter}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {filteredPartners.map((p) => (
+                  <PartnerCard key={p.name} partner={p} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {filteredPartners.length === 0 && (
+              <p className="text-center text-sm text-muted-foreground py-16">
+                No partners in this category yet. More partnerships will be announced soon.
+              </p>
+            )}
           </div>
 
           <p className="text-center text-sm text-muted-foreground mt-10">
