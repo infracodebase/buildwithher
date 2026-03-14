@@ -3,7 +3,14 @@ import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { sampleBuilders, ExtendedBuilderProfile } from "@/data/communityData";
 
-// Convert a DB row to the ExtendedBuilderProfile format used by components
+// Extended profile with DB-specific fields
+export interface BuilderProfileWithMeta extends ExtendedBuilderProfile {
+  dbId?: string;
+  userId?: string;
+  bannerImageUrl?: string;
+}
+
+// Convert a DB row to the profile format used by components
 function dbRowToProfile(row: {
   id: string;
   name: string;
@@ -21,18 +28,24 @@ function dbRowToProfile(row: {
   portfolio: string | null;
   slug: string | null;
   created_at: string;
-}): ExtendedBuilderProfile {
+  user_id: string | null;
+  banner_image_url: string | null;
+  updated_at: string | null;
+}): BuilderProfileWithMeta {
   const roleDisplay = row.role + (row.company ? ` at ${row.company}` : "");
   const tags = [...(row.cloud_focus || []), ...(row.skills || [])];
+  // Deduplicate tags
+  const uniqueTags = [...new Set(tags)];
   return {
     id: row.id,
+    dbId: row.id,
     name: row.name,
     role: roleDisplay,
     country: row.country,
     photo: row.photo_url || undefined,
     statement: row.statement || row.what_building || "",
     bio: row.builder_story || undefined,
-    tags,
+    tags: uniqueTags,
     linkedin: row.linkedin || undefined,
     slug: row.slug || row.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
     github: row.github || undefined,
@@ -40,6 +53,8 @@ function dbRowToProfile(row: {
     building: row.what_building ? [row.what_building] : undefined,
     cloudPlatforms: row.cloud_focus || undefined,
     createdAt: row.created_at,
+    userId: row.user_id || undefined,
+    bannerImageUrl: row.banner_image_url || undefined,
   };
 }
 
@@ -66,7 +81,7 @@ export function useBuilders() {
 
   return useQuery({
     queryKey: ["builders"],
-    queryFn: async () => {
+    queryFn: async (): Promise<BuilderProfileWithMeta[]> => {
       const { data, error } = await supabase
         .from("builders")
         .select("*")
@@ -122,6 +137,9 @@ export async function submitBuilder(args: {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+  // Get current user if authenticated
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { error } = await supabase.from("builders").insert({
     name: args.name,
     country: args.country,
@@ -137,6 +155,7 @@ export async function submitBuilder(args: {
     portfolio: args.portfolio || null,
     photo_url,
     slug,
+    user_id: user?.id || null,
   });
 
   if (error) throw error;
