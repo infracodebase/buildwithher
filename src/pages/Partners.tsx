@@ -70,7 +70,13 @@ const fadeUp = {
 const Partners = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [collabType, setCollabType] = useState<string>("");
+  const [partnerFilter, setPartnerFilter] = useState<PartnerCategory>("All Partners");
   const { toast } = useToast();
+
+  const filteredPartners = useMemo(
+    () => partnerFilter === "All Partners" ? partners : partners.filter((p) => p.category === partnerFilter),
+    [partnerFilter]
+  );
 
   const scrollToForm = (type: CollaborationType) => {
     setCollabType(type);
