@@ -11,6 +11,7 @@ export interface SessionData {
   imageUrl?: string;
   status?: string;
   registerLink?: string;
+  videoUrl?: string;
 }
 
 const typeColors: Record<string, string> = {
