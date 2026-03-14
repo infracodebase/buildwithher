@@ -11,6 +11,7 @@ export interface SessionData {
   imageUrl?: string;
   status?: string;
   registerLink?: string;
+  videoUrl?: string;
 }
 
 const typeColors: Record<string, string> = {
@@ -21,7 +22,7 @@ const typeColors: Record<string, string> = {
 };
 
 const SessionCard = ({ session }: { session: SessionData }) => {
-  return (
+  const cardContent = (
     <div className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:scale-[1.03] hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
       {/* Thumbnail */}
       <div className="relative aspect-video w-full overflow-hidden">
@@ -96,6 +97,21 @@ const SessionCard = ({ session }: { session: SessionData }) => {
       </div>
     </div>
   );
+
+  if (session.videoUrl) {
+    return (
+      <a
+        href={session.videoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-2xl cursor-pointer"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  return cardContent;
 };
 
 export default SessionCard;

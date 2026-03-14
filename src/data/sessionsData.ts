@@ -10,6 +10,7 @@ export const pastSessions: SessionData[] = [
     imageUrl: "/images/legal_background_to_cloud.png",
     source: "Build with Her",
     sessionType: "Career Talk",
+    videoUrl: "https://www.youtube.com/watch?v=mlIePKsqa-4",
   },
   {
     title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
