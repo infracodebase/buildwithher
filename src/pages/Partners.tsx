@@ -164,22 +164,76 @@ const Partners = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {/* Featured Partner Card */}
+          <div className="max-w-3xl mx-auto">
             {communityPartners.map(({ name, type, description, link, cta }) => (
-              <div key={name} className="card-premium p-8 group flex flex-col">
-                <span className="badge-glow text-[11px] self-start mb-5">{type}</span>
-                <h3 className="font-display font-semibold text-foreground text-lg mb-3">{name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{description}</p>
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-primary font-display font-medium hover:underline"
-                >
-                  {cta} <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+              <div
+                key={name}
+                className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25"
+              >
+                {/* Visual header area */}
+                <div className="relative w-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent py-12 px-8 flex flex-col items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="relative z-10 flex flex-col items-center gap-3">
+                    <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Users className="w-9 h-9 text-primary" />
+                    </div>
+                    <span className="text-[10px] font-medium uppercase tracking-widest text-primary/70">
+                      First Community Partner
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  {/* Metadata row */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-[11px] font-medium text-primary bg-primary/10 px-2.5 py-0.5 rounded">
+                      {type}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display font-bold text-foreground text-xl md:text-2xl mb-3">
+                    {name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    {description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {["Mentorship", "Learning Initiatives", "Community Support"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-medium px-2.5 py-0.5 rounded bg-muted text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <div className="mt-auto pt-4 border-t border-border/40">
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-display font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      {cta} <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Future partners grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto mt-8">
+            {/* Additional partner cards will appear here */}
           </div>
 
           <p className="text-center text-sm text-muted-foreground mt-10">
