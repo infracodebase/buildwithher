@@ -74,8 +74,8 @@ const GlobalMap = ({ builders }: GlobalMapProps) => {
               center={[c.lat, c.lng]}
               radius={Math.min(6 + c.count * 1.5, 16)}
               pathOptions={{
-                color: "rgba(220,38,38,0.6)",
-                fillColor: "#dc2626",
+                color: "rgba(11,31,58,0.6)",
+                fillColor: "#0B1F3A",
                 fillOpacity: 0.75,
                 weight: 1.5,
               }}
