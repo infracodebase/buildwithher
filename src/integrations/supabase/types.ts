@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       builders: {
         Row: {
+          banner_image_url: string | null
           builder_story: string | null
           cloud_focus: string[] | null
           company: string | null
@@ -31,9 +32,12 @@ export type Database = {
           skills: string[] | null
           slug: string | null
           statement: string | null
+          updated_at: string | null
+          user_id: string | null
           what_building: string | null
         }
         Insert: {
+          banner_image_url?: string | null
           builder_story?: string | null
           cloud_focus?: string[] | null
           company?: string | null
@@ -49,9 +53,12 @@ export type Database = {
           skills?: string[] | null
           slug?: string | null
           statement?: string | null
+          updated_at?: string | null
+          user_id?: string | null
           what_building?: string | null
         }
         Update: {
+          banner_image_url?: string | null
           builder_story?: string | null
           cloud_focus?: string[] | null
           company?: string | null
@@ -67,6 +74,8 @@ export type Database = {
           skills?: string[] | null
           slug?: string | null
           statement?: string | null
+          updated_at?: string | null
+          user_id?: string | null
           what_building?: string | null
         }
         Relationships: []
