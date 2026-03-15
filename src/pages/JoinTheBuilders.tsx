@@ -602,13 +602,39 @@ https://buildwithher.dev`;
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">Builder Story</Label>
-                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" />
+                      <Label className="text-xs text-muted-foreground">Why do you want to join Build With Her? *</Label>
+                      <Textarea 
+                        value={motivation} 
+                        onChange={(e) => { setMotivation(e.target.value); setValidationErrors(prev => ({ ...prev, motivation: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.motivation ? "border-destructive" : ""}`} 
+                        rows={3} 
+                        placeholder={"What motivates you to be part of this community?\n\nExamples:\n• learning cloud or infrastructure\n• connecting with other women in tech\n• sharing what you're building\n• growing into leadership\n• finding mentors or collaborators"} 
+                      />
+                      <p className="text-[11px] text-muted-foreground mt-1">This helps us understand how to support you and grow the community.</p>
+                      {validationErrors.motivation && <p className="text-xs text-destructive mt-1">{validationErrors.motivation}</p>}
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">What are you currently building or learning?</Label>
-                      <Textarea value={building} onChange={(e) => setBuilding(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={2} />
+                      <Label className="text-xs text-muted-foreground">Builder Story *</Label>
+                      <Textarea 
+                        value={builderStory} 
+                        onChange={(e) => { setBuilderStory(e.target.value); setValidationErrors(prev => ({ ...prev, builderStory: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.builderStory ? "border-destructive" : ""}`} 
+                        rows={3} 
+                        placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" 
+                      />
+                      {validationErrors.builderStory && <p className="text-xs text-destructive mt-1">{validationErrors.builderStory}</p>}
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-muted-foreground">What are you currently building or learning? *</Label>
+                      <Textarea 
+                        value={building} 
+                        onChange={(e) => { setBuilding(e.target.value); setValidationErrors(prev => ({ ...prev, building: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.building ? "border-destructive" : ""}`} 
+                        rows={2} 
+                      />
+                      {validationErrors.building && <p className="text-xs text-destructive mt-1">{validationErrors.building}</p>}
                     </div>
 
                     <div>
