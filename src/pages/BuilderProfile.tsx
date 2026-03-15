@@ -365,7 +365,7 @@ const BuilderProfile = () => {
                       !builder.tags.includes(platform) && (
                         <Badge
                           key={platform}
-                          className="px-3 py-1 text-sm bg-primary/10 text-primary border border-primary/20"
+                          className="px-3 py-1 text-sm badge-card-primary border"
                         >
                           {platform}
                         </Badge>
