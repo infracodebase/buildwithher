@@ -135,15 +135,19 @@ const BuilderProfile = () => {
           {/* Banner — standalone */}
           <div
             className={`relative rounded-2xl overflow-hidden group ${isOwner ? "cursor-pointer" : ""}`}
-            style={{ height: "clamp(180px, 20vw, 240px)" }}
+            style={{ 
+              height: "clamp(180px, 20vw, 240px)",
+              background: "linear-gradient(90deg, #0B2746 0%, #163F63 15%, #8A6A2E 35%, #2E7C5F 55%, #1F6B6E 75%, #1F4F74 100%)"
+            }}
             onClick={isOwner ? () => setEditOpen(true) : undefined}
           >
-            <img
-              src={bannerUrl}
-              alt="Profile banner"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            {bannerUrl !== "/images/build-with-her-background.png" && (
+              <img
+                src={bannerUrl}
+                alt="Profile banner"
+                className="w-full h-full object-cover"
+              />
+            )}
 
             {/* Owner: banner hover affordance */}
             {isOwner && (
