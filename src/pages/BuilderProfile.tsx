@@ -172,7 +172,7 @@ const BuilderProfile = () => {
           </div>
 
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div ref={profileContentRef} className="flex flex-col lg:flex-row gap-8">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
