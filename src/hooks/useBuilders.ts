@@ -23,6 +23,7 @@ function dbRowToProfile(row: {
   what_building: string | null;
   statement: string | null;
   builder_story: string | null;
+  motivation: string | null;
   linkedin: string | null;
   github: string | null;
   portfolio: string | null;
