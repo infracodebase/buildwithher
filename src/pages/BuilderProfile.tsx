@@ -213,7 +213,7 @@ const BuilderProfile = () => {
 
                   {/* Badge */}
                   <div className="flex justify-center">
-                    <span className="inline-flex items-center gap-1.5 text-xs text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1">
+                    <span className="inline-flex items-center gap-1.5 text-xs badge-card-primary border rounded-full px-3 py-1">
                       <Award size={12} />
                       Build With Her Builder
                     </span>
