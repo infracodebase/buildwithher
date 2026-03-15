@@ -111,6 +111,7 @@ export async function submitBuilder(args: {
   what_building?: string;
   statement?: string;
   builder_story?: string;
+  motivation?: string;
   linkedin?: string;
   github?: string;
   portfolio?: string;
