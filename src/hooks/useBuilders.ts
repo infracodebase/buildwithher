@@ -56,6 +56,7 @@ function dbRowToProfile(row: {
     createdAt: row.created_at,
     userId: row.user_id || undefined,
     bannerImageUrl: row.banner_image_url || undefined,
+    motivation: row.motivation || undefined,
   };
 }
 
