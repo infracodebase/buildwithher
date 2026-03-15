@@ -118,7 +118,7 @@ const BuilderProfile = () => {
   const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-background.png";
 
   return (
-    <div className="min-h-screen builder-profile-page">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
       <div className="pt-24 pb-16 md:pt-28">
@@ -217,7 +217,7 @@ const BuilderProfile = () => {
 
                   {/* Badge */}
                   <div className="flex justify-center">
-                    <span className="inline-flex items-center gap-1.5 text-xs badge-card-primary border rounded-full px-3 py-1">
+                    <span className="inline-flex items-center gap-1.5 text-xs border rounded-full px-3 py-1 bg-primary/10 text-primary border-primary/20">
                       <Award size={12} />
                       Build With Her Builder
                     </span>
@@ -229,7 +229,7 @@ const BuilderProfile = () => {
                       <Badge
                         key={tag}
                         variant="secondary"
-                        className="text-xs badge-card-tag border"
+                        className="text-xs border"
                       >
                         {tag}
                       </Badge>
