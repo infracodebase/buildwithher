@@ -1,7 +1,8 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil, Camera, Download } from "lucide-react";
-import { useState, useCallback } from "react";
+import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Pencil, Camera, Download } from "lucide-react";
+import { useState, useCallback, useRef } from "react";
+import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
@@ -11,11 +12,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useQueryClient } from "@tanstack/react-query";
 
 const BuilderProfile = () => {
@@ -25,10 +21,10 @@ const BuilderProfile = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const builder = allBuilders?.find((b) => b.slug === slug);
-  const [shareOpen, setShareOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
+  const [generatingProfile, setGeneratingProfile] = useState(false);
+  const profileContentRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadBuilderCard = useCallback(async () => {
     if (!builder) return;
@@ -54,46 +50,30 @@ const BuilderProfile = () => {
     }
   }, [builder]);
 
-  const profileUrl = typeof window !== "undefined" ? window.location.href : "";
+  const handleDownloadProfileImage = useCallback(async () => {
+    if (!profileContentRef.current || !builder) return;
+    setGeneratingProfile(true);
+    try {
+      const dataUrl = await toPng(profileContentRef.current, {
+        pixelRatio: 2,
+        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--background').trim()
+          ? `hsl(${getComputedStyle(document.documentElement).getPropertyValue('--background').trim()})`
+          : '#0a0a0a',
+      });
+      const link = document.createElement("a");
+      link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Profile export error:", err);
+      toast({ title: "Error", description: "Could not generate your profile image." });
+    } finally {
+      setGeneratingProfile(false);
+    }
+  }, [builder]);
 
   // Check if current user owns this profile
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
-
-  const handleCopyLink = async () => {
-    await navigator.clipboard.writeText(profileUrl);
-    setCopied(true);
-    toast({
-      title: "Profile link copied.",
-      description: "Share it with your network!",
-    });
-    setTimeout(() => {
-      setCopied(false);
-      setShareOpen(false);
-    }, 1500);
-  };
-
-  const handleShareOnX = () => {
-    const text = encodeURIComponent(
-      `I'm proud to be part of Build With Her — a global community of women building in cloud, AI, and infrastructure. Check out this builder's profile:`
-    );
-    const url = encodeURIComponent(profileUrl);
-    window.open(
-      `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-    setShareOpen(false);
-  };
-
-  const handleShareOnLinkedIn = () => {
-    const url = encodeURIComponent(profileUrl);
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-    setShareOpen(false);
-  };
 
   const handleCreateBuilderCard = () => {
     navigate("/join-the-builders");
@@ -192,7 +172,7 @@ const BuilderProfile = () => {
           </div>
 
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div ref={profileContentRef} className="flex flex-col lg:flex-row gap-8">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -293,55 +273,26 @@ const BuilderProfile = () => {
                     </a>
                   </Button>
 
-                  {/* Share */}
-                  <Popover open={shareOpen} onOpenChange={setShareOpen}>
-                    <PopoverTrigger asChild>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
-                      >
+                  {/* Share Profile Image */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
+                    onClick={handleDownloadProfileImage}
+                    disabled={generatingProfile}
+                  >
+                    {generatingProfile ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-foreground rounded-full animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
                         <Share2 size={14} />
                         Share your builder profile →
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent align="center" className="w-48 p-1">
-                      <div className="flex flex-col">
-                        <button
-                          onClick={handleCopyLink}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          {copied ? (
-                            <Check size={14} className="text-primary" />
-                          ) : (
-                            <Copy size={14} />
-                          )}
-                          {copied ? "Copied!" : "Copy link"}
-                        </button>
-                        <button
-                          onClick={handleShareOnX}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                          >
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                          </svg>
-                          Share on X
-                        </button>
-                        <button
-                          onClick={handleShareOnLinkedIn}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          <Linkedin size={14} />
-                          Share on LinkedIn
-                        </button>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
+                      </>
+                    )}
+                  </Button>
                   <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
 
                   {/* Share Builder Card */}
