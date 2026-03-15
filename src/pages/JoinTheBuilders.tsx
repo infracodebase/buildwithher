@@ -643,8 +643,14 @@ https://buildwithher.dev`;
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">LinkedIn</Label>
-                      <Input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" placeholder="https://linkedin.com/in/..." />
+                      <Label className="text-xs text-muted-foreground">LinkedIn *</Label>
+                      <Input 
+                        value={linkedin} 
+                        onChange={(e) => { setLinkedin(e.target.value); setValidationErrors(prev => ({ ...prev, linkedin: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.linkedin ? "border-destructive" : ""}`} 
+                        placeholder="https://linkedin.com/in/..." 
+                      />
+                      {validationErrors.linkedin && <p className="text-xs text-destructive mt-1">{validationErrors.linkedin}</p>}
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">

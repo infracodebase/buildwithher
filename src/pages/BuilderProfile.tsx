@@ -394,6 +394,18 @@ const BuilderProfile = () => {
                 </ul>
               </section>
 
+              {/* Motivation — Why I Joined */}
+              {builder.motivation && (
+                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                  <h2 className="font-display text-lg font-semibold text-foreground mb-2">
+                    Why I Joined Build With Her
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                    {builder.motivation}
+                  </p>
+                </section>
+              )}
+
               {/* 4. Built on Infracodebase */}
               <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
                 <div className="flex items-start gap-4">
