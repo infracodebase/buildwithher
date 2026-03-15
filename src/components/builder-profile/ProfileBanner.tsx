@@ -15,7 +15,8 @@ const ProfileBanner = ({ bannerUrl, isOwner, onEdit }: ProfileBannerProps) => {
       style={{
         height: "clamp(180px, 20vw, 240px)",
         background:
-          "linear-gradient(90deg, #0B2746 0%, #163F63 15%, #8A6A2E 35%, #2E7C5F 55%, #1F6B6E 75%, #1F4F74 100%)",
+          "linear-gradient(90deg, #1C2226, #C07A13, #D7B11F, #8ACB2B, #4FA48F, #2E6D8F)",
+        filter: "saturate(1.1) brightness(0.95)",
       }}
       onClick={isOwner ? onEdit : undefined}
     >
