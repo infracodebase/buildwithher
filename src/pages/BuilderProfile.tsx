@@ -225,7 +225,7 @@ const BuilderProfile = () => {
                       <Badge
                         key={tag}
                         variant="secondary"
-                        className="text-xs bg-secondary/80 text-muted-foreground border border-border/30"
+                        className="text-xs badge-card-tag border"
                       >
                         {tag}
                       </Badge>
