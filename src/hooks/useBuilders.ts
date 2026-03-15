@@ -23,6 +23,7 @@ function dbRowToProfile(row: {
   what_building: string | null;
   statement: string | null;
   builder_story: string | null;
+  motivation: string | null;
   linkedin: string | null;
   github: string | null;
   portfolio: string | null;
@@ -55,6 +56,7 @@ function dbRowToProfile(row: {
     createdAt: row.created_at,
     userId: row.user_id || undefined,
     bannerImageUrl: row.banner_image_url || undefined,
+    motivation: row.motivation || undefined,
   };
 }
 
@@ -109,6 +111,7 @@ export async function submitBuilder(args: {
   what_building?: string;
   statement?: string;
   builder_story?: string;
+  motivation?: string;
   linkedin?: string;
   github?: string;
   portfolio?: string;
@@ -150,6 +153,7 @@ export async function submitBuilder(args: {
     what_building: args.what_building || null,
     statement: args.statement || null,
     builder_story: args.builder_story || null,
+    motivation: args.motivation || null,
     linkedin: args.linkedin || null,
     github: args.github || null,
     portfolio: args.portfolio || null,

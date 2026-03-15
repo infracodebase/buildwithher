@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const [focus, setFocus] = useState<string[]>([]);
   const [building, setBuilding] = useState("");
   const [builderStory, setBuilderStory] = useState("");
+  const [motivation, setMotivation] = useState("");
   const [statement, setStatement] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
@@ -79,8 +80,29 @@ const JoinTheBuilders = () => {
     }
   };
 
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  const validateLinkedInUrl = (url: string) => {
+    return /^https?:\/\/(www\.)?linkedin\.com\/in\/.+/i.test(url);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    const errors: Record<string, string> = {};
+    if (!motivation.trim()) errors.motivation = "Please tell us why you want to join Build With Her.";
+    if (!builderStory.trim()) errors.builderStory = "Please share your builder story.";
+    if (!building.trim()) errors.building = "Tell us what you're currently building or learning.";
+    if (!linkedin.trim()) errors.linkedin = "Please add your LinkedIn profile.";
+    else if (!validateLinkedInUrl(linkedin.trim())) errors.linkedin = "Please enter a valid LinkedIn URL (e.g. https://linkedin.com/in/yourname).";
+    
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors({});
+
     if (!photoFile) {
       setShowPhotoModal(true);
       return;
@@ -97,6 +119,7 @@ const JoinTheBuilders = () => {
         what_building: building || undefined,
         statement: statement || undefined,
         builder_story: builderStory || undefined,
+        motivation: motivation || undefined,
         linkedin: linkedin || undefined,
         github: github || undefined,
         portfolio: portfolio || undefined,
@@ -579,13 +602,39 @@ https://buildwithher.dev`;
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">Builder Story</Label>
-                      <Textarea value={builderStory} onChange={(e) => setBuilderStory(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={3} placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" />
+                      <Label className="text-xs text-muted-foreground">Why do you want to join Build With Her? *</Label>
+                      <Textarea 
+                        value={motivation} 
+                        onChange={(e) => { setMotivation(e.target.value); setValidationErrors(prev => ({ ...prev, motivation: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.motivation ? "border-destructive" : ""}`} 
+                        rows={3} 
+                        placeholder={"What motivates you to be part of this community?\n\nExamples:\n• learning cloud or infrastructure\n• connecting with other women in tech\n• sharing what you're building\n• growing into leadership\n• finding mentors or collaborators"} 
+                      />
+                      <p className="text-[11px] text-muted-foreground mt-1">This helps us understand how to support you and grow the community.</p>
+                      {validationErrors.motivation && <p className="text-xs text-destructive mt-1">{validationErrors.motivation}</p>}
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">What are you currently building or learning?</Label>
-                      <Textarea value={building} onChange={(e) => setBuilding(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" rows={2} />
+                      <Label className="text-xs text-muted-foreground">Builder Story *</Label>
+                      <Textarea 
+                        value={builderStory} 
+                        onChange={(e) => { setBuilderStory(e.target.value); setValidationErrors(prev => ({ ...prev, builderStory: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.builderStory ? "border-destructive" : ""}`} 
+                        rows={3} 
+                        placeholder="Tell us your builder story — how did you start in cloud or infrastructure, and what motivates you to keep building?" 
+                      />
+                      {validationErrors.builderStory && <p className="text-xs text-destructive mt-1">{validationErrors.builderStory}</p>}
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-muted-foreground">What are you currently building or learning? *</Label>
+                      <Textarea 
+                        value={building} 
+                        onChange={(e) => { setBuilding(e.target.value); setValidationErrors(prev => ({ ...prev, building: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.building ? "border-destructive" : ""}`} 
+                        rows={2} 
+                      />
+                      {validationErrors.building && <p className="text-xs text-destructive mt-1">{validationErrors.building}</p>}
                     </div>
 
                     <div>
@@ -594,8 +643,14 @@ https://buildwithher.dev`;
                     </div>
 
                     <div>
-                      <Label className="text-xs text-muted-foreground">LinkedIn</Label>
-                      <Input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" placeholder="https://linkedin.com/in/..." />
+                      <Label className="text-xs text-muted-foreground">LinkedIn *</Label>
+                      <Input 
+                        value={linkedin} 
+                        onChange={(e) => { setLinkedin(e.target.value); setValidationErrors(prev => ({ ...prev, linkedin: "" })); }} 
+                        className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.linkedin ? "border-destructive" : ""}`} 
+                        placeholder="https://linkedin.com/in/..." 
+                      />
+                      {validationErrors.linkedin && <p className="text-xs text-destructive mt-1">{validationErrors.linkedin}</p>}
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">

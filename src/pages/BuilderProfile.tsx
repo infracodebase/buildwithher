@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil, Camera } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, ExternalLink, Linkedin, Globe, Share2, Award, Copy, Check, Pencil, Camera, Download } from "lucide-react";
+import { useState, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
+import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import {
   Popover,
   PopoverContent,
@@ -27,6 +28,31 @@ const BuilderProfile = () => {
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [generatingCard, setGeneratingCard] = useState(false);
+
+  const handleDownloadBuilderCard = useCallback(async () => {
+    if (!builder) return;
+    setGeneratingCard(true);
+    try {
+      const dataUrl = await generateBuilderCard({
+        name: builder.name,
+        role: builder.role?.split(" at ")[0] || builder.role,
+        country: builder.country,
+        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+        skills: builder.tags || [],
+        photoDataUrl: builder.photo || null,
+      });
+      const link = document.createElement("a");
+      link.download = `BuildWithHer-${builder.name.replace(/\s+/g, "-")}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Card generation error:", err);
+      toast({ title: "Error", description: "Could not generate your Builder Card." });
+    } finally {
+      setGeneratingCard(false);
+    }
+  }, [builder]);
 
   const profileUrl = typeof window !== "undefined" ? window.location.href : "";
 
@@ -317,6 +343,27 @@ const BuilderProfile = () => {
                     </PopoverContent>
                   </Popover>
                   <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
+
+                  {/* Share Builder Card */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
+                    onClick={handleDownloadBuilderCard}
+                    disabled={generatingCard}
+                  >
+                    {generatingCard ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-foreground rounded-full animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Download size={14} />
+                        Share Builder Card
+                      </>
+                    )}
+                  </Button>
                 </div>
 
                 {/* Primary CTA — only for non-owners */}
@@ -393,6 +440,18 @@ const BuilderProfile = () => {
                   ))}
                 </ul>
               </section>
+
+              {/* Motivation — Why I Joined */}
+              {builder.motivation && (
+                <section className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 md:p-8">
+                  <h2 className="font-display text-lg font-semibold text-foreground mb-2">
+                    Why I Joined Build With Her
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                    {builder.motivation}
+                  </p>
+                </section>
+              )}
 
               {/* 4. Built on Infracodebase */}
               <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
