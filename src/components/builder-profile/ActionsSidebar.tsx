@@ -80,7 +80,8 @@ const ActionsSidebar = ({
       {!isOwner && (
         <button
           onClick={onCreateCard}
-          className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground bg-gradient-to-r from-[hsl(var(--gradient-blue))] via-[hsl(var(--gradient-green))] to-[hsl(var(--gradient-yellow))] transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:brightness-110"
+          className="block w-full text-center rounded-xl py-3 px-4 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:brightness-110"
+          style={{ background: "linear-gradient(90deg, #2E6D8F, #4FA48F, #8ACB2B, #D7B11F)" }}
         >
           Create Your Builder Card
         </button>
