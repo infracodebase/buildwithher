@@ -72,6 +72,13 @@ const BuilderProfile = () => {
     }
   }, [builder]);
 
+  // Check if current user owns this profile
+  const isOwner = !!(user && builder?.userId && user.id === builder.userId);
+
+  const handleCreateBuilderCard = () => {
+    navigate("/join-the-builders");
+  };
+
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
   };
