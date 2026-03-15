@@ -355,7 +355,7 @@ const BuilderProfile = () => {
                   {builder.tags.map((tag) => (
                     <Badge
                       key={tag}
-                      className="px-3 py-1 text-sm bg-primary/10 text-primary border border-primary/20"
+                      className="px-3 py-1 text-sm badge-card-primary border"
                     >
                       {tag}
                     </Badge>
