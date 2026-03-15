@@ -21,10 +21,10 @@ const BuilderProfile = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const builder = allBuilders?.find((b) => b.slug === slug);
-  const [shareOpen, setShareOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
+  const [generatingProfile, setGeneratingProfile] = useState(false);
+  const profileContentRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadBuilderCard = useCallback(async () => {
     if (!builder) return;
