@@ -118,7 +118,7 @@ const BuilderProfile = () => {
   const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-background.png";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen builder-profile-page">
       <Navbar />
 
       <div className="pt-24 pb-16 md:pt-28">
@@ -213,7 +213,7 @@ const BuilderProfile = () => {
 
                   {/* Badge */}
                   <div className="flex justify-center">
-                    <span className="inline-flex items-center gap-1.5 text-xs text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1">
+                    <span className="inline-flex items-center gap-1.5 text-xs badge-card-primary border rounded-full px-3 py-1">
                       <Award size={12} />
                       Build With Her Builder
                     </span>
@@ -225,7 +225,7 @@ const BuilderProfile = () => {
                       <Badge
                         key={tag}
                         variant="secondary"
-                        className="text-xs bg-secondary/80 text-muted-foreground border border-border/30"
+                        className="text-xs badge-card-tag border"
                       >
                         {tag}
                       </Badge>
@@ -355,7 +355,7 @@ const BuilderProfile = () => {
                   {builder.tags.map((tag) => (
                     <Badge
                       key={tag}
-                      className="px-3 py-1 text-sm bg-primary/10 text-primary border border-primary/20"
+                      className="px-3 py-1 text-sm badge-card-primary border"
                     >
                       {tag}
                     </Badge>
@@ -365,7 +365,7 @@ const BuilderProfile = () => {
                       !builder.tags.includes(platform) && (
                         <Badge
                           key={platform}
-                          className="px-3 py-1 text-sm bg-primary/10 text-primary border border-primary/20"
+                          className="px-3 py-1 text-sm badge-card-primary border"
                         >
                           {platform}
                         </Badge>

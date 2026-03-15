@@ -404,6 +404,42 @@
     box-shadow: 0 2px 12px hsl(0 0% 0% / 0.08);
   }
 
+  /* ── Builder Profile page — card palette ── */
+  .builder-profile-page {
+    --background: 212 72% 16%;
+    --foreground: 214 38% 93%;
+    --card: 210 55% 24%;
+    --card-foreground: 214 38% 93%;
+    --popover: 210 55% 24%;
+    --popover-foreground: 214 38% 93%;
+    --primary: 38 56% 49%;
+    --primary-foreground: 212 72% 16%;
+    --secondary: 210 42% 29%;
+    --secondary-foreground: 212 28% 69%;
+    --muted: 210 42% 22%;
+    --muted-foreground: 212 28% 69%;
+    --accent: 160 46% 33%;
+    --accent-foreground: 214 38% 93%;
+    --border: 210 40% 28%;
+    --input: 210 40% 28%;
+    --ring: 38 56% 49%;
+    background: radial-gradient(ellipse 100% 80% at 50% 90%, #8A6A2E33, #2E7C5F22, #1F6B6E18, transparent 70%),
+                radial-gradient(ellipse 80% 60% at 70% 40%, #1F6B6E15, transparent 60%),
+                linear-gradient(180deg, #0B2746 0%, #163F63 40%, #1F4F74 70%, #0B2746 100%);
+  }
+
+  .builder-profile-page .badge-card-tag {
+    background: #1F4F7440;
+    color: #9FB4C7;
+    border-color: #1F6B6E50;
+  }
+
+  .builder-profile-page .badge-card-primary {
+    background: #1F6B6E25;
+    color: #C58A3A;
+    border-color: #C58A3A40;
+  }
+
   /* ── Gradient border bottom ── */
   .gradient-border-bottom {
     position: relative;
