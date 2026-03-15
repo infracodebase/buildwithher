@@ -273,55 +273,26 @@ const BuilderProfile = () => {
                     </a>
                   </Button>
 
-                  {/* Share */}
-                  <Popover open={shareOpen} onOpenChange={setShareOpen}>
-                    <PopoverTrigger asChild>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
-                      >
+                  {/* Share Profile Image */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
+                    onClick={handleDownloadProfileImage}
+                    disabled={generatingProfile}
+                  >
+                    {generatingProfile ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-foreground rounded-full animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
                         <Share2 size={14} />
                         Share your builder profile →
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent align="center" className="w-48 p-1">
-                      <div className="flex flex-col">
-                        <button
-                          onClick={handleCopyLink}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          {copied ? (
-                            <Check size={14} className="text-primary" />
-                          ) : (
-                            <Copy size={14} />
-                          )}
-                          {copied ? "Copied!" : "Copy link"}
-                        </button>
-                        <button
-                          onClick={handleShareOnX}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                          >
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                          </svg>
-                          Share on X
-                        </button>
-                        <button
-                          onClick={handleShareOnLinkedIn}
-                          className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-md transition-colors text-left"
-                        >
-                          <Linkedin size={14} />
-                          Share on LinkedIn
-                        </button>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
+                      </>
+                    )}
+                  </Button>
                   <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
 
                   {/* Share Builder Card */}
