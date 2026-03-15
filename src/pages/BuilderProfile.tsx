@@ -118,7 +118,7 @@ const BuilderProfile = () => {
   const bannerUrl = builder.bannerImageUrl || "/images/build-with-her-background.png";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen builder-profile-page">
       <Navbar />
 
       <div className="pt-24 pb-16 md:pt-28">
