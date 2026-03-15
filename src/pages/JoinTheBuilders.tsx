@@ -80,8 +80,29 @@ const JoinTheBuilders = () => {
     }
   };
 
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  const validateLinkedInUrl = (url: string) => {
+    return /^https?:\/\/(www\.)?linkedin\.com\/in\/.+/i.test(url);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    const errors: Record<string, string> = {};
+    if (!motivation.trim()) errors.motivation = "Please tell us why you want to join Build With Her.";
+    if (!builderStory.trim()) errors.builderStory = "Please share your builder story.";
+    if (!building.trim()) errors.building = "Tell us what you're currently building or learning.";
+    if (!linkedin.trim()) errors.linkedin = "Please add your LinkedIn profile.";
+    else if (!validateLinkedInUrl(linkedin.trim())) errors.linkedin = "Please enter a valid LinkedIn URL (e.g. https://linkedin.com/in/yourname).";
+    
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors({});
+
     if (!photoFile) {
       setShowPhotoModal(true);
       return;
