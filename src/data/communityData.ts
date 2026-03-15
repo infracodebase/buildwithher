@@ -47,6 +47,7 @@ export interface ExtendedBuilderProfile extends BuilderProfile {
   cloudPlatforms?: string[];
   roleCategory?: string;
   createdAt?: string;
+  motivation?: string;
 }
 
 export const sampleBuilders: ExtendedBuilderProfile[] = [
