@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const [focus, setFocus] = useState<string[]>([]);
   const [building, setBuilding] = useState("");
   const [builderStory, setBuilderStory] = useState("");
+  const [motivation, setMotivation] = useState("");
   const [statement, setStatement] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
