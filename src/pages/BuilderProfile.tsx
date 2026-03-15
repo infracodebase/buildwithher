@@ -50,50 +50,27 @@ const BuilderProfile = () => {
     }
   }, [builder]);
 
-  const profileUrl = typeof window !== "undefined" ? window.location.href : "";
-
-  // Check if current user owns this profile
-  const isOwner = !!(user && builder?.userId && user.id === builder.userId);
-
-  const handleCopyLink = async () => {
-    await navigator.clipboard.writeText(profileUrl);
-    setCopied(true);
-    toast({
-      title: "Profile link copied.",
-      description: "Share it with your network!",
-    });
-    setTimeout(() => {
-      setCopied(false);
-      setShareOpen(false);
-    }, 1500);
-  };
-
-  const handleShareOnX = () => {
-    const text = encodeURIComponent(
-      `I'm proud to be part of Build With Her — a global community of women building in cloud, AI, and infrastructure. Check out this builder's profile:`
-    );
-    const url = encodeURIComponent(profileUrl);
-    window.open(
-      `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-    setShareOpen(false);
-  };
-
-  const handleShareOnLinkedIn = () => {
-    const url = encodeURIComponent(profileUrl);
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-    setShareOpen(false);
-  };
-
-  const handleCreateBuilderCard = () => {
-    navigate("/join-the-builders");
-  };
+  const handleDownloadProfileImage = useCallback(async () => {
+    if (!profileContentRef.current || !builder) return;
+    setGeneratingProfile(true);
+    try {
+      const dataUrl = await toPng(profileContentRef.current, {
+        pixelRatio: 2,
+        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--background').trim()
+          ? `hsl(${getComputedStyle(document.documentElement).getPropertyValue('--background').trim()})`
+          : '#0a0a0a',
+      });
+      const link = document.createElement("a");
+      link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Profile export error:", err);
+      toast({ title: "Error", description: "Could not generate your profile image." });
+    } finally {
+      setGeneratingProfile(false);
+    }
+  }, [builder]);
 
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
