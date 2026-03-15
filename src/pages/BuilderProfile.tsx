@@ -12,11 +12,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useQueryClient } from "@tanstack/react-query";
 
 const BuilderProfile = () => {
