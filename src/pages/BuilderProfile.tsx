@@ -28,6 +28,31 @@ const BuilderProfile = () => {
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [generatingCard, setGeneratingCard] = useState(false);
+
+  const handleDownloadBuilderCard = useCallback(async () => {
+    if (!builder) return;
+    setGeneratingCard(true);
+    try {
+      const dataUrl = await generateBuilderCard({
+        name: builder.name,
+        role: builder.role?.split(" at ")[0] || builder.role,
+        country: builder.country,
+        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+        skills: builder.tags || [],
+        photoDataUrl: builder.photo || null,
+      });
+      const link = document.createElement("a");
+      link.download = `BuildWithHer-${builder.name.replace(/\s+/g, "-")}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Card generation error:", err);
+      toast({ title: "Error", description: "Could not generate your Builder Card." });
+    } finally {
+      setGeneratingCard(false);
+    }
+  }, [builder]);
 
   const profileUrl = typeof window !== "undefined" ? window.location.href : "";
 
