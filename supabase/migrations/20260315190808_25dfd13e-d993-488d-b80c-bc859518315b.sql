@@ -1,0 +1,1 @@
+ALTER TABLE public.builders ADD COLUMN IF NOT EXISTS motivation TEXT;
