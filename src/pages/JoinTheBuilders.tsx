@@ -119,6 +119,7 @@ const JoinTheBuilders = () => {
         what_building: building || undefined,
         statement: statement || undefined,
         builder_story: builderStory || undefined,
+        motivation: motivation || undefined,
         linkedin: linkedin || undefined,
         github: github || undefined,
         portfolio: portfolio || undefined,
