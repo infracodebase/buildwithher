@@ -343,6 +343,27 @@ const BuilderProfile = () => {
                     </PopoverContent>
                   </Popover>
                   <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
+
+                  {/* Share Builder Card */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5"
+                    onClick={handleDownloadBuilderCard}
+                    disabled={generatingCard}
+                  >
+                    {generatingCard ? (
+                      <>
+                        <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-foreground rounded-full animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Download size={14} />
+                        Share Builder Card
+                      </>
+                    )}
+                  </Button>
                 </div>
 
                 {/* Primary CTA — only for non-owners */}
