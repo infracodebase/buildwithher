@@ -84,10 +84,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Refresh presence on route change (catches post-creation redirect)
+  // Refresh presence on route change and after profile creation
   useEffect(() => {
     setPresence(getBuilderPresence());
   }, [location.pathname]);
+
+  useEffect(() => {
+    const handler = () => setPresence(getBuilderPresence());
+    window.addEventListener("builderProfileUpdated", handler);
+    return () => window.removeEventListener("builderProfileUpdated", handler);
+  }, []);
 
   const profilePath = presence ? `/builders/${presence.slug}` : "/join-the-builders";
   const firstName = presence?.name?.split(" ")[0];
