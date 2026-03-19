@@ -120,6 +120,7 @@ const JoinTheBuilders = () => {
       // Save to database and get back the canonical data
       const result = await submitBuilder({
         name,
+        email: email.trim(),
         country,
         role,
         company: company || undefined,
