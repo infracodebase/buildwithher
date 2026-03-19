@@ -59,26 +59,40 @@ const BuilderProfile = () => {
     }
   }, [searchParams, builder, setSearchParams]);
 
-  // After OAuth redirect: if user just authenticated and profile is unclaimed, link it
+  // After OAuth redirect: if user just authenticated and profile is unclaimed, handle linking
   useEffect(() => {
     if (!user || !builder || !isUnclaimed) return;
     const localSlug = localStorage.getItem("builderProfileSlug");
-    if (localSlug !== builder.slug) return;
-
-    // Auto-link after OAuth return
-    supabase
-      .from("builders")
-      .update({ user_id: user.id })
-      .eq("id", builder.dbId!)
-      .is("user_id", null)
-      .then(({ error }) => {
-        if (!error) {
-          queryClient.invalidateQueries({ queryKey: ["builders"] });
-          toast({ title: "Profile linked!", description: "You can now edit your profile." });
-          // Open edit modal after linking
-          setTimeout(() => setEditOpen(true), 500);
-        }
-      });
+    
+    if (localSlug === builder.slug) {
+      // Case 1: Creator returning after OAuth — direct link
+      supabase
+        .from("builders")
+        .update({ user_id: user.id, claim_status: "claimed" })
+        .eq("id", builder.dbId!)
+        .is("user_id", null)
+        .then(({ error }) => {
+          if (!error) {
+            queryClient.invalidateQueries({ queryKey: ["builders"] });
+            toast({ title: "Profile linked!", description: "You can now edit your profile." });
+            setTimeout(() => setEditOpen(true), 500);
+          }
+        });
+    } else if (builder.email && user.email && builder.email.toLowerCase() === user.email.toLowerCase()) {
+      // Case 2: Authenticated user's email matches profile email — auto-link
+      supabase
+        .from("builders")
+        .update({ user_id: user.id, claim_status: "claimed" })
+        .eq("id", builder.dbId!)
+        .is("user_id", null)
+        .then(({ error }) => {
+          if (!error) {
+            queryClient.invalidateQueries({ queryKey: ["builders"] });
+            toast({ title: "Profile linked!", description: "Email verified — this profile is now yours." });
+            setTimeout(() => setEditOpen(true), 500);
+          }
+        });
+    }
   }, [user, builder, isUnclaimed, queryClient]);
 
   const handleEditClick = useCallback(() => {
