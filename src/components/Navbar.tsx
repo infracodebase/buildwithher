@@ -4,6 +4,7 @@ import { Menu, X, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLockup from "./BrandLockup";
 import ThemeToggle from "./ThemeToggle";
+import ProfileRecovery from "./ProfileRecovery";
 
 const navLinks = [
   { label: "Manifest", path: "/manifest" },
