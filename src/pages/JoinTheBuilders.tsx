@@ -17,6 +17,7 @@ import CelebrationEffect from "@/components/CelebrationEffect";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { submitBuilder } from "@/hooks/useBuilders";
+import ProfileRecovery from "@/components/ProfileRecovery";
 import {
   Popover,
   PopoverContent,
@@ -286,6 +287,15 @@ https://buildwithher.dev`;
           </motion.div>
         </div>
       </section>
+
+      {/* Profile recovery for existing builders */}
+      {!submitted && !localStorage.getItem("builderProfileSlug") && (
+        <section className="container pt-2 pb-0">
+          <div className="max-w-6xl mx-auto">
+            <ProfileRecovery variant="inline" />
+          </div>
+        </section>
+      )}
 
       {/* Two-column layout */}
       <section className="container py-12 md:py-20">
