@@ -1,4 +1,5 @@
 import { useState, useRef, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
@@ -12,6 +13,7 @@ import {
   Heart, Globe, Sparkles, Camera, Copy, Download,
   CheckCircle, Linkedin, Twitter, Facebook, Link2, Share2,
 } from "lucide-react";
+import CelebrationEffect from "@/components/CelebrationEffect";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { submitBuilder } from "@/hooks/useBuilders";
