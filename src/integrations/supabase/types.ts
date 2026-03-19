@@ -18,10 +18,12 @@ export type Database = {
         Row: {
           banner_image_url: string | null
           builder_story: string | null
+          claim_status: string
           cloud_focus: string[] | null
           company: string | null
           country: string
           created_at: string
+          email: string | null
           github: string | null
           id: string
           linkedin: string | null
@@ -40,10 +42,12 @@ export type Database = {
         Insert: {
           banner_image_url?: string | null
           builder_story?: string | null
+          claim_status?: string
           cloud_focus?: string[] | null
           company?: string | null
           country: string
           created_at?: string
+          email?: string | null
           github?: string | null
           id?: string
           linkedin?: string | null
@@ -62,10 +66,12 @@ export type Database = {
         Update: {
           banner_image_url?: string | null
           builder_story?: string | null
+          claim_status?: string
           cloud_focus?: string[] | null
           company?: string | null
           country?: string
           created_at?: string
+          email?: string | null
           github?: string | null
           id?: string
           linkedin?: string | null
@@ -82,6 +88,44 @@ export type Database = {
           what_building?: string | null
         }
         Relationships: []
+      }
+      claim_requests: {
+        Row: {
+          builder_id: string
+          claimer_email: string
+          claimer_user_id: string
+          created_at: string
+          id: string
+          resolved_at: string | null
+          status: string
+        }
+        Insert: {
+          builder_id: string
+          claimer_email: string
+          claimer_user_id: string
+          created_at?: string
+          id?: string
+          resolved_at?: string | null
+          status?: string
+        }
+        Update: {
+          builder_id?: string
+          claimer_email?: string
+          claimer_user_id?: string
+          created_at?: string
+          id?: string
+          resolved_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "claim_requests_builder_id_fkey"
+            columns: ["builder_id"]
+            isOneToOne: false
+            referencedRelation: "builders"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
