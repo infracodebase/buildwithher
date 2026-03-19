@@ -34,6 +34,8 @@ function dbRowToProfile(row: {
   user_id: string | null;
   banner_image_url: string | null;
   updated_at: string | null;
+  email: string | null;
+  claim_status: string;
 }): BuilderProfileWithMeta {
   const roleDisplay = row.role + (row.company ? ` at ${row.company}` : "");
   const tags = [...(row.cloud_focus || []), ...(row.skills || [])];
