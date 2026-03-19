@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import BrandLockup from "./BrandLockup";
 import ThemeToggle from "./ThemeToggle";
-import ProfileRecovery from "./ProfileRecovery";
 
 const navLinks = [
   { label: "Manifest", path: "/manifest" },
@@ -18,27 +18,10 @@ const navLinks = [
   { label: "Resources", path: "/resources" },
 ];
 
-interface BuilderPresence {
+interface AuthProfile {
   slug: string;
   name: string;
   photo: string;
-}
-
-function getBuilderPresence(): BuilderPresence | null {
-  const slug = localStorage.getItem("builderProfileSlug");
-  if (!slug) return null;
-  return {
-    slug,
-    name: localStorage.getItem("builderProfileName") || "",
-    photo: localStorage.getItem("builderProfilePhoto") || "",
-  };
-}
-
-export function clearBuilderPresence() {
-  localStorage.removeItem("builderProfileSlug");
-  localStorage.removeItem("builderProfileName");
-  localStorage.removeItem("builderProfilePhoto");
-  window.dispatchEvent(new Event("builderProfileUpdated"));
 }
 
 function getInitials(name: string): string {
@@ -50,11 +33,11 @@ function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-const ProfileAvatar = ({ presence, size = "sm" }: { presence: BuilderPresence | null; size?: "sm" | "md" }) => {
+const ProfileAvatar = ({ profile, size = "sm" }: { profile: AuthProfile | null; size?: "sm" | "md" }) => {
   const dim = size === "sm" ? "w-7 h-7" : "w-8 h-8";
   const textSize = size === "sm" ? "text-[10px]" : "text-xs";
 
-  if (!presence) {
+  if (!profile) {
     return (
       <div className={`${dim} rounded-full bg-secondary/80 border border-border/50 flex items-center justify-center`}>
         <User size={size === "sm" ? 13 : 15} className="text-muted-foreground" />
@@ -62,11 +45,11 @@ const ProfileAvatar = ({ presence, size = "sm" }: { presence: BuilderPresence | 
     );
   }
 
-  if (presence.photo) {
+  if (profile.photo) {
     return (
       <img
-        src={presence.photo}
-        alt={presence.name}
+        src={profile.photo}
+        alt={profile.name}
         className={`${dim} rounded-full object-cover border-2 border-primary/40 ring-1 ring-primary/20`}
       />
     );
@@ -75,18 +58,26 @@ const ProfileAvatar = ({ presence, size = "sm" }: { presence: BuilderPresence | 
   return (
     <div className={`${dim} rounded-full bg-primary/15 border-2 border-primary/40 flex items-center justify-center`}>
       <span className={`${textSize} font-semibold text-primary`}>
-        {getInitials(presence.name)}
+        {getInitials(profile.name)}
       </span>
     </div>
   );
 };
 
+// Export for backward compatibility
+export function clearBuilderPresence() {
+  localStorage.removeItem("builderProfileSlug");
+  localStorage.removeItem("builderProfileName");
+  localStorage.removeItem("builderProfilePhoto");
+  window.dispatchEvent(new Event("builderProfileUpdated"));
+}
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [presence, setPresence] = useState<BuilderPresence | null>(null);
-  const [validated, setValidated] = useState(false);
+  const [authProfile, setAuthProfile] = useState<AuthProfile | null>(null);
   const location = useLocation();
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -94,30 +85,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Refresh presence on route change and custom events
-  const refreshPresence = useCallback(() => {
-    setPresence(getBuilderPresence());
-  }, []);
-
+  // Fetch builder profile for authenticated user
   useEffect(() => {
-    refreshPresence();
-  }, [location.pathname, refreshPresence]);
-
-  useEffect(() => {
-    const handler = () => {
-      refreshPresence();
-      setValidated(true); // skip re-validation after explicit update
-    };
-    window.addEventListener("builderProfileUpdated", handler);
-    return () => window.removeEventListener("builderProfileUpdated", handler);
-  }, [refreshPresence]);
-
-  // Validate stored profile against Supabase on first load
-  useEffect(() => {
-    if (validated) return;
-    const stored = getBuilderPresence();
-    if (!stored) {
-      setValidated(true);
+    if (!user) {
+      setAuthProfile(null);
       return;
     }
 
@@ -125,37 +96,55 @@ const Navbar = () => {
     supabase
       .from("builders")
       .select("slug, name, photo_url")
-      .eq("slug", stored.slug)
+      .eq("user_id", user.id)
       .maybeSingle()
       .then(({ data }) => {
         if (cancelled) return;
-        if (!data) {
-          // Profile no longer exists in Supabase — clear stale data
-          clearBuilderPresence();
-          setPresence(null);
-        } else {
-          // Sync localStorage with latest Supabase data
-          localStorage.setItem("builderProfileName", data.name);
-          localStorage.setItem("builderProfilePhoto", data.photo_url || "");
-          setPresence({
+        if (data) {
+          setAuthProfile({
             slug: data.slug!,
             name: data.name,
             photo: data.photo_url || "",
           });
+        } else {
+          setAuthProfile(null);
         }
-        setValidated(true);
       });
 
     return () => { cancelled = true; };
-  }, [validated]);
+  }, [user]);
 
-  const handleReset = useCallback(() => {
+  // Re-fetch on custom event (after profile linking)
+  useEffect(() => {
+    const handler = () => {
+      if (!user) return;
+      supabase
+        .from("builders")
+        .select("slug, name, photo_url")
+        .eq("user_id", user.id)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data) {
+            setAuthProfile({
+              slug: data.slug!,
+              name: data.name,
+              photo: data.photo_url || "",
+            });
+          }
+        });
+    };
+    window.addEventListener("builderProfileUpdated", handler);
+    return () => window.removeEventListener("builderProfileUpdated", handler);
+  }, [user]);
+
+  const handleSignOut = useCallback(async () => {
+    await supabase.auth.signOut();
+    setAuthProfile(null);
     clearBuilderPresence();
-    setPresence(null);
   }, []);
 
-  const profilePath = presence ? `/builders/${presence.slug}` : "/join-the-builders";
-  const firstName = presence?.name?.split(" ")[0];
+  const profilePath = authProfile ? `/builders/${authProfile.slug}` : "/join-the-builders";
+  const firstName = authProfile?.name?.split(" ")[0];
 
   return (
     <nav
@@ -186,15 +175,12 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-2">
           <ThemeToggle />
-          {!presence && (
-            <ProfileRecovery variant="trigger" onRecovered={refreshPresence} />
-          )}
-          {presence && (
+          {authProfile && (
             <button
-              onClick={handleReset}
+              onClick={handleSignOut}
               className="text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
             >
-              Not you?
+              Sign out
             </button>
           )}
           <Link
@@ -205,8 +191,8 @@ const Navbar = () => {
                 : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
             }`}
           >
-            <ProfileAvatar presence={presence} />
-            {presence ? firstName : "My Profile"}
+            <ProfileAvatar profile={authProfile} />
+            {authProfile ? firstName : "My Profile"}
           </Link>
           <Link
             to="/join-the-builders"
@@ -219,7 +205,7 @@ const Navbar = () => {
         <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
           <Link to={profilePath} className="p-1">
-            <ProfileAvatar presence={presence} size="md" />
+            <ProfileAvatar profile={authProfile} size="md" />
           </Link>
           <button onClick={() => setOpen(!open)} className="p-2 text-foreground">
             {open ? <X size={20} /> : <Menu size={20} />}
@@ -246,30 +232,28 @@ const Navbar = () => {
                     : "text-foreground bg-secondary/50 hover:bg-secondary"
                 }`}
               >
-                <ProfileAvatar presence={presence} size="md" />
+                <ProfileAvatar profile={authProfile} size="md" />
                 <div className="flex flex-col">
                   <span className="font-semibold">
-                    {presence ? presence.name : "My Profile"}
+                    {authProfile ? authProfile.name : "My Profile"}
                   </span>
                   <span className="text-xs text-muted-foreground">
-                    {presence ? "View Profile" : "Create your builder profile"}
+                    {authProfile ? "View Profile" : "Create your builder profile"}
                   </span>
                 </div>
               </Link>
 
-              {/* Mobile: Not you? / Find profile */}
-              <div className="flex items-center gap-3 px-3 mb-2">
-                {presence ? (
+              {/* Mobile: Sign out */}
+              {authProfile && (
+                <div className="flex items-center gap-3 px-3 mb-2">
                   <button
-                    onClick={() => { handleReset(); setOpen(false); }}
+                    onClick={() => { handleSignOut(); setOpen(false); }}
                     className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
                   >
-                    Not you? Switch profile
+                    Sign out
                   </button>
-                ) : (
-                  <ProfileRecovery variant="trigger" onRecovered={() => { refreshPresence(); setOpen(false); }} />
-                )}
-              </div>
+                </div>
+              )}
 
               {navLinks.map((link) => (
                 <Link

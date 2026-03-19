@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
+import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
@@ -11,9 +11,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
+import ClaimProfileModal from "@/components/ClaimProfileModal";
 import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 import ProfileBanner from "@/components/builder-profile/ProfileBanner";
 import ProfileHeader from "@/components/builder-profile/ProfileHeader";
@@ -31,22 +33,66 @@ const BuilderProfile = () => {
   const queryClient = useQueryClient();
   const builder = allBuilders?.find((b) => b.slug === slug);
   const [editOpen, setEditOpen] = useState(false);
+  const [claimOpen, setClaimOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
   const [generatingProfile, setGeneratingProfile] = useState(false);
   const [showShareOverlay, setShowShareOverlay] = useState(false);
   const profileContentRef = useRef<HTMLDivElement>(null);
+
+  const isOwner = !!(user && builder?.userId && user.id === builder.userId);
+  const isUnclaimed = !!(builder && !builder.userId);
+  // Show "Edit your profile" if: owner, OR the profile was just created by this browser (localStorage match + unclaimed)
+  const isLocalCreator = !!(builder && localStorage.getItem("builderProfileSlug") === builder.slug && isUnclaimed);
+  const canShowEditCTA = isOwner || isLocalCreator;
 
   // Show share overlay when arriving from profile creation
   useEffect(() => {
     if (searchParams.get("welcome") === "true" && builder) {
       const timer = setTimeout(() => {
         setShowShareOverlay(true);
-        // Clean up URL param
         setSearchParams({}, { replace: true });
       }, 800);
       return () => clearTimeout(timer);
     }
   }, [searchParams, builder, setSearchParams]);
+
+  // After OAuth redirect: if user just authenticated and profile is unclaimed, link it
+  useEffect(() => {
+    if (!user || !builder || !isUnclaimed) return;
+    const localSlug = localStorage.getItem("builderProfileSlug");
+    if (localSlug !== builder.slug) return;
+
+    // Auto-link after OAuth return
+    supabase
+      .from("builders")
+      .update({ user_id: user.id })
+      .eq("id", builder.dbId!)
+      .is("user_id", null)
+      .then(({ error }) => {
+        if (!error) {
+          queryClient.invalidateQueries({ queryKey: ["builders"] });
+          toast({ title: "Profile linked!", description: "You can now edit your profile." });
+          // Open edit modal after linking
+          setTimeout(() => setEditOpen(true), 500);
+        }
+      });
+  }, [user, builder, isUnclaimed, queryClient]);
+
+  const handleEditClick = useCallback(() => {
+    if (isOwner) {
+      setEditOpen(true);
+    } else if (isLocalCreator) {
+      // Not authenticated — show claim modal
+      setClaimOpen(true);
+    }
+  }, [isOwner, isLocalCreator]);
+
+  const handleClaimed = useCallback(() => {
+    setClaimOpen(false);
+    queryClient.invalidateQueries({ queryKey: ["builders"] });
+    // Open edit after a brief delay for data refresh
+    setTimeout(() => setEditOpen(true), 600);
+  }, [queryClient]);
 
   const handleDownloadBuilderCard = useCallback(async () => {
     if (!builder) return;
@@ -64,8 +110,7 @@ const BuilderProfile = () => {
       link.download = `BuildWithHer-${builder.name.replace(/\s+/g, "-")}.png`;
       link.href = dataUrl;
       link.click();
-    } catch (err) {
-      console.error("Card generation error:", err);
+    } catch {
       toast({ title: "Error", description: "Could not generate your Builder Card." });
     } finally {
       setGeneratingCard(false);
@@ -86,19 +131,22 @@ const BuilderProfile = () => {
       link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
       link.href = dataUrl;
       link.click();
-    } catch (err) {
-      console.error("Profile export error:", err);
+    } catch {
       toast({ title: "Error", description: "Could not generate your profile image." });
     } finally {
       setGeneratingProfile(false);
     }
   }, [builder]);
 
-  const isOwner = !!(user && builder?.userId && user.id === builder.userId);
-
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
   };
+
+  const handleCopyLink = useCallback(() => {
+    const url = `https://buildwithher.lovable.app/builders/${builder?.slug || slug}`;
+    navigator.clipboard.writeText(url);
+    toast({ title: "Copied!", description: "Profile link copied to clipboard." });
+  }, [builder, slug]);
 
   const joinedYear = builder?.createdAt
     ? new Date(builder.createdAt).getFullYear()
@@ -152,7 +200,7 @@ const BuilderProfile = () => {
           <ProfileBanner
             bannerUrl={bannerUrl}
             isOwner={isOwner}
-            onEdit={() => setEditOpen(true)}
+            onEdit={() => handleEditClick()}
           />
 
           {/* Profile Header — overlapping avatar */}
@@ -162,9 +210,45 @@ const BuilderProfile = () => {
             country={builder.country}
             photo={builder.photo}
             joinedYear={joinedYear}
-            isOwner={isOwner}
-            onEdit={() => setEditOpen(true)}
+            isOwner={canShowEditCTA}
+            onEdit={handleEditClick}
           />
+
+          {/* Ownership CTA bar for new/unclaimed profiles */}
+          {canShowEditCTA && !isOwner && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 mx-4 md:mx-6 rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground">This is your profile!</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Create an account to edit and manage it anytime.
+                </p>
+              </div>
+              <div className="flex gap-2 flex-shrink-0">
+                <Button
+                  size="sm"
+                  className="gap-2 rounded-xl"
+                  onClick={handleEditClick}
+                >
+                  <Pencil size={14} />
+                  Edit your profile
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="gap-2 rounded-xl"
+                  onClick={handleCopyLink}
+                >
+                  <Copy size={14} />
+                  Copy link
+                </Button>
+              </div>
+            </motion.div>
+          )}
 
           {/* Main content grid */}
           <div ref={profileContentRef} className="mt-8 flex flex-col lg:flex-row gap-6">
@@ -176,7 +260,6 @@ const BuilderProfile = () => {
               className="lg:w-[300px] flex-shrink-0"
             >
               <div className="lg:sticky lg:top-28 space-y-5">
-                {/* Builder Stats Card */}
                 <BuilderStatsCard
                   tags={builder.tags}
                   cloudPlatforms={builder.cloudPlatforms}
@@ -184,7 +267,6 @@ const BuilderProfile = () => {
                   joinedYear={joinedYear}
                 />
 
-                {/* Action Buttons */}
                 <ActionsSidebar
                   builder={{
                     name: builder.name,
@@ -300,6 +382,17 @@ const BuilderProfile = () => {
           </div>
         </div>
       </div>
+
+      {/* Claim Profile Modal (auth gate) */}
+      {builder.dbId && (
+        <ClaimProfileModal
+          open={claimOpen}
+          onClose={() => setClaimOpen(false)}
+          builderId={builder.dbId}
+          builderName={builder.name}
+          onClaimed={handleClaimed}
+        />
+      )}
 
       {/* Edit Profile Modal */}
       {isOwner && builder.dbId && (
