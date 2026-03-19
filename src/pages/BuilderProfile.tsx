@@ -85,10 +85,13 @@ const BuilderProfile = () => {
     if (isOwner) {
       setEditOpen(true);
     } else if (isLocalCreator) {
-      // Not authenticated — show claim modal
       setClaimOpen(true);
     }
   }, [isOwner, isLocalCreator]);
+
+  const handleClaimClick = useCallback(() => {
+    setClaimOpen(true);
+  }, []);
 
   const handleClaimed = useCallback(() => {
     setClaimOpen(false);
