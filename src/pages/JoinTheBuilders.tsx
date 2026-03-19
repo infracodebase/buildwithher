@@ -44,6 +44,7 @@ const JoinTheBuilders = () => {
   const [showCelebration, setShowCelebration] = useState(false);
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [country, setCountry] = useState("");
   const [company, setCompany] = useState("");
