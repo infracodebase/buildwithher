@@ -97,6 +97,8 @@ const JoinTheBuilders = () => {
     
     // Validate required fields
     const errors: Record<string, string> = {};
+    if (!email.trim()) errors.email = "Please add your email so you can claim your profile later.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errors.email = "Please enter a valid email address.";
     if (!motivation.trim()) errors.motivation = "Please tell us why you want to join Build With Her.";
     if (!builderStory.trim()) errors.builderStory = "Please share your builder story.";
     if (!building.trim()) errors.building = "Tell us what you're currently building or learning.";
