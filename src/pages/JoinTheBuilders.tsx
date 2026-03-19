@@ -113,8 +113,8 @@ const JoinTheBuilders = () => {
     }
     setGenerating(true);
     try {
-      // Save to database
-      await submitBuilder({
+      // Save to database and get back the canonical data
+      const result = await submitBuilder({
         name,
         country,
         role,
@@ -140,12 +140,12 @@ const JoinTheBuilders = () => {
         photoDataUrl: photoPreview,
       });
       setCardImageUrl(url);
-      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      setSubmittedSlug(slug);
-      // Persist profile data for header profile presence
-      localStorage.setItem("builderProfileSlug", slug);
+      setSubmittedSlug(result.slug);
+
+      // Persist profile data for header profile presence (use Supabase photo URL as source of truth)
+      localStorage.setItem("builderProfileSlug", result.slug);
       localStorage.setItem("builderProfileName", name);
-      localStorage.setItem("builderProfilePhoto", photoPreview || "");
+      localStorage.setItem("builderProfilePhoto", result.photo_url || photoPreview || "");
       // Notify header to update immediately
       window.dispatchEvent(new Event("builderProfileUpdated"));
       setSubmitted(true);
