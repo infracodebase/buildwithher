@@ -41,9 +41,12 @@ const BuilderProfile = () => {
 
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
   const isUnclaimed = !!(builder && !builder.userId);
+  const isClaimed = !!(builder && builder.userId);
   // Show "Edit your profile" if: owner, OR the profile was just created by this browser (localStorage match + unclaimed)
   const isLocalCreator = !!(builder && localStorage.getItem("builderProfileSlug") === builder.slug && isUnclaimed);
   const canShowEditCTA = isOwner || isLocalCreator;
+  // Show "Claim this profile" CTA for unclaimed profiles that aren't the local creator's
+  const canShowClaimCTA = !!(isUnclaimed && !isLocalCreator && builder?.claimStatus !== "pending");
 
   // Show share overlay when arriving from profile creation
   useEffect(() => {
