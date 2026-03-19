@@ -220,7 +220,7 @@ const BuilderProfile = () => {
             onEdit={handleEditClick}
           />
 
-          {/* Ownership CTA bar for new/unclaimed profiles */}
+          {/* Ownership CTA bar for new/unclaimed profiles (creator) */}
           {canShowEditCTA && !isOwner && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -253,6 +253,47 @@ const BuilderProfile = () => {
                   Copy link
                 </Button>
               </div>
+            </motion.div>
+          )}
+
+          {/* Claim CTA for unclaimed profiles (visitor) */}
+          {canShowClaimCTA && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 mx-4 md:mx-6 rounded-xl border border-border/50 bg-secondary/30 backdrop-blur-sm p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground">Is this your profile?</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Claim it to edit and manage your builder profile.
+                </p>
+              </div>
+              <Button
+                size="sm"
+                variant="outline"
+                className="gap-2 rounded-xl border-primary/30 text-primary hover:bg-primary/10"
+                onClick={handleClaimClick}
+              >
+                <Shield size={14} />
+                Claim this profile
+              </Button>
+            </motion.div>
+          )}
+
+          {/* Pending claim status */}
+          {isUnclaimed && builder?.claimStatus === "pending" && !isLocalCreator && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 mx-4 md:mx-6 rounded-xl border border-accent/20 bg-accent/5 backdrop-blur-sm p-4"
+            >
+              <p className="text-sm font-medium text-foreground">Claim pending review</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                A claim request for this profile is being reviewed.
+              </p>
             </motion.div>
           )}
 
