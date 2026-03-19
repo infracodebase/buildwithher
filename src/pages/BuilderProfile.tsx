@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
+import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { useQueryClient } from "@tanstack/react-query";
 
