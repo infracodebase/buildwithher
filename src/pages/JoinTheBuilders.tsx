@@ -17,6 +17,7 @@ import CelebrationEffect from "@/components/CelebrationEffect";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { submitBuilder } from "@/hooks/useBuilders";
+import ProfileRecovery from "@/components/ProfileRecovery";
 import {
   Popover,
   PopoverContent,
