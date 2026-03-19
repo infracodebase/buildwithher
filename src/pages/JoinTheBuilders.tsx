@@ -39,6 +39,8 @@ const cloudOptions = [
 
 const JoinTheBuilders = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [showCelebration, setShowCelebration] = useState(false);
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
