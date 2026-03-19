@@ -146,6 +146,8 @@ const JoinTheBuilders = () => {
       localStorage.setItem("builderProfileSlug", slug);
       localStorage.setItem("builderProfileName", name);
       localStorage.setItem("builderProfilePhoto", photoPreview || "");
+      // Notify header to update immediately
+      window.dispatchEvent(new Event("builderProfileUpdated"));
       setSubmitted(true);
       
       // Trigger celebration then redirect
