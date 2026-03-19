@@ -437,6 +437,8 @@ const BuilderProfile = () => {
           onClose={() => setClaimOpen(false)}
           builderId={builder.dbId}
           builderName={builder.name}
+          builderEmail={builder.email}
+          claimMode={isLocalCreator ? "creator" : "visitor"}
           onClaimed={handleClaimed}
         />
       )}
