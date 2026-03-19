@@ -2,6 +2,17 @@ import type { SessionData } from "@/components/SessionCard";
 
 export const pastSessions: SessionData[] = [
   {
+    title: "Do Engineers Need to Build a Personal Brand?",
+    description:
+      "A conversation exploring whether engineers need a personal brand, when visibility actually matters, and how to build it without becoming an influencer.",
+    speaker: "Divine Odazie & Tarak",
+    role: "Content Creator & Co-Founder, Infracodebase",
+    imageUrl: "https://i.ytimg.com/vi/5At76xVQngA/maxresdefault.jpg",
+    source: "Infracodebase",
+    sessionType: "Conversation",
+    videoUrl: "https://www.youtube.com/watch?v=5At76xVQngA",
+  },
+  {
     title: "Legal Background to Cloud Engineering: What It Really Takes",
     description:
       "A conversation exploring how professionals transition into cloud engineering from non-traditional backgrounds and how skills from fields like law translate into infrastructure careers.",
