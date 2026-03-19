@@ -697,6 +697,16 @@ https://buildwithher.dev`;
 
       <Footer />
 
+      {showCelebration && (
+        <CelebrationEffect
+          onComplete={() => {
+            if (submittedSlug) {
+              navigate(`/builders/${submittedSlug}?welcome=true`);
+            }
+          }}
+        />
+      )}
+
       <AlertDialog open={showPhotoModal} onOpenChange={setShowPhotoModal}>
         <AlertDialogContent className="sm:max-w-md bg-card border-border/50 rounded-2xl">
           <AlertDialogHeader>
