@@ -325,6 +325,23 @@ const BuilderProfile = () => {
         />
       )}
 
+      {/* Share Overlay for new builders */}
+      {builder && (
+        <ShareOverlay
+          visible={showShareOverlay}
+          onDismiss={() => setShowShareOverlay(false)}
+          profileUrl={`https://buildwithher.lovable.app/builders/${builder.slug || slug}`}
+          builder={{
+            name: builder.name,
+            role: builder.role,
+            country: builder.country,
+            company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+            tags: builder.tags || [],
+            photo: builder.photo,
+          }}
+        />
+      )}
+
       <Footer />
     </div>
   );
