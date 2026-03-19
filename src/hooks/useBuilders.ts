@@ -8,6 +8,8 @@ export interface BuilderProfileWithMeta extends ExtendedBuilderProfile {
   dbId?: string;
   userId?: string;
   bannerImageUrl?: string;
+  email?: string | null;
+  claimStatus?: string;
 }
 
 // Convert a DB row to the profile format used by components
