@@ -25,6 +25,7 @@ import ActionsSidebar from "@/components/builder-profile/ActionsSidebar";
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data: allBuilders, isLoading } = useBuilders();
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -32,7 +33,20 @@ const BuilderProfile = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
   const [generatingProfile, setGeneratingProfile] = useState(false);
+  const [showShareOverlay, setShowShareOverlay] = useState(false);
   const profileContentRef = useRef<HTMLDivElement>(null);
+
+  // Show share overlay when arriving from profile creation
+  useEffect(() => {
+    if (searchParams.get("welcome") === "true" && builder) {
+      const timer = setTimeout(() => {
+        setShowShareOverlay(true);
+        // Clean up URL param
+        setSearchParams({}, { replace: true });
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, builder, setSearchParams]);
 
   const handleDownloadBuilderCard = useCallback(async () => {
     if (!builder) return;
