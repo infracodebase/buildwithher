@@ -61,6 +61,8 @@ function dbRowToProfile(row: {
     userId: row.user_id || undefined,
     bannerImageUrl: row.banner_image_url || undefined,
     motivation: row.motivation || undefined,
+    email: row.email,
+    claimStatus: row.claim_status,
   };
 }
 
