@@ -163,4 +163,6 @@ export async function submitBuilder(args: {
   });
 
   if (error) throw error;
+
+  return { slug, photo_url };
 }
