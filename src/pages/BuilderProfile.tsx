@@ -1,7 +1,7 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
+import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -24,6 +25,7 @@ import ActionsSidebar from "@/components/builder-profile/ActionsSidebar";
 const BuilderProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data: allBuilders, isLoading } = useBuilders();
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -31,7 +33,20 @@ const BuilderProfile = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
   const [generatingProfile, setGeneratingProfile] = useState(false);
+  const [showShareOverlay, setShowShareOverlay] = useState(false);
   const profileContentRef = useRef<HTMLDivElement>(null);
+
+  // Show share overlay when arriving from profile creation
+  useEffect(() => {
+    if (searchParams.get("welcome") === "true" && builder) {
+      const timer = setTimeout(() => {
+        setShowShareOverlay(true);
+        // Clean up URL param
+        setSearchParams({}, { replace: true });
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, builder, setSearchParams]);
 
   const handleDownloadBuilderCard = useCallback(async () => {
     if (!builder) return;
@@ -306,6 +321,23 @@ const BuilderProfile = () => {
             linkedin: builder.linkedin,
             github: builder.github,
             portfolio: builder.website,
+          }}
+        />
+      )}
+
+      {/* Share Overlay for new builders */}
+      {builder && (
+        <ShareOverlay
+          visible={showShareOverlay}
+          onDismiss={() => setShowShareOverlay(false)}
+          profileUrl={`https://buildwithher.lovable.app/builders/${builder.slug || slug}`}
+          builder={{
+            name: builder.name,
+            role: builder.role,
+            country: builder.country,
+            company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+            tags: builder.tags || [],
+            photo: builder.photo,
           }}
         />
       )}
