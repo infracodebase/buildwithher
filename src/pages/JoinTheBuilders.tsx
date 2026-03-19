@@ -143,6 +143,9 @@ const JoinTheBuilders = () => {
       const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       setSubmittedSlug(slug);
       setSubmitted(true);
+      
+      // Trigger celebration then redirect
+      setShowCelebration(true);
     } catch (err) {
       console.error("Submission error:", err);
       toast({ title: "Error", description: "Could not save your profile. Please try again." });
