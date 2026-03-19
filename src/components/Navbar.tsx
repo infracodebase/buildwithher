@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 import BrandLockup from "./BrandLockup";
 import ThemeToggle from "./ThemeToggle";
 import ProfileRecovery from "./ProfileRecovery";
@@ -31,6 +32,13 @@ function getBuilderPresence(): BuilderPresence | null {
     name: localStorage.getItem("builderProfileName") || "",
     photo: localStorage.getItem("builderProfilePhoto") || "",
   };
+}
+
+export function clearBuilderPresence() {
+  localStorage.removeItem("builderProfileSlug");
+  localStorage.removeItem("builderProfileName");
+  localStorage.removeItem("builderProfilePhoto");
+  window.dispatchEvent(new Event("builderProfileUpdated"));
 }
 
 function getInitials(name: string): string {
@@ -77,6 +85,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [presence, setPresence] = useState<BuilderPresence | null>(null);
+  const [validated, setValidated] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -85,15 +94,64 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Refresh presence on route change and after profile creation
-  useEffect(() => {
+  // Refresh presence on route change and custom events
+  const refreshPresence = useCallback(() => {
     setPresence(getBuilderPresence());
-  }, [location.pathname]);
+  }, []);
 
   useEffect(() => {
-    const handler = () => setPresence(getBuilderPresence());
+    refreshPresence();
+  }, [location.pathname, refreshPresence]);
+
+  useEffect(() => {
+    const handler = () => {
+      refreshPresence();
+      setValidated(true); // skip re-validation after explicit update
+    };
     window.addEventListener("builderProfileUpdated", handler);
     return () => window.removeEventListener("builderProfileUpdated", handler);
+  }, [refreshPresence]);
+
+  // Validate stored profile against Supabase on first load
+  useEffect(() => {
+    if (validated) return;
+    const stored = getBuilderPresence();
+    if (!stored) {
+      setValidated(true);
+      return;
+    }
+
+    let cancelled = false;
+    supabase
+      .from("builders")
+      .select("slug, name, photo_url")
+      .eq("slug", stored.slug)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (cancelled) return;
+        if (!data) {
+          // Profile no longer exists in Supabase — clear stale data
+          clearBuilderPresence();
+          setPresence(null);
+        } else {
+          // Sync localStorage with latest Supabase data
+          localStorage.setItem("builderProfileName", data.name);
+          localStorage.setItem("builderProfilePhoto", data.photo_url || "");
+          setPresence({
+            slug: data.slug!,
+            name: data.name,
+            photo: data.photo_url || "",
+          });
+        }
+        setValidated(true);
+      });
+
+    return () => { cancelled = true; };
+  }, [validated]);
+
+  const handleReset = useCallback(() => {
+    clearBuilderPresence();
+    setPresence(null);
   }, []);
 
   const profilePath = presence ? `/builders/${presence.slug}` : "/join-the-builders";
@@ -129,7 +187,15 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-2">
           <ThemeToggle />
           {!presence && (
-            <ProfileRecovery variant="trigger" onRecovered={() => setPresence(getBuilderPresence())} />
+            <ProfileRecovery variant="trigger" onRecovered={refreshPresence} />
+          )}
+          {presence && (
+            <button
+              onClick={handleReset}
+              className="text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+            >
+              Not you?
+            </button>
           )}
           <Link
             to={profilePath}
@@ -174,7 +240,7 @@ const Navbar = () => {
               <Link
                 to={profilePath}
                 onClick={() => setOpen(false)}
-                className={`px-3 py-3 rounded-xl text-sm font-medium transition-colors inline-flex items-center gap-3 mb-2 ${
+                className={`px-3 py-3 rounded-xl text-sm font-medium transition-colors inline-flex items-center gap-3 mb-1 ${
                   location.pathname.startsWith("/builders/")
                     ? "text-foreground bg-secondary"
                     : "text-foreground bg-secondary/50 hover:bg-secondary"
@@ -190,6 +256,20 @@ const Navbar = () => {
                   </span>
                 </div>
               </Link>
+
+              {/* Mobile: Not you? / Find profile */}
+              <div className="flex items-center gap-3 px-3 mb-2">
+                {presence ? (
+                  <button
+                    onClick={() => { handleReset(); setOpen(false); }}
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+                  >
+                    Not you? Switch profile
+                  </button>
+                ) : (
+                  <ProfileRecovery variant="trigger" onRecovered={() => { refreshPresence(); setOpen(false); }} />
+                )}
+              </div>
 
               {navLinks.map((link) => (
                 <Link
