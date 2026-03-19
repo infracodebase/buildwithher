@@ -288,6 +288,15 @@ https://buildwithher.dev`;
         </div>
       </section>
 
+      {/* Profile recovery for existing builders */}
+      {!submitted && !localStorage.getItem("builderProfileSlug") && (
+        <section className="container pt-2 pb-0">
+          <div className="max-w-6xl mx-auto">
+            <ProfileRecovery variant="inline" />
+          </div>
+        </section>
+      )}
+
       {/* Two-column layout */}
       <section className="container py-12 md:py-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-start">

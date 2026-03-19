@@ -128,6 +128,9 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-2">
           <ThemeToggle />
+          {!presence && (
+            <ProfileRecovery variant="trigger" onRecovered={() => setPresence(getBuilderPresence())} />
+          )}
           <Link
             to={profilePath}
             className={`h-8 px-2 pr-3 inline-flex items-center gap-2 rounded-full text-[13px] font-medium transition-all ${
