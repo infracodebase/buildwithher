@@ -142,6 +142,8 @@ const JoinTheBuilders = () => {
       setCardImageUrl(url);
       const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       setSubmittedSlug(slug);
+      // Persist profile slug for "My Profile" header link
+      localStorage.setItem("builderProfileSlug", slug);
       setSubmitted(true);
       
       // Trigger celebration then redirect
