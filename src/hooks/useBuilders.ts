@@ -104,6 +104,7 @@ export function useBuilders() {
 
 export async function submitBuilder(args: {
   name: string;
+  email: string;
   country: string;
   role: string;
   company?: string;
@@ -145,6 +146,7 @@ export async function submitBuilder(args: {
 
   const { error } = await supabase.from("builders").insert({
     name: args.name,
+    email: args.email,
     country: args.country,
     role: args.role,
     company: args.company || null,
@@ -160,6 +162,7 @@ export async function submitBuilder(args: {
     photo_url,
     slug,
     user_id: user?.id || null,
+    claim_status: user?.id ? 'claimed' : 'unclaimed',
   });
 
   if (error) throw error;
