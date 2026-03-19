@@ -8,6 +8,8 @@ export interface BuilderProfileWithMeta extends ExtendedBuilderProfile {
   dbId?: string;
   userId?: string;
   bannerImageUrl?: string;
+  email?: string | null;
+  claimStatus?: string;
 }
 
 // Convert a DB row to the profile format used by components
@@ -32,6 +34,8 @@ function dbRowToProfile(row: {
   user_id: string | null;
   banner_image_url: string | null;
   updated_at: string | null;
+  email: string | null;
+  claim_status: string;
 }): BuilderProfileWithMeta {
   const roleDisplay = row.role + (row.company ? ` at ${row.company}` : "");
   const tags = [...(row.cloud_focus || []), ...(row.skills || [])];
@@ -57,6 +61,8 @@ function dbRowToProfile(row: {
     userId: row.user_id || undefined,
     bannerImageUrl: row.banner_image_url || undefined,
     motivation: row.motivation || undefined,
+    email: row.email,
+    claimStatus: row.claim_status,
   };
 }
 
@@ -104,6 +110,7 @@ export function useBuilders() {
 
 export async function submitBuilder(args: {
   name: string;
+  email: string;
   country: string;
   role: string;
   company?: string;
@@ -145,6 +152,7 @@ export async function submitBuilder(args: {
 
   const { error } = await supabase.from("builders").insert({
     name: args.name,
+    email: args.email,
     country: args.country,
     role: args.role,
     company: args.company || null,
@@ -160,6 +168,7 @@ export async function submitBuilder(args: {
     photo_url,
     slug,
     user_id: user?.id || null,
+    claim_status: user?.id ? 'claimed' : 'unclaimed',
   });
 
   if (error) throw error;

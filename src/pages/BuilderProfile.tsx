@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
+import { ArrowLeft, ExternalLink, Globe, Pencil, Copy, Shield } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
@@ -41,9 +41,12 @@ const BuilderProfile = () => {
 
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
   const isUnclaimed = !!(builder && !builder.userId);
+  const _isClaimed = !!(builder && builder.userId);
   // Show "Edit your profile" if: owner, OR the profile was just created by this browser (localStorage match + unclaimed)
   const isLocalCreator = !!(builder && localStorage.getItem("builderProfileSlug") === builder.slug && isUnclaimed);
   const canShowEditCTA = isOwner || isLocalCreator;
+  // Show "Claim this profile" CTA for unclaimed profiles that aren't the local creator's
+  const canShowClaimCTA = !!(isUnclaimed && !isLocalCreator && builder?.claimStatus !== "pending");
 
   // Show share overlay when arriving from profile creation
   useEffect(() => {
@@ -56,36 +59,53 @@ const BuilderProfile = () => {
     }
   }, [searchParams, builder, setSearchParams]);
 
-  // After OAuth redirect: if user just authenticated and profile is unclaimed, link it
+  // After OAuth redirect: if user just authenticated and profile is unclaimed, handle linking
   useEffect(() => {
     if (!user || !builder || !isUnclaimed) return;
     const localSlug = localStorage.getItem("builderProfileSlug");
-    if (localSlug !== builder.slug) return;
-
-    // Auto-link after OAuth return
-    supabase
-      .from("builders")
-      .update({ user_id: user.id })
-      .eq("id", builder.dbId!)
-      .is("user_id", null)
-      .then(({ error }) => {
-        if (!error) {
-          queryClient.invalidateQueries({ queryKey: ["builders"] });
-          toast({ title: "Profile linked!", description: "You can now edit your profile." });
-          // Open edit modal after linking
-          setTimeout(() => setEditOpen(true), 500);
-        }
-      });
+    
+    if (localSlug === builder.slug) {
+      // Case 1: Creator returning after OAuth — direct link
+      supabase
+        .from("builders")
+        .update({ user_id: user.id, claim_status: "claimed" })
+        .eq("id", builder.dbId!)
+        .is("user_id", null)
+        .then(({ error }) => {
+          if (!error) {
+            queryClient.invalidateQueries({ queryKey: ["builders"] });
+            toast({ title: "Profile linked!", description: "You can now edit your profile." });
+            setTimeout(() => setEditOpen(true), 500);
+          }
+        });
+    } else if (builder.email && user.email && builder.email.toLowerCase() === user.email.toLowerCase()) {
+      // Case 2: Authenticated user's email matches profile email — auto-link
+      supabase
+        .from("builders")
+        .update({ user_id: user.id, claim_status: "claimed" })
+        .eq("id", builder.dbId!)
+        .is("user_id", null)
+        .then(({ error }) => {
+          if (!error) {
+            queryClient.invalidateQueries({ queryKey: ["builders"] });
+            toast({ title: "Profile linked!", description: "Email verified — this profile is now yours." });
+            setTimeout(() => setEditOpen(true), 500);
+          }
+        });
+    }
   }, [user, builder, isUnclaimed, queryClient]);
 
   const handleEditClick = useCallback(() => {
     if (isOwner) {
       setEditOpen(true);
     } else if (isLocalCreator) {
-      // Not authenticated — show claim modal
       setClaimOpen(true);
     }
   }, [isOwner, isLocalCreator]);
+
+  const handleClaimClick = useCallback(() => {
+    setClaimOpen(true);
+  }, []);
 
   const handleClaimed = useCallback(() => {
     setClaimOpen(false);
@@ -214,7 +234,7 @@ const BuilderProfile = () => {
             onEdit={handleEditClick}
           />
 
-          {/* Ownership CTA bar for new/unclaimed profiles */}
+          {/* Ownership CTA bar for new/unclaimed profiles (creator) */}
           {canShowEditCTA && !isOwner && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -247,6 +267,47 @@ const BuilderProfile = () => {
                   Copy link
                 </Button>
               </div>
+            </motion.div>
+          )}
+
+          {/* Claim CTA for unclaimed profiles (visitor) */}
+          {canShowClaimCTA && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 mx-4 md:mx-6 rounded-xl border border-border/50 bg-secondary/30 backdrop-blur-sm p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground">Is this your profile?</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Claim it to edit and manage your builder profile.
+                </p>
+              </div>
+              <Button
+                size="sm"
+                variant="outline"
+                className="gap-2 rounded-xl border-primary/30 text-primary hover:bg-primary/10"
+                onClick={handleClaimClick}
+              >
+                <Shield size={14} />
+                Claim this profile
+              </Button>
+            </motion.div>
+          )}
+
+          {/* Pending claim status */}
+          {isUnclaimed && builder?.claimStatus === "pending" && !isLocalCreator && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 mx-4 md:mx-6 rounded-xl border border-accent/20 bg-accent/5 backdrop-blur-sm p-4"
+            >
+              <p className="text-sm font-medium text-foreground">Claim pending review</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                A claim request for this profile is being reviewed.
+              </p>
             </motion.div>
           )}
 
@@ -390,6 +451,8 @@ const BuilderProfile = () => {
           onClose={() => setClaimOpen(false)}
           builderId={builder.dbId}
           builderName={builder.name}
+          builderEmail={builder.email}
+          claimMode={isLocalCreator ? "creator" : "visitor"}
           onClaimed={handleClaimed}
         />
       )}

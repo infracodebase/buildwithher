@@ -44,6 +44,7 @@ const JoinTheBuilders = () => {
   const [showCelebration, setShowCelebration] = useState(false);
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [country, setCountry] = useState("");
   const [company, setCompany] = useState("");
@@ -96,6 +97,8 @@ const JoinTheBuilders = () => {
     
     // Validate required fields
     const errors: Record<string, string> = {};
+    if (!email.trim()) errors.email = "Please add your email so you can claim your profile later.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errors.email = "Please enter a valid email address.";
     if (!motivation.trim()) errors.motivation = "Please tell us why you want to join Build With Her.";
     if (!builderStory.trim()) errors.builderStory = "Please share your builder story.";
     if (!building.trim()) errors.building = "Tell us what you're currently building or learning.";
@@ -117,6 +120,7 @@ const JoinTheBuilders = () => {
       // Save to database and get back the canonical data
       const result = await submitBuilder({
         name,
+        email: email.trim(),
         country,
         role,
         company: company || undefined,
@@ -585,20 +589,34 @@ https://buildwithher.dev`;
                         <Input value={name} onChange={(e) => setName(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                       </div>
                       <div>
-                        <Label className="text-xs text-muted-foreground">Country *</Label>
-                        <Input value={country} onChange={(e) => setCountry(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                        <Label className="text-xs text-muted-foreground">Email *</Label>
+                        <Input 
+                          type="email"
+                          value={email} 
+                          onChange={(e) => { setEmail(e.target.value); setValidationErrors(prev => ({ ...prev, email: "" })); }} 
+                          required 
+                          className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.email ? "border-destructive" : ""}`} 
+                          placeholder="you@example.com" 
+                        />
+                        {validationErrors.email && <p className="text-xs text-destructive mt-1">{validationErrors.email}</p>}
+                        <p className="text-[11px] text-muted-foreground mt-1">Used to verify profile ownership — never shown publicly.</p>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
+                        <Label className="text-xs text-muted-foreground">Country *</Label>
+                        <Input value={country} onChange={(e) => setCountry(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
+                      </div>
+                      <div>
                         <Label className="text-xs text-muted-foreground">Role / Title *</Label>
                         <Input value={role} onChange={(e) => setRole(e.target.value)} required className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                       </div>
-                      <div>
-                        <Label className="text-xs text-muted-foreground">Company or School</Label>
-                        <Input value={company} onChange={(e) => setCompany(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
-                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-xs text-muted-foreground">Company or School</Label>
+                      <Input value={company} onChange={(e) => setCompany(e.target.value)} className="mt-1.5 bg-secondary/50 border-border/50 rounded-xl" />
                     </div>
 
                     <div>
