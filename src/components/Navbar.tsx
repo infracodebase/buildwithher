@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLockup from "./BrandLockup";
 import ThemeToggle from "./ThemeToggle";
@@ -16,6 +16,11 @@ const navLinks = [
   { label: "Resources", path: "/resources" },
 ];
 
+const getProfilePath = () => {
+  const slug = localStorage.getItem("builderProfileSlug");
+  return slug ? `/builders/${slug}` : "/join-the-builders";
+};
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -26,6 +31,9 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const profilePath = getProfilePath();
+  const hasProfile = !!localStorage.getItem("builderProfileSlug");
 
   return (
     <nav
@@ -57,7 +65,18 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-2">
           <ThemeToggle />
           <Link
-            to="/meet-the-builders"
+            to={profilePath}
+            className={`h-8 px-3 inline-flex items-center gap-1.5 rounded-lg text-[13px] font-medium transition-all ${
+              location.pathname.startsWith("/builders/")
+                ? "bg-secondary text-foreground"
+                : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
+            }`}
+          >
+            <User size={14} />
+            My Profile
+          </Link>
+          <Link
+            to="/join-the-builders"
             className="h-8 px-4 inline-flex items-center rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold hover:bg-primary/90 transition-all glow-blue"
           >
             Join Community
@@ -96,7 +115,19 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/meet-the-builders"
+                to={profilePath}
+                onClick={() => setOpen(false)}
+                className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors inline-flex items-center gap-2 ${
+                  location.pathname.startsWith("/builders/")
+                    ? "text-foreground bg-secondary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <User size={15} />
+                My Profile
+              </Link>
+              <Link
+                to="/join-the-builders"
                 onClick={() => setOpen(false)}
                 className="mt-2 h-10 flex items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-semibold"
               >
