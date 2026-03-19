@@ -16,14 +16,66 @@ const navLinks = [
   { label: "Resources", path: "/resources" },
 ];
 
-const getProfilePath = () => {
+interface BuilderPresence {
+  slug: string;
+  name: string;
+  photo: string;
+}
+
+function getBuilderPresence(): BuilderPresence | null {
   const slug = localStorage.getItem("builderProfileSlug");
-  return slug ? `/builders/${slug}` : "/join-the-builders";
+  if (!slug) return null;
+  return {
+    slug,
+    name: localStorage.getItem("builderProfileName") || "",
+    photo: localStorage.getItem("builderProfilePhoto") || "",
+  };
+}
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
+const ProfileAvatar = ({ presence, size = "sm" }: { presence: BuilderPresence | null; size?: "sm" | "md" }) => {
+  const dim = size === "sm" ? "w-7 h-7" : "w-8 h-8";
+  const textSize = size === "sm" ? "text-[10px]" : "text-xs";
+
+  if (!presence) {
+    return (
+      <div className={`${dim} rounded-full bg-secondary/80 border border-border/50 flex items-center justify-center`}>
+        <User size={size === "sm" ? 13 : 15} className="text-muted-foreground" />
+      </div>
+    );
+  }
+
+  if (presence.photo) {
+    return (
+      <img
+        src={presence.photo}
+        alt={presence.name}
+        className={`${dim} rounded-full object-cover border-2 border-primary/40 ring-1 ring-primary/20`}
+      />
+    );
+  }
+
+  return (
+    <div className={`${dim} rounded-full bg-primary/15 border-2 border-primary/40 flex items-center justify-center`}>
+      <span className={`${textSize} font-semibold text-primary`}>
+        {getInitials(presence.name)}
+      </span>
+    </div>
+  );
 };
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [presence, setPresence] = useState<BuilderPresence | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -32,8 +84,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const profilePath = getProfilePath();
-  const hasProfile = !!localStorage.getItem("builderProfileSlug");
+  // Refresh presence on route change (catches post-creation redirect)
+  useEffect(() => {
+    setPresence(getBuilderPresence());
+  }, [location.pathname]);
+
+  const profilePath = presence ? `/builders/${presence.slug}` : "/join-the-builders";
+  const firstName = presence?.name?.split(" ")[0];
 
   return (
     <nav
@@ -66,14 +123,14 @@ const Navbar = () => {
           <ThemeToggle />
           <Link
             to={profilePath}
-            className={`h-8 px-3 inline-flex items-center gap-1.5 rounded-lg text-[13px] font-medium transition-all ${
+            className={`h-8 px-2 pr-3 inline-flex items-center gap-2 rounded-full text-[13px] font-medium transition-all ${
               location.pathname.startsWith("/builders/")
                 ? "bg-secondary text-foreground"
                 : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
             }`}
           >
-            <User size={14} />
-            My Profile
+            <ProfileAvatar presence={presence} />
+            {presence ? firstName : "My Profile"}
           </Link>
           <Link
             to="/join-the-builders"
@@ -85,6 +142,9 @@ const Navbar = () => {
 
         <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
+          <Link to={profilePath} className="p-1">
+            <ProfileAvatar presence={presence} size="md" />
+          </Link>
           <button onClick={() => setOpen(!open)} className="p-2 text-foreground">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -100,6 +160,27 @@ const Navbar = () => {
             className="lg:hidden border-t border-border/30 bg-background/98 backdrop-blur-xl overflow-hidden"
           >
             <div className="container py-4 flex flex-col gap-1">
+              {/* Profile presence row in mobile menu */}
+              <Link
+                to={profilePath}
+                onClick={() => setOpen(false)}
+                className={`px-3 py-3 rounded-xl text-sm font-medium transition-colors inline-flex items-center gap-3 mb-2 ${
+                  location.pathname.startsWith("/builders/")
+                    ? "text-foreground bg-secondary"
+                    : "text-foreground bg-secondary/50 hover:bg-secondary"
+                }`}
+              >
+                <ProfileAvatar presence={presence} size="md" />
+                <div className="flex flex-col">
+                  <span className="font-semibold">
+                    {presence ? presence.name : "My Profile"}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {presence ? "View Profile" : "Create your builder profile"}
+                  </span>
+                </div>
+              </Link>
+
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -114,18 +195,6 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to={profilePath}
-                onClick={() => setOpen(false)}
-                className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors inline-flex items-center gap-2 ${
-                  location.pathname.startsWith("/builders/")
-                    ? "text-foreground bg-secondary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <User size={15} />
-                My Profile
-              </Link>
               <Link
                 to="/join-the-builders"
                 onClick={() => setOpen(false)}
