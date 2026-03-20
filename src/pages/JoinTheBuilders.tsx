@@ -42,6 +42,8 @@ const cloudOptions = [
 const JoinTheBuilders = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
 
   const [name, setName] = useState("");
