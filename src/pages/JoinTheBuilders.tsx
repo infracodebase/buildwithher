@@ -98,6 +98,12 @@ const JoinTheBuilders = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Must be authenticated
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+    
     // Validate required fields
     const errors: Record<string, string> = {};
     if (!email.trim()) errors.email = "Please add your email so you can claim your profile later.";
@@ -120,7 +126,7 @@ const JoinTheBuilders = () => {
     }
     setGenerating(true);
     try {
-      // Save to database and get back the canonical data
+      // Save to database linked to Clerk user
       const result = await submitBuilder({
         name,
         email: email.trim(),
@@ -136,6 +142,7 @@ const JoinTheBuilders = () => {
         github: github || undefined,
         portfolio: portfolio || undefined,
         photoFile,
+        clerkUserId: user.id,
       });
 
       // Generate visual card
