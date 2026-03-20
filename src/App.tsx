@@ -3,9 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ClerkProvider } from "@clerk/clerk-react";
-import { dark } from "@clerk/themes";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ClerkThemeWrapper from "@/components/ClerkThemeWrapper";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Programs from "./pages/Programs";
@@ -20,14 +19,12 @@ import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
 import Resources from "./pages/Resources";
 
-const CLERK_PUBLISHABLE_KEY = "pk_test_ZGVsaWNhdGUta29pLTkyLmNsZXJrLmFjY291bnRzLmRldiQ";
-
 const queryClient = new QueryClient();
 
 const App = () => (
-  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} appearance={{ baseTheme: dark, variables: { colorBackground: 'hsl(222, 47%, 5%)', colorText: 'hsl(210, 40%, 92%)', colorPrimary: 'hsl(210, 100%, 56%)', colorInputBackground: 'hsl(222, 30%, 14%)', colorInputText: 'hsl(210, 40%, 92%)' } }}>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <ClerkThemeWrapper>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -49,9 +46,9 @@ const App = () => (
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </ClerkProvider>
+      </ClerkThemeWrapper>
+    </ThemeProvider>
+  </QueryClientProvider>
 );
 
 export default App;
