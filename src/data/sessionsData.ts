@@ -2,6 +2,18 @@ import type { SessionData } from "@/components/SessionCard";
 
 export const pastSessions: SessionData[] = [
   {
+    title: "Coffee, Chaos, & ProdSec",
+    description:
+      "A conversation on AI, AppSec, DevSecOps, and modern security thinking.",
+    speaker: "Build With Her x Infracodebase University",
+    role: "Podcast Episode",
+    imageUrl: "/images/appsec_podcast.jpeg",
+    source: "Infracodebase",
+    sessionType: "Podcast",
+    videoUrl:
+      "https://open.spotify.com/episode/1WsnZwbY9NNqK3R1OhURg2?si=pHpeR_zbQiKa9nPMnZxqDw",
+  },
+  {
     title: "Do Engineers Need to Build a Personal Brand?",
     description:
       "A conversation exploring whether engineers need a personal brand, when visibility actually matters, and how to build it without becoming an influencer.",

@@ -19,6 +19,7 @@ const typeColors: Record<string, string> = {
   "Conversation": "bg-muted text-muted-foreground",
   "Technical Session": "bg-primary/10 text-primary",
   "Live Webinar": "bg-destructive/10 text-destructive",
+  "Podcast": "bg-green-500/10 text-green-500",
 };
 
 const SessionCard = ({ session }: { session: SessionData }) => {

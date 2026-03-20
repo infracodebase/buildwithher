@@ -18,7 +18,7 @@ const fadeUp = {
 const SERIES_FILTERS = ["All", "Build with Her", "Infracodebase"] as const;
 type SeriesFilter = (typeof SERIES_FILTERS)[number];
 
-const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk"] as const;
+const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk", "Podcast"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
 
 const sessionPoints = [
