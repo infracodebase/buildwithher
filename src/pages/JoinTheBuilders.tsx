@@ -788,6 +788,13 @@ https://buildwithher.dev`;
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <AuthGateModal
+        open={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        title="Sign in to create your profile"
+        subtitle="Create an account or sign in to build your profile and join the community."
+      />
     </div>
   );
 };
