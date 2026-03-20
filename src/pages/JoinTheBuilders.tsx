@@ -96,11 +96,24 @@ const JoinTheBuilders = () => {
     return /^https?:\/\/(www\.)?linkedin\.com\/in\/.+/i.test(url);
   };
 
+  // Auto-retry submit after user authenticates
+  const formRef = useRef<HTMLFormElement>(null);
+  
+  // When user becomes authenticated and there's a pending submit, retry
+  const prevUserRef = useRef(user);
+  if (user && !prevUserRef.current && pendingSubmitRef.current) {
+    pendingSubmitRef.current = false;
+    // Trigger submit on next tick
+    setTimeout(() => formRef.current?.requestSubmit(), 0);
+  }
+  prevUserRef.current = user;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Must be authenticated
     if (!user) {
+      pendingSubmitRef.current = true;
       setShowAuthModal(true);
       return;
     }
