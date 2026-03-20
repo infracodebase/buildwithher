@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const { user, loading: authLoading } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const pendingSubmitRef = useRef(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -95,11 +96,24 @@ const JoinTheBuilders = () => {
     return /^https?:\/\/(www\.)?linkedin\.com\/in\/.+/i.test(url);
   };
 
+  // Auto-retry submit after user authenticates
+  const formRef = useRef<HTMLFormElement>(null);
+  
+  // When user becomes authenticated and there's a pending submit, retry
+  const prevUserRef = useRef(user);
+  if (user && !prevUserRef.current && pendingSubmitRef.current) {
+    pendingSubmitRef.current = false;
+    // Trigger submit on next tick
+    setTimeout(() => formRef.current?.requestSubmit(), 0);
+  }
+  prevUserRef.current = user;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Must be authenticated
     if (!user) {
+      pendingSubmitRef.current = true;
       setShowAuthModal(true);
       return;
     }
@@ -299,24 +313,6 @@ https://buildwithher.dev`;
         </div>
       </section>
 
-      {/* Auth gate for unauthenticated users */}
-      {!submitted && !user && !authLoading && (
-        <section className="container pt-2 pb-0">
-          <div className="max-w-6xl mx-auto">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 flex items-center gap-4">
-              <p className="text-sm text-muted-foreground flex-1">
-                Sign in to create your builder profile and join the community.
-              </p>
-              <button
-                onClick={() => setShowAuthModal(true)}
-                className="text-sm text-primary font-medium hover:underline shrink-0"
-              >
-                Sign in →
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Two-column layout */}
       <section className="container py-12 md:py-20">
@@ -565,7 +561,7 @@ https://buildwithher.dev`;
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
                     {/* Photo upload */}
                     <div>
                       <Label className="text-xs text-muted-foreground">Profile Photo *</Label>
@@ -791,9 +787,9 @@ https://buildwithher.dev`;
 
       <AuthGateModal
         open={showAuthModal}
-        onClose={() => setShowAuthModal(false)}
-        title="Sign in to create your profile"
-        subtitle="Create an account or sign in to build your profile and join the community."
+        onClose={() => { setShowAuthModal(false); pendingSubmitRef.current = false; }}
+        title="Share your story"
+        subtitle="Sign in or create an account to publish your builder profile."
       />
     </div>
   );
