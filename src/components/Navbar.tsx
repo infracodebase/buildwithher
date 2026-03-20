@@ -262,12 +262,15 @@ const Navbar = () => {
               </button>
             )}
 
-            <Link
-              to="/join-the-builders"
-              className="h-8 px-4 inline-flex items-center rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold hover:bg-primary/90 transition-all glow-blue"
-            >
-              Join Community
-            </Link>
+            {/* Only show Join Community when user has no profile */}
+            {!(user && authProfile) && (
+              <Link
+                to="/join-the-builders"
+                className="h-8 px-4 inline-flex items-center rounded-lg bg-primary text-primary-foreground text-[13px] font-semibold hover:bg-primary/90 transition-all glow-blue"
+              >
+                Join Community
+              </Link>
+            )}
           </div>
 
           <div className="flex lg:hidden items-center gap-2">
