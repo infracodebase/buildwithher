@@ -20,6 +20,7 @@ export const PARTNER_CATEGORIES = [
 
 export type PartnerCategory = (typeof PARTNER_CATEGORIES)[number];
 
+// Partner directory entries
 export const partners: PartnerData[] = [
   {
     category: "Community Partners",
