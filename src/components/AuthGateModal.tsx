@@ -82,8 +82,8 @@ const AuthGateModal = ({
                       card: "bg-transparent shadow-none border-none p-0",
                     },
                   }}
-                  afterSignInUrl={window.location.href}
-                  afterSignUpUrl={window.location.href}
+                  forceRedirectUrl={window.location.pathname}
+                  signInForceRedirectUrl={window.location.pathname}
                 />
               </div>
             </div>

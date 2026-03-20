@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClerkThemeWrapper from "@/components/ClerkThemeWrapper";
 import ScrollToTop from "@/components/ScrollToTop";
+import SSOCallback from "@/components/SSOCallback";
 import Index from "./pages/Index";
 import Programs from "./pages/Programs";
 import Community from "./pages/Community";
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/manifest" element={<Manifest />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/builders/:slug" element={<BuilderProfile />} />
+              <Route path="/sso-callback" element={<SSOCallback />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
