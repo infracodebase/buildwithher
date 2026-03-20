@@ -561,7 +561,7 @@ https://buildwithher.dev`;
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
                     {/* Photo upload */}
                     <div>
                       <Label className="text-xs text-muted-foreground">Profile Photo *</Label>
