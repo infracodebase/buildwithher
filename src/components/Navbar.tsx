@@ -73,7 +73,7 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -134,10 +134,10 @@ const Navbar = () => {
   }, [user]);
 
   const handleSignOut = useCallback(async () => {
-    await supabase.auth.signOut();
+    await signOut();
     setAuthProfile(null);
     setShowDropdown(false);
-  }, []);
+  }, [signOut]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -149,7 +149,6 @@ const Navbar = () => {
 
   const firstName = authProfile?.name?.split(" ")[0];
 
-  // Determine profile action
   const handleProfileClick = () => {
     if (authProfile) {
       navigate(`/builders/${authProfile.slug}`);
@@ -291,7 +290,6 @@ const Navbar = () => {
               className="lg:hidden border-t border-border/30 bg-background/98 backdrop-blur-xl overflow-hidden"
             >
               <div className="container py-4 flex flex-col gap-1">
-                {/* Profile presence row in mobile menu */}
                 {user && authProfile && (
                   <Link
                     to={`/builders/${authProfile.slug}`}
@@ -333,7 +331,6 @@ const Navbar = () => {
                   </button>
                 )}
 
-                {/* Sign out for mobile */}
                 {user && (
                   <div className="flex items-center gap-3 px-3 mb-2">
                     <button

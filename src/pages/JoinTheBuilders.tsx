@@ -17,7 +17,8 @@ import CelebrationEffect from "@/components/CelebrationEffect";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { submitBuilder } from "@/hooks/useBuilders";
-import ProfileRecovery from "@/components/ProfileRecovery";
+import { useAuth } from "@/hooks/useAuth";
+import AuthGateModal from "@/components/AuthGateModal";
 import {
   Popover,
   PopoverContent,
@@ -41,6 +42,8 @@ const cloudOptions = [
 const JoinTheBuilders = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
 
   const [name, setName] = useState("");
@@ -95,6 +98,12 @@ const JoinTheBuilders = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Must be authenticated
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+    
     // Validate required fields
     const errors: Record<string, string> = {};
     if (!email.trim()) errors.email = "Please add your email so you can claim your profile later.";
@@ -117,7 +126,7 @@ const JoinTheBuilders = () => {
     }
     setGenerating(true);
     try {
-      // Save to database and get back the canonical data
+      // Save to database linked to Clerk user
       const result = await submitBuilder({
         name,
         email: email.trim(),
@@ -133,6 +142,7 @@ const JoinTheBuilders = () => {
         github: github || undefined,
         portfolio: portfolio || undefined,
         photoFile,
+        clerkUserId: user.id,
       });
 
       // Generate visual card
@@ -147,10 +157,7 @@ const JoinTheBuilders = () => {
       setCardImageUrl(url);
       setSubmittedSlug(result.slug);
 
-      // Persist profile data for header profile presence (use Supabase photo URL as source of truth)
-      localStorage.setItem("builderProfileSlug", result.slug);
-      localStorage.setItem("builderProfileName", name);
-      localStorage.setItem("builderProfilePhoto", result.photo_url || photoPreview || "");
+      // Remove localStorage dependency - Clerk handles identity
       // Notify header to update immediately
       window.dispatchEvent(new Event("builderProfileUpdated"));
       setSubmitted(true);
@@ -292,11 +299,21 @@ https://buildwithher.dev`;
         </div>
       </section>
 
-      {/* Profile recovery for existing builders */}
-      {!submitted && !localStorage.getItem("builderProfileSlug") && (
+      {/* Auth gate for unauthenticated users */}
+      {!submitted && !user && !authLoading && (
         <section className="container pt-2 pb-0">
           <div className="max-w-6xl mx-auto">
-            <ProfileRecovery variant="inline" />
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 flex items-center gap-4">
+              <p className="text-sm text-muted-foreground flex-1">
+                Sign in to create your builder profile and join the community.
+              </p>
+              <button
+                onClick={() => setShowAuthModal(true)}
+                className="text-sm text-primary font-medium hover:underline shrink-0"
+              >
+                Sign in →
+              </button>
+            </div>
           </div>
         </section>
       )}
@@ -771,6 +788,13 @@ https://buildwithher.dev`;
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <AuthGateModal
+        open={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        title="Sign in to create your profile"
+        subtitle="Create an account or sign in to build your profile and join the community."
+      />
     </div>
   );
 };

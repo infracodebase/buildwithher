@@ -39,7 +39,6 @@ function dbRowToProfile(row: {
 }): BuilderProfileWithMeta {
   const roleDisplay = row.role + (row.company ? ` at ${row.company}` : "");
   const tags = [...(row.cloud_focus || []), ...(row.skills || [])];
-  // Deduplicate tags
   const uniqueTags = [...new Set(tags)];
   return {
     id: row.id,
@@ -69,7 +68,6 @@ function dbRowToProfile(row: {
 export function useBuilders() {
   const queryClient = useQueryClient();
 
-  // Realtime subscription
   useEffect(() => {
     const channel = supabase
       .channel("builders-changes")
@@ -99,7 +97,6 @@ export function useBuilders() {
 
       const dbProfiles = (data || []).map(dbRowToProfile);
 
-      // Merge: static builders + DB submissions (deduplicate by slug)
       const slugSet = new Set(dbProfiles.map((p) => p.slug));
       const staticOnly = sampleBuilders.filter((b) => !slugSet.has(b.slug));
 
@@ -108,6 +105,9 @@ export function useBuilders() {
   });
 }
 
+/**
+ * Submit a new builder profile, linking it to the Clerk user ID.
+ */
 export async function submitBuilder(args: {
   name: string;
   email: string;
@@ -123,10 +123,10 @@ export async function submitBuilder(args: {
   github?: string;
   portfolio?: string;
   photoFile?: File | null;
+  clerkUserId: string;
 }) {
   let photo_url: string | null = null;
 
-  // Upload photo if provided
   if (args.photoFile) {
     const ext = args.photoFile.name.split(".").pop() || "jpg";
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
@@ -147,9 +147,6 @@ export async function submitBuilder(args: {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-  // Get current user if authenticated
-  const { data: { user } } = await supabase.auth.getUser();
-
   const { error } = await supabase.from("builders").insert({
     name: args.name,
     email: args.email,
@@ -167,8 +164,8 @@ export async function submitBuilder(args: {
     portfolio: args.portfolio || null,
     photo_url,
     slug,
-    user_id: user?.id || null,
-    claim_status: user?.id ? 'claimed' : 'unclaimed',
+    user_id: args.clerkUserId,
+    claim_status: "claimed",
   });
 
   if (error) throw error;
