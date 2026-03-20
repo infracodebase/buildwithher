@@ -45,6 +45,7 @@ const JoinTheBuilders = () => {
   const { user, loading: authLoading } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const pendingSubmitRef = useRef(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
