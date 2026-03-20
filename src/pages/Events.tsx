@@ -21,6 +21,9 @@ type SeriesFilter = (typeof SERIES_FILTERS)[number];
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk", "Podcast"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
 
+const FORMAT_FILTERS = ["All Formats", "Videos", "Podcast"] as const;
+type FormatFilter = (typeof FORMAT_FILTERS)[number];
+
 const sessionPoints = [
   "Real architecture discussions",
   "Hands-on problem solving",
