@@ -33,4 +33,16 @@ export const partners: PartnerData[] = [
     cta_label: "Visit Community",
     cta_url: "https://www.linkedin.com/company/she-builds-tech/",
   },
+  {
+    category: "Community Partners",
+    featured: true,
+    featuredLabel: "Featured Community Partner",
+    name: "Female Tech Leaders Community",
+    description:
+      "FTL Magazine is an independent publication covering Tech, AI, startups, and leadership through a gender-aware lens.",
+    tags: ["Tech", "AI", "Leadership"],
+    logoUrl: "/images/female_tech_leaders.jpeg",
+    cta_label: "Visit Community",
+    cta_url: "https://femaletechleadersmagazine.substack.com/",
+  },
 ];
