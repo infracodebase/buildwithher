@@ -1,4 +1,5 @@
 import { SignIn } from "@clerk/clerk-react";
+import { dark } from "@clerk/themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -65,6 +66,15 @@ const AuthGateModal = ({
               <div className="flex justify-center [&_.cl-rootBox]:w-full [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-none [&_.cl-headerTitle]:hidden [&_.cl-headerSubtitle]:hidden [&_.cl-socialButtonsBlockButton]:rounded-xl [&_.cl-socialButtonsBlockButton]:h-12 [&_.cl-socialButtonsBlockButton]:border-border/50 [&_.cl-socialButtonsBlockButton]:bg-secondary/30 [&_.cl-formButtonPrimary]:bg-primary [&_.cl-formButtonPrimary]:rounded-xl [&_.cl-formFieldInput]:rounded-xl [&_.cl-formFieldInput]:bg-secondary/50 [&_.cl-formFieldInput]:border-border/50 [&_.cl-footer]:hidden [&_.cl-internal-b3fm6y]:hidden">
                 <SignIn
                   appearance={{
+                    baseTheme: dark,
+                    variables: {
+                      colorBackground: 'transparent',
+                      colorText: 'hsl(210, 40%, 92%)',
+                      colorPrimary: 'hsl(210, 100%, 56%)',
+                      colorInputBackground: 'hsl(222, 30%, 14%)',
+                      colorInputText: 'hsl(210, 40%, 92%)',
+                      colorTextSecondary: 'hsl(215, 20%, 55%)',
+                    },
                     elements: {
                       rootBox: "w-full",
                       card: "bg-transparent shadow-none border-none p-0",
