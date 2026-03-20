@@ -1,47 +1,25 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import type { User, Session } from "@supabase/supabase-js";
+import { useUser, useAuth as useClerkAuth, useClerk } from "@clerk/clerk-react";
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, isLoaded } = useUser();
+  const { signOut: clerkSignOut } = useClerkAuth();
+  const clerk = useClerk();
 
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
-      }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
+  const openSignIn = () => {
+    clerk.openSignIn({
+      afterSignInUrl: window.location.href,
+      afterSignUpUrl: window.location.href,
     });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: window.location.origin },
-    });
-    return { error };
-  };
-
-  const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error };
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await clerkSignOut();
   };
 
-  return { user, session, loading, signUp, signIn, signOut };
+  return {
+    user: isLoaded && user ? { id: user.id, email: user.primaryEmailAddress?.emailAddress } : null,
+    loading: !isLoaded,
+    signOut,
+    openSignIn,
+  };
 }

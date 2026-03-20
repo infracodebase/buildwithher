@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ClerkProvider } from "@clerk/clerk-react";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -17,37 +18,39 @@ import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
 import Resources from "./pages/Resources";
-import Auth from "./pages/Auth";
+
+const CLERK_PUBLISHABLE_KEY = "pk_test_ZGVsaWNhdGUta29pLTkyLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/meet-the-builders" element={<MeetTheBuilders />} />
-            <Route path="/join-the-builders" element={<JoinTheBuilders />} />
-            <Route path="/member-wall" element={<MemberWall />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/manifest" element={<Manifest />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/builders/:slug" element={<BuilderProfile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/meet-the-builders" element={<MeetTheBuilders />} />
+              <Route path="/join-the-builders" element={<JoinTheBuilders />} />
+              <Route path="/member-wall" element={<MemberWall />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/manifest" element={<Manifest />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/builders/:slug" element={<BuilderProfile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </ClerkProvider>
 );
 
 export default App;
