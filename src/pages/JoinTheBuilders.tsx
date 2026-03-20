@@ -157,10 +157,7 @@ const JoinTheBuilders = () => {
       setCardImageUrl(url);
       setSubmittedSlug(result.slug);
 
-      // Persist profile data for header profile presence (use Supabase photo URL as source of truth)
-      localStorage.setItem("builderProfileSlug", result.slug);
-      localStorage.setItem("builderProfileName", name);
-      localStorage.setItem("builderProfilePhoto", result.photo_url || photoPreview || "");
+      // Remove localStorage dependency - Clerk handles identity
       // Notify header to update immediately
       window.dispatchEvent(new Event("builderProfileUpdated"));
       setSubmitted(true);
