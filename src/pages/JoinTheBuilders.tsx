@@ -788,8 +788,8 @@ https://buildwithher.dev`;
       <AuthGateModal
         open={showAuthModal}
         onClose={() => { setShowAuthModal(false); pendingSubmitRef.current = false; }}
-        title="Share your story"
-        subtitle="Sign in or create an account to publish your builder profile."
+        title="Create your account"
+        subtitle="Sign up to publish your builder profile and join the community."
       />
     </div>
   );
