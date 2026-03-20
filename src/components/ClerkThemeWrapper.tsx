@@ -26,6 +26,10 @@ const ClerkThemeWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider
       publishableKey={CLERK_PUBLISHABLE_KEY}
+      signInUrl="/join-the-builders"
+      signUpUrl="/join-the-builders"
+      signInFallbackRedirectUrl="/join-the-builders"
+      signUpFallbackRedirectUrl="/join-the-builders"
       appearance={{
         baseTheme: theme === "dark" ? dark : undefined,
         variables: theme === "dark" ? darkVariables : lightVariables,
