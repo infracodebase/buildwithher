@@ -8,6 +8,8 @@ export function useAuth() {
   const openSignIn = () => {
     clerk.openSignIn({
       forceRedirectUrl: window.location.pathname,
+      signInUrl: "/join-the-builders",
+      signUpUrl: "/join-the-builders",
     });
   };
 

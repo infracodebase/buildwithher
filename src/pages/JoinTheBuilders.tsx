@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useRef, useMemo, useCallback, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
@@ -42,10 +42,16 @@ const cloudOptions = [
 const JoinTheBuilders = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, loading: authLoading } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const pendingSubmitRef = useRef(false);
+  const isClerkCallback = location.hash.includes("sso-callback");
+  const hasRedirectState =
+    location.search.includes("intent=signUp") ||
+    location.search.includes("sign_in_force_redirect_url") ||
+    location.search.includes("sign_up_force_redirect_url");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -98,15 +104,30 @@ const JoinTheBuilders = () => {
 
   // Auto-retry submit after user authenticates
   const formRef = useRef<HTMLFormElement>(null);
-  
+
+  useEffect(() => {
+    if (!user && isClerkCallback) {
+      if (location.search.includes("intent=signUp")) {
+        pendingSubmitRef.current = true;
+      }
+      setShowAuthModal(true);
+    }
+  }, [isClerkCallback, location.search, user]);
+
   // When user becomes authenticated and there's a pending submit, retry
   const prevUserRef = useRef(user);
   if (user && !prevUserRef.current && pendingSubmitRef.current) {
     pendingSubmitRef.current = false;
-    // Trigger submit on next tick
     setTimeout(() => formRef.current?.requestSubmit(), 0);
   }
   prevUserRef.current = user;
+
+  useEffect(() => {
+    if (user && (isClerkCallback || hasRedirectState)) {
+      setShowAuthModal(false);
+      navigate("/join-the-builders", { replace: true });
+    }
+  }, [hasRedirectState, isClerkCallback, navigate, user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

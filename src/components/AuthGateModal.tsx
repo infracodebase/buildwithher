@@ -18,6 +18,8 @@ const AuthGateModal = ({
   subtitle = "Create an account or sign in to manage your builder profile.",
 }: AuthGateModalProps) => {
   const { theme } = useTheme();
+  const currentPath = window.location.pathname;
+
   if (!open) return null;
 
   return (
@@ -67,23 +69,29 @@ const AuthGateModal = ({
 
               <div className="flex justify-center [&_.cl-rootBox]:w-full [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-none [&_.cl-headerTitle]:hidden [&_.cl-headerSubtitle]:hidden [&_.cl-socialButtonsBlockButton]:rounded-xl [&_.cl-socialButtonsBlockButton]:h-12 [&_.cl-socialButtonsBlockButton]:border-border/50 [&_.cl-socialButtonsBlockButton]:bg-secondary/30 [&_.cl-formButtonPrimary]:bg-primary [&_.cl-formButtonPrimary]:rounded-xl [&_.cl-formFieldInput]:rounded-xl [&_.cl-formFieldInput]:bg-secondary/50 [&_.cl-formFieldInput]:border-border/50 [&_.cl-footer]:hidden [&_.cl-internal-b3fm6y]:hidden">
                 <SignUp
+                  routing="hash"
+                  oauthFlow="redirect"
+                  signInUrl={currentPath}
+                  signUpUrl={currentPath}
+                  fallbackRedirectUrl={currentPath}
+                  forceRedirectUrl={currentPath}
+                  signInFallbackRedirectUrl={currentPath}
+                  signInForceRedirectUrl={currentPath}
                   appearance={{
                     baseTheme: theme === "dark" ? dark : undefined,
                     variables: {
-                      colorBackground: 'transparent',
-                      colorText: theme === "dark" ? 'hsl(210, 40%, 92%)' : 'hsl(222, 47%, 11%)',
-                      colorPrimary: theme === "dark" ? 'hsl(210, 100%, 56%)' : 'hsl(210, 100%, 45%)',
-                      colorInputBackground: theme === "dark" ? 'hsl(222, 30%, 14%)' : 'hsl(220, 14%, 94%)',
-                      colorInputText: theme === "dark" ? 'hsl(210, 40%, 92%)' : 'hsl(222, 47%, 11%)',
-                      colorTextSecondary: theme === "dark" ? 'hsl(215, 20%, 55%)' : 'hsl(215, 16%, 47%)',
+                      colorBackground: "transparent",
+                      colorText: theme === "dark" ? "hsl(210, 40%, 92%)" : "hsl(222, 47%, 11%)",
+                      colorPrimary: theme === "dark" ? "hsl(210, 100%, 56%)" : "hsl(210, 100%, 45%)",
+                      colorInputBackground: theme === "dark" ? "hsl(222, 30%, 14%)" : "hsl(220, 14%, 94%)",
+                      colorInputText: theme === "dark" ? "hsl(210, 40%, 92%)" : "hsl(222, 47%, 11%)",
+                      colorTextSecondary: theme === "dark" ? "hsl(215, 20%, 55%)" : "hsl(215, 16%, 47%)",
                     },
                     elements: {
                       rootBox: "w-full",
                       card: "bg-transparent shadow-none border-none p-0",
                     },
                   }}
-                  forceRedirectUrl={window.location.pathname}
-                  signInForceRedirectUrl={window.location.pathname}
                 />
               </div>
             </div>
@@ -95,3 +103,4 @@ const AuthGateModal = ({
 };
 
 export default AuthGateModal;
+
