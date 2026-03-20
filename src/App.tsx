@@ -25,7 +25,7 @@ const CLERK_PUBLISHABLE_KEY = "pk_test_ZGVsaWNhdGUta29pLTkyLmNsZXJrLmFjY291bnRzL
 const queryClient = new QueryClient();
 
 const App = () => (
-  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} appearance={{ baseTheme: undefined, variables: { colorBackground: 'hsl(222, 47%, 5%)', colorText: 'hsl(210, 40%, 92%)', colorPrimary: 'hsl(210, 100%, 56%)', colorInputBackground: 'hsl(222, 30%, 14%)', colorInputText: 'hsl(210, 40%, 92%)' } }}>
+  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} appearance={{ baseTheme: dark, variables: { colorBackground: 'hsl(222, 47%, 5%)', colorText: 'hsl(210, 40%, 92%)', colorPrimary: 'hsl(210, 100%, 56%)', colorInputBackground: 'hsl(222, 30%, 14%)', colorInputText: 'hsl(210, 40%, 92%)' } }}>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>

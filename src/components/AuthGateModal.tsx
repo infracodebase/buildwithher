@@ -1,4 +1,5 @@
 import { SignIn } from "@clerk/clerk-react";
+import { dark } from "@clerk/themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
