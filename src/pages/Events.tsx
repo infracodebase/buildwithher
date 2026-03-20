@@ -133,6 +133,26 @@ const Events = () => {
               ))}
             </div>
           </div>
+
+          {/* Row 3: Format */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Format</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {FORMAT_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setFormatFilter(filter)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                    formatFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
