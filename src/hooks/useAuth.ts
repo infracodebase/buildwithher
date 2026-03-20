@@ -7,8 +7,7 @@ export function useAuth() {
 
   const openSignIn = () => {
     clerk.openSignIn({
-      afterSignInUrl: window.location.href,
-      afterSignUpUrl: window.location.href,
+      forceRedirectUrl: window.location.pathname,
     });
   };
 
