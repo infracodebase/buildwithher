@@ -7,6 +7,7 @@ export interface SessionData {
   role: string;
   source: string;
   sessionType: string;
+  contentType: "video" | "podcast";
   embedUrl?: string;
   imageUrl?: string;
   status?: string;

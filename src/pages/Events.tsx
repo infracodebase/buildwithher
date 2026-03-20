@@ -21,6 +21,9 @@ type SeriesFilter = (typeof SERIES_FILTERS)[number];
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk", "Podcast"] as const;
 type TypeFilter = (typeof TYPE_FILTERS)[number];
 
+const FORMAT_FILTERS = ["All Formats", "Videos", "Podcast"] as const;
+type FormatFilter = (typeof FORMAT_FILTERS)[number];
+
 const sessionPoints = [
   "Real architecture discussions",
   "Hands-on problem solving",
@@ -38,16 +41,20 @@ const stats = [
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("All Types");
+  const [formatFilter, setFormatFilter] = useState<FormatFilter>("All Formats");
 
   const applyFilters = (sessions: typeof pastSessions) =>
     sessions.filter(
       (s) =>
         (seriesFilter === "All" || s.source === seriesFilter) &&
-        (typeFilter === "All Types" || s.sessionType === typeFilter)
+        (typeFilter === "All Types" || s.sessionType === typeFilter) &&
+        (formatFilter === "All Formats" ||
+          (formatFilter === "Videos" && s.contentType === "video") ||
+          (formatFilter === "Podcast" && s.contentType === "podcast"))
     );
 
-  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter]);
-  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter]);
+  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter, formatFilter]);
+  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter, formatFilter]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -117,6 +124,26 @@ const Events = () => {
                   onClick={() => setTypeFilter(filter)}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                     typeFilter === filter
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3: Format */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground shrink-0">Format</span>
+            <div className="inline-flex items-center gap-1 rounded-full bg-muted/60 p-1 border border-border/50">
+              {FORMAT_FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setFormatFilter(filter)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                    formatFilter === filter
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}

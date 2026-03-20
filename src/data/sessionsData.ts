@@ -5,11 +5,12 @@ export const pastSessions: SessionData[] = [
     title: "Coffee, Chaos, & ProdSec",
     description:
       "A conversation on AI, AppSec, DevSecOps, and modern security thinking.",
-    speaker: "Build With Her x Infracodebase University",
-    role: "Podcast Episode",
+    speaker: "Cameron & Kurt",
+    role: "Dir. of AppSec & Security Engineering · Sr. Dir., Security Architecture",
     imageUrl: "/images/appsec_podcast.jpeg",
     source: "Infracodebase",
     sessionType: "Podcast",
+    contentType: "podcast",
     videoUrl:
       "https://open.spotify.com/episode/1WsnZwbY9NNqK3R1OhURg2?si=pHpeR_zbQiKa9nPMnZxqDw",
   },
@@ -17,22 +18,24 @@ export const pastSessions: SessionData[] = [
     title: "Do Engineers Need to Build a Personal Brand?",
     description:
       "A conversation exploring whether engineers need a personal brand, when visibility actually matters, and how to build it without becoming an influencer.",
-    speaker: "Divine Odazie & Tarak",
-    role: "Content Creator & Co-Founder, Infracodebase",
+    speaker: "Divine Odazie & Damien",
+    role: "Content Creator & CEO @ EverythingDevOps",
     imageUrl: "https://i.ytimg.com/vi/5At76xVQngA/maxresdefault.jpg",
     source: "Infracodebase",
     sessionType: "Conversation",
+    contentType: "video",
     videoUrl: "https://www.youtube.com/watch?v=5At76xVQngA",
   },
   {
     title: "Legal Background to Cloud Engineering: What It Really Takes",
     description:
       "A conversation exploring how professionals transition into cloud engineering from non-traditional backgrounds and how skills from fields like law translate into infrastructure careers.",
-    speaker: "Tarak",
-    role: "Co-Founder, Infracodebase",
+    speaker: "Damien",
+    role: "Senior Security Engineer",
     imageUrl: "/images/legal_background_to_cloud.png",
     source: "Build with Her",
     sessionType: "Career Talk",
+    contentType: "video",
     videoUrl: "https://www.youtube.com/watch?v=mlIePKsqa-4",
   },
   {
@@ -44,6 +47,7 @@ export const pastSessions: SessionData[] = [
     embedUrl: "https://www.youtube.com/embed/SLpgv8zCzPU",
     source: "Build with Her",
     sessionType: "Conversation",
+    contentType: "video",
   },
   {
     title: "Operating Cloud Engineering at Scale in Regulated Enterprises",
@@ -54,6 +58,7 @@ export const pastSessions: SessionData[] = [
     embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
     source: "Infracodebase",
     sessionType: "Conversation",
+    contentType: "video",
   },
   {
     title: "Building with AI You Can Trust",
@@ -64,6 +69,7 @@ export const pastSessions: SessionData[] = [
     embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
     source: "Infracodebase",
     sessionType: "Technical Session",
+    contentType: "video",
   },
   {
     title: "Delivering Secure Cloud Infrastructure at Scale with AI",
@@ -74,6 +80,7 @@ export const pastSessions: SessionData[] = [
     embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
     source: "Infracodebase",
     sessionType: "Technical Session",
+    contentType: "video",
   },
 ];
 
@@ -87,6 +94,7 @@ export const upcomingSessions: SessionData[] = [
     imageUrl: "/images/webinar_with_lalit.png",
     source: "Infracodebase",
     sessionType: "Live Webinar",
+    contentType: "video",
     status: "Live Webinar",
     registerLink:
       "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true",
