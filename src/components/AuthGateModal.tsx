@@ -17,6 +17,7 @@ const AuthGateModal = ({
   title = "Sign in to continue",
   subtitle = "Create an account or sign in to manage your builder profile.",
 }: AuthGateModalProps) => {
+  const { theme } = useTheme();
   if (!open) return null;
 
   return (
