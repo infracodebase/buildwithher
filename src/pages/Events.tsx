@@ -41,16 +41,20 @@ const stats = [
 const Events = () => {
   const [seriesFilter, setSeriesFilter] = useState<SeriesFilter>("All");
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("All Types");
+  const [formatFilter, setFormatFilter] = useState<FormatFilter>("All Formats");
 
   const applyFilters = (sessions: typeof pastSessions) =>
     sessions.filter(
       (s) =>
         (seriesFilter === "All" || s.source === seriesFilter) &&
-        (typeFilter === "All Types" || s.sessionType === typeFilter)
+        (typeFilter === "All Types" || s.sessionType === typeFilter) &&
+        (formatFilter === "All Formats" ||
+          (formatFilter === "Videos" && s.contentType === "video") ||
+          (formatFilter === "Podcast" && s.contentType === "podcast"))
     );
 
-  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter]);
-  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter]);
+  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter, formatFilter]);
+  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter, formatFilter]);
 
   return (
     <div className="min-h-screen bg-background">
