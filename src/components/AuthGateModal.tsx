@@ -66,7 +66,7 @@ const AuthGateModal = ({
               </div>
 
               <div className="flex justify-center [&_.cl-rootBox]:w-full [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-none [&_.cl-headerTitle]:hidden [&_.cl-headerSubtitle]:hidden [&_.cl-socialButtonsBlockButton]:rounded-xl [&_.cl-socialButtonsBlockButton]:h-12 [&_.cl-socialButtonsBlockButton]:border-border/50 [&_.cl-socialButtonsBlockButton]:bg-secondary/30 [&_.cl-formButtonPrimary]:bg-primary [&_.cl-formButtonPrimary]:rounded-xl [&_.cl-formFieldInput]:rounded-xl [&_.cl-formFieldInput]:bg-secondary/50 [&_.cl-formFieldInput]:border-border/50 [&_.cl-footer]:hidden [&_.cl-internal-b3fm6y]:hidden">
-                <SignIn
+                <SignUp
                   appearance={{
                     baseTheme: theme === "dark" ? dark : undefined,
                     variables: {
