@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom"
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
+import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
@@ -12,7 +13,6 @@ import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
 import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
-import { generateBuilderProfile } from "@/utils/generateBuilderProfile";
 import { useQueryClient } from "@tanstack/react-query";
 
 import ProfileBanner from "@/components/builder-profile/ProfileBanner";
@@ -84,22 +84,16 @@ const BuilderProfile = () => {
   }, [builder]);
 
   const handleDownloadProfileImage = useCallback(async () => {
-    if (!builder) return;
+    if (!profileContentRef.current || !builder) return;
     setGeneratingProfile(true);
     try {
-      const dataUrl = await generateBuilderProfile({
-        name: builder.name,
-        role: builder.role,
-        country: builder.country,
-        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
-        photoUrl: builder.photo || null,
-        tags: builder.tags || [],
-        cloudPlatforms: builder.cloudPlatforms,
-        building: builder.building,
-        bio: builder.bio,
-        motivation: builder.motivation,
-        statement: builder.statement,
-        joinedYear,
+      const dataUrl = await toPng(profileContentRef.current, {
+        pixelRatio: 2,
+        backgroundColor: '#0d1117',
+        cacheBust: true,
+        style: {
+          overflow: 'visible',
+        },
       });
       const link = document.createElement("a");
       link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
@@ -110,7 +104,7 @@ const BuilderProfile = () => {
     } finally {
       setGeneratingProfile(false);
     }
-  }, [builder, joinedYear]);
+  }, [builder]);
 
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
@@ -168,6 +162,7 @@ const BuilderProfile = () => {
             Back to Builder Wall
           </Link>
 
+          <div ref={profileContentRef}>
           {/* Banner */}
           <ProfileBanner
             bannerUrl={bannerUrl}
@@ -223,7 +218,7 @@ const BuilderProfile = () => {
           )}
 
           {/* Main content grid */}
-          <div ref={profileContentRef} className="mt-8 flex flex-col lg:flex-row gap-6">
+          <div className="mt-8 flex flex-col lg:flex-row gap-6">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
@@ -351,6 +346,7 @@ const BuilderProfile = () => {
               {/* Builder Activity */}
               <BuilderActivity joinedYear={joinedYear} />
             </motion.main>
+          </div>
           </div>
         </div>
       </div>
