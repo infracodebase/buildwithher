@@ -11,20 +11,20 @@ const PAD = 40;
 const BANNER_H = 200;
 
 const COLORS = {
-  bg: "#0b1120",
-  card: "#111827",
-  cardBorder: "#1e293b",
+  bg: "#0d1117",
+  card: "#161b22",
+  cardBorder: "#30363d",
   bannerStart: "#164e63",
   bannerEnd: "#065f46",
   primary: "#3b82f6",
-  primaryMuted: "rgba(59,130,246,0.15)",
+  primaryMuted: "rgba(59,130,246,0.12)",
   primaryBorder: "rgba(59,130,246,0.3)",
-  text: "#f1f5f9",
-  textMuted: "#94a3b8",
-  textDim: "#64748b",
+  text: "#e6edf3",
+  textMuted: "#8b949e",
+  textDim: "#6e7681",
   accent: "#10b981",
-  sectionBg: "#1e293b",
-  sectionBorder: "#334155",
+  sectionBg: "#21262d",
+  sectionBorder: "#30363d",
 };
 
 interface ProfileOptions {
@@ -43,9 +43,13 @@ interface ProfileOptions {
 }
 
 export async function generateBuilderProfile(opts: ProfileOptions): Promise<string> {
+  // Need a temp canvas to measure text for dynamic heights
+  const measureCanvas = document.createElement("canvas");
+  const measureCtx = measureCanvas.getContext("2d")!;
+
   // Pre-calculate content height
-  const contentSections = buildContentSections(opts);
-  const sidebarSections = buildSidebarSections(opts);
+  const contentSections = buildContentSections(opts, measureCtx);
+  const sidebarSections = buildSidebarSections(opts, measureCtx);
 
   const contentH = measureSections(contentSections);
   const sidebarH = measureSections(sidebarSections);
@@ -171,10 +175,25 @@ interface CardSection {
   height: number;
 }
 
-function buildSidebarSections(opts: ProfileOptions): CardSection[] {
-  const sections: CardSection[] = [];
+function calcTagsHeight(tags: string[], maxW: number, ctx: CanvasRenderingContext2D): number {
+  ctx.font = "500 16px 'Inter', system-ui, sans-serif";
+  let tx = 0;
+  let rows = 1;
+  for (const tag of tags) {
+    const tw = ctx.measureText(tag).width + 24 + 10;
+    if (tx + tw > maxW && tx > 0) {
+      rows++;
+      tx = 0;
+    }
+    tx += tw;
+  }
+  return 50 + rows * 36;
+}
 
-  // Stats
+function buildSidebarSections(opts: ProfileOptions, ctx: CanvasRenderingContext2D): CardSection[] {
+  const sections: CardSection[] = [];
+  const sidebarInnerW = SIDEBAR_W - PAD * 1.5 - 40;
+
   const platformCount = opts.cloudPlatforms?.length || opts.tags.length;
   const projectCount = opts.building?.length || 1;
   sections.push({
@@ -189,16 +208,14 @@ function buildSidebarSections(opts: ProfileOptions): CardSection[] {
     height: 200,
   });
 
-  // Platforms
-  const platforms = (opts.cloudPlatforms || opts.tags).slice(0, 4);
+  const platforms = (opts.cloudPlatforms || opts.tags).slice(0, 6);
   sections.push({
     title: "Platforms",
     type: "tags",
     tags: platforms,
-    height: 90,
+    height: calcTagsHeight(platforms, sidebarInnerW, ctx),
   });
 
-  // Actions (visual only)
   sections.push({
     title: "Actions",
     type: "buttons",
@@ -208,8 +225,9 @@ function buildSidebarSections(opts: ProfileOptions): CardSection[] {
   return sections;
 }
 
-function buildContentSections(opts: ProfileOptions): CardSection[] {
+function buildContentSections(opts: ProfileOptions, ctx: CanvasRenderingContext2D): CardSection[] {
   const sections: CardSection[] = [];
+  const contentInnerW = CONTENT_W - PAD - 40;
 
   // Builder Story
   const storyText = opts.bio || "Building cloud infrastructure and scaling the future.";
@@ -222,11 +240,12 @@ function buildContentSections(opts: ProfileOptions): CardSection[] {
   });
 
   // Cloud Focus
+  const cloudTags = [...opts.tags, ...(opts.cloudPlatforms || []).filter(p => !opts.tags.includes(p))].slice(0, 8);
   sections.push({
     title: "Cloud Focus",
     type: "tags",
-    tags: [...opts.tags, ...(opts.cloudPlatforms || []).filter(p => !opts.tags.includes(p))].slice(0, 8),
-    height: 100,
+    tags: cloudTags,
+    height: calcTagsHeight(cloudTags, contentInnerW, ctx),
   });
 
   // Infrastructure Projects
