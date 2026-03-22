@@ -348,6 +348,7 @@ const BuilderProfile = () => {
               <BuilderActivity joinedYear={joinedYear} />
             </motion.main>
           </div>
+          </div>
         </div>
       </div>
 
