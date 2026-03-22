@@ -43,9 +43,13 @@ interface ProfileOptions {
 }
 
 export async function generateBuilderProfile(opts: ProfileOptions): Promise<string> {
+  // Need a temp canvas to measure text for dynamic heights
+  const measureCanvas = document.createElement("canvas");
+  const measureCtx = measureCanvas.getContext("2d")!;
+
   // Pre-calculate content height
-  const contentSections = buildContentSections(opts);
-  const sidebarSections = buildSidebarSections(opts);
+  const contentSections = buildContentSections(opts, measureCtx);
+  const sidebarSections = buildSidebarSections(opts, measureCtx);
 
   const contentH = measureSections(contentSections);
   const sidebarH = measureSections(sidebarSections);
