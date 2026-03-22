@@ -39,6 +39,10 @@ const BuilderProfile = () => {
   // Pure ownership: authenticated user's id matches builder's user_id
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
 
+  const joinedYear = builder?.createdAt
+    ? new Date(builder.createdAt).getFullYear()
+    : 2025;
+
   // Show share overlay when arriving from profile creation
   useEffect(() => {
     if (searchParams.get("welcome") === "true" && builder) {
