@@ -85,22 +85,16 @@ const BuilderProfile = () => {
   }, [builder]);
 
   const handleDownloadProfileImage = useCallback(async () => {
-    if (!builder) return;
+    if (!profileContentRef.current || !builder) return;
     setGeneratingProfile(true);
     try {
-      const dataUrl = await generateBuilderProfile({
-        name: builder.name,
-        role: builder.role,
-        country: builder.country,
-        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
-        photoUrl: builder.photo || null,
-        tags: builder.tags || [],
-        cloudPlatforms: builder.cloudPlatforms,
-        building: builder.building,
-        bio: builder.bio,
-        motivation: builder.motivation,
-        statement: builder.statement,
-        joinedYear,
+      const dataUrl = await toPng(profileContentRef.current, {
+        pixelRatio: 2,
+        backgroundColor: '#0d1117',
+        cacheBust: true,
+        style: {
+          overflow: 'visible',
+        },
       });
       const link = document.createElement("a");
       link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
@@ -111,7 +105,7 @@ const BuilderProfile = () => {
     } finally {
       setGeneratingProfile(false);
     }
-  }, [builder, joinedYear]);
+  }, [builder]);
 
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
