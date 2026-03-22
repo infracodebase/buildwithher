@@ -163,6 +163,7 @@ const BuilderProfile = () => {
             Back to Builder Wall
           </Link>
 
+          <div ref={profileContentRef}>
           {/* Banner */}
           <ProfileBanner
             bannerUrl={bannerUrl}
