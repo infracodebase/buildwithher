@@ -123,9 +123,6 @@ const BuilderProfile = () => {
     toast({ title: "Copied!", description: "Profile link copied to clipboard." });
   }, [builder, slug]);
 
-  const joinedYear = builder?.createdAt
-    ? new Date(builder.createdAt).getFullYear()
-    : 2025;
 
   if (isLoading) {
     return (
