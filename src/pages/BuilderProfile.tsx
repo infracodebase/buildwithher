@@ -80,14 +80,22 @@ const BuilderProfile = () => {
   }, [builder]);
 
   const handleDownloadProfileImage = useCallback(async () => {
-    if (!profileContentRef.current || !builder) return;
+    if (!builder) return;
     setGeneratingProfile(true);
     try {
-      const dataUrl = await toPng(profileContentRef.current, {
-        pixelRatio: 2,
-        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--background').trim()
-          ? `hsl(${getComputedStyle(document.documentElement).getPropertyValue('--background').trim()})`
-          : '#0a0a0a',
+      const dataUrl = await generateBuilderProfile({
+        name: builder.name,
+        role: builder.role,
+        country: builder.country,
+        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+        photoUrl: builder.photo || null,
+        tags: builder.tags || [],
+        cloudPlatforms: builder.cloudPlatforms,
+        building: builder.building,
+        bio: builder.bio,
+        motivation: builder.motivation,
+        statement: builder.statement,
+        joinedYear,
       });
       const link = document.createElement("a");
       link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
@@ -98,7 +106,7 @@ const BuilderProfile = () => {
     } finally {
       setGeneratingProfile(false);
     }
-  }, [builder]);
+  }, [builder, joinedYear]);
 
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
