@@ -12,6 +12,7 @@ import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
 import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
+import { generateBuilderProfile } from "@/utils/generateBuilderProfile";
 import { useQueryClient } from "@tanstack/react-query";
 
 import ProfileBanner from "@/components/builder-profile/ProfileBanner";
