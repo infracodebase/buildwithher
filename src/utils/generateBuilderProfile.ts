@@ -225,8 +225,9 @@ function buildSidebarSections(opts: ProfileOptions, ctx: CanvasRenderingContext2
   return sections;
 }
 
-function buildContentSections(opts: ProfileOptions): CardSection[] {
+function buildContentSections(opts: ProfileOptions, ctx: CanvasRenderingContext2D): CardSection[] {
   const sections: CardSection[] = [];
+  const contentInnerW = CONTENT_W - PAD - 40;
 
   // Builder Story
   const storyText = opts.bio || "Building cloud infrastructure and scaling the future.";
@@ -239,11 +240,12 @@ function buildContentSections(opts: ProfileOptions): CardSection[] {
   });
 
   // Cloud Focus
+  const cloudTags = [...opts.tags, ...(opts.cloudPlatforms || []).filter(p => !opts.tags.includes(p))].slice(0, 8);
   sections.push({
     title: "Cloud Focus",
     type: "tags",
-    tags: [...opts.tags, ...(opts.cloudPlatforms || []).filter(p => !opts.tags.includes(p))].slice(0, 8),
-    height: 100,
+    tags: cloudTags,
+    height: calcTagsHeight(cloudTags, contentInnerW, ctx),
   });
 
   // Infrastructure Projects
