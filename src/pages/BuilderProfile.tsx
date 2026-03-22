@@ -218,7 +218,7 @@ const BuilderProfile = () => {
           )}
 
           {/* Main content grid */}
-          <div ref={profileContentRef} className="mt-8 flex flex-col lg:flex-row gap-6">
+          <div className="mt-8 flex flex-col lg:flex-row gap-6">
             {/* ============ LEFT SIDEBAR ============ */}
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
