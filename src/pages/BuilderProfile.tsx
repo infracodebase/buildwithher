@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
 import { useAuth } from "@/hooks/useAuth";
