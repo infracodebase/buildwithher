@@ -11,20 +11,20 @@ const PAD = 40;
 const BANNER_H = 200;
 
 const COLORS = {
-  bg: "#0b1120",
-  card: "#111827",
-  cardBorder: "#1e293b",
+  bg: "#0d1117",
+  card: "#161b22",
+  cardBorder: "#30363d",
   bannerStart: "#164e63",
   bannerEnd: "#065f46",
   primary: "#3b82f6",
-  primaryMuted: "rgba(59,130,246,0.15)",
+  primaryMuted: "rgba(59,130,246,0.12)",
   primaryBorder: "rgba(59,130,246,0.3)",
-  text: "#f1f5f9",
-  textMuted: "#94a3b8",
-  textDim: "#64748b",
+  text: "#e6edf3",
+  textMuted: "#8b949e",
+  textDim: "#6e7681",
   accent: "#10b981",
-  sectionBg: "#1e293b",
-  sectionBorder: "#334155",
+  sectionBg: "#21262d",
+  sectionBorder: "#30363d",
 };
 
 interface ProfileOptions {
