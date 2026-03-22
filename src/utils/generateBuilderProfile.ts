@@ -175,10 +175,25 @@ interface CardSection {
   height: number;
 }
 
-function buildSidebarSections(opts: ProfileOptions): CardSection[] {
-  const sections: CardSection[] = [];
+function calcTagsHeight(tags: string[], maxW: number, ctx: CanvasRenderingContext2D): number {
+  ctx.font = "500 16px 'Inter', system-ui, sans-serif";
+  let tx = 0;
+  let rows = 1;
+  for (const tag of tags) {
+    const tw = ctx.measureText(tag).width + 24 + 10;
+    if (tx + tw > maxW && tx > 0) {
+      rows++;
+      tx = 0;
+    }
+    tx += tw;
+  }
+  return 50 + rows * 36;
+}
 
-  // Stats
+function buildSidebarSections(opts: ProfileOptions, ctx: CanvasRenderingContext2D): CardSection[] {
+  const sections: CardSection[] = [];
+  const sidebarInnerW = SIDEBAR_W - PAD * 1.5 - 40;
+
   const platformCount = opts.cloudPlatforms?.length || opts.tags.length;
   const projectCount = opts.building?.length || 1;
   sections.push({
@@ -193,16 +208,14 @@ function buildSidebarSections(opts: ProfileOptions): CardSection[] {
     height: 200,
   });
 
-  // Platforms
-  const platforms = (opts.cloudPlatforms || opts.tags).slice(0, 4);
+  const platforms = (opts.cloudPlatforms || opts.tags).slice(0, 6);
   sections.push({
     title: "Platforms",
     type: "tags",
     tags: platforms,
-    height: 90,
+    height: calcTagsHeight(platforms, sidebarInnerW, ctx),
   });
 
-  // Actions (visual only)
   sections.push({
     title: "Actions",
     type: "buttons",
