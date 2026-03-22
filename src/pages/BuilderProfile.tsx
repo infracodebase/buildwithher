@@ -2,7 +2,6 @@ import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom"
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
-import { toPng } from "html-to-image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
@@ -13,6 +12,7 @@ import { toast } from "@/hooks/use-toast";
 import EditProfileModal from "@/components/EditProfileModal";
 import ShareOverlay from "@/components/ShareOverlay";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
+import { generateBuilderProfile } from "@/utils/generateBuilderProfile";
 import { useQueryClient } from "@tanstack/react-query";
 
 import ProfileBanner from "@/components/builder-profile/ProfileBanner";
@@ -38,6 +38,10 @@ const BuilderProfile = () => {
 
   // Pure ownership: authenticated user's id matches builder's user_id
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
+
+  const joinedYear = builder?.createdAt
+    ? new Date(builder.createdAt).getFullYear()
+    : 2025;
 
   // Show share overlay when arriving from profile creation
   useEffect(() => {
@@ -80,14 +84,22 @@ const BuilderProfile = () => {
   }, [builder]);
 
   const handleDownloadProfileImage = useCallback(async () => {
-    if (!profileContentRef.current || !builder) return;
+    if (!builder) return;
     setGeneratingProfile(true);
     try {
-      const dataUrl = await toPng(profileContentRef.current, {
-        pixelRatio: 2,
-        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--background').trim()
-          ? `hsl(${getComputedStyle(document.documentElement).getPropertyValue('--background').trim()})`
-          : '#0a0a0a',
+      const dataUrl = await generateBuilderProfile({
+        name: builder.name,
+        role: builder.role,
+        country: builder.country,
+        company: builder.role?.includes(" at ") ? builder.role.split(" at ")[1] : undefined,
+        photoUrl: builder.photo || null,
+        tags: builder.tags || [],
+        cloudPlatforms: builder.cloudPlatforms,
+        building: builder.building,
+        bio: builder.bio,
+        motivation: builder.motivation,
+        statement: builder.statement,
+        joinedYear,
       });
       const link = document.createElement("a");
       link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
@@ -98,7 +110,7 @@ const BuilderProfile = () => {
     } finally {
       setGeneratingProfile(false);
     }
-  }, [builder]);
+  }, [builder, joinedYear]);
 
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
@@ -111,9 +123,6 @@ const BuilderProfile = () => {
     toast({ title: "Copied!", description: "Profile link copied to clipboard." });
   }, [builder, slug]);
 
-  const joinedYear = builder?.createdAt
-    ? new Date(builder.createdAt).getFullYear()
-    : 2025;
 
   if (isLoading) {
     return (
