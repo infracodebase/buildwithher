@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom"
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
 import { useState, useCallback, useRef, useEffect } from "react";
-import Navbar from "@/components/Navbar";
+import { toPng } from "html-to-image";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
 import { useAuth } from "@/hooks/useAuth";
