@@ -2,6 +2,18 @@ import type { SessionData } from "@/components/SessionCard";
 
 export const pastSessions: SessionData[] = [
   {
+    title: "Building Self-Service, Secure, and Scalable Developer Platforms",
+    description:
+      "A session exploring how organizations build internal developer platforms that enable secure self-service infrastructure, standardized deployments, and governed infrastructure workflows.",
+    speaker: "Lalit Kale",
+    role: "Senior Cloud Architect",
+    imageUrl: "/images/webinar_with_lalit.png",
+    source: "Infracodebase",
+    sessionType: "Live Webinar",
+    contentType: "video",
+    embedUrl: "https://www.youtube.com/embed/hz9jcH9ipFU",
+  },
+  {
     title: "Coffee, Chaos, & ProdSec",
     description:
       "A conversation on AI, AppSec, DevSecOps, and modern security thinking.",
@@ -24,7 +36,7 @@ export const pastSessions: SessionData[] = [
     source: "Infracodebase",
     sessionType: "Conversation",
     contentType: "video",
-    videoUrl: "https://www.youtube.com/watch?v=5At76xVQngA",
+    embedUrl: "https://www.youtube.com/embed/5At76xVQngA",
   },
   {
     title: "Legal Background to Cloud Engineering: What It Really Takes",
@@ -36,7 +48,7 @@ export const pastSessions: SessionData[] = [
     source: "Build with Her",
     sessionType: "Career Talk",
     contentType: "video",
-    videoUrl: "https://www.youtube.com/watch?v=mlIePKsqa-4",
+    embedUrl: "https://www.youtube.com/embed/mlIePKsqa-4",
   },
   {
     title: "No Straight Lines — Breaking into Tech and Rising to Leadership",
@@ -84,19 +96,4 @@ export const pastSessions: SessionData[] = [
   },
 ];
 
-export const upcomingSessions: SessionData[] = [
-  {
-    title: "Building Self-Service, Secure, and Scalable Developer Platforms",
-    description:
-      "A session exploring how organizations build internal developer platforms that enable secure self-service infrastructure, standardized deployments, and governed infrastructure workflows.",
-    speaker: "Lalit Kale",
-    role: "Senior Cloud Architect",
-    imageUrl: "/images/webinar_with_lalit.png",
-    source: "Infracodebase",
-    sessionType: "Live Webinar",
-    contentType: "video",
-    status: "Live Webinar",
-    registerLink:
-      "https://www.linkedin.com/events/7437983286372626433/?viewAsMember=true",
-  },
-];
+export const upcomingSessions: SessionData[] = [];
