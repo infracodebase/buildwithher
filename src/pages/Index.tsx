@@ -765,7 +765,7 @@ const Index = () => {
               You do not have to build alone
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-              If you are trying to grow in cloud, infrastructure, or AI, this space was created with your reality in mind.
+              Whether you are a woman growing in cloud, or someone who believes the gap needs to close, this space is built with your values in mind.
             </p>
             <p className="text-foreground font-medium text-lg mb-12">
               You are not late. You are not alone. And you are capable of far more than you might currently see.
