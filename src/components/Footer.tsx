@@ -12,7 +12,7 @@ const Footer = () => (
             <span className="font-display text-lg font-bold text-foreground">Build with Her</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-            A global community for women learning, building, and growing in Cloud, AI, and Infrastructure.
+            A community for women and the allies who champion them in Cloud, AI, and Infrastructure.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
             Powered by <span className="text-foreground font-medium">Infracodebase</span>
