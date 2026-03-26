@@ -768,7 +768,7 @@ const Index = () => {
               Whether you are a woman growing in cloud, or someone who believes the gap needs to close, this space is built with your values in mind.
             </p>
             <p className="text-foreground font-medium text-lg mb-12">
-              You are not late. You are not alone. And you are capable of far more than you might currently see.
+              You are not late. You are not alone. And the work you do here actually matters.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <GradientButton to="/meet-the-builders" size="lg" icon>Join the Community</GradientButton>
