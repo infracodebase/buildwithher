@@ -17,6 +17,8 @@ export default {
         display: ["Space Grotesk", "sans-serif"],
         body: ["Inter", "sans-serif"],
         caveat: ["Caveat", "cursive"],
+        serif: ['"Source Serif 4"', "serif"],
+        dm: ['"DM Sans"', "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
