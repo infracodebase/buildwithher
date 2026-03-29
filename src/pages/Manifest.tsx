@@ -1,431 +1,341 @@
 import { motion, type Easing } from "framer-motion";
+import { Rocket, Code2, BookOpen, Eye, Users, Globe, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
 
-const fade = (delay = 0) => ({
+const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, delay, ease: "easeOut" as Easing }
+  transition: { duration: 0.6, ease: "easeOut" as Easing },
+};
+
+const fadeUpDelay = (delay: number) => ({
+  ...fadeUp,
+  transition: { ...fadeUp.transition, delay },
 });
 
 const principles = [
-{
-  title: "Start Anywhere",
-  body: "You do not need the perfect background to enter cloud engineering.\n\nCuriosity and discipline matter more than credentials."
-},
-{
-  title: "Learn by Building",
-  body: "The best way to learn cloud infrastructure is by building real systems.\n\nReal architectures.\nReal deployments."
-},
-{
-  title: "Document the Journey",
-  body: "Sharing what you learn helps others grow faster."
-},
-{
-  title: "Build in Public",
-  body: "Visibility creates opportunity.\n\nThe Builder Wall exists for this reason."
-},
-{
-  title: "No One Builds Alone",
-  body: "Community accelerates learning and confidence."
-},
-{
-  title: "Access Matters",
-  body: "Talent is everywhere.\n\nOpportunity is not."
-}];
+  { icon: Rocket, title: "Start anywhere", body: "You do not need the perfect background to enter cloud engineering. Curiosity and discipline matter more than credentials." },
+  { icon: Code2, title: "Learn by building", body: "The best way to learn cloud infrastructure is by building real systems. Real architectures. Real deployments." },
+  { icon: BookOpen, title: "Document the journey", body: "Sharing what you learn helps others grow faster." },
+  { icon: Eye, title: "Build in public", body: "Visibility creates opportunity. The Builder Wall exists for this reason." },
+  { icon: Users, title: "No one builds alone", body: "Community accelerates learning and confidence." },
+  { icon: Globe, title: "Access matters", body: "Talent is everywhere. Opportunity is not." },
+];
 
+const stats = [
+  { num: "14–16%", color: "text-primary", desc: "women in the cloud workforce overall" },
+  { num: "<15%", color: "text-accent", desc: "in cloud architecture, DevOps and SRE" },
+  { num: "<10%", color: "text-[hsl(var(--gradient-yellow))]", desc: "at principal and distinguished levels" },
+  { num: "8–12%", color: "text-[hsl(var(--gradient-orange))]", desc: "in cloud security and platform leadership" },
+];
 
-const HandwrittenQuote = ({ children }: {children: string;}) =>
-<motion.div {...fade()} className="py-[72px] text-center">
-    <p className="font-caveat text-2xl md:text-3xl lg:text-4xl italic leading-relaxed max-w-[760px] mx-auto text-foreground/60 dark:text-primary/70">
+const infraCards = [
+  { border: "border-l-primary", title: "Real cloud projects", desc: "Build real infrastructure, not sandboxes. Own what you deploy." },
+  { border: "border-l-accent", title: "Infrastructure portfolios", desc: "Publish your work to the Builder Wall as you build it." },
+  { border: "border-l-[hsl(var(--gradient-yellow))]", title: "Engineering tools", desc: "AI-powered Terraform workflows used in real production environments." },
+  { border: "border-l-[hsl(var(--gradient-orange))]", title: "A verifiable credential", desc: "A badge that proves what you built, not just what you watched." },
+];
+
+const PullQuote = ({ children }: { children: string }) => (
+  <motion.blockquote
+    {...fadeUp}
+    className="border-l-4 border-primary pl-6 py-2 my-10"
+  >
+    <p className="font-serif text-xl md:text-2xl italic text-foreground/70">
       "{children}"
     </p>
-  </motion.div>;
+  </motion.blockquote>
+);
 
-
-const SectionBlock = ({
-  title,
-  children,
-  className = ""
-
-
-
-
-}: {title: string;children: React.ReactNode;className?: string;}) =>
-<motion.div {...fade()} className={`max-w-[760px] mx-auto ${className}`}>
-    <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-8">
-      {title}
-    </h2>
-    <div className="space-y-6 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
-      {children}
-    </div>
-  </motion.div>;
-
+const SectionBadge = ({ children, className = "" }: { children: string; className?: string }) => (
+  <span className={`badge-glow mb-6 inline-flex ${className}`}>{children}</span>
+);
 
 const Manifest = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="relative pt-32 pb-16 md:pt-44 md:pb-16 overflow-hidden">
+      {/* ─── Section 1 — Hero ─── */}
+      <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 gradient-arc pointer-events-none" />
-        <div className="absolute inset-0 gradient-arc-top pointer-events-none" />
-        <div className="container relative z-10 max-w-[760px] mx-auto text-center">
-          <motion.div {...fade()}>
-            <span className="badge-glow">Manifest</span>
+        <div className="container relative z-10 max-w-3xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <span className="badge-glow">Our Story</span>
           </motion.div>
           <motion.h1
-            {...fade(0.1)}
-            className="mt-8 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight gradient-text leading-tight">
-            
-            Talent is everywhere.
-            <br />
-            Access is not.
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+          >
+            Talent is everywhere.<br />
+            <span className="gradient-text">Access is not.</span>
           </motion.h1>
           <motion.p
-            {...fade(0.2)}
-            className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            
-            Build with Her exists to close that gap in cloud engineering.
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}
+            className="mt-6 text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl mx-auto"
+          >
+            Build with Her exists to close the gap in cloud engineering. This is why we built it.
           </motion.p>
-          <motion.div {...fade(0.3)} className="mt-8">
-            <GradientButton to="/join-the-builders" icon size="lg">
-              Create Your Builder Card
-            </GradientButton>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── Founding Statement ── */}
-      <section className="pt-8 pb-[72px]">
-        <div className="container max-w-[760px] mx-auto">
           <motion.div
-            {...fade()}
-            className="rounded-2xl border border-border/50 p-8 md:p-12 text-center shadow-sm dark:shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
-            style={{
-              background:
-              "linear-gradient(180deg, hsl(var(--card-elevated)) 0%, hsl(var(--card)) 100%)"
-            }}>
-            
-            <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6">
-              Founding Statement
-            </h2>
-            <p className="text-foreground text-lg md:text-xl leading-relaxed font-body max-w-xl mx-auto">
-              Build with Her exists because talent is everywhere, but access is not.
-            </p>
-            <p className="mt-6 text-muted-foreground text-sm">Written in 2026</p>
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 flex flex-wrap gap-3 justify-center"
+          >
+            <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
+            <GradientButton to="/meet-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
           </motion.div>
         </div>
       </section>
 
-      {/* ── Why I'm Building This ── */}
-      <section className="py-[72px]">
-        <div className="container">
-          <SectionBlock title="Why I'm Building This">
-            <p>
-              Over the past few months, I took a step back to rethink my role as a founder.
-            </p>
-            <p>For some people, becoming a founder means:</p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>shipping products</li>
-              <li>raising money</li>
-              <li>optimizing growth</li>
-            </ul>
-            <p>For me, becoming a founder again means something else.</p>
-            <p>
-              Driving impact.
-              <br />
-              Choosing a direction even when it is uncomfortable.
-            </p>
-            <p>And right now, it is uncomfortable.</p>
-            <div className="mt-8 space-y-0.5">
-              <p className="font-caveat text-xl text-primary/85 -rotate-[1.5deg] origin-left tracking-[0.04em] leading-[1.2] opacity-95">
-                Tarak
-              </p>
-              <p className="text-sm text-muted-foreground font-body">
-                Co-Founder, Infracodebase
-              </p>
+      {/* ─── Section 2 — Why I'm building this ─── */}
+      <section className="py-20 md:py-28">
+        <div className="container max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>Why I'm building this</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+              For me, becoming a founder again means something else.
+            </h2>
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>Over the past few months, I took a step back to rethink my role as a founder.</p>
+              <p>For some people, becoming a founder means shipping products, raising money, optimizing growth.</p>
+              <p>For me, it means driving impact. Choosing a direction even when it is uncomfortable.</p>
+              <p>And right now, it is uncomfortable.</p>
             </div>
-          </SectionBlock>
-        </div>
-      </section>
 
-      <HandwrittenQuote>Talent is everywhere. Access is not.</HandwrittenQuote>
+            {/* Founder card */}
+            <div className="mt-10 flex items-center gap-4 rounded-2xl border border-border/50 bg-card p-5">
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-border/50 shrink-0">
+                <img src="/images/tarak.jpeg" alt="Tarak, Co-Founder of Infracodebase" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="font-display text-base font-bold text-foreground">Tarak</p>
+                <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
+              </div>
+            </div>
 
-      {/* ── The Moment We Are In ── */}
-      <section className="py-[72px]">
-        <div className="container">
-          <SectionBlock title="The Moment We Are In">
-            <p>We are living through massive layoffs.</p>
-            <p>
-              Artificial intelligence is reshaping entire professions in real time.
-            </p>
-            <p>
-              And many people especially women are quietly questioning whether they truly belong in
-              tech.
-            </p>
-            <p>In cloud computing today:</p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>women represent roughly 14 to 16 percent of the workforce</li>
-              <li>
-                in cloud architecture DevOps and SRE that number drops below 15 percent
-              </li>
-              <li>at principal and distinguished levels it falls under 10 percent</li>
-              <li>
-                in cloud security and platform leadership it hovers around 8 to 12 percent
-              </li>
-            </ul>
-            <p>These roles sit at the highest pay bands.</p>
-            <p>
-              They shape the systems.
-              <br />
-              They influence decisions.
-              <br />
-              They define how technology evolves.
-            </p>
-            <p>When women are missing there it does not just affect visibility.</p>
-            <p>It affects income influence and leadership.</p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      {/* ── Why This Moment Matters ── */}
-      <section className="py-[72px] band-gradient-warm">
-        <div className="container">
-          <SectionBlock title="Why This Moment Matters">
-            <p>Technology is changing faster than access to opportunity.</p>
-            <p>Artificial intelligence is accelerating software development.</p>
-            <p>
-              Cloud infrastructure is becoming the backbone of nearly every modern system.
-            </p>
-            <p>Entire professions are being reshaped.</p>
-            <p>
-              But while technology moves fast access to opportunity does not move at the same speed.
-            </p>
-            <p>Many talented people are still locked out of these fields because:</p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>they do not have access to advanced training</li>
-              <li>they do not have access to engineering communities</li>
-              <li>they do not see people like them in leadership roles</li>
-            </ul>
-            <p>The result is a silent gap.</p>
-            <p>
-              A gap between who could build the future and who is given the opportunity to do so.
-            </p>
-            <p className="text-foreground font-medium">
-              Build with Her exists to close that gap.
-            </p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      <HandwrittenQuote>The problem is not talent. The problem is access.</HandwrittenQuote>
-
-      {/* ── The Gap Starts Earlier ── */}
-      <section className="py-[72px]">
-        <div className="container">
-          <SectionBlock title="The Gap Starts Earlier">
-            <p>And the gap does not start at the top.</p>
-            <p>Women are still:</p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>significantly less likely to access advanced cloud skills</li>
-              <li>
-                far less likely especially in low and middle income countries to access cloud
-                training
-              </li>
-            </ul>
-            <p>The issue is not talent.</p>
-            <p>It is not ambition.</p>
-            <p className="text-foreground font-medium">It is access.</p>
-            <p>Once you see that it becomes difficult to ignore.</p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      {/* ── Why Build with Her Exists ── */}
-      <section className="py-[72px]">
-        <div className="container">
-          <SectionBlock title="Why Build with Her Exists">
-            <p>Build with Her exists to make cloud engineering more accessible.</p>
-            <p>Not through polished success stories.</p>
-            <p>
-              Not through unrealistic promises about becoming a cloud engineer overnight.
-            </p>
-            <p>But through real journeys.</p>
-            <p>
-              The lessons.
-              <br />
-              The confusion.
-              <br />
-              The small wins.
-              <br />
-              And yes the mistakes.
-            </p>
-            <p>Because real learning rarely looks perfect.</p>
-            <p>And people should not have to go through that journey alone.</p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      {/* ── Why Community Matters ── */}
-      <section className="py-[72px] band-gradient">
-        <div className="container">
-          <SectionBlock title="Why Community Matters">
-            <p>When you are learning cloud engineering it is easy to feel invisible.</p>
-            <p>
-              You study.
-              <br />
-              You practice.
-              <br />
-              You apply.
-              <br />
-              You improve.
-            </p>
-            <p>Sometimes it feels like no one sees the work behind it.</p>
-            <p className="text-foreground font-medium">
-              Build with Her exists to change that.
-            </p>
-            <p>This community exists to make those journeys visible.</p>
-            <p>It exists so people can learn together.</p>
-            <p>
-              And it reminds every woman entering this space that she is not building alone.
-            </p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      <HandwrittenQuote>No one should have to build alone.</HandwrittenQuote>
-
-      {/* ── Our Principles ── */}
-      <section className="py-[72px]">
-        <div className="container max-w-5xl mx-auto">
-          <motion.div {...fade()} className="text-center mb-12 md:mb-16">
-            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
-              Our Principles
-            </h2>
-            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-              Build with Her is more than a platform.
-              <br />
-              It is a community guided by shared principles.
-            </p>
+            <PullQuote>Talent is everywhere. Access is not.</PullQuote>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {principles.map((p, i) =>
-            <motion.div
-              key={p.title}
-              {...fade(i * 0.08)}
-              className="rounded-2xl border border-border/50 p-6 md:p-8 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_24px_-6px_hsl(var(--primary)/0.2)]">
-              
-                <h3 className="font-display text-lg font-bold text-foreground mb-3">
-                  {p.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
-                  {p.body}
-                </p>
-              </motion.div>
-            )}
+        </div>
+      </section>
+
+      {/* ─── Section 3 — The moment we are in ─── */}
+      <section className="band-gradient-warm section-glow py-20 md:py-28">
+        <div className="container max-w-5xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>The moment we are in</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-12 leading-tight max-w-3xl">
+              We are living through massive layoffs. AI is reshaping entire professions in real time.
+            </h2>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <motion.div {...fadeUp} className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>And many people — especially women — are quietly questioning whether they truly belong in tech.</p>
+              <p>These roles sit at the highest pay bands. They shape the systems. They influence decisions. They define how technology evolves.</p>
+              <p className="text-foreground font-medium">When women are missing there, it does not just affect visibility. It affects income, influence, and leadership.</p>
+            </motion.div>
+            <motion.div {...fadeUpDelay(0.15)}>
+              <p className="font-mono text-xs tracking-widest text-muted-foreground/60 uppercase mb-4">In cloud computing today</p>
+              <div className="space-y-3">
+                {stats.map((s) => (
+                  <div key={s.num} className="card-premium flex items-center gap-4 p-4">
+                    <span className={`font-display text-2xl md:text-3xl font-bold ${s.color} shrink-0 w-24 text-right`}>{s.num}</span>
+                    <span className="text-muted-foreground text-sm">{s.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── Backed by Infracodebase ── */}
-      <section className="py-[72px] band-gradient-warm">
-        <div className="container">
-          <SectionBlock title="Why Being Backed by Infracodebase Matters">
-            <p>Build with Her is supported by Infracodebase.</p>
-            <p>
-              Communities become more powerful when they are backed by real infrastructure and a
-              larger platform.
-            </p>
-            <p>
-              Being connected to Infracodebase means this community is not just about conversation.
-            </p>
-            <p>Members can:</p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>build real cloud projects</li>
-              <li>create infrastructure portfolios</li>
-              <li>access engineering tools</li>
-              <li>connect learning with real environments</li>
-            </ul>
-            <p>It also creates leverage.</p>
-            <p>
-              A community backed by a platform can advocate for better opportunities and open doors
-              that individuals alone cannot.
-            </p>
-            <p>That leverage benefits the entire community.</p>
-            <p className="text-foreground font-medium">
-              And it matters especially for women entering cloud engineering.
-            </p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      {/* ── The World We Want To Build ── */}
-      <section className="py-[72px]">
-        <div className="container">
-          <SectionBlock title="The World We Want To Build">
-            <p>
-              Imagine a world where access to cloud engineering is not limited by geography or
-              opportunity.
-            </p>
-            <p>A world where talent is recognized before credentials.</p>
-            <p>
-              A world where the next generation of cloud architects platform engineers and security
-              leaders reflects the diversity of the people using technology.
-            </p>
-            <p className="text-foreground font-medium">
-              That is the world Build with Her is working toward.
-            </p>
-          </SectionBlock>
-        </div>
-      </section>
-
-      {/* ── Final CTA ── */}
-      <section className="py-20 md:py-32 cta-band section-glow">
-        <div className="container max-w-[760px] mx-auto text-center relative z-10">
-          <motion.p
-            {...fade()}
-            className="text-foreground text-lg md:text-xl lg:text-2xl leading-relaxed font-body max-w-2xl mx-auto">
-            
-            If you believe talent should not be limited by access
-            <br />
-            you can help build something bigger than yourself.
-          </motion.p>
-          <motion.div {...fade(0.15)} className="mt-10">
-            <GradientButton to="/join-the-builders" icon size="lg">
-              Create Your Builder Card
-            </GradientButton>
+      {/* ─── Section 4 — Why the gap exists ─── */}
+      <section className="py-20 md:py-28">
+        <div className="container max-w-2xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>Why the gap exists</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+              The problem is not talent. The problem is access.
+            </h2>
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>Technology is changing faster than access to opportunity. AI is accelerating software development. Cloud infrastructure is becoming the backbone of nearly every modern system.</p>
+              <p>But while technology moves fast, access to opportunity does not move at the same speed.</p>
+              <p>Many talented people are still locked out of these fields because they do not have access to advanced training, engineering communities, or people like them in leadership roles.</p>
+              <p className="text-foreground font-medium">The result is a silent gap. A gap between who could build the future and who is given the opportunity to do so.</p>
+              <p>And the gap does not start at the top. Women are significantly less likely to access advanced cloud skills — far less likely, especially in low and middle income countries, to access cloud training at all. The issue is not talent. It is not ambition. It is access.</p>
+            </div>
+            <PullQuote>The problem is not talent. The problem is access.</PullQuote>
           </motion.div>
         </div>
       </section>
 
-      {/* ── Divider ── */}
-      <div className="container max-w-[760px] mx-auto">
-        <div className="h-px bg-border/50 dark:shadow-[0_0_12px_hsl(var(--primary)/0.15)]" />
-      </div>
+      {/* ─── Section 5 — Why Build with Her exists ─── */}
+      <section className="band-gradient section-glow py-20 md:py-28">
+        <div className="container max-w-2xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>Why Build with Her exists</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+              Real journeys. Not polished stories.
+            </h2>
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>Build with Her exists to make cloud engineering more accessible. Not through polished success stories. Not through unrealistic promises about becoming a cloud engineer overnight.</p>
+              <p>But through real journeys. The lessons. The confusion. The small wins. And yes, the mistakes.</p>
+              <p className="text-foreground font-medium">Because real learning rarely looks perfect. And people should not have to go through that journey alone.</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-      {/* ── Team Signature ── */}
+      {/* ─── Section 6 — Why community matters ─── */}
+      <section className="py-20 md:py-28">
+        <div className="container max-w-2xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>Why community matters</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+              When you are learning, it is easy to feel invisible.
+            </h2>
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>You study. You practice. You apply. You improve. Sometimes it feels like no one sees the work behind it.</p>
+              <p>Build with Her exists to change that. This community exists to make those journeys visible — so people can learn together, and so every woman entering this space is reminded that she is not building alone.</p>
+            </div>
+            <PullQuote>No one should have to build alone.</PullQuote>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Section 7 — Principles ─── */}
+      <section className="band-gradient-warm section-glow py-20 md:py-28">
+        <div className="container max-w-5xl mx-auto">
+          <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
+            <SectionBadge>How we operate</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
+              Our <span className="gradient-text">principles</span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+              Build with Her is more than a platform. It is a community guided by shared principles.
+            </p>
+          </motion.div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {principles.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <motion.div
+                  key={p.title}
+                  {...fadeUpDelay(i * 0.08)}
+                  className="card-premium p-6 md:p-8"
+                >
+                  <Icon size={24} className="text-primary mb-4" />
+                  <h3 className="font-display text-lg font-bold text-foreground mb-3">{p.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{p.body}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Section 8 — Backed by Infracodebase ─── */}
+      <section className="py-20 md:py-28">
+        <div className="container max-w-5xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge className="border-accent/40">Why being backed by Infracodebase matters</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-12 leading-tight max-w-3xl">
+              Community becomes more powerful when backed by a real platform.
+            </h2>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <motion.div {...fadeUp}>
+              <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+                <p>Build with Her is supported by Infracodebase. This means the community is not just about conversation.</p>
+                <p>Through <strong className="text-foreground">Infracodebase University</strong>, members can build real cloud projects, create infrastructure portfolios, access engineering tools, and connect learning with real environments.</p>
+                <p className="text-foreground font-medium">A community backed by a platform can advocate for better opportunities and open doors that individuals alone cannot. That leverage benefits the entire community — and it matters especially for women entering cloud engineering.</p>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://university.infracodebase.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 px-5 inline-flex items-center rounded-lg bg-accent text-accent-foreground text-sm font-semibold hover:bg-accent/90 transition-all"
+                >
+                  Explore University →
+                </a>
+                <a
+                  href="https://university.infracodebase.com/training"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 px-5 inline-flex items-center rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground transition-all"
+                >
+                  View the curriculum
+                </a>
+              </div>
+            </motion.div>
+            <motion.div {...fadeUpDelay(0.15)} className="space-y-4">
+              {infraCards.map((c) => (
+                <div
+                  key={c.title}
+                  className={`card-premium border-l-2 ${c.border} rounded-l-none p-5`}
+                >
+                  <h4 className="font-display text-sm font-bold text-foreground mb-1">{c.title}</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{c.desc}</p>
+                </div>
+              ))}
+
+              {/* Info strip */}
+              <div className="flex items-center gap-3 rounded-[10px] border border-accent/30 bg-card p-3 mt-4">
+                <span className="w-2.5 h-2.5 rounded-full bg-accent shrink-0" />
+                <span className="text-muted-foreground text-xs">464 learners · 20+ countries · 50+ lessons</span>
+                <a
+                  href="https://university.infracodebase.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto text-accent text-xs font-medium hover:underline whitespace-nowrap flex items-center gap-1"
+                >
+                  university.infracodebase.com <ExternalLink size={10} />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Section 9 — The world we want to build ─── */}
+      <section className="band-gradient section-glow py-20 md:py-28">
+        <div className="container max-w-2xl mx-auto">
+          <motion.div {...fadeUp}>
+            <SectionBadge>The world we want to build</SectionBadge>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+              Imagine a world where access to cloud engineering is not limited by geography or opportunity.
+            </h2>
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
+              <p>A world where talent is recognised before credentials.</p>
+              <p>A world where the next generation of cloud architects, platform engineers, and security leaders reflects the diversity of the people using technology.</p>
+              <p className="text-foreground font-medium">That is the world Build with Her is working toward.</p>
+              <p>If you believe talent should not be limited by access, you can help build something bigger than yourself.</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Section 10 — Team (preserved exactly) ─── */}
       <section className="py-20 md:py-28">
         <div className="container max-w-[760px] mx-auto text-center">
-          <motion.div {...fade()}>
+          <motion.div {...fadeUp}>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 justify-items-center">
               {[
-              { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Infracodebase", alt: "Tarak, Co-Founder of Build with Her" },
-              { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Infracodebase", alt: "Justin O'Connor, Co-Founder of Build with Her" },
-              { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Infracodebase", alt: "Manisha Sarkar, Community Lead at Infracodebase" },
-              { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Infracodebase", alt: "Bunrinmwa Gobum, Community Lead at Infracodebase" }].
-              map((person) =>
-              <div key={person.name} className="flex flex-col items-center">
+                { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Infracodebase", alt: "Tarak, Co-Founder of Build with Her" },
+                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Infracodebase", alt: "Justin O'Connor, Co-Founder of Build with Her" },
+                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Infracodebase", alt: "Manisha Sarkar, Community Lead at Infracodebase" },
+                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Infracodebase", alt: "Bunrinmwa Gobum, Community Lead at Infracodebase" },
+              ].map((person) => (
+                <div key={person.name} className="flex flex-col items-center">
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
                     <img src={person.src} alt={person.alt} className="w-full h-full object-cover" />
                   </div>
                   <p className="mt-4 font-display text-base md:text-lg font-bold text-foreground text-center">{person.name}</p>
                   <p className="text-muted-foreground text-xs md:text-sm text-center">{person.title}</p>
                 </div>
-              )}
+              ))}
             </div>
             <p className="mt-10 text-foreground text-base md:text-lg leading-relaxed">
               This is the kind of world we are building.
@@ -439,9 +349,32 @@ const Manifest = () => {
         </div>
       </section>
 
-      <Footer />
-    </div>);
+      {/* ─── Section 11 — Final CTA ─── */}
+      <section className="relative cta-band">
+        <div className="absolute inset-0 gradient-arc pointer-events-none" />
+        <div className="gradient-line w-full" />
+        <div className="container py-28 md:py-40">
+          <motion.div {...fadeUp} className="max-w-2xl mx-auto text-center relative z-10">
+            <p className="font-mono text-xs tracking-widest text-muted-foreground/60 uppercase mb-8">
+              Talent is everywhere. Access is not.
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-6 leading-tight">
+              Be part of closing the gap.
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-12">
+              If you believe talent should not be limited by access, you can help build something bigger than yourself.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
+              <GradientButton to="/meet-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
+      <Footer />
+    </div>
+  );
 };
 
 export default Manifest;

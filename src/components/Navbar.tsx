@@ -9,7 +9,7 @@ import ThemeToggle from "./ThemeToggle";
 import AuthGateModal from "./AuthGateModal";
 
 const navLinks = [
-  { label: "Manifest", path: "/manifest" },
+  { label: "Our Story", path: "/manifest" },
   { label: "Programs", path: "/programs" },
   { label: "Community", path: "/community" },
   { label: "Events", path: "/events" },
