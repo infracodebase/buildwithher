@@ -264,8 +264,8 @@ https://buildwithher.dev`;
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
           >
-            <p>Add your profile and let other women see they are not building alone.</p>
-            <p className="mt-2">Women across the world are building in cloud, AI, infrastructure, DevOps, and platform engineering.</p>
+            <p>Add your profile and let other builders see they are not building alone.</p>
+            <p className="mt-2">Builders across the world are building in cloud, AI, infrastructure, DevOps, and platform engineering.</p>
             <p className="mt-2 text-foreground font-medium">Now it is your turn to be seen.</p>
           </motion.div>
           <motion.div
@@ -578,7 +578,7 @@ https://buildwithher.dev`;
                       <h2 className="font-display text-2xl font-bold text-foreground">Share Your Story</h2>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      Add your profile and let other women see they are not building alone. Takes less than 60 seconds.
+                      Add your profile and let other builders see they are not building alone. Takes less than 60 seconds.
                     </p>
                   </div>
 

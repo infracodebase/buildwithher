@@ -632,7 +632,7 @@ const Index = () => {
             </h2>
           </div>
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-2 text-muted-foreground leading-relaxed">
-            <p>Women across the world are building careers in cloud, AI, infrastructure, DevOps, security, and platform engineering.</p>
+            <p>Builders across the world are building careers in cloud, AI, infrastructure, DevOps, security, and platform engineering.</p>
             <p>Some are transitioning into tech. Some are already working in cloud. Some are still learning.</p>
             <p>What connects them is simple.</p>
             <p className="text-foreground font-medium text-lg">They kept building.</p>
