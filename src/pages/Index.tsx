@@ -683,6 +683,15 @@ const Index = () => {
                   <div className="flex-1">
                     <h3 className="font-display font-semibold text-foreground text-xl mb-2">{title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4">{desc}</p>
+                    {title === "Infracodebase University" && (
+                      <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
+                        Not sure where to start? Begin with the{" "}
+                        <a href="https://university.infracodebase.com/path/cloud-infrastructure-intro" className="text-accent hover:underline">
+                          prerequisites
+                        </a>{" "}
+                        — designed for zero prior knowledge.
+                      </p>
+                    )}
                     <div className="flex flex-wrap gap-1.5">
                       {tags.map((tag) =>
                     <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-secondary/80 text-muted-foreground border border-border/30">
@@ -690,6 +699,11 @@ const Index = () => {
                         </span>
                     )}
                     </div>
+                    {title === "Infracodebase University" && (
+                      <a href="https://university.infracodebase.com" className="text-xs text-primary hover:underline mt-3 inline-block">
+                        Start learning →
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
