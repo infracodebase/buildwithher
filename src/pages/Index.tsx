@@ -521,6 +521,55 @@ const Index = () => {
         </div>
       </motion.section>
 
+      {/* ─── WHY THIS EXISTS ─── */}
+      <motion.section {...fadeUp} className="band-gradient-warm section-glow">
+        <div className="container py-24 md:py-32">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+            <div>
+              <span className="badge-glow mb-6 inline-flex">Why this exists</span>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+                Women hold fewer than{" "}
+                <span className="gradient-text">25%</span>{" "}
+                of cloud engineering roles globally.
+              </h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed max-w-[460px]">
+                <p>
+                  Not because of ability. Because of access — to mentorship, to
+                  structured paths, to communities that signal{" "}
+                  <em className="text-foreground not-italic font-medium">
+                    this is for you too.
+                  </em>
+                </p>
+                <p className="text-foreground font-medium text-lg">
+                  Build with Her and Infracodebase University exist to close that gap.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="stat-card text-center">
+                <p className="font-display text-4xl font-bold text-primary mb-2">&lt;25%</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">of cloud engineering roles held by women globally</p>
+              </div>
+              <div className="stat-card text-center">
+                <p className="font-display text-4xl font-bold gradient-text-blue mb-2">78+</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">women building in cloud through this community</p>
+              </div>
+              <div className="stat-card text-center">
+                <p className="font-display text-4xl font-bold text-accent mb-2">20+</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">countries represented in the community</p>
+              </div>
+              <div className="stat-card text-center">
+                <p className="font-display text-4xl font-bold gradient-text mb-2">464</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">active learners on Infracodebase University</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </motion.section>
+
       {/* ─── WHY THIS MATTERS — SPLIT ─── */}
       <motion.section {...fadeUp} className="section-glow relative overflow-hidden mt-12 md:mt-16">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] orb-blue rounded-full pointer-events-none opacity-50" />
