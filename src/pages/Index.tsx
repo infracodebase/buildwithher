@@ -137,7 +137,7 @@ const programCards = [
 {
   icon: GraduationCap,
   title: "Infracodebase University",
-  desc: "Learning cloud and infrastructure through real examples.",
+  desc: "A structured path from zero prior knowledge to certified cloud engineer. Best for career changers, early-career engineers, and anyone who wants to go from tutorials to real systems.",
   tags: ["Cloud Architecture", "IaC", "Platform Engineering", "Security", "AI Workflows"]
 },
 {
@@ -405,6 +405,62 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ─── START HERE ─── */}
+      <motion.section {...fadeUp} className="band-gradient-warm section-glow">
+        <div className="container py-20 md:py-28">
+          <div className="max-w-2xl mx-auto">
+            <span className="badge-glow mb-6 inline-flex">Your path</span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-3 leading-tight">
+              Not sure where to begin?<br />Start here.
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-xl mb-10">
+              The junior-to-senior journey has five stages. Here is where Build with Her and Infracodebase University each fit.
+            </p>
+
+            <div className="flex flex-col gap-3">
+              {[
+                { num: "01", title: "New to cloud — not sure where to start", pills: ["bwh"], desc: "Community, welcome, real guidance. You are not alone and you don't need to know anything yet." },
+                { num: "02", title: "Ready to learn — want structure", pills: ["uni"], desc: "Prerequisites, core modules, video library. Designed for zero prior knowledge." },
+                { num: "03", title: "Actively learning — need support and momentum", pills: ["bwh"], desc: "Live workshops, webinars, community sessions, live Q&A alongside your studies." },
+                { num: "04", title: "Building — need visibility and feedback", pills: ["bwh"], desc: "Builder Wall, member profiles, build in public. Publish your work and get seen." },
+                { num: "05", title: "Job-ready — need credentials and connections", pills: ["uni", "bwh"], desc: "badge and certification → events, community, network." },
+              ].map((row, i) => (
+                <motion.div
+                  key={row.num}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.05 + i * 0.08 }}
+                  className="card-premium p-5 flex items-start gap-4"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="font-display font-semibold text-muted-foreground text-sm">{row.num}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-display font-semibold text-foreground text-sm mb-1">{row.title}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {row.pills.map((p) =>
+                        p === "bwh" ? (
+                          <span key={p} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 mr-1.5">Build with Her</span>
+                        ) : (
+                          <span key={p} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent border border-accent/20 mr-1.5">University</span>
+                        )
+                      )}
+                      {row.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 mt-8">
+              <GradientButton to="/meet-the-builders" size="lg" icon>Join Build with Her</GradientButton>
+              <GradientButton to="https://university.infracodebase.com" variant="outline" size="lg">Explore University →</GradientButton>
+            </div>
+          </div>
+        </div>
+      </motion.section>
 
       {/* ─── BUILDER SPOTLIGHT STRIP ─── */}
       <section className="relative gradient-border-bottom">
@@ -677,51 +733,6 @@ const Index = () => {
         </div>
       </motion.section>
 
-      {/* ─── WOMEN IN CLOUD IDENTITY ─── */}
-      <section className="relative section-glow band-gradient overflow-hidden">
-        <div className="absolute inset-0 gradient-arc pointer-events-none opacity-60" />
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </section>
 
       {/* ─── COMMUNITY VOICES ─── */}
       <motion.section {...fadeUp} className="relative overflow-hidden">
@@ -761,6 +772,9 @@ const Index = () => {
         <div className="gradient-line w-full" />
         <div className="container py-28 md:py-40">
           <motion.div {...fadeUp} className="max-w-2xl mx-auto text-center relative z-10">
+            <p className="font-mono text-xs tracking-widest text-muted-foreground/60 uppercase mb-6">
+              Talent is everywhere. Access is not.
+            </p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-6 leading-tight">
               You do not have to build alone
             </h2>
