@@ -85,7 +85,7 @@ const MemberWall = () =>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
             Community <span className="gradient-text">Voices</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">Real words from real women building in cloud and infrastructure.</p>
+          <p className="mt-4 text-muted-foreground">Real words from real builders in cloud and infrastructure.</p>
         </div>
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
           {testimonials.map((t) =>

@@ -82,7 +82,7 @@ const ProfileModal = ({ open, onClose, onSubmit }: ProfileModalProps) => {
                 </div>
                 <DialogTitle className="font-display text-2xl font-bold text-foreground">Be Part of the Movement</DialogTitle>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
-                  Add your profile and let other women see they are not building alone. Takes less than 60 seconds.
+                  Add your profile and let other builders see they are not building alone. Takes less than 60 seconds.
                 </p>
                 <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground/70">
                   <span className="flex items-center gap-1"><Globe className="w-3 h-3" /> 12 countries</span>
