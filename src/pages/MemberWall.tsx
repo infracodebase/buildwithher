@@ -32,7 +32,7 @@ const MemberWall = () =>
     badge="Community Wall"
     actions={<GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>}>
     
-      <p>You are not the only one building quietly. This wall exists to make women in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
+      <p>You are not the only one building quietly. This wall exists to make builders in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
 
     {/* Our Impact */}
@@ -72,7 +72,7 @@ const MemberWall = () =>
           <p className="text-lg">When you are learning or growing in cloud, it is easy to feel invisible.</p>
           <p>You study. You practice. You apply. You improve. And sometimes it feels like no one sees the discipline behind it.</p>
           <p className="text-foreground font-medium text-lg">This wall exists to change that.</p>
-          <p>It exists to make your journey more visible. And to remind every woman who lands here that she is not building alone.</p>
+          <p>It exists to make your journey more visible. And to remind every builder who lands here that they are not building alone.</p>
         </div>
       </div>
     </motion.section>
@@ -105,12 +105,12 @@ const MemberWall = () =>
             <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-6">Why This Wall Exists</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>Visibility matters. Not because attention is everything. But because being seen can lead to connection, confidence, opportunities, and belief.</p>
-              <p>When more women become visible in cloud, AI, and infrastructure, more women can imagine themselves there too.</p>
+              <p>When more builders become visible in cloud, AI, and infrastructure, more people can imagine themselves there too.</p>
             </div>
           </div>
           <div className="card-premium p-8 text-center gradient-border-card">
             <p className="font-display text-5xl font-bold gradient-text mb-2">78+</p>
-            <p className="text-muted-foreground text-sm mb-1">Women builders visible</p>
+            <p className="text-muted-foreground text-sm mb-1">Builders visible</p>
             <p className="text-xs text-muted-foreground">across 12 countries</p>
           </div>
         </div>

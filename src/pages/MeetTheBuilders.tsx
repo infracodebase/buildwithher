@@ -108,7 +108,7 @@ const MeetTheBuilders = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             
-            <p>Women across the world are learning and building in cloud infrastructure. What connects them is simple. <span className="text-foreground font-medium">They keep building</span>.</p>
+            <p>Builders across the world are learning and building in cloud infrastructure. What connects them is simple. <span className="text-foreground font-medium">They keep building</span>.</p>
             <p className="mt-3">Meet builders learning, shipping, and growing together.</p>
             <p className="mt-2 text-sm">Because visibility matters. And because no one should feel like they are building alone.</p>
           </motion.div>
