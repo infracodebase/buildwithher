@@ -807,7 +807,7 @@ const Index = () => {
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
                 Community <span className="gradient-text">Voices</span>
               </h2>
-              <p className="mt-3 text-muted-foreground max-w-md">Real words from real women building in cloud and infrastructure.</p>
+              <p className="mt-3 text-muted-foreground max-w-md">Real words from real builders in cloud and infrastructure.</p>
             </div>
             <GradientButton to="/member-wall" variant="outline" icon>View the Member Wall</GradientButton>
           </div>
@@ -842,7 +842,7 @@ const Index = () => {
               You do not have to build alone
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-              Whether you are a woman growing in cloud, or someone who believes the gap needs to close, this space is built with your values in mind.
+              Whether you are a woman growing in cloud, or someone who believes access to this field should be equal — this space is built with your values in mind.
             </p>
             <p className="text-foreground font-medium text-lg mb-12">
               You are not late. You are not alone. And the work you do here actually matters.
