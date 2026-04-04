@@ -51,9 +51,9 @@ const sections: ResourceSection[] = [
       },
       {
         icon: <Linkedin size={20} />,
-        title: "Infracodebase on LinkedIn",
+        title: "Oz on LinkedIn",
         description: "Follow company updates, product news, and ecosystem announcements.",
-        href: "https://www.linkedin.com/company/infracodebase/?viewAsMember=true",
+        href: "https://www.linkedin.com/company/oz/",
       },
     ],
   },
