@@ -372,7 +372,7 @@ https://buildwithher.dev`;
                   <div className="relative z-10 h-full flex flex-col items-center justify-between p-6 md:p-8 text-center">
                     <div className="space-y-0.5">
                       <p className="text-[11px] font-display font-semibold tracking-widest uppercase builder-card-text-primary">Build with Her</p>
-                      <p className="text-[9px] tracking-wider uppercase builder-card-text-muted">Powered by Infracodebase</p>
+                      <p className="text-[9px] tracking-wider uppercase builder-card-text-muted">Built by Oz</p>
                     </div>
                     <div className="w-24 h-24 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
                       {photoPreview ? (

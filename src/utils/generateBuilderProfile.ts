@@ -159,7 +159,7 @@ export async function generateBuilderProfile(opts: ProfileOptions): Promise<stri
   ctx.textAlign = "center";
   ctx.fillStyle = COLORS.textDim;
   ctx.font = "400 16px 'Inter', system-ui, sans-serif";
-  ctx.fillText("buildwithher.dev  ·  Powered by Infracodebase", W / 2, footerY);
+  ctx.fillText("buildwithher.dev  ·  Built by Oz", W / 2, footerY);
 
   return canvas.toDataURL("image/png");
 }
@@ -269,11 +269,11 @@ function buildContentSections(opts: ProfileOptions, ctx: CanvasRenderingContext2
     });
   }
 
-  // Built on Infracodebase
+  // Built on Oz
   sections.push({
-    title: "Built on Infracodebase",
+    title: "Built on Oz",
     type: "highlight",
-    content: "Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.",
+    content: "Check out all the work I have done creating and managing cloud infrastructures on Oz.",
     height: 120,
   });
 

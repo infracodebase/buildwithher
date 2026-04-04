@@ -15,7 +15,7 @@ const Footer = () => (
             A community for women and the allies who champion them in Cloud, AI, and Infrastructure.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
-            Powered by <span className="text-foreground font-medium">Infracodebase</span>
+            Built by <span className="text-foreground font-medium">Oz</span>
           </p>
         </div>
         <div className="md:col-span-2">
@@ -37,7 +37,7 @@ const Footer = () => (
         <div className="md:col-span-3">
           <h4 className="font-display font-semibold text-xs uppercase tracking-wider mb-4 text-muted-foreground">Resources</h4>
           <div className="flex flex-col gap-2.5">
-            <span className="text-sm text-muted-foreground">Infracodebase University</span>
+            <span className="text-sm text-muted-foreground">Oz University</span>
             <span className="text-sm text-muted-foreground">1:1 Sessions</span>
             <span className="text-sm text-muted-foreground">Workshops</span>
           </div>

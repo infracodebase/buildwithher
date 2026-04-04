@@ -136,7 +136,7 @@ const valueCards = [
 const programCards = [
 {
   icon: GraduationCap,
-  title: "Infracodebase University",
+  title: "Oz University",
   desc: "A structured path from zero prior knowledge to certified cloud engineer. Best for career changers, early-career engineers, and anyone who wants to go from tutorials to real systems.",
   tags: ["Cloud Architecture", "IaC", "Platform Engineering", "Security", "AI Workflows"]
 },
@@ -474,7 +474,7 @@ const Index = () => {
               Not sure where to begin?<br />Start here.
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed max-w-xl mb-10">
-              The junior-to-senior journey has five stages. Here is where Build with Her and Infracodebase University each fit.
+              The junior-to-senior journey has five stages. Here is where Build with Her and Oz University each fit.
             </p>
 
             <div className="flex flex-col gap-3">
@@ -515,7 +515,7 @@ const Index = () => {
 
             <div className="flex flex-wrap gap-3 mt-8">
               <GradientButton to="/meet-the-builders" size="lg" icon>Join Build with Her</GradientButton>
-              <GradientButton to="https://university.infracodebase.com" variant="outline" size="lg">Explore University →</GradientButton>
+              <GradientButton to="https://university.oz.xyz" variant="outline" size="lg">Explore University →</GradientButton>
             </div>
           </div>
         </div>
@@ -542,7 +542,7 @@ const Index = () => {
                   </em>
                 </p>
                 <p className="text-foreground font-medium text-lg">
-                  Build with Her and Infracodebase University exist to close that gap.
+                  Build with Her and Oz University exist to close that gap.
                 </p>
               </div>
             </div>
@@ -562,7 +562,7 @@ const Index = () => {
               </div>
               <div className="stat-card text-center">
                 <p className="font-display text-4xl font-bold gradient-text mb-2">464</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">active learners on Infracodebase University</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">active learners on Oz University</p>
               </div>
             </div>
 
@@ -651,7 +651,7 @@ const Index = () => {
                   <div className="relative z-10 h-full flex flex-col items-center justify-between p-5 md:p-6 text-center">
                     <div className="space-y-0.5">
                       <p className="text-[10px] font-display font-semibold tracking-widest uppercase builder-card-text-primary">Build with Her</p>
-                      <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Powered by Infracodebase</p>
+                      <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Built by Oz</p>
                     </div>
                     <div className="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
                       {builder.photo ?
@@ -732,10 +732,10 @@ const Index = () => {
                   <div className="flex-1">
                     <h3 className="font-display font-semibold text-foreground text-xl mb-2">{title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4">{desc}</p>
-                    {title === "Infracodebase University" && (
+                    {title === "Oz University" && (
                       <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
                         Not sure where to start? Begin with the{" "}
-                        <a href="https://university.infracodebase.com/path/cloud-infrastructure-intro" className="text-accent hover:underline">
+                        <a href="https://university.oz.xyz/path/cloud-infrastructure-intro" className="text-accent hover:underline">
                           prerequisites
                         </a>{" "}
                         — designed for zero prior knowledge.
@@ -748,8 +748,8 @@ const Index = () => {
                         </span>
                     )}
                     </div>
-                    {title === "Infracodebase University" && (
-                      <a href="https://university.infracodebase.com" className="text-xs text-primary hover:underline mt-3 inline-block">
+                    {title === "Oz University" && (
+                      <a href="https://university.oz.xyz" className="text-xs text-primary hover:underline mt-3 inline-block">
                         Start learning →
                       </a>
                     )}
@@ -772,7 +772,7 @@ const Index = () => {
             <div className="absolute top-0 right-0 w-[300px] h-[300px] orb-warm rounded-full pointer-events-none" />
             <div className="grid md:grid-cols-2 gap-12 items-start relative z-10">
               <div>
-                <span className="badge-glow mb-6 inline-flex">Powered by Infracodebase</span>
+                <span className="badge-glow mb-6 inline-flex">Built by Oz</span>
                 <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mt-4 mb-6">Why We Use AI</h2>
                 <p className="text-muted-foreground leading-relaxed text-base">
                   AI is changing how infrastructure is built. But using AI well requires discipline. The goal is not to replace engineers. It is to help engineers <span className="text-foreground font-medium">think better and build faster</span>.

@@ -84,13 +84,13 @@ const programsData: ProgramData[] = [
     number: "01",
     label: "PROGRAM 01",
     icon: GraduationCap,
-    title: "Infracodebase",
+    title: "Oz",
     italicWord: "University",
     description:
       "Self-paced learning built around real cloud environments — not slides, not theory, not certification prep. Every module is structured around how infrastructure actually behaves in production: how things break, how they scale, how they connect.",
     ctaItems: ["Self-paced modules", "New content monthly", "Lifetime access", "Fully remote"],
     ctaButton: "Enrol now",
-    ctaLink: "https://university.infracodebase.com/",
+    ctaLink: "https://university.oz.xyz/",
     cadence: [
       { icon: BookOpen, text: "Self-paced modules" },
       { icon: Clock, text: "New content monthly" },
@@ -200,7 +200,7 @@ const programsData: ProgramData[] = [
 const faqData = [
   {
     q: "Do I need cloud experience to join?",
-    a: "No. Infracodebase University and the webinars are designed to work from the beginning. If you are completely new to cloud, start with University. The workshops are better suited to people with at least some hands-on exposure.",
+    a: "No. Oz University and the webinars are designed to work from the beginning. If you are completely new to cloud, start with University. The workshops are better suited to people with at least some hands-on exposure.",
   },
   {
     q: "Is this only for women?",
@@ -637,7 +637,7 @@ const Programs = () => {
             <Link to="/community" style={{ color: "var(--pg-text2)" }}>Community</Link>
             <Link to="/member-wall" style={{ color: "var(--pg-text2)" }}>Member Wall</Link>
           </div>
-          <span>© {new Date().getFullYear()} Build with Her · Powered by Infracodebase</span>
+          <span>© {new Date().getFullYear()} Build with Her · Built by Oz</span>
         </div>
       </footer>
     </div>

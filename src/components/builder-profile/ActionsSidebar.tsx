@@ -5,7 +5,7 @@ interface ActionsSidebarProps {
   builder: {
     name: string;
     linkedin?: string;
-    infracodbaseUserId?: string;
+    ozUserId?: string;
   };
   isOwner: boolean;
   generatingProfile: boolean;
@@ -39,7 +39,7 @@ const ActionsSidebar = ({
 
       <Button variant="outline" asChild className="w-full gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-0.5" size="sm">
         <a
-          href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+          href={builder.ozUserId ? `https://oz.xyz/users/${builder.ozUserId}` : "https://oz.xyz"}
           target="_blank"
           rel="noopener noreferrer"
         >

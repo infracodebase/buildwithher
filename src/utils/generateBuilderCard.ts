@@ -45,7 +45,7 @@ export async function generateBuilderCard(options: {
   ctx.fillText("BUILD WITH HER", SIZE / 2, 120);
   ctx.fillStyle = "rgba(255,255,255,0.5)";
   ctx.font = "400 14px 'Inter', sans-serif";
-  ctx.fillText("Powered by Infracodebase", SIZE / 2, 152);
+  ctx.fillText("Built by Oz", SIZE / 2, 152);
 
   // Profile photo or initial
   const centerX = SIZE / 2;

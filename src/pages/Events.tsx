@@ -15,7 +15,7 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-const SERIES_FILTERS = ["All", "Build with Her", "Infracodebase"] as const;
+const SERIES_FILTERS = ["All", "Build with Her", "Oz"] as const;
 type SeriesFilter = (typeof SERIES_FILTERS)[number];
 
 const TYPE_FILTERS = ["All Types", "Conversation", "Technical Session", "Live Webinar", "Career Talk", "Podcast"] as const;

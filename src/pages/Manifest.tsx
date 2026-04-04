@@ -107,11 +107,11 @@ const Manifest = () => {
             {/* Founder card */}
             <div className="mt-10 flex items-center gap-4 rounded-2xl border border-border/50 bg-card p-5">
               <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-border/50 shrink-0">
-                <img src="/images/tarak.jpeg" alt="Tarak, Co-Founder of Infracodebase" className="w-full h-full object-cover" />
+                <img src="/images/tarak.jpeg" alt="Tarak, Co-Founder of Oz" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="font-display text-base font-bold text-foreground">Tarak</p>
-                <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
+                <p className="text-muted-foreground text-sm">Co-Founder, Oz</p>
               </div>
             </div>
 
@@ -235,11 +235,11 @@ const Manifest = () => {
         </div>
       </section>
 
-      {/* ─── Section 8 — Backed by Infracodebase ─── */}
+      {/* ─── Section 8 — Backed by Oz ─── */}
       <section className="py-20 md:py-28">
         <div className="container max-w-5xl mx-auto">
           <motion.div {...fadeUp}>
-            <SectionBadge className="border-accent/40">Why being backed by Infracodebase matters</SectionBadge>
+            <SectionBadge className="border-accent/40">Why being backed by Oz matters</SectionBadge>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-12 leading-tight max-w-3xl">
               Community becomes more powerful when backed by a real platform.
             </h2>
@@ -247,13 +247,13 @@ const Manifest = () => {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <motion.div {...fadeUp}>
               <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
-                <p>Build with Her is supported by Infracodebase. This means the community is not just about conversation.</p>
-                <p>Through <strong className="text-foreground">Infracodebase University</strong>, members can build real cloud projects, create infrastructure portfolios, access engineering tools, and connect learning with real environments.</p>
+                <p>Build with Her is supported by Oz. This means the community is not just about conversation.</p>
+                <p>Through <strong className="text-foreground">Oz University</strong>, members can build real cloud projects, create infrastructure portfolios, access engineering tools, and connect learning with real environments.</p>
                 <p className="text-foreground font-medium">A community backed by a platform can advocate for better opportunities and open doors that individuals alone cannot. That leverage benefits the entire community — and it matters especially for women entering cloud engineering.</p>
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="https://university.infracodebase.com"
+                  href="https://university.oz.xyz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg bg-accent text-accent-foreground text-sm font-semibold hover:bg-accent/90 transition-all"
@@ -261,7 +261,7 @@ const Manifest = () => {
                   Explore University →
                 </a>
                 <a
-                  href="https://university.infracodebase.com/training"
+                  href="https://university.oz.xyz/training"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground transition-all"
@@ -286,12 +286,12 @@ const Manifest = () => {
                 <span className="w-2.5 h-2.5 rounded-full bg-accent shrink-0" />
                 <span className="text-muted-foreground text-xs">464 learners · 20+ countries · 50+ lessons</span>
                 <a
-                  href="https://university.infracodebase.com"
+                  href="https://university.oz.xyz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ml-auto text-accent text-xs font-medium hover:underline whitespace-nowrap flex items-center gap-1"
                 >
-                  university.infracodebase.com <ExternalLink size={10} />
+                  university.oz.xyz <ExternalLink size={10} />
                 </a>
               </div>
             </motion.div>
@@ -323,10 +323,10 @@ const Manifest = () => {
           <motion.div {...fadeUp}>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 justify-items-center">
               {[
-                { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Infracodebase", alt: "Tarak, Co-Founder of Build with Her" },
-                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Infracodebase", alt: "Justin O'Connor, Co-Founder of Build with Her" },
-                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Infracodebase", alt: "Manisha Sarkar, Community Lead at Infracodebase" },
-                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Infracodebase", alt: "Bunrinmwa Gobum, Community Lead at Infracodebase" },
+                { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Oz", alt: "Tarak, Co-Founder of Build with Her" },
+                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Oz", alt: "Justin O'Connor, Co-Founder of Build with Her" },
+                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Oz", alt: "Manisha Sarkar, Community Lead at Oz" },
+                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Oz", alt: "Bunrinmwa Gobum, Community Lead at Oz" },
               ].map((person) => (
                 <div key={person.name} className="flex flex-col items-center">
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">

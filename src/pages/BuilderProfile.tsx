@@ -238,7 +238,7 @@ const BuilderProfile = () => {
                   builder={{
                     name: builder.name,
                     linkedin: builder.linkedin,
-                    infracodbaseUserId: builder.infracodbaseUserId,
+                    ozUserId: builder.ozUserId,
                   }}
                   isOwner={isOwner}
                   generatingProfile={generatingProfile}
@@ -304,7 +304,7 @@ const BuilderProfile = () => {
                 </section>
               )}
 
-              {/* Built on Infracodebase */}
+              {/* Built on Oz */}
               <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-card/80 backdrop-blur-sm p-6 md:p-8">
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
@@ -312,14 +312,14 @@ const BuilderProfile = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display text-lg font-semibold text-foreground mb-1.5">
-                      Built on Infracodebase
+                      Built on Oz
                     </h3>
                     <p className="text-muted-foreground text-sm mb-4">
-                      Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.
+                      Check out all the work I have done creating and managing cloud infrastructures on Oz.
                     </p>
                     <Button asChild className="gap-2 transition-all duration-200 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5" size="sm">
                       <a
-                        href={builder.infracodbaseUserId ? `https://infracodebase.com/users/${builder.infracodbaseUserId}` : "https://infracodebase.com"}
+                        href={builder.ozUserId ? `https://oz.xyz/users/${builder.ozUserId}` : "https://oz.xyz"}
                         target="_blank"
                         rel="noopener noreferrer"
                       >

@@ -28,15 +28,15 @@ const sections: ResourceSection[] = [
     items: [
       {
         icon: <BookOpen size={20} />,
-        title: "Introduction to Infracodebase",
-        description: "Start here to understand what Infracodebase is, how it works, and how to begin.",
-        href: "https://infracodebase.com/docs/getting-started/introduction",
+        title: "Introduction to Oz",
+        description: "Start here to understand what Oz is, how it works, and how to begin.",
+        href: "https://oz.xyz/docs/getting-started/introduction",
       },
       {
         icon: <LayoutTemplate size={20} />,
         title: "Templates Library",
         description: "Explore infrastructure templates and examples to accelerate your cloud builds.",
-        href: "https://infracodebase.com/templates",
+        href: "https://oz.xyz/templates",
       },
     ],
   },
@@ -45,15 +45,15 @@ const sections: ResourceSection[] = [
     items: [
       {
         icon: <Youtube size={20} />,
-        title: "Infracodebase on YouTube",
+        title: "Oz on YouTube",
         description: "Watch product walkthroughs, tutorials, and infrastructure content.",
-        href: "https://www.youtube.com/@infracodebase",
+        href: "https://www.youtube.com/@oz",
       },
       {
         icon: <Linkedin size={20} />,
-        title: "Infracodebase on LinkedIn",
+        title: "Oz on LinkedIn",
         description: "Follow company updates, product news, and ecosystem announcements.",
-        href: "https://www.linkedin.com/company/infracodebase/?viewAsMember=true",
+        href: "https://www.linkedin.com/company/oz/",
       },
     ],
   },
@@ -63,8 +63,8 @@ const sections: ResourceSection[] = [
       {
         icon: <Activity size={20} />,
         title: "Platform Status",
-        description: "Check the current status of Infracodebase and monitor availability.",
-        href: "https://infracodebase.com/status",
+        description: "Check the current status of Oz and monitor availability.",
+        href: "https://oz.xyz/status",
       },
     ],
   },
@@ -109,7 +109,7 @@ const Resources = () => (
           {...fade(0.1)}
           className="mt-5 text-muted-foreground text-base md:text-lg leading-relaxed"
         >
-          Everything you need to start building with Infracodebase. Learn the platform, explore
+          Everything you need to start building with Oz. Learn the platform, explore
           templates, follow updates, and check platform status.
         </motion.p>
       </div>

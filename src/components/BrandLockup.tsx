@@ -25,7 +25,7 @@ const BrandLockup = ({ size = "md", className = "" }: BrandLockupProps) => {
           <span className="gradient-text">Her</span>
         </span>
         <span className={`${s.sub} tracking-[0.15em] uppercase text-muted-foreground font-medium leading-none mt-0.5`}>
-          Powered by Infracodebase
+          Built by Oz
         </span>
       </div>
     </Link>

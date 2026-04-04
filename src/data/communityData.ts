@@ -27,11 +27,11 @@ export const testimonials = [
   { name: "Vinod Soni", role: "Senior Cloud & AI Solutions Architect", photo: "/images/vinod_soni.jpeg", quote: "This is how change begins one honest story, one brave community, one open door at a time. Love this. When women are centered, the whole industry becomes stronger, smarter, and more human." },
   { name: "Eric Nyuydze Wiryenkfea", role: "Cloud & DevOps Engineer", photo: "/images/eric_nyuydze.jpeg", quote: "I like how you focus on those unpolished stories, especially at a time when a lot of people are confused and struggle, where many are afraid to share real stories. Great job for bringing all women together. This means a lot." },
   { name: "Jaswindder Kummar", role: "Director, Cloud Engineering", photo: "/images/jaswindder_kummar.jpeg", quote: "A fantastic initiative. Focusing on real journeys, hands-on learning, and community support is key to empowering women in tech." },
-  { name: "Justin O'Connor", role: "Founder, Infracodebase", photo: "/images/justin_oconnor.jpeg", quote: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators. Supporting women in tech matters. I have seen firsthand how community, opportunity and encouragement change careers. Being able to contribute to that work is a real privilege." },
+  { name: "Justin O'Connor", role: "Founder, Oz", photo: "/images/justin_oconnor.jpeg", quote: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators. Supporting women in tech matters. I have seen firsthand how community, opportunity and encouragement change careers. Being able to contribute to that work is a real privilege." },
   { name: "Sarshar Roshan", role: "Cloud / AI Leader", photo: "/images/sarshar_roshan.jpeg", quote: "Supporting women building in cloud and AI infrastructure." },
   { name: "Shannon Eldridge-Kuehn", role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps", photo: "/images/shannon_eldridge_kuehn.jpeg", quote: "Shout-out to Tarak and Justin O'Connor for the opportunity to be featured on International Women's Day! Thank you! I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first. Some of those moves didn't look like progress at the time. A few felt uncomfortable. More than once, I wondered if I was stepping outside my lane or if I even had one." },
   { name: "Shrey Shah", role: "Senior Software Engineer | AI Assisted Coding & Agents Educator", photo: "/images/shrey_shah.jpeg", quote: "Wow amazing work!" },
-  { name: "Tarak", role: "Co-Founder of Infracodebase", photo: "/images/tarak.jpeg", quote: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum." },
+  { name: "Tarak", role: "Co-Founder of Oz", photo: "/images/tarak.jpeg", quote: "Build with Her exists to make sure no one has to build alone. Community creates confidence, visibility, and real momentum." },
   { name: "Deborah Maiyaki", role: "Cloud Security & DevOps Trainee", photo: "/images/deborah_maiyaki.jpeg", quote: "Having people in tech especially cloud who I know I can always learn and collaborate with is everything for me." },
 ];
 
@@ -42,7 +42,7 @@ export interface ExtendedBuilderProfile extends BuilderProfile {
   github?: string;
   website?: string;
   building?: string[];
-  infracodbaseUserId?: string;
+  ozUserId?: string;
   region?: string;
   cloudPlatforms?: string[];
   roleCategory?: string;
@@ -66,7 +66,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS"],
     building: ["Multi-region Kubernetes clusters", "Infrastructure automation pipelines"],
     linkedin: "https://www.linkedin.com/in/manisha-sarkar-ab7929110/",
-    infracodbaseUserId: "user_34EInEYDIFDFWHfqDZ3SslbYJ9Q"
+    ozUserId: "user_34EInEYDIFDFWHfqDZ3SslbYJ9Q"
   },
   { 
     id: "m2", 
@@ -572,17 +572,17 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "32",
     slug: "justin-oconnor",
     name: "Justin O'Connor",
-    role: "Founder, Infracodebase",
+    role: "Founder, Oz",
     roleCategory: "Platform Engineer",
     country: "United States",
     region: "North America",
     photo: "/images/justin_oconnor.jpeg",
     statement: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators.",
-    bio: "I'm the Founder of Infracodebase, building AI agent engineering tools and supporting women in tech infrastructure.",
+    bio: "I'm the Founder of Oz, building AI agent engineering tools and supporting women in tech infrastructure.",
     tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
     cloudPlatforms: ["AWS", "GCP"],
     linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
-    building: ["AI agent engineering tools on Infracodebase", "Community platforms for women in tech"]
+    building: ["AI agent engineering tools on Oz", "Community platforms for women in tech"]
   },
   {
     id: "33",
@@ -636,7 +636,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "36",
     slug: "tarak",
     name: "Tarak",
-    role: "Co-Founder of Infracodebase",
+    role: "Co-Founder of Oz",
     roleCategory: "Platform Engineer",
     country: "France",
     region: "Europe",
