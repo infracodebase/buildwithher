@@ -637,7 +637,7 @@ const Programs = () => {
             <Link to="/community" style={{ color: "var(--pg-text2)" }}>Community</Link>
             <Link to="/member-wall" style={{ color: "var(--pg-text2)" }}>Member Wall</Link>
           </div>
-          <span>© {new Date().getFullYear()} Build with Her · Powered by Infracodebase</span>
+          <span>© {new Date().getFullYear()} Build with Her · Built by Oz</span>
         </div>
       </footer>
     </div>

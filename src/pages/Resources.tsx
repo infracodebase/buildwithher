@@ -109,7 +109,7 @@ const Resources = () => (
           {...fade(0.1)}
           className="mt-5 text-muted-foreground text-base md:text-lg leading-relaxed"
         >
-          Everything you need to start building with Infracodebase. Learn the platform, explore
+          Everything you need to start building with Oz. Learn the platform, explore
           templates, follow updates, and check platform status.
         </motion.p>
       </div>
