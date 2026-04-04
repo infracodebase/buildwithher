@@ -84,7 +84,7 @@ const programsData: ProgramData[] = [
     number: "01",
     label: "PROGRAM 01",
     icon: GraduationCap,
-    title: "Infracodebase",
+    title: "Oz",
     italicWord: "University",
     description:
       "Self-paced learning built around real cloud environments — not slides, not theory, not certification prep. Every module is structured around how infrastructure actually behaves in production: how things break, how they scale, how they connect.",
