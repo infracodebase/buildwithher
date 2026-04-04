@@ -36,7 +36,7 @@ const sections: ResourceSection[] = [
         icon: <LayoutTemplate size={20} />,
         title: "Templates Library",
         description: "Explore infrastructure templates and examples to accelerate your cloud builds.",
-        href: "https://infracodebase.com/templates",
+        href: "https://oz.xyz/templates",
       },
     ],
   },
