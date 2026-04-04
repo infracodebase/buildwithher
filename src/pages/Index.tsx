@@ -732,7 +732,7 @@ const Index = () => {
                   <div className="flex-1">
                     <h3 className="font-display font-semibold text-foreground text-xl mb-2">{title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4">{desc}</p>
-                    {title === "Infracodebase University" && (
+                    {title === "Oz University" && (
                       <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
                         Not sure where to start? Begin with the{" "}
                         <a href="https://university.infracodebase.com/path/cloud-infrastructure-intro" className="text-accent hover:underline">
