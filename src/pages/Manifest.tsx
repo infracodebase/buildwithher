@@ -247,8 +247,8 @@ const Manifest = () => {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <motion.div {...fadeUp}>
               <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed font-body">
-                <p>Build with Her is supported by Infracodebase. This means the community is not just about conversation.</p>
-                <p>Through <strong className="text-foreground">Infracodebase University</strong>, members can build real cloud projects, create infrastructure portfolios, access engineering tools, and connect learning with real environments.</p>
+                <p>Build with Her is supported by Oz. This means the community is not just about conversation.</p>
+                <p>Through <strong className="text-foreground">Oz University</strong>, members can build real cloud projects, create infrastructure portfolios, access engineering tools, and connect learning with real environments.</p>
                 <p className="text-foreground font-medium">A community backed by a platform can advocate for better opportunities and open doors that individuals alone cannot. That leverage benefits the entire community — and it matters especially for women entering cloud engineering.</p>
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
