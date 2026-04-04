@@ -159,7 +159,7 @@ export async function generateBuilderProfile(opts: ProfileOptions): Promise<stri
   ctx.textAlign = "center";
   ctx.fillStyle = COLORS.textDim;
   ctx.font = "400 16px 'Inter', system-ui, sans-serif";
-  ctx.fillText("buildwithher.dev  ·  Powered by Infracodebase", W / 2, footerY);
+  ctx.fillText("buildwithher.dev  ·  Built by Oz", W / 2, footerY);
 
   return canvas.toDataURL("image/png");
 }
