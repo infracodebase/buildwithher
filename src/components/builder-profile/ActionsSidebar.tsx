@@ -5,7 +5,7 @@ interface ActionsSidebarProps {
   builder: {
     name: string;
     linkedin?: string;
-    infracodbaseUserId?: string;
+    ozUserId?: string;
   };
   isOwner: boolean;
   generatingProfile: boolean;
