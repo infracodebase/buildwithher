@@ -46,7 +46,7 @@ const BuilderCard = ({ profile }: BuilderCardProps) => {
         {/* Top branding */}
         <div className="space-y-0.5">
           <p className="text-[10px] font-display font-semibold tracking-widest uppercase builder-card-text-primary">Build with Her</p>
-          <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Powered by Infracodebase</p>
+          <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Built by Oz</p>
         </div>
 
         {/* Profile photo */}
