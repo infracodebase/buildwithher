@@ -542,7 +542,7 @@ const Index = () => {
                   </em>
                 </p>
                 <p className="text-foreground font-medium text-lg">
-                  Build with Her and Infracodebase University exist to close that gap.
+                  Build with Her and Oz University exist to close that gap.
                 </p>
               </div>
             </div>
