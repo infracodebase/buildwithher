@@ -45,9 +45,9 @@ const sections: ResourceSection[] = [
     items: [
       {
         icon: <Youtube size={20} />,
-        title: "Infracodebase on YouTube",
+        title: "Oz on YouTube",
         description: "Watch product walkthroughs, tutorials, and infrastructure content.",
-        href: "https://www.youtube.com/@infracodebase",
+        href: "https://www.youtube.com/@oz",
       },
       {
         icon: <Linkedin size={20} />,
