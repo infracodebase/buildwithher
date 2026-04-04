@@ -578,7 +578,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     region: "North America",
     photo: "/images/justin_oconnor.jpeg",
     statement: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators.",
-    bio: "I'm the Founder of Infracodebase, building AI agent engineering tools and supporting women in tech infrastructure.",
+    bio: "I'm the Founder of Oz, building AI agent engineering tools and supporting women in tech infrastructure.",
     tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
     cloudPlatforms: ["AWS", "GCP"],
     linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
