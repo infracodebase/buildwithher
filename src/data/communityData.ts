@@ -572,7 +572,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "32",
     slug: "justin-oconnor",
     name: "Justin O'Connor",
-    role: "Founder, Infracodebase",
+    role: "Founder, Oz",
     roleCategory: "Platform Engineer",
     country: "United States",
     region: "North America",
