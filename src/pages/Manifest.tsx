@@ -235,11 +235,11 @@ const Manifest = () => {
         </div>
       </section>
 
-      {/* ─── Section 8 — Backed by Infracodebase ─── */}
+      {/* ─── Section 8 — Backed by Oz ─── */}
       <section className="py-20 md:py-28">
         <div className="container max-w-5xl mx-auto">
           <motion.div {...fadeUp}>
-            <SectionBadge className="border-accent/40">Why being backed by Infracodebase matters</SectionBadge>
+            <SectionBadge className="border-accent/40">Why being backed by Oz matters</SectionBadge>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-12 leading-tight max-w-3xl">
               Community becomes more powerful when backed by a real platform.
             </h2>
