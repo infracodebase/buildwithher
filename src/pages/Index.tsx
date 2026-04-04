@@ -772,7 +772,7 @@ const Index = () => {
             <div className="absolute top-0 right-0 w-[300px] h-[300px] orb-warm rounded-full pointer-events-none" />
             <div className="grid md:grid-cols-2 gap-12 items-start relative z-10">
               <div>
-                <span className="badge-glow mb-6 inline-flex">Powered by Infracodebase</span>
+                <span className="badge-glow mb-6 inline-flex">Built by Oz</span>
                 <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mt-4 mb-6">Why We Use AI</h2>
                 <p className="text-muted-foreground leading-relaxed text-base">
                   AI is changing how infrastructure is built. But using AI well requires discipline. The goal is not to replace engineers. It is to help engineers <span className="text-foreground font-medium">think better and build faster</span>.
