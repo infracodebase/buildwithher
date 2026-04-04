@@ -33,7 +33,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Divine Odazie & Damien",
     role: "Content Creator & CEO @ EverythingDevOps",
     imageUrl: "https://i.ytimg.com/vi/5At76xVQngA/maxresdefault.jpg",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Conversation",
     contentType: "video",
     embedUrl: "https://www.youtube.com/embed/5At76xVQngA",
