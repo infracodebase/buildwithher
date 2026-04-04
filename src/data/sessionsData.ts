@@ -20,7 +20,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Cameron & Kurt",
     role: "Dir. of AppSec & Security Engineering · Sr. Dir., Security Architecture",
     imageUrl: "/images/appsec_podcast.jpeg",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Podcast",
     contentType: "podcast",
     videoUrl:
