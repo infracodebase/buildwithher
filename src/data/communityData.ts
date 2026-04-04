@@ -42,7 +42,7 @@ export interface ExtendedBuilderProfile extends BuilderProfile {
   github?: string;
   website?: string;
   building?: string[];
-  infracodbaseUserId?: string;
+  ozUserId?: string;
   region?: string;
   cloudPlatforms?: string[];
   roleCategory?: string;
