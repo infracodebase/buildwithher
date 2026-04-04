@@ -90,7 +90,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Seif",
     role: "Principal Security Engineer",
     embedUrl: "https://www.youtube.com/embed/Ld8WG8CtagA",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Technical Session",
     contentType: "video",
   },
