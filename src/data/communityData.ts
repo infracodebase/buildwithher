@@ -66,7 +66,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS"],
     building: ["Multi-region Kubernetes clusters", "Infrastructure automation pipelines"],
     linkedin: "https://www.linkedin.com/in/manisha-sarkar-ab7929110/",
-    infracodbaseUserId: "user_34EInEYDIFDFWHfqDZ3SslbYJ9Q"
+    ozUserId: "user_34EInEYDIFDFWHfqDZ3SslbYJ9Q"
   },
   { 
     id: "m2", 
