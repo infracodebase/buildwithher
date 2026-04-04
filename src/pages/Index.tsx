@@ -748,8 +748,8 @@ const Index = () => {
                         </span>
                     )}
                     </div>
-                    {title === "Infracodebase University" && (
-                      <a href="https://university.infracodebase.com" className="text-xs text-primary hover:underline mt-3 inline-block">
+                    {title === "Oz University" && (
+                      <a href="https://university.oz.xyz" className="text-xs text-primary hover:underline mt-3 inline-block">
                         Start learning →
                       </a>
                     )}
