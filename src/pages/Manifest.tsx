@@ -323,10 +323,10 @@ const Manifest = () => {
           <motion.div {...fadeUp}>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 justify-items-center">
               {[
-                { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Infracodebase", alt: "Tarak, Co-Founder of Build with Her" },
-                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Infracodebase", alt: "Justin O'Connor, Co-Founder of Build with Her" },
-                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Infracodebase", alt: "Manisha Sarkar, Community Lead at Infracodebase" },
-                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Infracodebase", alt: "Bunrinmwa Gobum, Community Lead at Infracodebase" },
+                { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Oz", alt: "Tarak, Co-Founder of Build with Her" },
+                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Oz", alt: "Justin O'Connor, Co-Founder of Build with Her" },
+                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Oz", alt: "Manisha Sarkar, Community Lead at Oz" },
+                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Oz", alt: "Bunrinmwa Gobum, Community Lead at Oz" },
               ].map((person) => (
                 <div key={person.name} className="flex flex-col items-center">
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
