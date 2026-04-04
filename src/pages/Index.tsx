@@ -515,7 +515,7 @@ const Index = () => {
 
             <div className="flex flex-wrap gap-3 mt-8">
               <GradientButton to="/meet-the-builders" size="lg" icon>Join Build with Her</GradientButton>
-              <GradientButton to="https://university.infracodebase.com" variant="outline" size="lg">Explore University →</GradientButton>
+              <GradientButton to="https://university.oz.xyz" variant="outline" size="lg">Explore University →</GradientButton>
             </div>
           </div>
         </div>
