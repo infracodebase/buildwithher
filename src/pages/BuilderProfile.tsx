@@ -238,7 +238,7 @@ const BuilderProfile = () => {
                   builder={{
                     name: builder.name,
                     linkedin: builder.linkedin,
-                    infracodbaseUserId: builder.infracodbaseUserId,
+                    ozUserId: builder.ozUserId,
                   }}
                   isOwner={isOwner}
                   generatingProfile={generatingProfile}
