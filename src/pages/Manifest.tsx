@@ -286,12 +286,12 @@ const Manifest = () => {
                 <span className="w-2.5 h-2.5 rounded-full bg-accent shrink-0" />
                 <span className="text-muted-foreground text-xs">464 learners · 20+ countries · 50+ lessons</span>
                 <a
-                  href="https://university.infracodebase.com"
+                  href="https://university.oz.xyz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ml-auto text-accent text-xs font-medium hover:underline whitespace-nowrap flex items-center gap-1"
                 >
-                  university.infracodebase.com <ExternalLink size={10} />
+                  university.oz.xyz <ExternalLink size={10} />
                 </a>
               </div>
             </motion.div>
