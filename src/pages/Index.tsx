@@ -651,7 +651,7 @@ const Index = () => {
                   <div className="relative z-10 h-full flex flex-col items-center justify-between p-5 md:p-6 text-center">
                     <div className="space-y-0.5">
                       <p className="text-[10px] font-display font-semibold tracking-widest uppercase builder-card-text-primary">Build with Her</p>
-                      <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Powered by Infracodebase</p>
+                      <p className="text-[8px] tracking-wider uppercase builder-card-text-muted">Built by Oz</p>
                     </div>
                     <div className="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-secondary/50 shadow-lg">
                       {builder.photo ?
