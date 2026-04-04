@@ -474,7 +474,7 @@ const Index = () => {
               Not sure where to begin?<br />Start here.
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed max-w-xl mb-10">
-              The junior-to-senior journey has five stages. Here is where Build with Her and Infracodebase University each fit.
+              The junior-to-senior journey has five stages. Here is where Build with Her and Oz University each fit.
             </p>
 
             <div className="flex flex-col gap-3">
