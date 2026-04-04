@@ -68,7 +68,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Alex",
     role: "Director of Cloud Engineering",
     embedUrl: "https://www.youtube.com/embed/H8Osx6GcLSE",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Conversation",
     contentType: "video",
   },
