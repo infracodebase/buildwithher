@@ -200,7 +200,7 @@ const programsData: ProgramData[] = [
 const faqData = [
   {
     q: "Do I need cloud experience to join?",
-    a: "No. Infracodebase University and the webinars are designed to work from the beginning. If you are completely new to cloud, start with University. The workshops are better suited to people with at least some hands-on exposure.",
+    a: "No. Oz University and the webinars are designed to work from the beginning. If you are completely new to cloud, start with University. The workshops are better suited to people with at least some hands-on exposure.",
   },
   {
     q: "Is this only for women?",
