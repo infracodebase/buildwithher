@@ -562,7 +562,7 @@ const Index = () => {
               </div>
               <div className="stat-card text-center">
                 <p className="font-display text-4xl font-bold gradient-text mb-2">464</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">active learners on Infracodebase University</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">active learners on Oz University</p>
               </div>
             </div>
 
