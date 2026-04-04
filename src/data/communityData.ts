@@ -636,7 +636,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "36",
     slug: "tarak",
     name: "Tarak",
-    role: "Co-Founder of Infracodebase",
+    role: "Co-Founder of Oz",
     roleCategory: "Platform Engineer",
     country: "France",
     region: "Europe",
