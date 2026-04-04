@@ -735,7 +735,7 @@ const Index = () => {
                     {title === "Oz University" && (
                       <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
                         Not sure where to start? Begin with the{" "}
-                        <a href="https://university.infracodebase.com/path/cloud-infrastructure-intro" className="text-accent hover:underline">
+                        <a href="https://university.oz.xyz/path/cloud-infrastructure-intro" className="text-accent hover:underline">
                           prerequisites
                         </a>{" "}
                         — designed for zero prior knowledge.
