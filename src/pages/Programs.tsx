@@ -90,7 +90,7 @@ const programsData: ProgramData[] = [
       "Self-paced learning built around real cloud environments — not slides, not theory, not certification prep. Every module is structured around how infrastructure actually behaves in production: how things break, how they scale, how they connect.",
     ctaItems: ["Self-paced modules", "New content monthly", "Lifetime access", "Fully remote"],
     ctaButton: "Enrol now",
-    ctaLink: "https://university.infracodebase.com/",
+    ctaLink: "https://university.oz.xyz/",
     cadence: [
       { icon: BookOpen, text: "Self-paced modules" },
       { icon: Clock, text: "New content monthly" },
