@@ -253,7 +253,7 @@ const Manifest = () => {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="https://university.infracodebase.com"
+                  href="https://university.oz.xyz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg bg-accent text-accent-foreground text-sm font-semibold hover:bg-accent/90 transition-all"
