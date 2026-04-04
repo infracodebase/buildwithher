@@ -63,8 +63,8 @@ const sections: ResourceSection[] = [
       {
         icon: <Activity size={20} />,
         title: "Platform Status",
-        description: "Check the current status of Infracodebase and monitor availability.",
-        href: "https://infracodebase.com/status",
+        description: "Check the current status of Oz and monitor availability.",
+        href: "https://oz.xyz/status",
       },
     ],
   },
