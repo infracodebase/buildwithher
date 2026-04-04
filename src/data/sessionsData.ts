@@ -79,7 +79,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Fatima",
     role: "Software Engineer",
     embedUrl: "https://www.youtube.com/embed/vOMo1RquRsY",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Technical Session",
     contentType: "video",
   },
