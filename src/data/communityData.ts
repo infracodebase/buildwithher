@@ -582,7 +582,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
     cloudPlatforms: ["AWS", "GCP"],
     linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
-    building: ["AI agent engineering tools on Infracodebase", "Community platforms for women in tech"]
+    building: ["AI agent engineering tools on Oz", "Community platforms for women in tech"]
   },
   {
     id: "33",
