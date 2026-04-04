@@ -107,7 +107,7 @@ const Manifest = () => {
             {/* Founder card */}
             <div className="mt-10 flex items-center gap-4 rounded-2xl border border-border/50 bg-card p-5">
               <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-border/50 shrink-0">
-                <img src="/images/tarak.jpeg" alt="Tarak, Co-Founder of Infracodebase" className="w-full h-full object-cover" />
+                <img src="/images/tarak.jpeg" alt="Tarak, Co-Founder of Oz" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="font-display text-base font-bold text-foreground">Tarak</p>
