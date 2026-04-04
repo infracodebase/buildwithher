@@ -261,7 +261,7 @@ const Manifest = () => {
                   Explore University →
                 </a>
                 <a
-                  href="https://university.infracodebase.com/training"
+                  href="https://university.oz.xyz/training"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground transition-all"
