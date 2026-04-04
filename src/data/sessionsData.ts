@@ -8,7 +8,7 @@ export const pastSessions: SessionData[] = [
     speaker: "Lalit Kale",
     role: "Senior Cloud Architect",
     imageUrl: "/images/webinar_with_lalit.png",
-    source: "Infracodebase",
+    source: "Oz",
     sessionType: "Live Webinar",
     contentType: "video",
     embedUrl: "https://www.youtube.com/embed/hz9jcH9ipFU",
