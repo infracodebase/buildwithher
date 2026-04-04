@@ -111,7 +111,7 @@ const Manifest = () => {
               </div>
               <div>
                 <p className="font-display text-base font-bold text-foreground">Tarak</p>
-                <p className="text-muted-foreground text-sm">Co-Founder, Infracodebase</p>
+                <p className="text-muted-foreground text-sm">Co-Founder, Oz</p>
               </div>
             </div>
 
