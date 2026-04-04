@@ -37,7 +37,7 @@ const Footer = () => (
         <div className="md:col-span-3">
           <h4 className="font-display font-semibold text-xs uppercase tracking-wider mb-4 text-muted-foreground">Resources</h4>
           <div className="flex flex-col gap-2.5">
-            <span className="text-sm text-muted-foreground">Infracodebase University</span>
+            <span className="text-sm text-muted-foreground">Oz University</span>
             <span className="text-sm text-muted-foreground">1:1 Sessions</span>
             <span className="text-sm text-muted-foreground">Workshops</span>
           </div>

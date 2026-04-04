@@ -269,11 +269,11 @@ function buildContentSections(opts: ProfileOptions, ctx: CanvasRenderingContext2
     });
   }
 
-  // Built on Infracodebase
+  // Built on Oz
   sections.push({
-    title: "Built on Infracodebase",
+    title: "Built on Oz",
     type: "highlight",
-    content: "Check out all the work I have done creating and managing cloud infrastructures on Infracodebase.",
+    content: "Check out all the work I have done creating and managing cloud infrastructures on Oz.",
     height: 120,
   });
 
