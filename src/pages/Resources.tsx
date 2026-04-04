@@ -28,9 +28,9 @@ const sections: ResourceSection[] = [
     items: [
       {
         icon: <BookOpen size={20} />,
-        title: "Introduction to Infracodebase",
-        description: "Start here to understand what Infracodebase is, how it works, and how to begin.",
-        href: "https://infracodebase.com/docs/getting-started/introduction",
+        title: "Introduction to Oz",
+        description: "Start here to understand what Oz is, how it works, and how to begin.",
+        href: "https://oz.xyz/docs/getting-started/introduction",
       },
       {
         icon: <LayoutTemplate size={20} />,
