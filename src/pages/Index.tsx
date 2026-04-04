@@ -136,7 +136,7 @@ const valueCards = [
 const programCards = [
 {
   icon: GraduationCap,
-  title: "Infracodebase University",
+  title: "Oz University",
   desc: "A structured path from zero prior knowledge to certified cloud engineer. Best for career changers, early-career engineers, and anyone who wants to go from tutorials to real systems.",
   tags: ["Cloud Architecture", "IaC", "Platform Engineering", "Security", "AI Workflows"]
 },
