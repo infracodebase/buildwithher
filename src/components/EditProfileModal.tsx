@@ -19,6 +19,7 @@ interface EditProfileModalProps {
   onClose: () => void;
   onSaved: () => void;
   builderId: string;
+  userId: string;
   initialData: {
     name: string;
     role: string;
