@@ -42,6 +42,7 @@ const EditProfileModal = ({
   onClose,
   onSaved,
   builderId,
+  userId,
   initialData,
 }: EditProfileModalProps) => {
   const [saving, setSaving] = useState(false);
