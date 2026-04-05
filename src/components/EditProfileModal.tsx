@@ -159,7 +159,7 @@ const EditProfileModal = ({
       // Upload avatar if changed
       if (avatarFile) {
         const ext = avatarFile.name.split(".").pop() || "jpg";
-        const path = `${builderId}-avatar-${Date.now()}.${ext}`;
+        const path = `${userId}/${builderId}-avatar-${Date.now()}.${ext}`;
         const { error: uploadErr } = await supabase.storage
           .from("builder-photos")
           .upload(path, avatarFile);
