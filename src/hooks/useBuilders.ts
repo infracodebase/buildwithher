@@ -96,7 +96,7 @@ export function useBuilders() {
 
       if (error) throw error;
 
-      const dbProfiles = (data || []).map(dbRowToProfile);
+      const dbProfiles = ((data || []) as any[]).map(dbRowToProfile);
 
       const slugSet = new Set(dbProfiles.map((p) => p.slug));
       const staticOnly = sampleBuilders.filter((b) => !slugSet.has(b.slug));
