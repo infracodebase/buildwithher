@@ -88,8 +88,9 @@ export function useBuilders() {
   return useQuery({
     queryKey: ["builders"],
     queryFn: async (): Promise<BuilderProfileWithMeta[]> => {
+      // Use public_builders view to avoid exposing email to all users
       const { data, error } = await supabase
-        .from("builders")
+        .from("public_builders" as any)
         .select("*")
         .order("created_at", { ascending: false });
 
