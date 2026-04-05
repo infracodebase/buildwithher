@@ -125,11 +125,89 @@ export type Database = {
             referencedRelation: "builders"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "claim_requests_builder_id_fkey"
+            columns: ["builder_id"]
+            isOneToOne: false
+            referencedRelation: "public_builders"
+            referencedColumns: ["id"]
+          },
         ]
       }
     }
     Views: {
-      [_ in never]: never
+      public_builders: {
+        Row: {
+          banner_image_url: string | null
+          builder_story: string | null
+          claim_status: string | null
+          cloud_focus: string[] | null
+          company: string | null
+          country: string | null
+          created_at: string | null
+          github: string | null
+          id: string | null
+          linkedin: string | null
+          motivation: string | null
+          name: string | null
+          photo_url: string | null
+          portfolio: string | null
+          role: string | null
+          skills: string[] | null
+          slug: string | null
+          statement: string | null
+          updated_at: string | null
+          user_id: string | null
+          what_building: string | null
+        }
+        Insert: {
+          banner_image_url?: string | null
+          builder_story?: string | null
+          claim_status?: string | null
+          cloud_focus?: string[] | null
+          company?: string | null
+          country?: string | null
+          created_at?: string | null
+          github?: string | null
+          id?: string | null
+          linkedin?: string | null
+          motivation?: string | null
+          name?: string | null
+          photo_url?: string | null
+          portfolio?: string | null
+          role?: string | null
+          skills?: string[] | null
+          slug?: string | null
+          statement?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          what_building?: string | null
+        }
+        Update: {
+          banner_image_url?: string | null
+          builder_story?: string | null
+          claim_status?: string | null
+          cloud_focus?: string[] | null
+          company?: string | null
+          country?: string | null
+          created_at?: string | null
+          github?: string | null
+          id?: string | null
+          linkedin?: string | null
+          motivation?: string | null
+          name?: string | null
+          photo_url?: string | null
+          portfolio?: string | null
+          role?: string | null
+          skills?: string[] | null
+          slug?: string | null
+          statement?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          what_building?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

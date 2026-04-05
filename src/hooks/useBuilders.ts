@@ -88,14 +88,15 @@ export function useBuilders() {
   return useQuery({
     queryKey: ["builders"],
     queryFn: async (): Promise<BuilderProfileWithMeta[]> => {
+      // Use public_builders view to avoid exposing email to all users
       const { data, error } = await supabase
-        .from("builders")
+        .from("public_builders" as any)
         .select("*")
         .order("created_at", { ascending: false });
 
       if (error) throw error;
 
-      const dbProfiles = (data || []).map(dbRowToProfile);
+      const dbProfiles = ((data || []) as any[]).map(dbRowToProfile);
 
       const slugSet = new Set(dbProfiles.map((p) => p.slug));
       const staticOnly = sampleBuilders.filter((b) => !slugSet.has(b.slug));
