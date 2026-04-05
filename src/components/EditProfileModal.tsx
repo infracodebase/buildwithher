@@ -19,6 +19,7 @@ interface EditProfileModalProps {
   onClose: () => void;
   onSaved: () => void;
   builderId: string;
+  userId: string;
   initialData: {
     name: string;
     role: string;
@@ -41,6 +42,7 @@ const EditProfileModal = ({
   onClose,
   onSaved,
   builderId,
+  userId,
   initialData,
 }: EditProfileModalProps) => {
   const [saving, setSaving] = useState(false);
@@ -157,7 +159,7 @@ const EditProfileModal = ({
       // Upload avatar if changed
       if (avatarFile) {
         const ext = avatarFile.name.split(".").pop() || "jpg";
-        const path = `${builderId}-avatar-${Date.now()}.${ext}`;
+        const path = `${userId}/${builderId}-avatar-${Date.now()}.${ext}`;
         const { error: uploadErr } = await supabase.storage
           .from("builder-photos")
           .upload(path, avatarFile);
@@ -171,7 +173,7 @@ const EditProfileModal = ({
       // Upload banner if changed
       if (bannerFile) {
         const ext = bannerFile.name.split(".").pop() || "jpg";
-        const path = `${builderId}-banner-${Date.now()}.${ext}`;
+        const path = `${userId}/${builderId}-banner-${Date.now()}.${ext}`;
         const { error: uploadErr } = await supabase.storage
           .from("profile-banners")
           .upload(path, bannerFile);

@@ -129,7 +129,7 @@ export async function submitBuilder(args: {
 
   if (args.photoFile) {
     const ext = args.photoFile.name.split(".").pop() || "jpg";
-    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const path = `${args.clerkUserId}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error: uploadError } = await supabase.storage
       .from("builder-photos")
       .upload(path, args.photoFile);
