@@ -173,7 +173,7 @@ const EditProfileModal = ({
       // Upload banner if changed
       if (bannerFile) {
         const ext = bannerFile.name.split(".").pop() || "jpg";
-        const path = `${builderId}-banner-${Date.now()}.${ext}`;
+        const path = `${userId}/${builderId}-banner-${Date.now()}.${ext}`;
         const { error: uploadErr } = await supabase.storage
           .from("profile-banners")
           .upload(path, bannerFile);

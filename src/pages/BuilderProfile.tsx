@@ -358,6 +358,7 @@ const BuilderProfile = () => {
           onClose={() => setEditOpen(false)}
           onSaved={handleProfileSaved}
           builderId={builder.dbId}
+          userId={builder.userId || ""}
           initialData={{
             name: builder.name,
             role: builder.role,
