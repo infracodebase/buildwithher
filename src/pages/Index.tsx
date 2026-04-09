@@ -515,7 +515,7 @@ const Index = () => {
 
             <div className="flex flex-wrap gap-3 mt-8">
               <GradientButton to="/meet-the-builders" size="lg" icon>Join Build with Her</GradientButton>
-              <GradientButton to="https://university.oz.xyz" variant="outline" size="lg">Explore University →</GradientButton>
+              <a href="https://oz-university.lovable.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border/60 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground hover:bg-secondary/80 transition-all duration-200">Enrol now →</a>
             </div>
           </div>
         </div>
@@ -735,7 +735,7 @@ const Index = () => {
                     {title === "Oz University" && (
                       <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
                         Not sure where to start? Begin with the{" "}
-                        <a href="https://university.oz.xyz/path/cloud-infrastructure-intro" className="text-accent hover:underline">
+                        <a href="https://oz-university.lovable.app/path/cloud-infrastructure-intro" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                           prerequisites
                         </a>{" "}
                         — designed for zero prior knowledge.
@@ -749,7 +749,7 @@ const Index = () => {
                     )}
                     </div>
                     {title === "Oz University" && (
-                      <a href="https://university.oz.xyz" className="text-xs text-primary hover:underline mt-3 inline-block">
+                      <a href="https://oz-university.lovable.app" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline mt-3 inline-block">
                         Start learning →
                       </a>
                     )}
