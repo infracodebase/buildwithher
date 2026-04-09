@@ -1,8 +1,8 @@
 import { BuilderProfile } from "@/components/BuilderCard";
 
 export const testimonials = [
-  { name: "Manisha Sarkar", role: "Cloud & DevOps Engineer", photo: "/images/manisha.png", quote: "Really blessed to be part of such an amazing community with extremely talented and kind women from all around the world. Can't wait to take this journey further." },
-  { name: "Bunrinmwa Gobum", role: "Cloud & DevOps Engineer", photo: "/images/bunrinmwa.jpeg", quote: "This initiative will be the answer to so many prayers. We're not only boosting inclusivity, we're introducing fresh minds, ideas and remarkable talent into the ecosystem. I'm excited for what we will build together." },
+  { name: "Manisha Sarkar", role: "Co-Founder, Oz", photo: "/images/manisha.png", quote: "Really blessed to be part of such an amazing community with extremely talented and kind women from all around the world. Can't wait to take this journey further." },
+  { name: "Deborah Maiyaki", role: "Community Lead at Oz", photo: "/images/deborah_maiyaki.jpeg", quote: "Being part of this community has shown me that when women support each other, incredible things happen. I'm excited to help more builders find their place here." },
   { name: "Emmanuella Blessing Udeh", role: "AWS Cloud Administrator | IAM & Secure Cloud Architecture | FinOps", photo: "/images/emmanuella.jpeg", quote: "One thing that really stood out for me was the emphasis on building strong foundations before scaling and seeing AI as a co-worker that supports growth, not a shortcut." },
   { name: "Tawni Glover", role: "Senior Frontend / Full Stack Engineer", photo: "/images/tawni.jpeg", quote: "Great conversation with valuable insights. AI builds with you, engineering is changing, and impostor syndrome is easier to carry in a welcoming community." },
   { name: "Comfort Benton", role: "Cloud Engineer | Infrastructure & Operations | AWS Certified", photo: "/images/comfort_benton.jpeg", quote: "Each session brings new insight, new connections, and new encouragement. Learning and sharing alongside everyone here is truly something special." },
@@ -27,7 +27,7 @@ export const testimonials = [
   { name: "Vinod Soni", role: "Senior Cloud & AI Solutions Architect", photo: "/images/vinod_soni.jpeg", quote: "This is how change begins one honest story, one brave community, one open door at a time. Love this. When women are centered, the whole industry becomes stronger, smarter, and more human." },
   { name: "Eric Nyuydze Wiryenkfea", role: "Cloud & DevOps Engineer", photo: "/images/eric_nyuydze.jpeg", quote: "I like how you focus on those unpolished stories, especially at a time when a lot of people are confused and struggle, where many are afraid to share real stories. Great job for bringing all women together. This means a lot." },
   { name: "Jaswindder Kummar", role: "Director, Cloud Engineering", photo: "/images/jaswindder_kummar.jpeg", quote: "A fantastic initiative. Focusing on real journeys, hands-on learning, and community support is key to empowering women in tech." },
-  { name: "Justin O'Connor", role: "Founder, Oz", photo: "/images/justin_oconnor.jpeg", quote: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators. Supporting women in tech matters. I have seen firsthand how community, opportunity and encouragement change careers. Being able to contribute to that work is a real privilege." },
+  
   { name: "Sarshar Roshan", role: "Cloud / AI Leader", photo: "/images/sarshar_roshan.jpeg", quote: "Supporting women building in cloud and AI infrastructure." },
   { name: "Shannon Eldridge-Kuehn", role: "Principal @ AHEAD | Microsoft MVP & MCT | Cloud Wrangler | FinOps", photo: "/images/shannon_eldridge_kuehn.jpeg", quote: "Shout-out to Tarak and Justin O'Connor for the opportunity to be featured on International Women's Day! Thank you! I didn't start in computer science. I started in communication studies, with no clear picture of what I wanted to do with my life, other than graduate on time. I didn't set out to become a cloud architect or work in FinOps, platform engineering, or even enterprise strategy. I followed curiosity, said yes to things before I felt fully ready, and learned a lot in rooms where I was not the most technical person, at least not at first. Some of those moves didn't look like progress at the time. A few felt uncomfortable. More than once, I wondered if I was stepping outside my lane or if I even had one." },
   { name: "Shrey Shah", role: "Senior Software Engineer | AI Assisted Coding & Agents Educator", photo: "/images/shrey_shah.jpeg", quote: "Wow amazing work!" },
@@ -55,7 +55,7 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     id: "m1", 
     slug: "manisha-sarkar",
     name: "Manisha Sarkar", 
-    role: "Cloud & DevOps Engineer", 
+    role: "Co-Founder, Oz", 
     roleCategory: "DevOps Engineer",
     country: "India", 
     region: "Asia",
@@ -70,18 +70,18 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
   },
   { 
     id: "m2", 
-    slug: "bunrinmwa-gobum",
-    name: "Bunrinmwa Gobum", 
-    role: "Cloud & DevOps Engineer", 
-    roleCategory: "DevOps Engineer",
+    slug: "deborah-maiyaki",
+    name: "Deborah Maiyaki", 
+    role: "Community Lead at Oz", 
+    roleCategory: "Cloud Security",
     country: "Nigeria", 
     region: "Africa",
-    photo: "/images/bunrinmwa.jpeg", 
-    statement: "This initiative will be the answer to so many prayers. We're not only boosting inclusivity, we're introducing fresh minds, ideas and remarkable talent into the ecosystem. I'm excited for what we will build together.", 
-    bio: "I'm passionate about DevOps and cloud infrastructure, focused on building inclusive tech solutions across Africa.",
-    tags: ["AWS", "DevOps", "Infrastructure"], 
+    photo: "/images/deborah_maiyaki.jpeg", 
+    statement: "Being part of this community has shown me that when women support each other, incredible things happen. I'm excited to help more builders find their place here.", 
+    bio: "I'm a Cloud Security & DevOps trainee passionate about building secure infrastructure and growing the next generation of women in cloud.",
+    tags: ["AWS", "Cloud Security", "DevOps"], 
     cloudPlatforms: ["AWS"],
-    linkedin: "https://www.linkedin.com/in/bunrinmwa-gobum-5bb64323a/" 
+    linkedin: "https://www.linkedin.com/in/deborah-maiyaki/" 
   },
   { 
     id: "1", 
@@ -567,22 +567,6 @@ export const sampleBuilders: ExtendedBuilderProfile[] = [
     cloudPlatforms: ["AWS", "Azure", "GCP"],
     linkedin: "https://www.linkedin.com/in/jaswindder-kummar/",
     building: ["Secure cloud-native architectures", "Scalable enterprise cloud platforms"]
-  },
-  {
-    id: "32",
-    slug: "justin-oconnor",
-    name: "Justin O'Connor",
-    role: "Founder, Oz",
-    roleCategory: "Platform Engineer",
-    country: "United States",
-    region: "North America",
-    photo: "/images/justin_oconnor.jpeg",
-    statement: "I am proud to be helping to build and grow this community with many amazing women leaders, learners, and educators.",
-    bio: "I'm the Founder of Oz, building AI agent engineering tools and supporting women in tech infrastructure.",
-    tags: ["AI Agent Engineering", "Infrastructure", "Leadership"],
-    cloudPlatforms: ["AWS", "GCP"],
-    linkedin: "https://www.linkedin.com/in/justin-o-connor-67376483/",
-    building: ["AI agent engineering tools on Oz", "Community platforms for women in tech"]
   },
   {
     id: "33",

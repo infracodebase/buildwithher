@@ -199,8 +199,7 @@ const FloatingCard = ({ name, role, country, delay, className }: {name: string;r
 const homepageFeaturedOrder = [
 "tarak",
 "manisha-sarkar",
-"justin-oconnor",
-"bunrinmwa-gobum",
+"deborah-maiyaki",
 "diamantino-almeida",
 "emmanuella-blessing-udeh",
 "comfort-benton",
@@ -208,7 +207,8 @@ const homepageFeaturedOrder = [
 "elizabeth-waithiru",
 "lydiah-nganga",
 "maria-sivenkova",
-"karthika-k"];
+"karthika-k",
+"bunmi-olatunji"];
 
 const roleCardsData = [
   {
