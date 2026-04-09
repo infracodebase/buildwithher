@@ -321,12 +321,11 @@ const Manifest = () => {
       <section className="py-20 md:py-28">
         <div className="container max-w-[760px] mx-auto text-center">
           <motion.div {...fadeUp}>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 justify-items-center">
+            <div className="grid grid-cols-3 gap-8 lg:gap-6 justify-items-center max-w-lg mx-auto">
               {[
                 { src: "/images/tarak.jpeg", name: "Tarak", title: "Co-Founder, Oz", alt: "Tarak, Co-Founder of Build with Her" },
-                { src: "/images/justin.jpeg", name: "Justin O'Connor", title: "Founder, Oz", alt: "Justin O'Connor, Co-Founder of Build with Her" },
-                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Community Lead at Oz", alt: "Manisha Sarkar, Community Lead at Oz" },
-                { src: "/images/bunrinmwa.jpeg", name: "Bunrinmwa Gobum", title: "Community Lead at Oz", alt: "Bunrinmwa Gobum, Community Lead at Oz" },
+                { src: "/images/manisha.png", name: "Manisha Sarkar", title: "Co-Founder, Oz", alt: "Manisha Sarkar, Co-Founder of Oz" },
+                { src: "/images/deborah_maiyaki.jpeg", name: "Deborah Maiyaki", title: "Community Lead at Oz", alt: "Deborah Maiyaki, Community Lead at Oz" },
               ].map((person) => (
                 <div key={person.name} className="flex flex-col items-center">
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-border/50 shadow-lg">
