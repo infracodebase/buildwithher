@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -43,18 +43,21 @@ const Events = () => {
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("All Types");
   const [formatFilter, setFormatFilter] = useState<FormatFilter>("All Formats");
 
-  const applyFilters = (sessions: typeof pastSessions) =>
-    sessions.filter(
-      (s) =>
-        (seriesFilter === "All" || s.source === seriesFilter) &&
-        (typeFilter === "All Types" || s.sessionType === typeFilter) &&
-        (formatFilter === "All Formats" ||
-          (formatFilter === "Videos" && s.contentType === "video") ||
-          (formatFilter === "Podcast" && s.contentType === "podcast"))
-    );
+  const applyFilters = useCallback(
+    (sessions: typeof pastSessions) =>
+      sessions.filter(
+        (s) =>
+          (seriesFilter === "All" || s.source === seriesFilter) &&
+          (typeFilter === "All Types" || s.sessionType === typeFilter) &&
+          (formatFilter === "All Formats" ||
+            (formatFilter === "Videos" && s.contentType === "video") ||
+            (formatFilter === "Podcast" && s.contentType === "podcast"))
+      ),
+    [seriesFilter, typeFilter, formatFilter]
+  );
 
-  const filteredPast = useMemo(() => applyFilters(pastSessions), [seriesFilter, typeFilter, formatFilter]);
-  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [seriesFilter, typeFilter, formatFilter]);
+  const filteredPast = useMemo(() => applyFilters(pastSessions), [applyFilters]);
+  const filteredUpcoming = useMemo(() => applyFilters(upcomingSessions), [applyFilters]);
 
   return (
     <div className="min-h-screen bg-background">

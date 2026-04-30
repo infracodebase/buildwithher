@@ -402,7 +402,7 @@ function drawSection(ctx: CanvasRenderingContext2D, x: number, y: number, w: num
       wrapText(ctx, section.content || "", innerX, curY + 4, innerW, 24);
       break;
 
-    case "buttons":
+    case "buttons": {
       const btnLabels = [
         "Connect on LinkedIn",
         "View Infrastructure Portfolio",
@@ -424,6 +424,7 @@ function drawSection(ctx: CanvasRenderingContext2D, x: number, y: number, w: num
         by += 44;
       }
       break;
+    }
   }
 
   ctx.textAlign = "left";

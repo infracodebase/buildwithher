@@ -216,11 +216,11 @@ const EditProfileModal = ({
       toast({ title: "Profile updated successfully" });
       onSaved();
       onClose();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Save error:", err);
       toast({
         title: "Failed to save",
-        description: err?.message || "Please try again.",
+        description: err instanceof Error ? err.message : "Please try again.",
       });
     } finally {
       setSaving(false);

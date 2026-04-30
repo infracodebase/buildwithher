@@ -88,15 +88,27 @@ export function useBuilders() {
   return useQuery({
     queryKey: ["builders"],
     queryFn: async (): Promise<BuilderProfileWithMeta[]> => {
-      // Use public_builders view to avoid exposing email to all users
-      const { data, error } = await supabase
-        .from("public_builders" as any)
+      // Use public_builders view to avoid exposing email to all users.
+      // The view isn't in the generated supabase types, so we cast through
+      // unknown to the row type used by dbRowToProfile.
+      type PublicBuilderRow = Parameters<typeof dbRowToProfile>[0];
+      const { data, error } = await (supabase as unknown as {
+        from: (table: string) => {
+          select: (cols: string) => {
+            order: (col: string, opts: { ascending: boolean }) => Promise<{
+              data: PublicBuilderRow[] | null;
+              error: { message: string } | null;
+            }>;
+          };
+        };
+      })
+        .from("public_builders")
         .select("*")
         .order("created_at", { ascending: false });
 
       if (error) throw error;
 
-      const dbProfiles = ((data || []) as any[]).map(dbRowToProfile);
+      const dbProfiles = (data || []).map(dbRowToProfile);
 
       const slugSet = new Set(dbProfiles.map((p) => p.slug));
       const staticOnly = sampleBuilders.filter((b) => !slugSet.has(b.slug));
