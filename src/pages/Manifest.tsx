@@ -253,7 +253,7 @@ const Manifest = () => {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="https://university.oz.xyz"
+                  href="https://university.ozlunara.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg bg-accent text-accent-foreground text-sm font-semibold hover:bg-accent/90 transition-all"
@@ -261,7 +261,7 @@ const Manifest = () => {
                   Explore University →
                 </a>
                 <a
-                  href="https://university.oz.xyz/training"
+                  href="https://university.ozlunara.com/training"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 px-5 inline-flex items-center rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground transition-all"
@@ -286,12 +286,12 @@ const Manifest = () => {
                 <span className="w-2.5 h-2.5 rounded-full bg-accent shrink-0" />
                 <span className="text-muted-foreground text-xs">464 learners · 20+ countries · 50+ lessons</span>
                 <a
-                  href="https://university.oz.xyz"
+                  href="https://university.ozlunara.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ml-auto text-accent text-xs font-medium hover:underline whitespace-nowrap flex items-center gap-1"
                 >
-                  university.oz.xyz <ExternalLink size={10} />
+                  university.ozlunara.com <ExternalLink size={10} />
                 </a>
               </div>
             </motion.div>

@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo, useCallback, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GradientButton from "@/components/GradientButton";
@@ -18,7 +18,6 @@ import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
 import { submitBuilder, useBuilders } from "@/hooks/useBuilders";
 import { useAuth } from "@/hooks/useAuth";
-import AuthGateModal from "@/components/AuthGateModal";
 import {
   Popover,
   PopoverContent,
@@ -46,17 +45,9 @@ const DRAFT_KEY = "bwh:join:draft";
 const JoinTheBuilders = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const location = useLocation();
   const { user, loading: authLoading } = useAuth();
   const { data: allBuilders } = useBuilders();
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-  const pendingSubmitRef = useRef(false);
-  const isClerkCallback = location.hash.includes("sso-callback");
-  const hasRedirectState =
-    location.search.includes("intent=signUp") ||
-    location.search.includes("sign_in_force_redirect_url") ||
-    location.search.includes("sign_up_force_redirect_url");
 
   // Read draft once during initial render so users keep their typing across
   // OAuth redirects and accidental refreshes.
@@ -157,43 +148,22 @@ const JoinTheBuilders = () => {
     return /^https?:\/\/(www\.)?linkedin\.com\/in\/.+/i.test(url);
   };
 
-  // Auto-retry submit after user authenticates
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (!user && isClerkCallback) {
-      if (location.search.includes("intent=signUp")) {
-        pendingSubmitRef.current = true;
-      }
-      setShowAuthModal(true);
-    }
-  }, [isClerkCallback, location.search, user]);
-
-  // When user becomes authenticated and there's a pending submit, retry
-  const prevUserRef = useRef(user);
-  if (user && !prevUserRef.current && pendingSubmitRef.current) {
-    pendingSubmitRef.current = false;
-    setTimeout(() => formRef.current?.requestSubmit(), 0);
-  }
-  prevUserRef.current = user;
-
-  useEffect(() => {
-    if (user && (isClerkCallback || hasRedirectState)) {
-      setShowAuthModal(false);
-      navigate("/join-the-builders", { replace: true });
-    }
-  }, [hasRedirectState, isClerkCallback, navigate, user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Must be authenticated
+
+    // Account creation is paused while we migrate auth providers. Show a
+    // friendly notice instead of triggering the legacy sign-in modal.
     if (!user) {
-      pendingSubmitRef.current = true;
-      setShowAuthModal(true);
+      toast({
+        title: "Sign-up is paused",
+        description: "We're upgrading our account system. Please check back soon.",
+      });
       return;
     }
-    
+
+
     // Auto-prefix protocol if the user typed a bare LinkedIn URL.
     const linkedinTrimmed = linkedin.trim();
     const linkedinNormalized =
@@ -891,13 +861,6 @@ https://buildwithher.dev`;
         </AlertDialogContent>
       </AlertDialog>
 
-      <AuthGateModal
-        open={showAuthModal}
-        onClose={() => { setShowAuthModal(false); pendingSubmitRef.current = false; }}
-        mode="auth"
-        title="Create your account"
-        subtitle="Sign up to publish your builder profile and join the community."
-      />
     </div>
   );
 };

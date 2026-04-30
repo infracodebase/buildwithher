@@ -90,7 +90,7 @@ const programsData: ProgramData[] = [
       "Self-paced learning built around real cloud environments — not slides, not theory, not certification prep. Every module is structured around how infrastructure actually behaves in production: how things break, how they scale, how they connect.",
     ctaItems: ["Self-paced modules", "New content monthly", "Lifetime access", "Fully remote"],
     ctaButton: "Enrol now",
-    ctaLink: "https://university.oz.xyz/",
+    ctaLink: "https://university.ozlunara.com/",
     cadence: [
       { icon: BookOpen, text: "Self-paced modules" },
       { icon: Clock, text: "New content monthly" },
@@ -270,8 +270,8 @@ const ProgramSection = ({ program, isLast }: { program: ProgramData; isLast: boo
       ref={reveal.ref}
       style={{ ...reveal.style, borderBottom: isLast ? "none" : "1px solid var(--pg-border)", padding: "72px 0" }}
     >
-      {/* Header grid */}
-      <div className="grid gap-8" style={{ gridTemplateColumns: "1fr 220px", alignItems: "start" }}>
+      {/* Header grid — stacks on mobile, two-column from md up */}
+      <div className="grid gap-8 grid-cols-1 md:[grid-template-columns:1fr_220px]" style={{ alignItems: "start" }}>
         {/* Left */}
         <div>
           <span className="block font-dm text-[11px] font-bold uppercase tracking-widest mb-4" style={{ color: "var(--pg-accent)" }}>
