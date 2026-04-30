@@ -184,6 +184,21 @@ const MeetTheBuilders = () => {
         <div className="container py-16 md:py-24">
           <BuilderFilters selectedFilters={filters} onFilterChange={setFilters} />
 
+          {/* Inline signup CTA — visible after filters for browsing users */}
+          <div className="my-8 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-card/40 to-accent/5 backdrop-blur-sm p-6 md:p-7 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+            <div className="flex-1 min-w-0">
+              <p className="font-display text-lg md:text-xl font-semibold text-foreground">
+                Want to be on this wall?
+              </p>
+              <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                Add your builder profile and let the community discover what you're building.
+              </p>
+            </div>
+            <GradientButton to="/join-the-builders" size="lg" icon>
+              Create your builder profile
+            </GradientButton>
+          </div>
+
           <NewBuildersSignal builders={builders} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

@@ -2,8 +2,25 @@ import { ExternalLink } from "lucide-react";
 import type { PartnerData } from "@/data/partnersData";
 
 const PartnerCard = ({ partner }: { partner: PartnerData }) => {
+  const hasLink = Boolean(partner.cta_url);
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!hasLink) return;
+    // Don't double-trigger when the user clicked the inner CTA or any other link/button
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button")) return;
+    window.open(partner.cta_url, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <div className="overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25">
+    <div
+      onClick={hasLink ? handleCardClick : undefined}
+      className={`overflow-hidden group flex flex-col rounded-2xl bg-card border border-border/50 transition-all duration-200 ease-out focus-within:ring-2 focus-within:ring-primary/40 focus-within:ring-offset-2 focus-within:ring-offset-background ${
+        hasLink
+          ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_12px_48px_hsl(var(--primary)/0.18),0_0_0_1px_hsl(var(--primary)/0.1)] hover:border-primary/40"
+          : "hover:shadow-[0_8px_40px_hsl(var(--primary)/0.12),0_0_0_1px_hsl(var(--primary)/0.05)] hover:border-primary/25"
+      }`}
+    >
       {/* Full-width media header */}
       <div className="relative w-full bg-gradient-to-br from-primary/15 via-primary/5 to-transparent overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
@@ -38,7 +55,9 @@ const PartnerCard = ({ partner }: { partner: PartnerData }) => {
         </div>
 
         {/* Title */}
-        <h3 className="font-display font-semibold text-foreground text-[15px] leading-snug line-clamp-2 mb-2 min-h-[2.6rem]">
+        <h3 className={`font-display font-semibold text-foreground text-[15px] leading-snug line-clamp-2 mb-2 min-h-[2.6rem] ${
+          hasLink ? "group-hover:text-primary transition-colors" : ""
+        }`}>
           {partner.name}
         </h3>
 

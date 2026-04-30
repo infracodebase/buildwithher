@@ -16,7 +16,6 @@ const navLinks = [
   { label: "Builders", path: "/meet-the-builders" },
   { label: "Member Wall", path: "/member-wall" },
   { label: "Partners", path: "/partners" },
-  { label: "Resources", path: "/resources" },
 ];
 
 interface AuthProfile {
@@ -375,8 +374,6 @@ const Navbar = () => {
       <AuthGateModal
         open={showAuthModal}
         onClose={() => setShowAuthModal(false)}
-        title="Sign in to Build With Her"
-        subtitle="Sign in to create and manage your builder profile."
       />
     </>
   );

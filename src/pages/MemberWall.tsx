@@ -20,7 +20,7 @@ const snapshotCards = [
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" as const },
+  viewport: { once: true, margin: "0px 0px 120px 0px" as const },
   transition: { duration: 0.6 }
 };
 
@@ -30,7 +30,7 @@ const MemberWall = () =>
     <PageHero
     title="Build with Her Member Wall"
     badge="Community Wall"
-    actions={<GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>}>
+    actions={<GradientButton to="/join-the-builders" size="lg" icon>Join the Wall</GradientButton>}>
     
       <p>You are not the only one building quietly. This wall exists to make builders in cloud, infrastructure, AI, DevOps, security, and platform engineering more visible.</p>
     </PageHero>
@@ -124,8 +124,8 @@ const MemberWall = () =>
           <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6">Add your story to the wall</h2>
           <p className="text-muted-foreground text-lg mb-10">Let yourself be seen for your work, your growth, your discipline, and your journey.</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <GradientButton to="/meet-the-builders" size="lg" icon>Join the Wall</GradientButton>
-            <GradientButton to="/community" variant="outline" size="lg">Join the Community</GradientButton>
+            <GradientButton to="/join-the-builders" size="lg" icon>Join the Wall</GradientButton>
+            <GradientButton to="/join-the-builders" variant="outline" size="lg">Join the Community</GradientButton>
           </div>
         </motion.div>
       </div>

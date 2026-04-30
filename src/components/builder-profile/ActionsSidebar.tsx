@@ -10,7 +10,7 @@ interface ActionsSidebarProps {
   isOwner: boolean;
   generatingProfile: boolean;
   generatingCard: boolean;
-  onDownloadProfile: () => void;
+  onShareProfile: () => void;
   onDownloadCard: () => void;
   onCreateCard: () => void;
 }
@@ -20,7 +20,7 @@ const ActionsSidebar = ({
   isOwner,
   generatingProfile,
   generatingCard,
-  onDownloadProfile,
+  onShareProfile,
   onDownloadCard,
   onCreateCard,
 }: ActionsSidebarProps) => {
@@ -48,18 +48,15 @@ const ActionsSidebar = ({
         </a>
       </Button>
 
-      <Button variant="ghost" size="sm" className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5" onClick={onDownloadProfile} disabled={generatingProfile}>
-        {generatingProfile ? (
-          <>
-            <span className="w-3.5 h-3.5 border-2 border-muted-foreground/30 border-t-foreground rounded-full animate-spin" />
-            Generating...
-          </>
-        ) : (
-          <>
-            <Share2 size={14} />
-            Share your builder profile →
-          </>
-        )}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="w-full gap-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5"
+        onClick={onShareProfile}
+        disabled={generatingProfile}
+      >
+        <Share2 size={14} />
+        Share your builder profile →
       </Button>
       <p className="text-xs text-muted-foreground/60 text-center mt-1">Show the world what you're building.</p>
 

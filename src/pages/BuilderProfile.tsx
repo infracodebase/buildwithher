@@ -1,8 +1,7 @@
 import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Globe, Pencil, Copy } from "lucide-react";
-import { useState, useCallback, useRef, useEffect } from "react";
-import { toPng } from "html-to-image";
+import { useState, useCallback, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useBuilders } from "@/hooks/useBuilders";
@@ -32,9 +31,7 @@ const BuilderProfile = () => {
   const builder = allBuilders?.find((b) => b.slug === slug);
   const [editOpen, setEditOpen] = useState(false);
   const [generatingCard, setGeneratingCard] = useState(false);
-  const [generatingProfile, setGeneratingProfile] = useState(false);
   const [showShareOverlay, setShowShareOverlay] = useState(false);
-  const profileContentRef = useRef<HTMLDivElement>(null);
 
   // Pure ownership: authenticated user's id matches builder's user_id
   const isOwner = !!(user && builder?.userId && user.id === builder.userId);
@@ -83,38 +80,37 @@ const BuilderProfile = () => {
     }
   }, [builder]);
 
-  const handleDownloadProfileImage = useCallback(async () => {
-    if (!profileContentRef.current || !builder) return;
-    setGeneratingProfile(true);
-    try {
-      const dataUrl = await toPng(profileContentRef.current, {
-        pixelRatio: 2,
-        backgroundColor: '#0d1117',
-        cacheBust: true,
-        style: {
-          overflow: 'visible',
-        },
-      });
-      const link = document.createElement("a");
-      link.download = `build-with-her-profile-${builder.slug || builder.name.replace(/\s+/g, "-")}.png`;
-      link.href = dataUrl;
-      link.click();
-    } catch {
-      toast({ title: "Error", description: "Could not generate your profile image." });
-    } finally {
-      setGeneratingProfile(false);
-    }
-  }, [builder]);
-
   const handleProfileSaved = () => {
     queryClient.invalidateQueries({ queryKey: ["builders"] });
     window.dispatchEvent(new Event("builderProfileUpdated"));
   };
 
-  const handleCopyLink = useCallback(() => {
-    const url = `https://buildwithher.lovable.app/builders/${builder?.slug || slug}`;
-    navigator.clipboard.writeText(url);
-    toast({ title: "Copied!", description: "Profile link copied to clipboard." });
+  const handleCopyLink = useCallback(async () => {
+    const url = typeof window !== "undefined"
+      ? `${window.location.origin}/builders/${builder?.slug || slug}`
+      : `https://buildwithher.lovable.app/builders/${builder?.slug || slug}`;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = url;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (!ok) throw new Error("Copy failed");
+      }
+      toast({ title: "Profile link copied", description: url });
+    } catch {
+      toast({
+        title: "Could not copy link",
+        description: "Please copy this URL manually: " + url,
+        variant: "destructive",
+      });
+    }
   }, [builder, slug]);
 
 
@@ -162,7 +158,7 @@ const BuilderProfile = () => {
             Back to Builder Wall
           </Link>
 
-          <div ref={profileContentRef}>
+          <div>
           {/* Banner */}
           <ProfileBanner
             bannerUrl={bannerUrl}
@@ -241,9 +237,9 @@ const BuilderProfile = () => {
                     ozUserId: builder.ozUserId,
                   }}
                   isOwner={isOwner}
-                  generatingProfile={generatingProfile}
+                  generatingProfile={false}
                   generatingCard={generatingCard}
-                  onDownloadProfile={handleDownloadProfileImage}
+                  onShareProfile={handleCopyLink}
                   onDownloadCard={handleDownloadBuilderCard}
                   onCreateCard={() => navigate("/join-the-builders")}
                 />

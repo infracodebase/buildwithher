@@ -809,6 +809,7 @@ https://buildwithher.dev`;
       <AuthGateModal
         open={showAuthModal}
         onClose={() => { setShowAuthModal(false); pendingSubmitRef.current = false; }}
+        mode="auth"
         title="Create your account"
         subtitle="Sign up to publish your builder profile and join the community."
       />

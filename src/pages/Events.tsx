@@ -11,7 +11,7 @@ import { Globe, Calendar, Zap } from "lucide-react";
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" as const },
+  viewport: { once: true, margin: "0px 0px 120px 0px" as const },
   transition: { duration: 0.6 },
 };
 

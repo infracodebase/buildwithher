@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClerkThemeWrapper from "@/components/ClerkThemeWrapper";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -18,7 +18,6 @@ import Partners from "./pages/Partners";
 import BuilderProfile from "./pages/BuilderProfile";
 import NotFound from "./pages/NotFound";
 import Manifest from "./pages/Manifest";
-import Resources from "./pages/Resources";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +40,7 @@ const App = () => (
               <Route path="/member-wall" element={<MemberWall />} />
               <Route path="/partners" element={<Partners />} />
               <Route path="/manifest" element={<Manifest />} />
-              <Route path="/resources" element={<Resources />} />
+              <Route path="/resources" element={<Navigate to="/" replace />} />
               <Route path="/builders/:slug" element={<BuilderProfile />} />
               <Route path="/sso-callback" element={<SSOCallback />} />
               <Route path="*" element={<NotFound />} />

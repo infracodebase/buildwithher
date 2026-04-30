@@ -475,21 +475,54 @@ const Programs = () => {
     }
   }, []);
 
-  // Scroll spy
+  // Scroll spy via IntersectionObserver — keeps the active tab in sync with
+  // whichever section is currently in view (including the last one).
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = tabs.map((t) => document.getElementById(t.id));
-      let current = "university";
-      for (const sec of sections) {
-        if (sec) {
-          const rect = sec.getBoundingClientRect();
-          if (rect.top <= 150) current = sec.id;
+    const sections = tabs
+      .map((t) => document.getElementById(t.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+
+    const visibility = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visibility.set(entry.target.id, entry.intersectionRatio);
         }
+        let bestId = sections[0].id;
+        let bestRatio = -1;
+        for (const sec of sections) {
+          const r = visibility.get(sec.id) ?? 0;
+          if (r > bestRatio) {
+            bestRatio = r;
+            bestId = sec.id;
+          }
+        }
+        // Fallback: if nothing intersects (e.g. tiny viewport), pick the
+        // section whose top is closest to the sticky-tab offset.
+        if (bestRatio <= 0) {
+          let closest = sections[0];
+          let closestDist = Infinity;
+          for (const sec of sections) {
+            const top = sec.getBoundingClientRect().top - 120;
+            const dist = top <= 0 ? -top : top + 1000;
+            if (dist < closestDist) {
+              closestDist = dist;
+              closest = sec;
+            }
+          }
+          bestId = closest.id;
+        }
+        setActiveTab(bestId);
+      },
+      {
+        rootMargin: "-120px 0px -55% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
       }
-      setActiveTab(current);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   return (

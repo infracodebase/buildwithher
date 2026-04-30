@@ -7,7 +7,7 @@ import GradientButton from "@/components/GradientButton";
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
+  viewport: { once: true, margin: "0px 0px 120px 0px" },
   transition: { duration: 0.6, ease: "easeOut" as Easing },
 };
 
@@ -84,7 +84,7 @@ const Manifest = () => {
             className="mt-10 flex flex-wrap gap-3 justify-center"
           >
             <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
-            <GradientButton to="/meet-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
+            <GradientButton to="/join-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
           </motion.div>
         </div>
       </section>
@@ -365,7 +365,7 @@ const Manifest = () => {
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <GradientButton to="/join-the-builders" size="lg" icon>Create Your Builder Card</GradientButton>
-              <GradientButton to="/meet-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
+              <GradientButton to="/join-the-builders" variant="outline" size="lg">Join the Community →</GradientButton>
             </div>
           </motion.div>
         </div>

@@ -163,7 +163,7 @@ const programCards = [
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" as const },
+  viewport: { once: true, margin: "0px 0px 120px 0px" as const },
   transition: { duration: 0.7 }
 };
 
@@ -379,7 +379,7 @@ const Index = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-10 flex flex-wrap gap-3 justify-center">
             
-            <GradientButton to="/meet-the-builders" size="lg" icon>Join the Community</GradientButton>
+            <GradientButton to="/join-the-builders" size="lg" icon>Join the Community</GradientButton>
             <GradientButton to="/programs" variant="outline" size="lg">Explore Programs</GradientButton>
           </motion.div>
 
@@ -514,8 +514,8 @@ const Index = () => {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-8">
-              <GradientButton to="/meet-the-builders" size="lg" icon>Join Build with Her</GradientButton>
-              <a href="https://oz-university.lovable.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border/60 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground hover:bg-secondary/80 transition-all duration-200">Enrol now →</a>
+              <GradientButton to="/join-the-builders" size="lg" icon>Join Build with Her</GradientButton>
+              <a href="https://university.oz.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border/60 bg-background/50 px-6 py-3 text-sm font-semibold text-foreground hover:bg-secondary/80 transition-all duration-200">Enrol now →</a>
             </div>
           </div>
         </div>
@@ -735,7 +735,7 @@ const Index = () => {
                     {title === "Oz University" && (
                       <p className="text-xs text-muted-foreground mt-3 mb-3 pl-3 border-l border-accent/30">
                         Not sure where to start? Begin with the{" "}
-                        <a href="https://oz-university.lovable.app/path/cloud-infrastructure-intro" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+                        <a href="https://university.oz.xyz/path/cloud-infrastructure-intro" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                           prerequisites
                         </a>{" "}
                         — designed for zero prior knowledge.
@@ -749,7 +749,7 @@ const Index = () => {
                     )}
                     </div>
                     {title === "Oz University" && (
-                      <a href="https://oz-university.lovable.app" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline mt-3 inline-block">
+                      <a href="https://university.oz.xyz" target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline mt-3 inline-block">
                         Start learning →
                       </a>
                     )}
@@ -848,7 +848,7 @@ const Index = () => {
               You are not late. You are not alone. And the work you do here actually matters.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <GradientButton to="/meet-the-builders" size="lg" icon>Join the Community</GradientButton>
+              <GradientButton to="/join-the-builders" size="lg" icon>Join the Community</GradientButton>
               <GradientButton to="/member-wall" variant="outline" size="lg">View the Member Wall</GradientButton>
             </div>
           </motion.div>
