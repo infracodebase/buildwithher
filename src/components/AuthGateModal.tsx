@@ -1,4 +1,4 @@
-import { SignUp } from "@clerk/clerk-react";
+import { SignUp, useClerk } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
 import { Link } from "react-router-dom";
 import { useTheme } from "./ThemeProvider";
@@ -21,7 +21,16 @@ const AuthGateModal = ({
   mode = "cta",
 }: AuthGateModalProps) => {
   const { theme } = useTheme();
+  const clerk = useClerk();
   const currentPath = typeof window !== "undefined" ? window.location.pathname : "/";
+
+  const openSignIn = () => {
+    onClose();
+    clerk.openSignIn({
+      forceRedirectUrl: currentPath,
+      fallbackRedirectUrl: currentPath,
+    });
+  };
 
   if (!open) return null;
 
@@ -91,9 +100,19 @@ const AuthGateModal = ({
                   <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
                     Takes less than 60 seconds.
                   </p>
+                  <p className="text-xs text-muted-foreground/80 text-center pt-2 border-t border-border/40">
+                    Already have an account?{" "}
+                    <button
+                      type="button"
+                      onClick={openSignIn}
+                      className="text-primary font-medium hover:underline"
+                    >
+                      Sign in
+                    </button>
+                  </p>
                 </div>
               ) : (
-                <div className="flex justify-center [&_.cl-rootBox]:w-full [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-none [&_.cl-headerTitle]:hidden [&_.cl-headerSubtitle]:hidden [&_.cl-socialButtonsBlockButton]:rounded-xl [&_.cl-socialButtonsBlockButton]:h-12 [&_.cl-socialButtonsBlockButton]:border-border/50 [&_.cl-socialButtonsBlockButton]:bg-secondary/30 [&_.cl-formButtonPrimary]:bg-primary [&_.cl-formButtonPrimary]:rounded-xl [&_.cl-formFieldInput]:rounded-xl [&_.cl-formFieldInput]:bg-secondary/50 [&_.cl-formFieldInput]:border-border/50 [&_.cl-footer]:hidden [&_.cl-internal-b3fm6y]:hidden">
+                <div className="flex justify-center [&_.cl-rootBox]:w-full [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-none [&_.cl-headerTitle]:hidden [&_.cl-headerSubtitle]:hidden [&_.cl-socialButtonsBlockButton]:rounded-xl [&_.cl-socialButtonsBlockButton]:h-12 [&_.cl-socialButtonsBlockButton]:border-border/50 [&_.cl-socialButtonsBlockButton]:bg-secondary/30 [&_.cl-formButtonPrimary]:bg-primary [&_.cl-formButtonPrimary]:rounded-xl [&_.cl-formFieldInput]:rounded-xl [&_.cl-formFieldInput]:bg-secondary/50 [&_.cl-formFieldInput]:border-border/50">
                   <SignUp
                     routing="virtual"
                     oauthFlow="redirect"

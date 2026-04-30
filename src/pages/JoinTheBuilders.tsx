@@ -16,7 +16,7 @@ import {
 import CelebrationEffect from "@/components/CelebrationEffect";
 import { useToast } from "@/hooks/use-toast";
 import { generateBuilderCard } from "@/utils/generateBuilderCard";
-import { submitBuilder } from "@/hooks/useBuilders";
+import { submitBuilder, useBuilders } from "@/hooks/useBuilders";
 import { useAuth } from "@/hooks/useAuth";
 import AuthGateModal from "@/components/AuthGateModal";
 import {
@@ -39,11 +39,16 @@ const cloudOptions = [
   "Security", "AI Infrastructure", "Kubernetes", "Terraform", "Other",
 ];
 
+// sessionStorage key for the in-progress form draft. Survives page reloads
+// and OAuth redirects so users don't lose their work.
+const DRAFT_KEY = "bwh:join:draft";
+
 const JoinTheBuilders = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
   const { user, loading: authLoading } = useAuth();
+  const { data: allBuilders } = useBuilders();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const pendingSubmitRef = useRef(false);
@@ -53,19 +58,33 @@ const JoinTheBuilders = () => {
     location.search.includes("sign_in_force_redirect_url") ||
     location.search.includes("sign_up_force_redirect_url");
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [country, setCountry] = useState("");
-  const [company, setCompany] = useState("");
-  const [focus, setFocus] = useState<string[]>([]);
-  const [building, setBuilding] = useState("");
-  const [builderStory, setBuilderStory] = useState("");
-  const [motivation, setMotivation] = useState("");
-  const [statement, setStatement] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [github, setGithub] = useState("");
-  const [portfolio, setPortfolio] = useState("");
+  // Read draft once during initial render so users keep their typing across
+  // OAuth redirects and accidental refreshes.
+  const initialDraft = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    try {
+      const raw = window.sessionStorage.getItem(DRAFT_KEY);
+      return raw ? (JSON.parse(raw) as Record<string, unknown>) : null;
+    } catch {
+      return null;
+    }
+  }, []);
+  const draftStr = (k: string) => (typeof initialDraft?.[k] === "string" ? (initialDraft[k] as string) : "");
+  const draftArr = (k: string) => (Array.isArray(initialDraft?.[k]) ? (initialDraft[k] as string[]) : []);
+
+  const [name, setName] = useState(() => draftStr("name"));
+  const [email, setEmail] = useState(() => draftStr("email"));
+  const [role, setRole] = useState(() => draftStr("role"));
+  const [country, setCountry] = useState(() => draftStr("country"));
+  const [company, setCompany] = useState(() => draftStr("company"));
+  const [focus, setFocus] = useState<string[]>(() => draftArr("focus"));
+  const [building, setBuilding] = useState(() => draftStr("building"));
+  const [builderStory, setBuilderStory] = useState(() => draftStr("builderStory"));
+  const [motivation, setMotivation] = useState(() => draftStr("motivation"));
+  const [statement, setStatement] = useState(() => draftStr("statement"));
+  const [linkedin, setLinkedin] = useState(() => draftStr("linkedin"));
+  const [github, setGithub] = useState(() => draftStr("github"));
+  const [portfolio, setPortfolio] = useState(() => draftStr("portfolio"));
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -79,6 +98,42 @@ const JoinTheBuilders = () => {
   const communityStats = useMemo(() => {
     return { total: 78, countries: 12 };
   }, []);
+
+  // Persist text-field draft on every change so OAuth redirects / reloads
+  // don't lose work. Photo is intentionally not persisted (Files can't be
+  // serialized).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const draft = {
+      name, email, role, country, company, focus,
+      building, builderStory, motivation, statement,
+      linkedin, github, portfolio,
+    };
+    try {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    } catch {
+      // sessionStorage may be unavailable (e.g. private mode quota); ignore.
+    }
+  }, [name, email, role, country, company, focus, building, builderStory, motivation, statement, linkedin, github, portfolio]);
+
+  // Pre-fill email from the authenticated Clerk identity. This makes the
+  // verification copy honest (the email IS the one we'll use to identify
+  // them) and removes the duplicate-email source of confusion.
+  useEffect(() => {
+    if (user?.email && !email) setEmail(user.email);
+  }, [user?.email, email]);
+
+  // If a signed-in user already has a builder profile, send them to it
+  // instead of letting them duplicate-create. This handles both the
+  // "navigated here directly while signed in" case and the post-auth
+  // landing for returning users.
+  useEffect(() => {
+    if (!user || !allBuilders) return;
+    const existing = allBuilders.find((b) => b.userId === user.id);
+    if (existing?.slug) {
+      navigate(`/builders/${existing.slug}`, { replace: true });
+    }
+  }, [user, allBuilders, navigate]);
 
   const toggleFocus = (item: string) => {
     setFocus((prev) =>
@@ -139,6 +194,13 @@ const JoinTheBuilders = () => {
       return;
     }
     
+    // Auto-prefix protocol if the user typed a bare LinkedIn URL.
+    const linkedinTrimmed = linkedin.trim();
+    const linkedinNormalized =
+      linkedinTrimmed && !/^https?:\/\//i.test(linkedinTrimmed)
+        ? `https://${linkedinTrimmed}`
+        : linkedinTrimmed;
+
     // Validate required fields
     const errors: Record<string, string> = {};
     if (!email.trim()) errors.email = "Please add your email so you can claim your profile later.";
@@ -146,9 +208,9 @@ const JoinTheBuilders = () => {
     if (!motivation.trim()) errors.motivation = "Please tell us why you want to join Build With Her.";
     if (!builderStory.trim()) errors.builderStory = "Please share your builder story.";
     if (!building.trim()) errors.building = "Tell us what you're currently building or learning.";
-    if (!linkedin.trim()) errors.linkedin = "Please add your LinkedIn profile.";
-    else if (!validateLinkedInUrl(linkedin.trim())) errors.linkedin = "Please enter a valid LinkedIn URL (e.g. https://linkedin.com/in/yourname).";
-    
+    if (!linkedinNormalized) errors.linkedin = "Please add your LinkedIn profile.";
+    else if (!validateLinkedInUrl(linkedinNormalized)) errors.linkedin = "Please enter a valid LinkedIn URL (e.g. https://linkedin.com/in/yourname).";
+
     if (Object.keys(errors).length > 0) {
       setValidationErrors(errors);
       return;
@@ -173,7 +235,7 @@ const JoinTheBuilders = () => {
         statement: statement || undefined,
         builder_story: builderStory || undefined,
         motivation: motivation || undefined,
-        linkedin: linkedin || undefined,
+        linkedin: linkedinNormalized || undefined,
         github: github || undefined,
         portfolio: portfolio || undefined,
         photoFile,
@@ -192,16 +254,34 @@ const JoinTheBuilders = () => {
       setCardImageUrl(url);
       setSubmittedSlug(result.slug);
 
-      // Remove localStorage dependency - Clerk handles identity
       // Notify header to update immediately
       window.dispatchEvent(new Event("builderProfileUpdated"));
       setSubmitted(true);
-      
+
+      // Draft is no longer needed once the profile is saved.
+      try { window.sessionStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
+
       // Trigger celebration then redirect
       setShowCelebration(true);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Submission error:", err);
-      toast({ title: "Error", description: "Could not save your profile. Please try again." });
+      const raw = err instanceof Error ? err.message : "";
+      const lower = raw.toLowerCase();
+      let title = "Could not save your profile";
+      let description = "Please try again in a moment.";
+      if (lower.includes("storage") || lower.includes("upload") || lower.includes("photo") || lower.includes("bucket")) {
+        title = "We couldn't upload your photo";
+        description = "Try a different image (under 3 MB) or check your connection.";
+      } else if (lower.includes("network") || lower.includes("fetch") || lower.includes("failed to fetch") || lower.includes("connection")) {
+        title = "Network error";
+        description = "We couldn't reach our servers. Check your connection and try again.";
+      } else if (lower.includes("duplicate") || lower.includes("unique") || lower.includes("already exists")) {
+        title = "You already have a profile";
+        description = "A builder profile is already linked to this account.";
+      } else if (raw) {
+        description = raw;
+      }
+      toast({ title, description, variant: "destructive" });
     } finally {
       setGenerating(false);
     }
@@ -624,16 +704,21 @@ https://buildwithher.dev`;
                       </div>
                       <div>
                         <Label className="text-xs text-muted-foreground">Email *</Label>
-                        <Input 
+                        <Input
                           type="email"
-                          value={email} 
-                          onChange={(e) => { setEmail(e.target.value); setValidationErrors(prev => ({ ...prev, email: "" })); }} 
-                          required 
-                          className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.email ? "border-destructive" : ""}`} 
-                          placeholder="you@example.com" 
+                          value={email}
+                          onChange={(e) => { setEmail(e.target.value); setValidationErrors(prev => ({ ...prev, email: "" })); }}
+                          required
+                          readOnly={!!user?.email}
+                          className={`mt-1.5 bg-secondary/50 border-border/50 rounded-xl ${validationErrors.email ? "border-destructive" : ""} ${user?.email ? "opacity-80 cursor-not-allowed" : ""}`}
+                          placeholder="you@example.com"
                         />
                         {validationErrors.email && <p className="text-xs text-destructive mt-1">{validationErrors.email}</p>}
-                        <p className="text-[11px] text-muted-foreground mt-1">Used to verify profile ownership — never shown publicly.</p>
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                          {user?.email
+                            ? "Verified via your account. Never shown publicly."
+                            : "Used to verify profile ownership — never shown publicly."}
+                        </p>
                       </div>
                     </div>
 
